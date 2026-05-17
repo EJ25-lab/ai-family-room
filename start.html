@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Here — AI Family Room</title>
+<meta name="description" content="Brand new to AI? Start here with The Art of the Ask — build your first real prompt and take it straight to Claude.">
+<meta name="theme-color" content="#0B1215">
+<meta property="og:title" content="Start Here — AI Family Room">
+<meta property="og:description" content="The most powerful AI skill isn't knowing which tool to use. It's knowing how to ask.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ============================================================
+   START.HTML — Page-Specific Styles
+   All base styles come from style.css
+   Only styles unique to this page live here
+   ============================================================ */
+
+/* ── THE ART OF THE ASK — Tool Section ── */
+.ask-section {
+  background: var(--dark-mid);
+  padding: 88px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind the tool */
+.ask-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,188,176,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.ask-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative; /* sits above the glow */
+}
+
+/* Section intro text above the tool */
+.ask-intro {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.ask-intro .section-label { margin-bottom: 12px; }
+
+.ask-intro h2 {
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  margin-bottom: 14px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ask-intro h2 .accent { color: var(--teal); }
+
+.ask-intro p {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.ask-intro p strong { color: var(--white); }
+
+/* ── Category chips ── */
+.category-row {
+  margin-bottom: 6px;
+}
+
+.category-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.chip {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.6);
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.chip:hover, .chip.active {
+  background: rgba(26,188,176,.15);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* ── Input block ── */
+.input-block {
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: var(--r);
+  padding: 20px 20px 14px;
+  transition: border-color .2s, background .2s;
+  margin-bottom: 14px;
+}
+
+.input-block:focus-within {
+  border-color: var(--teal);
+  background: rgba(26,188,176,.03);
+}
+
+.input-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.rough-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.65;
+  resize: none;
+  outline: none;
+  min-height: 72px;
+}
+
+.rough-input::placeholder { color: rgba(255,255,255,.22); }
+
+.input-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.char-count {
+  font-size: 10px;
+  color: rgba(255,255,255,.18);
+  font-weight: 600;
+}
+
+.shortcut-hint {
+  font-size: 10px;
+  color: rgba(255,255,255,.15);
+}
+
+/* ── Build button ── */
+.build-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--teal);
+  color: var(--dark);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 16px 28px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s, opacity .2s;
+}
+
+.build-btn:hover:not(:disabled) {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+}
+
+.build-btn:disabled {
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.25);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Loading bar ── */
+.loading-bar {
+  display: none;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(26,188,176,.12);
+  border-radius: var(--r);
+  padding: 20px 22px;
+  margin-top: 16px;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-bar.show { display: flex; }
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: dotBounce 1.2s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+
+@keyframes dotBounce {
+  0%,80%,100% { transform: scale(.65); opacity: .35; }
+  40%          { transform: scale(1); opacity: 1; }
+}
+
+.loading-msg {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  font-style: italic;
+}
+
+/* ── Error box ── */
+.error-box {
+  display: none;
+  background: rgba(242,139,130,.07);
+  border: 1px solid rgba(242,139,130,.22);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
+}
+
+.error-box.show { display: block; }
+.error-box a { color: var(--teal); }
+
+/* ── Result panel ── */
+.result-panel {
+  display: none;
+  margin-top: 20px;
+  animation: resultSlideUp .45s cubic-bezier(.22,1,.36,1);
+}
+
+.result-panel.show { display: block; }
+
+@keyframes resultSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Before / After side by side */
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ba-card {
+  border-radius: var(--r);
+  padding: 18px 18px 16px;
+}
+
+.ba-card.before {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+.ba-card.after {
+  background: rgba(26,188,176,.07);
+  border: 1px solid rgba(26,188,176,.25);
+}
+
+.ba-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ba-card.before .ba-label { color: rgba(255,255,255,.28); }
+.ba-card.after  .ba-label { color: var(--teal); }
+
+.ba-text {
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.ba-card.before .ba-text { color: rgba(255,255,255,.42); font-style: italic; }
+.ba-card.after  .ba-text { color: rgba(255,255,255,.9); }
+
+/* Keys breakdown strip */
+.keys-breakdown {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.keys-bd-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.28);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.keys-bd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.key-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.key-badge {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: rgba(26,188,176,.14);
+  color: var(--teal);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  flex-shrink: 0;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.key-explain {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.6;
+}
+
+/* Result action buttons */
+.result-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.take-to-claude {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  background: var(--teal);
+  color: var(--dark);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 13px 24px;
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+
+.take-to-claude:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+.copy-result-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.65);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.copy-result-btn:hover {
+  background: rgba(255,255,255,.1);
+  color: var(--white);
+}
+
+.copy-result-btn.copied {
+  background: rgba(31,166,110,.12);
+  border-color: var(--green-dk);
+  color: var(--green-dk);
+}
+
+/* Try again link */
+.try-again-row {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.try-again-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.25);
+  transition: color .2s;
+}
+
+.try-again-btn:hover { color: var(--teal); }
+
+/* NeuralWriter credit note */
+.nw-credit {
+  margin-top: 32px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.nw-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+.nw-credit p {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.65;
+}
+
+.nw-credit a { color: var(--teal); }
+
+/* ── What AI Is — 3 concept cards ── */
+.concept-section {
+  background: var(--off);
+  padding: 84px 32px;
+  text-align: center;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  max-width: 860px;
+  margin: 40px auto 0;
+}
+
+.concept-card {
+  border-radius: var(--r);
+  padding: 26px 22px;
+  text-align: left;
+}
+
+.concept-card.positive { background: var(--teal-pale); border: 1.5px solid var(--teal); }
+.concept-card.caution  { background: var(--orange-pal); border: 1.5px solid var(--orange); }
+.concept-card.neutral  { background: var(--white); border: 1.5px solid var(--warm); }
+
+.concept-icon { font-size: 1.8rem; display: block; margin-bottom: 12px; }
+
+.concept-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.concept-body {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.concept-body strong { color: var(--text); }
+
+/* ── 3 Keys section (dark) ── */
+.keys-section {
+  background: var(--dark);
+  padding: 84px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.keys-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 900px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(26,188,176,.05) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.keys-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  max-width: 860px;
+  margin: 40px auto 0;
+}
+
+.key-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--r);
+  padding: 26px 22px;
+  text-align: left;
+  transition: border-color .2s, background .2s;
+}
+
+.key-card:hover {
+  border-color: rgba(26,188,176,.3);
+  background: rgba(26,188,176,.05);
+}
+
+.key-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: -.04em;
+}
+
+.key-title { font-size: 14px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.key-body  { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 18px; }
+
+.weak-strong {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ws-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.ws-label.weak   { color: rgba(255,255,255,.28); }
+.ws-label.strong { color: var(--teal); }
+
+.ws-text { font-size: 11px; font-style: italic; line-height: 1.6; }
+.ws-text.weak   { color: rgba(255,255,255,.35); }
+.ws-text.strong { color: rgba(255,255,255,.78); }
+
+/* ── Ground Rules ── */
+.rules-section {
+  background: var(--white);
+  padding: 84px 32px;
+  text-align: center;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  max-width: 860px;
+  margin: 40px auto 0;
+}
+
+.rules-col { border-radius: var(--r); padding: 26px 22px; text-align: left; }
+.rules-col.do    { background: var(--teal-pale); border: 2px solid var(--teal); }
+.rules-col.pause { background: var(--orange-pal); border: 2px solid var(--orange); }
+.rules-col.dont  { background: #fff3f3; border: 2px solid #F28B82; }
+
+.rules-title {
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 16px;
+}
+
+.rules-col.do    .rules-title { color: var(--teal-deep); }
+.rules-col.pause .rules-title { color: var(--orange-dk); }
+.rules-col.dont  .rules-title { color: #B83232; }
+
+.rules-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+.rules-list li {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.rules-list li::before { content: '→'; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+.rules-col.do    .rules-list li::before { color: var(--teal-deep); }
+.rules-col.pause .rules-list li::before { color: var(--orange-dk); }
+.rules-col.dont  .rules-list li::before { color: #B83232; }
+
+/* ── Equalizer quote band ── */
+.equalizer-band {
+  background: var(--teal);
+  padding: 56px 32px;
+  text-align: center;
+}
+
+.equalizer-band blockquote {
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 800;
+  color: var(--dark);
+  max-width: 640px;
+  margin: 0 auto 14px;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+}
+
+.equalizer-band cite {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(11,18,21,.5);
+  font-style: normal;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .concept-grid, .keys-grid, .rules-grid { grid-template-columns: repeat(2,1fr); }
+  .before-after { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .concept-grid, .keys-grid, .rules-grid { grid-template-columns: 1fr; }
+  .ask-section, .concept-section, .keys-section,
+  .rules-section, .equalizer-band { padding-left: 20px; padding-right: 20px; }
+  .result-actions { flex-direction: column; }
+  .take-to-claude { flex: unset; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-mark">AI</div>
+    <div>
+      <div class="nav-name">AI Family Room</div>
+      <span class="nav-sub">by EdJustice Collective</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="start.html" class="active">Start Here</a></li>
+    <li><a href="tools.html">The Tools</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li><a href="milspouse.html">Mil-Spouse</a></li>
+    <li><a href="safety.html">Stay Safe</a></li>
+    <li><a href="progress.html" class="nav-xp" id="nav-xp" style="display:none;">⚡ 0 · Just Arrived</a></li>
+  </ul>
+  <a href="join.html" class="nav-cta">Join the Community →</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="drawer">
+  <a href="start.html">Start Here</a>
+  <a href="tools.html">The Tools</a>
+  <a href="missions.html">Missions</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="safety.html">Stay Safe</a>
+  <a href="progress.html">My Progress</a>
+  <a href="join.html" class="nav-cta">Join the Community →</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" role="banner">
+  <span class="eyebrow fade-up d1">START HERE</span>
+  <h1 class="fade-up d2">
+    The most powerful AI skill<br>
+    isn't the tool.<br>
+    <span class="accent">It's the ask.</span>
+  </h1>
+  <p class="hero-sub fade-up d3">
+    Every great AI result starts with a great prompt.
+    <strong>The Art of the Ask</strong> teaches you how to build one —
+    then takes you straight to Claude to use it.
+  </p>
+  <div class="hero-btns fade-up d4">
+    <a href="#the-ask" class="btn btn-primary">Try The Art of the Ask ↓</a>
+    <a href="missions.html" class="btn btn-ghost">Skip to Missions →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     THE ART OF THE ASK — Live Interactive Tool
+     ══════════════════════════════════════════════════════════ -->
+<section class="ask-section" id="the-ask" aria-labelledby="ask-heading">
+  <div class="ask-inner">
+
+    <!-- Section intro -->
+    <div class="ask-intro">
+      <span class="section-label">THE ART OF THE ASK · YOUR FIRST SKILL</span>
+      <h2 id="ask-heading">
+        Type a rough thought.<br>
+        <span class="accent">Watch it become a real prompt.</span>
+      </h2>
+      <p>
+        You don't need the right words.
+        Just type what's on your mind — <strong>messy is fine.</strong>
+        We'll turn it into something that actually works,
+        then send you straight to Claude to use it.
+      </p>
+    </div>
+
+    <!-- Category chips -->
+    <div class="category-row">
+      <span class="category-label">Start with a category, or just type ↓</span>
+      <div class="chips" id="chips">
+        <button class="chip" data-fill="I need help writing an email to my child's new teacher after we moved">School &amp; Kids</button>
+        <button class="chip" data-fill="I need to explain a gap in my resume because of military moves and deployments">Career &amp; Resume</button>
+        <button class="chip" data-fill="I just got PCS orders and need to figure out what to do in the next 72 hours">PCS &amp; Moving</button>
+        <button class="chip" data-fill="I need to understand what my TRICARE benefits actually cover for my family">TRICARE &amp; Benefits</button>
+        <button class="chip" data-fill="I want to plan a family weekend using our free National Parks military pass">Family &amp; Fun</button>
+        <button class="chip" data-fill="I need to write a message to my FRG group about an upcoming support event">Community &amp; FRG</button>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-block">
+      <span class="input-label">What do you need help with?</span>
+      <textarea
+        class="rough-input"
+        id="rough-input"
+        placeholder="Type anything rough — 'email for teacher', 'fix my resume', 'what to do after PCS orders'..."
+        maxlength="300"
+        rows="3"
+      ></textarea>
+      <div class="input-footer">
+        <span class="char-count" id="char-count">0 / 300</span>
+        <span class="shortcut-hint">⌘ + Enter to build</span>
+      </div>
+    </div>
+    <p style="font-size:10.5px;color:rgba(255,255,255,.25);line-height:1.6;
+              margin-bottom:14px;padding:0 2px;">
+      What you type is sent to Claude to build your prompt.
+      Keep it general — no unit names, deployment dates, or personal details.
+    </p>
+
+    <!-- Build button -->
+    <button class="build-btn" id="build-btn" disabled>
+      ✨ Build My Prompt →
+    </button>
+
+    <!-- Loading -->
+    <div class="loading-bar" id="loading-bar">
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <span class="loading-msg" id="loading-msg">Reading your thought...</span>
+    </div>
+
+    <!-- Error -->
+    <div class="error-box" id="error-box">
+      Something went wrong building your prompt. Check your connection and try again.
+      You can also try
+      <a href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener">NeuralWriter's free prompt tool</a>
+      directly — it does the same job without an account.
+    </div>
+
+    <!-- Result panel -->
+    <div class="result-panel" id="result-panel">
+
+      <!-- Before / After -->
+      <div class="before-after">
+        <div class="ba-card before">
+          <span class="ba-label">❌ What you typed</span>
+          <p class="ba-text" id="before-text"></p>
+        </div>
+        <div class="ba-card after">
+          <span class="ba-label">✓ Your polished prompt</span>
+          <p class="ba-text" id="after-text"></p>
+        </div>
+      </div>
+
+      <!-- Keys breakdown -->
+      <div class="keys-breakdown">
+        <span class="keys-bd-title">WHY THIS PROMPT WORKS — THE 3 KEYS</span>
+        <div class="keys-bd-list" id="keys-bd-list"></div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="result-actions">
+        <a href="#" target="_blank" rel="noopener noreferrer"
+           class="take-to-claude" id="take-to-claude">
+          Take This to Claude →
+        </a>
+        <button class="copy-result-btn" id="copy-result-btn">
+          📋 Copy Prompt
+        </button>
+      </div>
+
+      <!-- Skill card CTA -->
+      <div style="margin-top:16px;text-align:center;">
+        <a href="skill-card.html" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:7px;
+                  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+                  color:rgba(255,255,255,.6);font-family:var(--font);
+                  font-size:12px;font-weight:700;padding:11px 22px;
+                  border-radius:var(--r-pill);text-decoration:none;transition:all .2s;">
+          📲 Save Your Skill Card
+        </a>
+      </div>
+
+      <!-- Try again -->
+      <div class="try-again-row">
+        <button class="try-again-btn" id="try-again-btn">
+          ← Try a different thought
+        </button>
+      </div>
+
+    </div><!-- /result-panel -->
+
+    <!-- NeuralWriter credit -->
+    <div class="nw-credit">
+      <span class="nw-icon">🔗</span>
+      <p>
+        Want a standalone prompt builder you can bookmark anytime?
+        <a href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener">NeuralWriter</a>
+        is free, no account needed, and does the same job.
+        The Art of the Ask teaches you the skill — NeuralWriter gives you a free tool to practice it independently.
+      </p>
+    </div>
+
+  </div>
+</section><!-- /ask-section -->
+
+<!-- ── WHAT AI ACTUALLY IS ── -->
+<section class="concept-section" aria-labelledby="whatai-heading">
+  <div class="container text-center">
+    <span class="section-label">IN OUR WORDS</span>
+    <h2 class="h2 dark-text" id="whatai-heading">
+      A super-fast pattern spotter that has read
+      <span class="accent">millions of books.</span>
+    </h2>
+    <p class="body-text">
+      That's it. AI is not magic. It predicts what word comes next based on everything
+      it was trained on. Understanding that one thing makes you a better user of it —
+      and a smarter skeptic when it gets something wrong.
+    </p>
+    <div class="concept-grid" role="list">
+
+      <div class="concept-card positive" role="listitem">
+        <span class="concept-icon">✅</span>
+        <div class="concept-title">What AI does well</div>
+        <p class="concept-body">
+          Drafting and editing text. Explaining concepts in plain language.
+          Brainstorming options. Rewriting something in a different tone.
+          Building structure from your messy notes. Answering "what does this mean?"
+          at any level, in any language.
+        </p>
+      </div>
+
+      <div class="concept-card caution" role="listitem">
+        <span class="concept-icon">⚠️</span>
+        <div class="concept-title">What AI gets wrong</div>
+        <p class="concept-body">
+          AI can be confidently wrong — it may invent statistics, create fictional citations,
+          or give outdated information. The Golden Rule:
+          <strong>use AI as a starting point, not the final answer.</strong>
+          You are the expert on your own life.
+        </p>
+      </div>
+
+      <div class="concept-card neutral" role="listitem">
+        <span class="concept-icon">🧠</span>
+        <div class="concept-title">What it will never replace</div>
+        <p class="concept-body">
+          Your judgment. Your story. Your relationships. Your knowledge of your own family
+          and community. AI doesn't give you a voice —
+          <strong>you already have one.</strong>
+          It just helps you amplify it.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── THE 3 KEYS (reinforcement — they've already experienced them) ── -->
+<section class="keys-section" aria-labelledby="keys-heading">
+  <div class="container text-center">
+    <span class="section-label">THE BREAKDOWN</span>
+    <h2 class="h2 white-text" id="keys-heading">
+      You just used 3 keys.<br>
+      <span class="accent">Here's what they are.</span>
+    </h2>
+    <p class="body-text white">
+      Every great prompt has these three things. The Art of the Ask applied them
+      automatically — now you know what to look for when you write your own.
+    </p>
+    <div class="keys-grid" role="list">
+
+      <div class="key-card" role="listitem">
+        <span class="key-num">01</span>
+        <div class="key-title">Be Specific</div>
+        <p class="key-body">
+          Vague in = vague out. The more precisely you name the task, the more useful
+          the output. Think of it like giving directions — "go somewhere near downtown"
+          versus a real address.
+        </p>
+        <div class="weak-strong">
+          <div>
+            <span class="ws-label weak">❌ WEAK</span>
+            <p class="ws-text weak">"Help me with an email."</p>
+          </div>
+          <div>
+            <span class="ws-label strong">✓ STRONG</span>
+            <p class="ws-text strong">"Write a 150-word email to my child's new teacher introducing our family after a military move."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="key-card" role="listitem">
+        <span class="key-num">02</span>
+        <div class="key-title">Give Context</div>
+        <p class="key-body">
+          The more Claude knows about your situation, the better it can help. Who you are,
+          who this is for, what's already happened — context is the difference between
+          a template and something that actually sounds like you.
+        </p>
+        <div class="weak-strong">
+          <div>
+            <span class="ws-label weak">❌ NO CONTEXT</span>
+            <p class="ws-text weak">"Write a thank-you note."</p>
+          </div>
+          <div>
+            <span class="ws-label strong">✓ WITH CONTEXT</span>
+            <p class="ws-text strong">"Write a thank-you note to my FRG leader who organized a care package drive while my spouse was deployed for six months."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="key-card" role="listitem">
+        <span class="key-num">03</span>
+        <div class="key-title">Set the Tone</div>
+        <p class="key-body">
+          Tell Claude how it should sound — warm, professional, simple, formal. Without
+          tone guidance it guesses, and guessing means generic. One word changes
+          everything: "firm but professional" versus "warm and friendly."
+        </p>
+        <div class="weak-strong">
+          <div>
+            <span class="ws-label weak">❌ NO TONE</span>
+            <p class="ws-text weak">"Write a message about my lease."</p>
+          </div>
+          <div>
+            <span class="ws-label strong">✓ TONE SET</span>
+            <p class="ws-text strong">"Write a firm but professional letter to my landlord terminating my lease under the Servicemembers Civil Relief Act."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GROUND RULES ── -->
+<section class="rules-section" aria-labelledby="rules-heading">
+  <div class="container text-center">
+    <span class="section-label">HOW WE USE IT</span>
+    <h2 class="h2 dark-text" id="rules-heading">Simple rules for the whole family.</h2>
+    <p class="body-text">
+      These aren't restrictions — they're how you stay in control.
+      The trap is always the system, never the person.
+    </p>
+    <div class="rules-grid" role="list">
+
+      <div class="rules-col do" role="listitem">
+        <div class="rules-title">✅ Do</div>
+        <ul class="rules-list">
+          <li>Use AI to free up time on tasks you repeat every week</li>
+          <li>Ask AI to explain things in simpler language</li>
+          <li>Use it to brainstorm options before you decide</li>
+          <li>Draft something, then edit it to sound like you</li>
+          <li>Ask follow-up questions when the first answer isn't right</li>
+          <li>Use AI to practice a hard conversation before you have it</li>
+        </ul>
+      </div>
+
+      <div class="rules-col pause" role="listitem">
+        <div class="rules-title">⏸️ Pause</div>
+        <ul class="rules-list">
+          <li>Before sharing full names, addresses, or ID numbers</li>
+          <li>Before pasting documents with other people's private info</li>
+          <li>Before using AI for medical, legal, or financial decisions</li>
+          <li>Before assuming AI is right about a specific fact — check it</li>
+          <li>Before letting kids use AI unsupervised without a conversation first</li>
+        </ul>
+      </div>
+
+      <div class="rules-col dont" role="listitem">
+        <div class="rules-title">🚫 Don't</div>
+        <ul class="rules-list">
+          <li>Use AI to pretend to be someone you're not</li>
+          <li>Share stories that belong to someone else without permission</li>
+          <li>Use AI to bully, harass, or harm</li>
+          <li>Trust AI output on health or legal questions without verifying</li>
+          <li>Call 911 through AI — always dial directly in emergencies</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EQUALIZER QUOTE BAND ── -->
+<section class="equalizer-band" aria-label="Core belief">
+  <blockquote>
+    "AI doesn't give you a voice.<br>
+    You already have one.<br>
+    It just helps you amplify it."
+  </blockquote>
+  <cite>AI Family Room · EdJustice Collective</cite>
+</section>
+
+<!-- ── CLOSING CTA ── -->
+<section class="cta-section" aria-labelledby="start-cta-h">
+  <div class="container text-center">
+    <h2 id="start-cta-h">
+      You've got the skill.<br>
+      <span class="accent">Now build something real.</span>
+    </h2>
+    <p>
+      Pick a mission from the map. Every one produces a real output you keep —
+      an email, a document, a deck, a plan.
+      The first three are always open. No signup required.
+    </p>
+    <div class="cta-stack">
+      <a href="missions.html" class="btn btn-primary">Go to the Mission Map →</a>
+      <a href="milspouse.html" class="btn btn-ghost" style="font-size:13px;padding:13px 28px;">Mil-Spouse Intel →</a>
+      <span class="cta-note">Earn your First Spark badge when you complete Mission 7</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">AI Family Room</span>
+      <span class="footer-tag">by EdJustice Collective</span>
+      <p class="footer-about">
+        A free, self-guided AI literacy environment for families, communities,
+        and military spouses. Built on the belief that technology should amplify
+        every voice — not just the ones with resources.
+      </p>
+    </div>
+    <div>
+      <span class="footer-col-title">Learn</span>
+      <ul class="footer-links">
+        <li><a href="start.html">Start Here</a></li>
+        <li><a href="tools.html">The Tools</a></li>
+        <li><a href="missions.html">All Missions</a></li>
+        <li><a href="safety.html">Help &amp; Safety</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Connect</span>
+      <ul class="footer-links">
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="progress.html">My Progress</a></li>
+        <li><a href="join.html">Join the Community</a></li>
+        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 EdJustice Collective · Build Systems. Promote Justice.</span>
+    <p class="footer-privacy">
+      We collect only what you choose to share. We never sell your data.
+      Email <a href="mailto:chief@tieredjusticenow.com">chief@tieredjusticenow.com</a>
+      to delete your info at any time.
+    </p>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ── -->
+<script src="config.js"></script>
+<script src="progress.js"></script>
+<script>
+/* ============================================================
+   START.HTML — Page JavaScript
+   progress.js handles: nav XP, mobile nav, copy buttons
+   This block handles: Art of the Ask tool + smooth scroll
+   ============================================================ */
+
+// ── SMOOTH SCROLL for hero CTA ──────────────────────────────
+document.querySelector('a[href="#the-ask"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('the-ask').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// ── ART OF THE ASK STATE ─────────────────────────────────────
+let currentPrompt = '';
+let isLoading     = false;
+
+// DOM refs
+const roughInput   = document.getElementById('rough-input');
+const charCount    = document.getElementById('char-count');
+const buildBtn     = document.getElementById('build-btn');
+const loadingBar   = document.getElementById('loading-bar');
+const loadingMsg   = document.getElementById('loading-msg');
+const errorBox     = document.getElementById('error-box');
+const resultPanel  = document.getElementById('result-panel');
+const beforeText   = document.getElementById('before-text');
+const afterText    = document.getElementById('after-text');
+const keysBdList   = document.getElementById('keys-bd-list');
+const takeToClaude = document.getElementById('take-to-claude');
+const copyBtn      = document.getElementById('copy-result-btn');
+const tryAgainBtn  = document.getElementById('try-again-btn');
+
+// Loading messages that cycle while the API call runs
+const loadingMessages = [
+  'Reading your thought...',
+  'Spotting the goal...',
+  'Adding context and tone...',
+  'Polishing your prompt...',
+  'Almost there...',
+];
+
+let loadingInterval = null;
+
+function startLoadingCycle() {
+  let i = 0;
+  loadingMsg.textContent = loadingMessages[0];
+  loadingInterval = setInterval(() => {
+    i = (i + 1) % loadingMessages.length;
+    loadingMsg.textContent = loadingMessages[i];
+  }, 1800);
+}
+
+function stopLoadingCycle() {
+  if (loadingInterval) { clearInterval(loadingInterval); loadingInterval = null; }
+}
+
+// ── INPUT HANDLING ───────────────────────────────────────────
+roughInput.addEventListener('input', function() {
+  const len = this.value.length;
+  charCount.textContent = `${len} / 300`;
+  buildBtn.disabled = len < 5 || isLoading;
+  // Clear result when they start typing a new thought
+  if (resultPanel.classList.contains('show')) {
+    resultPanel.classList.remove('show');
+    errorBox.classList.remove('show');
+  }
+});
+
+// ⌘+Enter / Ctrl+Enter shortcut to build
+roughInput.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') buildPrompt();
+});
+
+// ── CHIP SELECTION ───────────────────────────────────────────
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    roughInput.value = this.dataset.fill;
+    roughInput.dispatchEvent(new Event('input'));
+    roughInput.focus();
+  });
+});
+
+// ── BUILD BUTTON ─────────────────────────────────────────────
+buildBtn.addEventListener('click', buildPrompt);
+
+async function buildPrompt() {
+  const rough = roughInput.value.trim();
+  if (!rough || rough.length < 5 || isLoading) return;
+
+  // Enter loading state
+  isLoading = true;
+  buildBtn.disabled = true;
+  buildBtn.textContent = 'Building your prompt...';
+  resultPanel.classList.remove('show');
+  errorBox.classList.remove('show');
+  loadingBar.classList.add('show');
+  startLoadingCycle();
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+
+        // System prompt that defines The Art of the Ask behavior
+        system: `You are "The Art of the Ask" — a prompt coaching tool built by EdJustice Collective for families and military spouses learning to use AI effectively.
+
+Your job: take a rough, vague thought and transform it into a precise, powerful AI prompt using three keys: Specific task, Context, and Tone.
+
+The audience is real families — military spouses, parents, community members — dealing with school transitions, PCS moves, career gaps, TRICARE, and daily life. Your prompts should feel warm, real, and immediately usable.
+
+Respond with valid JSON only. No markdown fences, no preamble, nothing outside the JSON object.
+
+JSON structure:
+{
+  "polished_prompt": "The complete, ready-to-use prompt (2-4 sentences, specific and warm, under 80 words)",
+  "keys": {
+    "specific": "One short sentence (under 20 words) explaining what specific task was added or clarified",
+    "context": "One short sentence (under 20 words) explaining what context was added to personalize it",
+    "tone": "One short sentence (under 20 words) explaining what tone or register was set"
+  }
+}
+
+Rules:
+- polished_prompt must be something a real person would actually send to Claude
+- Never use [brackets] or placeholders — make reasonable assumptions
+- Keep prompts under 80 words and naturally warm
+- If input mentions military life, PCS, TRICARE, FRG, or deployment — lean into that context
+- Key explanations should be short and conversational, not technical`,
+
+        messages: [{
+          role: 'user',
+          content: `Rough thought: "${rough}"\n\nBuild a polished prompt and explain the three keys. JSON only.`
+        }]
+      })
+    });
+
+    if (!response.ok) throw new Error(`API ${response.status}`);
+
+    const data   = await response.json();
+    const raw    = data.content?.[0]?.text || '';
+    const clean  = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    if (!parsed.polished_prompt || !parsed.keys) throw new Error('Unexpected response shape');
+
+    currentPrompt = parsed.polished_prompt;
+    renderResult(rough, parsed);
+
+  } catch (err) {
+    console.error('Art of the Ask error:', err);
+    errorBox.classList.add('show');
+  } finally {
+    // Exit loading state regardless of success or failure
+    isLoading = false;
+    buildBtn.disabled = roughInput.value.trim().length < 5;
+    buildBtn.innerHTML = '✨ Build My Prompt →';
+    loadingBar.classList.remove('show');
+    stopLoadingCycle();
+  }
+}
+
+// ── RENDER RESULT ────────────────────────────────────────────
+function renderResult(rough, parsed) {
+  // Populate before / after
+  beforeText.textContent = rough;
+  afterText.textContent  = parsed.polished_prompt;
+
+  // Populate keys breakdown
+  keysBdList.innerHTML = '';
+  [
+    { badge: 'Specific', text: parsed.keys.specific },
+    { badge: 'Context',  text: parsed.keys.context  },
+    { badge: 'Tone',     text: parsed.keys.tone     },
+  ].forEach(k => {
+    const el = document.createElement('div');
+    el.className = 'key-item';
+    el.innerHTML = `<span class="key-badge">${k.badge}</span><span class="key-explain">${k.text}</span>`;
+    keysBdList.appendChild(el);
+  });
+
+  // Wire the Take to Claude button — opens claude.ai with the prompt pre-filled
+  takeToClaude.href = `https://claude.ai/new?q=${encodeURIComponent(parsed.polished_prompt)}`;
+
+  // Show the panel
+  resultPanel.classList.add('show');
+
+  // Scroll it into view after the animation starts
+  setTimeout(() => {
+    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+// ── COPY BUTTON ──────────────────────────────────────────────
+copyBtn.addEventListener('click', function() {
+  if (!currentPrompt) return;
+
+  const btn = this;
+  const originalHTML = btn.innerHTML;
+
+  // Modern clipboard API with fallback for older browsers
+  const doCopy = () => {
+    btn.innerHTML = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.classList.remove('copied');
+    }, 2200);
+  };
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(currentPrompt).then(doCopy).catch(() => fallbackCopy(doCopy));
+  } else {
+    fallbackCopy(doCopy);
+  }
+});
+
+function fallbackCopy(callback) {
+  const ta = document.createElement('textarea');
+  ta.value = currentPrompt;
+  ta.style.cssText = 'position:fixed;opacity:0;top:-999px';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  ta.remove();
+  callback();
+}
+
+// ── TRY AGAIN ────────────────────────────────────────────────
+tryAgainBtn.addEventListener('click', function() {
+  resultPanel.classList.remove('show');
+  errorBox.classList.remove('show');
+  currentPrompt = '';
+  roughInput.value = '';
+  roughInput.dispatchEvent(new Event('input')); // resets char count + disables build btn
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  roughInput.focus();
+  // Scroll back up to the tool input
+  document.querySelector('.input-block').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
+</body>
+</html>

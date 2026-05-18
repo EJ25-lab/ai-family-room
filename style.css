@@ -1956,6 +1956,40 @@ a { text-decoration: none; color: inherit; }
   max-width: 260px;
 }
 
+/* White-on-dark heading + body aliases (HTML uses .white-text and .white) */
+.h2.white-text,
+h2.white-text,
+.h2.white,
+h2.white {
+  color: var(--white);
+}
+
+.body-text.white,
+p.white,
+.white-body {
+  color: rgba(255,255,255,.7);
+}
+
+/* Softer top nav — active link is teal text only (no pill background) */
+.nav-links a.active {
+  background: transparent;
+  color: var(--teal);
+}
+.nav-links a.active:hover {
+  background: rgba(26,188,176,.08);
+}
+
+/* Outlined Join CTA — less weight than the solid teal fill */
+.nav-cta {
+  background: transparent;
+  color: var(--teal);
+  border: 1.5px solid var(--teal);
+}
+.nav-cta:hover {
+  background: var(--teal);
+  color: var(--dark);
+}
+
 /* Responsive — match the original breakpoints */
 @media (max-width: 860px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }

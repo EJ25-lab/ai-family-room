@@ -314,6 +314,231 @@
   /* Stack the comparison table on tiny screens */
   .compare-table { display: none; }
 }
+
+/* ============================================================
+   CLAUDE IN ACTION — Capability showcase + price reality check
+   ============================================================ */
+.claude-action {
+  background: var(--dark);
+  padding: 96px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.claude-action::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 1000px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,188,176,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.claude-action-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.claude-action-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.claude-action-header .section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.claude-action-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  margin-bottom: 20px;
+}
+
+.claude-action-header h2 .accent { color: var(--teal); }
+
+.claude-action-header p {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* 6-tile grid */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 64px;
+}
+
+.action-tile {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s, background .2s, transform .15s;
+}
+
+.action-tile:hover {
+  border-color: rgba(26,188,176,.35);
+  background: rgba(26,188,176,.04);
+  transform: translateY(-3px);
+}
+
+.tile-num {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.action-tile h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  margin: 0 0 10px;
+}
+
+.tile-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.65;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.tile-demo {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 14px;
+}
+
+.tile-demo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.tile-demo a:hover {
+  color: var(--white);
+}
+
+/* Price reality check band */
+.price-reality {
+  background: rgba(26,188,176,.06);
+  border: 1px solid rgba(26,188,176,.22);
+  border-radius: 20px;
+  padding: 44px 40px;
+  text-align: center;
+}
+
+.price-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  color: var(--teal);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  padding: 8px 4px;
+  border-bottom: 1px dashed rgba(255,255,255,.08);
+}
+
+.price-list li:last-child { border-bottom: none; }
+
+.price-role { color: rgba(255,255,255,.7); font-weight: 600; }
+.price-rate { color: rgba(255,255,255,.4); font-weight: 700; font-size: 13px; }
+
+.price-total {
+  margin: 28px auto 24px;
+  max-width: 560px;
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.6;
+}
+
+.price-total strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -.02em;
+  margin-bottom: 6px;
+}
+
+.price-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: var(--dark);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 16px 36px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+
+.price-cta:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .action-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+  .claude-action { padding: 64px 20px; }
+  .action-grid { grid-template-columns: 1fr; }
+  .price-reality { padding: 32px 22px; }
+  .price-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
 </style>
 </head>
 <body>
@@ -364,19 +589,257 @@
     almost everything your family needs.
   </p>
   <div class="hero-btns fade-up d4">
-    <a href="#neuralwriter" class="btn btn-primary">Start with NeuralWriter &darr;</a>
+    <a href="#claude" class="btn btn-primary">See Claude in action &darr;</a>
     <a href="missions.html" class="btn btn-ghost">Go to the Missions &rarr;</a>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     TOOL 1 — NEURALWRITER
+     TOOL 1 — CLAUDE (the main event)
+     ══════════════════════════════════════════════════════════ -->
+<section class="tool-band featured" id="claude" aria-labelledby="claude-heading">
+  <div class="tool-band-inner">
+
+    <div class="tool-identity">
+      <span class="tool-number">TOOL 01 OF 03 &middot; THE MAIN EVENT</span>
+      <div class="tool-name-large" id="claude-heading">Claude</div>
+      <span class="tool-tagline">"The AI that thinks out loud with you"</span>
+
+      <p class="tool-description">
+        Claude is the centerpiece of everything we do in the AI Family Room.
+        What makes it different from other AI tools is that it shows its reasoning &mdash;
+        it explains what it is doing and why, which means you stay in the driver's seat.
+        It is conversational, patient, and genuinely good at the kind of real-life communication
+        that families need: school emails, advocacy letters, career narratives, community messages.
+        It does not just give you an answer; it thinks through the problem with you.
+      </p>
+
+      <div class="privacy-strip">
+        <span class="lock">&#128274;</span>
+        <span>Free conversations on claude.ai are not used to train the model by default.
+        You are not handing over your data just by using it.</span>
+      </div>
+
+      <div class="cost-row">
+        <span class="cost-pill cost-free">Free</span>
+        <span class="cost-pill cost-paid">Pro from $20/mo</span>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-cta">
+          Open Claude &rarr;
+        </a>
+        <a href="start.html#the-ask" class="tool-cta ghost">
+          Try the Art of the Ask first
+        </a>
+      </div>
+
+      <div class="protip-box">
+        <span class="protip-icon">&#128640;</span>
+        <div>
+          <span class="protip-label">The easy button</span>
+          <p class="protip-text">
+            Use <strong>"Continue with Google"</strong> to sign in.
+            If you have a Gmail account you are already halfway there &mdash;
+            no new password, no new account to manage.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-usecases">
+      <span class="usecases-label">WHAT YOU CAN DO WITH IT</span>
+
+      <div class="usecase-item">
+        <span class="usecase-icon">&#128140;</span>
+        <div class="usecase-text">
+          <div class="usecase-title">Write emails that actually get responses</div>
+          <p class="usecase-sub">From the new teacher introduction to the landlord SCRA letter &mdash; Claude drafts it and you edit until it sounds like you.</p>
+        </div>
+      </div>
+
+      <div class="usecase-item">
+        <span class="usecase-icon">&#128188;</span>
+        <div class="usecase-text">
+          <div class="usecase-title">Explain a career gap without apologizing</div>
+          <p class="usecase-sub">Every PCS was a leadership role. Claude helps you turn four moves and three career pauses into the professional story they actually are.</p>
+        </div>
+      </div>
+
+      <div class="usecase-item">
+        <span class="usecase-icon">&#127968;</span>
+        <div class="usecase-text">
+          <div class="usecase-title">Translate TRICARE, SCRA, and military bureaucracy</div>
+          <p class="usecase-sub">Paste any document and ask Claude to explain it in plain English. Then ask it to help you draft a response or an appeal.</p>
+        </div>
+      </div>
+
+      <div class="usecase-item">
+        <span class="usecase-icon">&#129309;</span>
+        <div class="usecase-text">
+          <div class="usecase-title">Practice hard conversations before you have them</div>
+          <p class="usecase-sub">Ask Claude to roleplay the other side &mdash; the principal, the landlord, the HR manager. Walk in prepared instead of nervous.</p>
+        </div>
+      </div>
+
+      <div class="usecase-item">
+        <span class="usecase-icon">&#128161;</span>
+        <div class="usecase-text">
+          <div class="usecase-title">Get a second opinion without judgment</div>
+          <p class="usecase-sub">Claude does not get tired, does not make you feel silly for asking, and does not charge by the hour. Ask it anything.</p>
+        </div>
+      </div>
+
+
+      <!-- Try it now -->
+      <div style="margin-top:24px;background:var(--teal-pale);border:1.5px solid var(--teal);
+                  border-radius:16px;padding:20px 20px 16px;">
+        <span style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+                     color:var(--teal-deep);display:block;margin-bottom:10px;">
+          &#10024; TRY IT NOW
+        </span>
+        <p style="font-size:13px;color:var(--text);line-height:1.75;
+                  font-style:italic;margin-bottom:14px;">"I am a military spouse who just got PCS orders. Help me list the 10 most important things to do in the first two weeks at a new installation. Keep it practical and specific."</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button onclick="navigator.clipboard.writeText('I am a military spouse who just got PCS orders. Help me list the 10 most important things to do in the first two weeks at a new installation. Keep it practical and specific.').then(function(){this.textContent='&#10003; Copied!';var b=this;setTimeout(function(){b.textContent='Copy &rarr;'},2000)}.bind(this))"
+            style="background:var(--teal);color:var(--dark);font-family:var(--font);
+                   font-size:11px;font-weight:800;padding:8px 16px;border-radius:8px;
+                   border:none;cursor:pointer;">Copy &rarr;</button>
+          <a href="https://claude.ai" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;
+                    color:var(--teal-deep);border:1.5px solid var(--teal);padding:8px 16px;
+                    border-radius:8px;text-decoration:none;">Open Claude &rarr;</a>
+        </div>
+      </div>
+
+      <a href="missions.html" class="mission-badge" style="margin-top:16px;">
+        &#9996;&#65039; Used in Missions 3, 4, 7, 8 &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CLAUDE IN ACTION — Capability showcase + price reality check
+     ══════════════════════════════════════════════════════════ -->
+<section class="claude-action" aria-labelledby="claude-action-h">
+  <div class="claude-action-inner">
+
+    <div class="claude-action-header">
+      <span class="section-label">CLAUDE IN ACTION</span>
+      <h2 id="claude-action-h">
+        A video editor.<br>
+        A web designer.<br>
+        A teammate that works while you sleep.<br>
+        <span class="accent">For $20 a month.</span>
+      </h2>
+      <p>
+        Real demos. Real outputs. The kind of work that used to cost thousands
+        &mdash; now done by you, with Claude.
+      </p>
+    </div>
+
+    <div class="action-grid">
+
+      <div class="action-tile">
+        <span class="tile-num">01 &middot; VIDEO</span>
+        <h3>Claude builds videos.</h3>
+        <p class="tile-sub">Already-filmed talking head? Claude adds titles, captions, trims the mistakes. FRG announcement video done before the kids finish breakfast.</p>
+        <div class="tile-demo">
+          <a href="https://www.tiktok.com/@taki.gpt/video/7625035071883332880" target="_blank" rel="noopener">
+            &#127909; Watch the demo &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="action-tile">
+        <span class="tile-num">02 &middot; WEB &amp; APPS</span>
+        <h3>Claude builds web pages and apps.</h3>
+        <p class="tile-sub">One sentence in, working interactive page out. Family reunion site. Side hustle landing. PCS checklist app that works on mobile.</p>
+        <div class="tile-demo">
+          <a href="https://claude.com/blog/claude-powered-artifacts" target="_blank" rel="noopener">
+            &#127909; See the official demo &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="action-tile">
+        <span class="tile-num">03 &middot; COWORK</span>
+        <h3>Claude works while you sleep.</h3>
+        <p class="tile-sub">Set Claude to scan your inbox every morning at 6am and brief you on what matters before the coffee. Daily briefings. Auto-reports. Anything recurring.</p>
+        <div class="tile-demo">
+          <a href="https://www.tiktok.com/@claragig/video/7628994382204521750" target="_blank" rel="noopener">
+            &#127909; Watch the demo &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="action-tile">
+        <span class="tile-num">04 &middot; COMPUTER USE</span>
+        <h3>Claude drives your computer.</h3>
+        <p class="tile-sub">Book three dental appointments across three school schedules while you handle the FRG call. Claude moves the mouse. You handle the people.</p>
+        <div class="tile-demo">
+          <a href="https://www.tiktok.com/@letsunami35/video/7430892150944058656" target="_blank" rel="noopener">
+            &#127909; Watch the demo (French) &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="action-tile">
+        <span class="tile-num">05 &middot; BROWSER</span>
+        <h3>Claude rides shotgun in Chrome.</h3>
+        <p class="tile-sub">School enrollment form on screen. Claude fills it from your kid's records. You hit submit. Same for TRICARE portals, leasing apps, license renewals.</p>
+        <div class="tile-demo">
+          <a href="https://claude.com/claude-for-chrome" target="_blank" rel="noopener">
+            &#127909; See the official demo &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="action-tile">
+        <span class="tile-num">06 &middot; CONNECTORS</span>
+        <h3>Claude talks to your apps.</h3>
+        <p class="tile-sub">Connect Gmail, Drive, Calendar. "Find every school email from this year and summarize what's coming up." Done. No more inbox archaeology.</p>
+        <div class="tile-demo">
+          <a href="https://www.tiktok.com/@sabrina_ramonov/video/7532214915449244959" target="_blank" rel="noopener">
+            &#127909; Watch the demo &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="price-reality">
+      <span class="price-label">What $20/month replaces</span>
+      <ul class="price-list">
+        <li><span class="price-role">A video editor</span><span class="price-rate">$80&ndash;200/hr</span></li>
+        <li><span class="price-role">A web designer</span><span class="price-rate">$50&ndash;150/hr</span></li>
+        <li><span class="price-role">A virtual assistant</span><span class="price-rate">$25&ndash;50/hr</span></li>
+        <li><span class="price-role">A research assistant</span><span class="price-rate">$25&ndash;40/hr</span></li>
+        <li><span class="price-role">A presentation designer</span><span class="price-rate">$40&ndash;100/hr</span></li>
+      </ul>
+      <div class="price-total">
+        <strong>Claude Pro: $20/month.</strong>
+        All of it. The free tier covers most of it.
+        Pro unlocks the heavier features (Computer Use, faster speeds, more usage).
+      </div>
+      <a href="https://claude.ai" target="_blank" rel="noopener" class="price-cta">
+        Open Claude &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     TOOL 2 — NEURALWRITER (the warm-up)
      ══════════════════════════════════════════════════════════ -->
 <section class="tool-band" id="neuralwriter" aria-labelledby="nw-heading">
   <div class="tool-band-inner">
 
     <div class="tool-identity">
-      <span class="tool-number">TOOL 01 OF 03</span>
+      <span class="tool-number">TOOL 02 OF 03</span>
       <div class="tool-name-large" id="nw-heading">NeuralWriter</div>
       <span class="tool-tagline">"Your writing warm-up"</span>
 
@@ -476,132 +939,6 @@
 
       <a href="missions.html" class="mission-badge" style="margin-top:16px;">
         &#127775; Used in Mission 1 &rarr;
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
-     TOOL 2 — CLAUDE (featured)
-     ══════════════════════════════════════════════════════════ -->
-<section class="tool-band featured" id="claude" aria-labelledby="claude-heading">
-  <div class="tool-band-inner">
-
-    <div class="tool-identity">
-      <span class="tool-number">TOOL 02 OF 03 &middot; OUR MAIN TOOL</span>
-      <div class="tool-name-large" id="claude-heading">Claude</div>
-      <span class="tool-tagline">"The AI that thinks out loud with you"</span>
-
-      <p class="tool-description">
-        Claude is the centerpiece of everything we do in the AI Family Room.
-        What makes it different from other AI tools is that it shows its reasoning &mdash;
-        it explains what it is doing and why, which means you stay in the driver's seat.
-        It is conversational, patient, and genuinely good at the kind of real-life communication
-        that families need: school emails, advocacy letters, career narratives, community messages.
-        It does not just give you an answer; it thinks through the problem with you.
-      </p>
-
-      <div class="privacy-strip">
-        <span class="lock">&#128274;</span>
-        <span>Free conversations on claude.ai are not used to train the model by default.
-        You are not handing over your data just by using it.</span>
-      </div>
-
-      <div class="cost-row">
-        <span class="cost-pill cost-free">Free</span>
-        <span class="cost-pill cost-paid">Pro from $20/mo</span>
-      </div>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-cta">
-          Open Claude &rarr;
-        </a>
-        <a href="start.html#the-ask" class="tool-cta ghost">
-          Try the Art of the Ask first
-        </a>
-      </div>
-
-      <div class="protip-box">
-        <span class="protip-icon">&#128640;</span>
-        <div>
-          <span class="protip-label">The easy button</span>
-          <p class="protip-text">
-            Use <strong>"Continue with Google"</strong> to sign in.
-            If you have a Gmail account you are already halfway there &mdash;
-            no new password, no new account to manage.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="tool-usecases">
-      <span class="usecases-label">WHAT YOU CAN DO WITH IT</span>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128140;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Write emails that actually get responses</div>
-          <p class="usecase-sub">From the new teacher introduction to the landlord SCRA letter &mdash; Claude drafts it and you edit until it sounds like you.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128188;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Explain a career gap without apologizing</div>
-          <p class="usecase-sub">Every PCS was a leadership role. Claude helps you turn four moves and three career pauses into the professional story they actually are.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127968;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Translate TRICARE, SCRA, and military bureaucracy</div>
-          <p class="usecase-sub">Paste any document and ask Claude to explain it in plain English. Then ask it to help you draft a response or an appeal.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#129309;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Practice hard conversations before you have them</div>
-          <p class="usecase-sub">Ask Claude to roleplay the other side &mdash; the principal, the landlord, the HR manager. Walk in prepared instead of nervous.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128161;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Get a second opinion without judgment</div>
-          <p class="usecase-sub">Claude does not get tired, does not make you feel silly for asking, and does not charge by the hour. Ask it anything.</p>
-        </div>
-      </div>
-
-
-      <!-- Try it now -->
-      <div style="margin-top:24px;background:var(--teal-pale);border:1.5px solid var(--teal);
-                  border-radius:16px;padding:20px 20px 16px;">
-        <span style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-                     color:var(--teal-deep);display:block;margin-bottom:10px;">
-          ✨ TRY IT NOW
-        </span>
-        <p style="font-size:13px;color:var(--text);line-height:1.75;
-                  font-style:italic;margin-bottom:14px;">"I am a military spouse who just got PCS orders. Help me list the 10 most important things to do in the first two weeks at a new installation. Keep it practical and specific."</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="navigator.clipboard.writeText('I am a military spouse who just got PCS orders. Help me list the 10 most important things to do in the first two weeks at a new installation. Keep it practical and specific.').then(function(){this.textContent='✓ Copied!';var b=this;setTimeout(function(){b.textContent='Copy →'},2000)}.bind(this))"
-            style="background:var(--teal);color:var(--dark);font-family:var(--font);
-                   font-size:11px;font-weight:800;padding:8px 16px;border-radius:8px;
-                   border:none;cursor:pointer;">Copy →</button>
-          <a href="https://claude.ai" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;
-                    color:var(--teal-deep);border:1.5px solid var(--teal);padding:8px 16px;
-                    border-radius:8px;text-decoration:none;">Open Claude →</a>
-        </div>
-      </div>
-
-      <a href="missions.html" class="mission-badge" style="margin-top:16px;">
-        &#9996;&#65039; Used in Missions 3, 4, 7, 8 &rarr;
       </a>
     </div>
 

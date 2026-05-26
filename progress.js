@@ -576,6 +576,7 @@
     getMissionState,
     isMissionUnlocked,
     markMissionComplete,
+    fireSheetPost,
     showBadgeModal,
     renderXPBar,
     renderBadgeCabinet,

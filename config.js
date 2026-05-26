@@ -12,13 +12,12 @@
 
 window.AFR_CONFIG = {
 
-  // Replace with your Google Apps Script web app URL
-  // Format: https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-  scriptUrl: '',
+  // Google Apps Script web app URL
+  // Deployed: AFR Sheet Logger v1
+  scriptUrl: 'https://script.google.com/macros/s/AKfycbyQcxqn_l4YNx5UQBrJkj2AOoTpe79G8d7FjgXAZSSdyTJ8GbVFK5XgZVATN-LJqv1ybQ/exec',
 
-  // Shared secret — validated server-side in doPost()
-  // Choose any string you like, e.g. 'afr-2026-ejc'
-  token: 'afr-placeholder-token',
+  // Shared secret — must match the token in doPost() exactly
+  token: 'afr-2026-ejc',
 
   // Site name (used in Sheet rows for source tracking)
   site: 'ai-family-room',

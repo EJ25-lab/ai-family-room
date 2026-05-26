@@ -212,8 +212,26 @@
   border:none;cursor:pointer;font-family:var(--font);transition:color .2s;margin-top:10px;}
 .badge-dismiss:hover{color:rgba(255,255,255,.55);}
 
+/* ── SHARE CARD (Foundations · teal) ── */
+.share-section{background:var(--dark);padding:56px 24px 64px;display:none;}
+.share-section.show{display:block;}
+.share-inner{max-width:390px;margin:0 auto;}
+.share-card{background:var(--dark);border:1.5px solid rgba(26,188,176,.4);border-radius:24px;padding:36px 28px 28px;position:relative;overflow:hidden;text-align:center;}
+.share-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,188,176,.2) 0%,transparent 65%);pointer-events:none;}
+.share-card-content{position:relative;z-index:1;}
+.share-eyebrow{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:18px;}
+.share-icon{font-size:3rem;display:block;margin:0 auto 14px;}
+.share-headline{font-size:1.5rem;font-weight:900;color:var(--white);line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;}
+.share-headline .accent{color:var(--teal);}
+.share-quote{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;font-style:italic;margin-bottom:20px;max-width:280px;margin-left:auto;margin-right:auto;}
+.share-stat{display:inline-block;background:rgba(26,188,176,.12);border:1px solid rgba(26,188,176,.3);border-radius:var(--r-pill);padding:6px 14px;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:18px;}
+.share-brand{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);}
+.share-brand span{color:var(--teal);}
+.share-hint{text-align:center;margin-top:18px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;}
+.share-hint strong{color:rgba(255,255,255,.7);}
+
 @media(max-width:640px){
-  .mission-hero,.do-section,.complete-section{padding-left:20px;padding-right:20px;}
+  .mission-hero,.do-section,.complete-section,.share-section{padding-left:20px;padding-right:20px;}
   .output-actions{flex-direction:column;align-items:stretch;}
   .output-actions .copy-btn,.output-actions .open-claude-btn{justify-content:center;}
 }
@@ -402,6 +420,32 @@
   </div>
 </section>
 
+<!-- SHARE CARD (appears after complete) -->
+<section class="share-section" id="share-section">
+  <div class="share-inner">
+    <div class="share-card">
+      <div class="share-card-content">
+        <span class="share-eyebrow">MISSION 03 &middot; AI FAMILY ROOM</span>
+        <span class="share-icon">&#9999;&#65039;</span>
+        <div class="share-headline">
+          Claude knows who <span class="accent">I am</span> now.
+        </div>
+        <p class="share-quote">
+          Wrote my About Me once. Every conversation sounds like me.
+          Prompt Builder badge earned.
+        </p>
+        <div class="share-stat">&#9889; +150 XP &middot; &#9999;&#65039; Prompt Builder</div>
+        <div class="share-brand">
+          AI Family Room <span>&middot;</span> EdJustice Collective
+        </div>
+      </div>
+    </div>
+    <p class="share-hint">
+      <strong>Screenshot this</strong> to share &mdash; send it to <strong>chief@tieredjusticenow.com</strong> if you want us to see
+    </p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <div class="footer-grid">
@@ -537,10 +581,11 @@ copyBtn.addEventListener('click', function(){
 });
 
 // Complete
-var completeBtn = document.getElementById('complete-btn');
-var tallyWrap   = document.getElementById('tally-wrap');
-var overlay     = document.getElementById('badge-overlay');
-var dismiss     = document.getElementById('badge-dismiss');
+var completeBtn  = document.getElementById('complete-btn');
+var tallyWrap    = document.getElementById('tally-wrap');
+var overlay      = document.getElementById('badge-overlay');
+var dismiss      = document.getElementById('badge-dismiss');
+var shareSection = document.getElementById('share-section');
 
 // Check already done on load
 (function(){
@@ -549,6 +594,7 @@ var dismiss     = document.getElementById('badge-dismiss');
     if((s.missionsCompleted||[]).includes(MISSION_ID)){
       completeBtn.innerHTML = '&#9989; Mission Complete';
       completeBtn.classList.add('done');
+      shareSection.classList.add('show');
     }
   }catch(e){}
 })();
@@ -594,6 +640,10 @@ completeBtn.addEventListener('click', function(){
     this.innerHTML = '&#9989; Mission Complete';
     this.classList.add('done');
     tallyWrap.classList.add('show');
+    shareSection.classList.add('show');
+    setTimeout(function(){
+      shareSection.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 900);
     if(badgeEarned) setTimeout(function(){ overlay.classList.add('show'); }, 500);
 
     if(!document.querySelector('script[src*="tally.so"]')){

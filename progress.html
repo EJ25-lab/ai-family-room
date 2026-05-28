@@ -364,8 +364,9 @@
     <div class="util-card">
       <div class="util-title">&#128241; Recover on Another Device</div>
       <p class="util-desc">
-        Your progress saves to this browser. Enter your email below to
-        look up your badge history if you switch devices.
+        Enter the email you used when you completed missions to restore
+        your badges on a new device. Works for anyone who joined the community
+        or completed a mission while signed in.
       </p>
       <input type="email" class="util-input" id="recovery-email"
         placeholder="Your email address&hellip;" />
@@ -606,12 +607,106 @@ document.getElementById('share-btn').addEventListener('click', function(){
 
 // ── Cross-device recovery ──────────────────────────────────
 document.getElementById('recovery-btn').addEventListener('click', function(){
-  var email = document.getElementById('recovery-email').value.trim();
-  var msg   = document.getElementById('recovery-msg');
-  if(!email){ msg.textContent = 'Please enter your email.'; msg.classList.add('show'); return; }
-  // Phase 3: wire to Apps Script Sheet lookup
-  msg.textContent = 'Cross-device recovery requires the Google Sheet connection — coming in Phase 3. Your progress on this device is saved and ready.';
-  msg.classList.add('show');
+  var emailInput = document.getElementById('recovery-email');
+  var msg = document.getElementById('recovery-msg');
+  var btn = this;
+  var email = (emailInput.value || '').trim().toLowerCase();
+
+  if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)){
+    msg.textContent = 'Please enter a valid email address.';
+    msg.style.color = '#C44D2E';
+    msg.classList.add('show');
+    return;
+  }
+
+  var cfg = window.AFR_CONFIG || {};
+  if(!cfg.scriptUrl){
+    msg.textContent = 'Recovery service is not configured yet. Try again later.';
+    msg.style.color = '#C44D2E';
+    msg.classList.add('show');
+    return;
+  }
+
+  // Loading state
+  btn.disabled = true;
+  var origText = btn.innerHTML;
+  btn.innerHTML = 'Looking up&hellip;';
+  msg.textContent = '';
+  msg.classList.remove('show');
+
+  fetch(cfg.scriptUrl, {
+    method: 'POST',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify({
+      token: cfg.token || '',
+      type: 'recover',
+      email: email
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    btn.disabled = false;
+    btn.innerHTML = origText;
+
+    if(!data || !data.ok){
+      msg.textContent = 'No saved progress found for that email. Start a mission to begin.';
+      msg.style.color = '#8A6B0F';
+      msg.classList.add('show');
+      return;
+    }
+
+    var missionCount = (data.missions || []).length;
+    var badgeCount   = (data.badges   || []).length;
+
+    if(missionCount === 0 && badgeCount === 0){
+      msg.textContent = 'No saved progress found for that email. Start a mission to begin.';
+      msg.style.color = '#8A6B0F';
+      msg.classList.add('show');
+      return;
+    }
+
+    // Merge into localStorage
+    var s = {};
+    try { s = JSON.parse(localStorage.getItem('afr_v1') || '{}'); } catch(e){}
+    s.email = email;
+    s.name  = data.name || s.name || '';
+    s.xp    = Math.max(s.xp || 0, data.xp || 0);
+    s.missionsCompleted = Array.from(new Set([].concat(s.missionsCompleted || [], data.missions || [])));
+    s.badges = Array.from(new Set([].concat(s.badges || [], data.badges || [])));
+    s.tracks = s.tracks || [];
+
+    // Recalculate track completion based on merged missions
+    if(['m7','m1','m3'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
+      if(s.tracks.indexOf('foundations') === -1) s.tracks.push('foundations');
+    }
+    if(['m2','m5','m6','m8'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
+      if(s.tracks.indexOf('glow') === -1) s.tracks.push('glow');
+    }
+    if(['ms1','ms2','ms3'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
+      if(s.tracks.indexOf('milspouse') === -1) s.tracks.push('milspouse');
+    }
+
+    s.lastActive = new Date().toISOString();
+    if(!s.joinedAt) s.joinedAt = data.lastActive || new Date().toISOString();
+    localStorage.setItem('afr_v1', JSON.stringify(s));
+
+    msg.innerHTML = '&#10003; Welcome back! Restored <strong>' +
+      missionCount + ' mission' + (missionCount === 1 ? '' : 's') +
+      '</strong> and <strong>' + badgeCount + ' badge' +
+      (badgeCount === 1 ? '' : 's') + '</strong>. Refreshing&hellip;';
+    msg.style.color = 'var(--teal-deep, #0E7D74)';
+    msg.classList.add('show');
+
+    setTimeout(function(){ location.reload(); }, 1800);
+  })
+  .catch(function(err){
+    btn.disabled = false;
+    btn.innerHTML = origText;
+    msg.textContent = 'Something went wrong. Please try again in a moment.';
+    msg.style.color = '#C44D2E';
+    msg.classList.add('show');
+    console.warn('Recovery error:', err);
+  });
 });
 
 // ── Mobile nav ──────────────────────────────────────────────

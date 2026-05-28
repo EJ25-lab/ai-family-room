@@ -154,6 +154,7 @@
             <option value="">Pick one</option>
             <option value="parent">Parent / caregiver</option>
             <option value="milspouse">Military spouse</option>
+            <option value="transition">Transitioning service member</option>
             <option value="educator">Educator</option>
             <option value="leader">Community leader / pastor / coach</option>
             <option value="curious">Just curious</option>
@@ -303,9 +304,9 @@ const consent  = document.getElementById('join-consent');
 const submit   = document.getElementById('submit-btn');
 const success  = document.getElementById('success');
 
-// Show installation field when mil-spouse is selected
+// Show installation field for mil-spouse OR transitioning service members
 roleEl.addEventListener('change', function(){
-  instRow.style.display = (this.value === 'milspouse') ? 'block' : 'none';
+  instRow.style.display = (this.value === 'milspouse' || this.value === 'transition') ? 'block' : 'none';
 });
 
 // Restore existing signup
@@ -316,7 +317,7 @@ roleEl.addEventListener('change', function(){
       nameEl.value = s.name || '';
       emailEl.value = s.email || '';
       roleEl.value = s.role || '';
-      if(s.role === 'milspouse'){
+      if(s.role === 'milspouse' || s.role === 'transition'){
         instRow.style.display = 'block';
         instEl.value = s.installation || '';
       }

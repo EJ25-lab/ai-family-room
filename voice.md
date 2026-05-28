@@ -64,7 +64,7 @@ What we never sound like:
 
 **Foundations track** — Discovery energy. Permission to be messy. "You already had the voice. AI just turned up the volume."
 
-**Glow Up track** — Forward motion. Practical wins. "From your head to a real document, in minutes."
+**Build Your Superpower track** — Forward motion. Practical wins. "From your head to a real document, in minutes."
 
 **Mil-Spouse Intel track** — Operational seriousness. Grace under pressure. Acknowledge OPSEC without paranoia. "Built for the life you actually live."
 

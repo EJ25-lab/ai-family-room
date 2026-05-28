@@ -41,7 +41,7 @@
 
   const TRACKS = {
     foundations: { name: 'Foundations',      missions: ['m7','m1','m3'],     bonusXp: 150 },
-    glow:        { name: 'Glow Up',           missions: ['m2','m5','m6','m8'], bonusXp: 150 },
+    glow:        { name: 'Build Your Superpower',           missions: ['m2','m5','m6','m8'], bonusXp: 150 },
     milspouse:   { name: 'Mil-Spouse Intel',  missions: ['ms1','ms2','ms3'],   bonusXp: 150 },
     'next-mission':{ name: 'The Next Mission', missions: ['v1'],                bonusXp: 150 },
   };
@@ -134,7 +134,7 @@
     if (mission.track === 'foundations') return true;
     if (mission.track === 'milspouse') return true;
 
-    // Glow Up: requires 2 foundations missions completed
+    // Build Your Superpower: requires 2 foundations missions completed
     if (mission.track === 'glow') {
       const foundationsCompleted = state.missionsCompleted.filter(id =>
         MISSIONS[id] && MISSIONS[id].track === 'foundations'
@@ -280,7 +280,7 @@
     const trackOrder = ['foundations','glow','milspouse'];
     const trackLabels = {
       foundations: 'Foundations',
-      glow:        'Glow Up',
+      glow:        'Build Your Superpower',
       milspouse:   'Mil-Spouse Intel',
     };
     const trackColors = {

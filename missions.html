@@ -338,7 +338,7 @@
   <div class="track-inner">
     <div class="track-header">
       <div class="track-h-left">
-        <span class="track-eyebrow g">&#10024; Glow Up Track</span>
+        <span class="track-eyebrow g">&#10024; Build Your Superpower Track</span>
         <h2 class="track-h-title" id="track-g">Make Claude do the heavy lifting.</h2>
         <p class="track-h-sub" id="glow-hint">
           Four missions that turn AI into a real assistant.
@@ -417,7 +417,7 @@
     </div>
 
     <div class="badge-track-block">
-      <span class="badge-track-title g">&#10024; Glow Up Track</span>
+      <span class="badge-track-title g">&#10024; Build Your Superpower Track</span>
       <div class="badge-row" id="badges-glow"></div>
     </div>
 
@@ -506,7 +506,7 @@ var MISSIONS = [
   {id:'m7',  num:'07', title:'Weak vs. Strong Prompts',          track:'foundations', xp:50, badge:'first-spark',     badgeName:'First Spark',     badgeIcon:'&#127807;', url:'mission-7.html', live:true},
   {id:'m1',  num:'01', title:'Turn a Thought into a Message',    track:'foundations', xp:50, badge:'voice-activated', badgeName:'Voice Activated', badgeIcon:'&#128172;', url:'mission-1.html', live:true},
   {id:'m3',  num:'03', title:'Teach Claude Who You Are',         track:'foundations', xp:50, badge:'prompt-builder',  badgeName:'Prompt Builder',  badgeIcon:'&#9999;&#65039;', url:'mission-3.html', live:true},
-  // Glow Up
+  // Build Your Superpower
   {id:'m2',  num:'02', title:'Write a Love Note from Memory',    track:'glow',        xp:50, badge:null,              badgeName:'',                badgeIcon:'',          url:'mission-2.html', live:true},
   {id:'m5',  num:'05', title:'Brain Dump to Doc in 60 Seconds',  track:'glow',        xp:50, badge:'page-turner',     badgeName:'Page Turner',     badgeIcon:'&#128196;', url:'mission-5.html', live:true},
   {id:'m6',  num:'06', title:'Family Stories into a Deck',       track:'glow',        xp:50, badge:'story-keeper',    badgeName:'Story Keeper',    badgeIcon:'&#127908;', url:'mission-6.html', live:true},
@@ -574,7 +574,7 @@ function renderMissions(state){
   }).length;
   var glowUnlocked = foundationsCount >= 2;
 
-  // Update Glow Up status visually
+  // Update Build Your Superpower status visually
   if(glowUnlocked){
     document.getElementById('glow-status').textContent = 'Available';
     document.getElementById('glow-status').classList.remove('locked');

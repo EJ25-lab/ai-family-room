@@ -23,6 +23,7 @@
     ms1:{ title: 'PCS Survival Kit',                  track: 'milspouse',   xp: 50, badge: 'pcs-ready',        tool: 'Claude'       },
     ms2:{ title: 'Career Gap Translator',             track: 'milspouse',   xp: 50, badge: 'career-unlocked',  tool: 'Claude'       },
     ms3:{ title: 'Free Access File',                  track: 'milspouse',   xp: 50, badge: 'base-explorer',    tool: 'Claude'       },
+    v1: { title: 'Build Your Transition Brief',       track: 'next-mission',xp: 50, badge: 'self-command',     tool: 'Claude'       },
   };
 
   const BADGES = {
@@ -35,12 +36,14 @@
     'pcs-ready':       { name: 'PCS Ready',          icon: '📦', track: 'milspouse',   mission: 'ms1', desc: 'Orders came. You had a plan. That\'s not luck — that\'s a system.' },
     'career-unlocked': { name: 'Career Unlocked',   icon: '💼', track: 'milspouse',   mission: 'ms2', desc: 'Every move was a skill. AI just helped you prove it.' },
     'base-explorer':   { name: 'Base Explorer',      icon: '🏕️', track: 'milspouse',   mission: 'ms3', desc: 'You found the free stuff. Now go use it with your family.' },
+    'self-command':    { name: 'Self-Command',       icon: '⭐', track: 'next-mission', mission: 'v1', desc: 'You stood up your civilian operation. Independent operations in progress.' },
   };
 
   const TRACKS = {
     foundations: { name: 'Foundations',      missions: ['m7','m1','m3'],     bonusXp: 150 },
     glow:        { name: 'Glow Up',           missions: ['m2','m5','m6','m8'], bonusXp: 150 },
     milspouse:   { name: 'Mil-Spouse Intel',  missions: ['ms1','ms2','ms3'],   bonusXp: 150 },
+    'next-mission':{ name: 'The Next Mission', missions: ['v1'],                bonusXp: 150 },
   };
 
   const LEVELS = [

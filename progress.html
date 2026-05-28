@@ -341,6 +341,12 @@
       <span class="badge-track-title m">&#127894; Mil-Spouse Intel Track</span>
       <div class="badge-row" id="badges-milspouse"><!-- JS --></div>
     </div>
+
+    <!-- The Next Mission -->
+    <div class="badge-track-block">
+      <span class="badge-track-title n" style="color:#5A7BAB;">&#11088; The Next Mission Track</span>
+      <div class="badge-row" id="badges-next-mission"><!-- JS --></div>
+    </div>
   </div>
 </section>
 
@@ -564,6 +570,7 @@ function renderBadges(state){
     f: document.getElementById('badges-foundations'),
     g: document.getElementById('badges-glow'),
     m: document.getElementById('badges-milspouse'),
+    n: document.getElementById('badges-next-mission'),
   };
 
   Object.keys(tracks).forEach(function(track){
@@ -593,8 +600,8 @@ document.getElementById('share-btn').addEventListener('click', function(){
   var text =
     'AI Family Room — My Progress\n\n' +
     'Level: ' + lv.name + ' (' + xp + ' XP)\n' +
-    'Missions complete: ' + missions.length + ' of 10\n' +
-    'Badges earned: ' + badges.length + ' of 9\n\n' +
+    'Missions complete: ' + missions.length + ' of 11\n' +
+    'Badges earned: ' + badges.length + ' of 10\n\n' +
     'Built with EdJustice Collective\n' +
     'https://aifamilyroom.com/';
 

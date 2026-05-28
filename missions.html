@@ -85,6 +85,7 @@
 .track-eyebrow.f{color:var(--teal-deep);}
 .track-eyebrow.g{color:var(--orange,#E76F51);}
 .track-eyebrow.m{color:var(--purple,#7B5BA6);}
+.track-eyebrow.n{color:#1E3A5F;}
 
 .track-h-title{
   font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;color:var(--text);
@@ -353,6 +354,28 @@
   </div>
 </section>
 
+<!-- THE NEXT MISSION TRACK -->
+<section class="track-section tinted" aria-labelledby="track-n">
+  <div class="track-inner">
+    <div class="track-header">
+      <div class="track-h-left">
+        <span class="track-eyebrow n">&#11088; The Next Mission Track</span>
+        <h2 class="track-h-title" id="track-n">For senior leaders transitioning out.</h2>
+        <p class="track-h-sub">
+          One mission, built for the operators who had a staff and now have themselves.
+          Honor the rank. Name the reality. Stand up your civilian operation.
+          <strong>Open to everyone &mdash; senior is the primary audience.</strong>
+        </p>
+      </div>
+      <span class="track-status available">Available</span>
+    </div>
+
+    <div class="mission-grid" id="grid-next-mission">
+      <!-- Cards rendered by JS -->
+    </div>
+  </div>
+</section>
+
 <!-- MIL-SPOUSE TRACK -->
 <section class="track-section light" aria-labelledby="track-m">
   <div class="track-inner">
@@ -380,7 +403,7 @@
     <span class="section-label">BADGE CABINET</span>
     <h2 class="h2 white-text" id="badges-h"
         style="text-align:left;margin-left:0;margin-bottom:8px;">
-      <span id="badge-count">0</span> of 9 badges earned.
+      <span id="badge-count">0</span> of 10 badges earned.
     </h2>
     <p style="font-size:13px;color:rgba(255,255,255,.38);
               margin-bottom:36px;max-width:480px;line-height:1.7;">
@@ -401,6 +424,11 @@
     <div class="badge-track-block">
       <span class="badge-track-title m">&#127894; Mil-Spouse Intel Track</span>
       <div class="badge-row" id="badges-milspouse"></div>
+    </div>
+
+    <div class="badge-track-block">
+      <span class="badge-track-title n" style="color:#1E3A5F;">&#11088; The Next Mission Track</span>
+      <div class="badge-row" id="badges-next-mission"></div>
     </div>
   </div>
 </section>
@@ -487,6 +515,8 @@ var MISSIONS = [
   {id:'ms1', num:'MS-1', title:'The PCS Survival Kit',           track:'milspouse',   xp:50, badge:'pcs-ready',       badgeName:'PCS Ready',       badgeIcon:'&#128230;', url:'milspouse.html#pcs',    live:true},
   {id:'ms2', num:'MS-2', title:'Career Gap Translator',          track:'milspouse',   xp:50, badge:'career-unlocked', badgeName:'Career Unlocked', badgeIcon:'&#128188;', url:'milspouse.html#career', live:true},
   {id:'ms3', num:'MS-3', title:'The Free Access File',           track:'milspouse',   xp:50, badge:'base-explorer',   badgeName:'Base Explorer',   badgeIcon:'&#127957;', url:'milspouse.html#parks',  live:true},
+  // The Next Mission (transitioning service members)
+  {id:'v1',  num:'V-1',  title:'Build Your Transition Brief',    track:'next-mission', xp:50, badge:'self-command',   badgeName:'Self-Command',    badgeIcon:'&#11088;',  url:'next-mission.html',     live:true},
 ];
 
 var BADGES = {
@@ -499,6 +529,7 @@ var BADGES = {
   'pcs-ready':       {name:'PCS Ready',       icon:'&#128230;', track:'m', desc:'Complete PCS Survival Kit'},
   'career-unlocked': {name:'Career Unlocked', icon:'&#128188;', track:'m', desc:'Complete Career Gap Translator'},
   'base-explorer':   {name:'Base Explorer',   icon:'&#127957;', track:'m', desc:'Complete Free Access File'},
+  'self-command':    {name:'Self-Command',    icon:'&#11088;',  track:'n', desc:'Complete Build Your Transition Brief'},
 };
 
 function getState(){
@@ -554,9 +585,10 @@ function renderMissions(state){
   }
 
   var grids = {
-    foundations: document.getElementById('grid-foundations'),
-    glow:        document.getElementById('grid-glow'),
-    milspouse:   document.getElementById('grid-milspouse'),
+    foundations:   document.getElementById('grid-foundations'),
+    glow:          document.getElementById('grid-glow'),
+    milspouse:     document.getElementById('grid-milspouse'),
+    'next-mission':document.getElementById('grid-next-mission'),
   };
 
   Object.keys(grids).forEach(function(track){ grids[track].innerHTML = ''; });
@@ -605,6 +637,7 @@ function renderBadges(state){
     f: document.getElementById('badges-foundations'),
     g: document.getElementById('badges-glow'),
     m: document.getElementById('badges-milspouse'),
+    n: document.getElementById('badges-next-mission'),
   };
 
   Object.keys(tracks).forEach(function(track){

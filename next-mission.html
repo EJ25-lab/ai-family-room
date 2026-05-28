@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Next Mission — AI Family Room</title>
+<meta name="description" content="Built for senior service members in transition. Honor the rank. Name the reality. Build the next operation. Earn the Self-Command badge.">
+<meta name="theme-color" content="#0B1215">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{ --navy:#1E3A5F; --navy-deep:#0E1F33; --navy-pale:#EAF0F7; --navy-glow:rgba(30,58,95,.18); }
+
+.track-pill.next{background:rgba(30,58,95,.16);color:#5A7BAB;border:1px solid rgba(30,58,95,.32);}
+
+.mission-hero{background:var(--dark);padding:72px 32px 56px;position:relative;overflow:hidden;}
+.mission-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--navy-glow) 0%,transparent 65%);pointer-events:none;}
+.mission-hero-inner{max-width:720px;margin:0 auto;position:relative;}
+.meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.track-pill{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-pill);}
+.num-pill{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:5px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.1);}
+.mission-title{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:900;color:var(--white);line-height:1.0;letter-spacing:-.035em;margin-bottom:18px;}
+.mission-title .accent{color:#5A7BAB;}
+.mission-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:28px;max-width:560px;}
+.mission-sub strong{color:var(--white);}
+.rewards{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.rpill{font-size:11px;font-weight:700;padding:5px 13px;border-radius:var(--r-pill);}
+.rxp{background:rgba(245,200,66,.12);color:var(--xp-gold);border:1px solid rgba(245,200,66,.22);}
+.rbadge{background:rgba(30,58,95,.18);color:#A8BFDB;border:1px solid rgba(30,58,95,.4);}
+.rtool{background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
+
+/* SECTIONS */
+.feel-section{background:var(--white);padding:64px 32px;}
+.feel-inner{max-width:720px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-pill);background:rgba(30,58,95,.1);color:var(--navy);border:1px solid rgba(30,58,95,.22);margin-bottom:14px;}
+.section-h{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:900;color:var(--text);line-height:1.1;letter-spacing:-.025em;margin-bottom:12px;}
+.section-h .accent{color:var(--navy);}
+.section-lead{font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:24px;max-width:600px;}
+
+.feel-block{background:var(--off);border-left:4px solid var(--navy);border-radius:0 var(--r) var(--r) 0;padding:24px 28px;margin-bottom:18px;}
+.feel-block p{font-size:15px;line-height:1.75;color:var(--text);margin:0;}
+.feel-block p strong{color:var(--navy);font-weight:700;}
+
+/* ASSET SECTION */
+.asset-section{background:var(--dark);padding:72px 32px;position:relative;overflow:hidden;}
+.asset-section::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,var(--navy-glow) 0%,transparent 65%);pointer-events:none;}
+.asset-inner{max-width:720px;margin:0 auto;position:relative;}
+.asset-section .section-h{color:var(--white);}
+.asset-section .section-lead{color:rgba(255,255,255,.6);}
+
+.asset-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px;}
+.asset-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:20px 22px;}
+.asset-icon{font-size:1.4rem;margin-bottom:8px;display:block;}
+.asset-name{font-size:14px;font-weight:800;color:var(--white);margin-bottom:5px;letter-spacing:-.01em;line-height:1.3;}
+.asset-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;}
+.asset-close{font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;font-style:italic;}
+.asset-close strong{color:var(--white);font-style:normal;}
+
+/* BUILD NOW */
+.build-section{background:var(--white);padding:64px 32px;}
+.build-inner{max-width:720px;margin:0 auto;}
+.build-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+.build-card{background:var(--off);border:1.5px solid var(--warm);border-radius:var(--r);padding:20px 22px;transition:border-color .2s,background .2s;}
+.build-card:hover{border-color:var(--navy);background:var(--navy-pale);}
+.build-card-h{font-size:14px;font-weight:800;color:var(--text);margin-bottom:5px;line-height:1.3;}
+.build-card-p{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* STAFF REFRAME */
+.staff-section{background:var(--off);padding:72px 32px;}
+.staff-inner{max-width:720px;margin:0 auto;}
+.staff-table{margin-top:28px;background:var(--white);border:1.5px solid var(--warm);border-radius:var(--r);overflow:hidden;}
+.staff-row{display:grid;grid-template-columns:1fr 1.6fr;border-bottom:1px solid var(--warm);}
+.staff-row:last-child{border-bottom:none;}
+.staff-cell{padding:18px 22px;font-size:14px;line-height:1.5;}
+.staff-cell.label{background:var(--navy-pale);font-weight:700;color:var(--navy);border-right:1px solid var(--warm);}
+.staff-cell.value{color:var(--text);}
+.staff-cell.value a{color:var(--navy);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--navy);}
+.staff-cell.header{background:var(--navy);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:14px 22px;}
+.staff-cell.header.value{background:var(--navy-deep);}
+
+/* LEAN IN */
+.lean-section{background:var(--white);padding:72px 32px;}
+.lean-inner{max-width:720px;margin:0 auto;}
+.lean-intro{background:var(--navy-pale);border-left:4px solid var(--navy);border-radius:0 var(--r) var(--r) 0;padding:20px 26px;margin:28px 0 36px;}
+.lean-intro p{font-size:14px;line-height:1.7;color:var(--navy-deep);margin:0;font-style:italic;}
+.lean-cat{margin-bottom:32px;}
+.lean-cat:last-child{margin-bottom:0;}
+.lean-cat-h{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:6px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;}
+.lean-cat-h .ico{font-size:1.2rem;}
+.lean-cat-p{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:14px;max-width:580px;}
+.lean-res{display:flex;flex-direction:column;gap:8px;}
+.lean-res a{display:block;background:var(--off);border:1.5px solid var(--warm);border-radius:var(--r-sm);padding:12px 16px;text-decoration:none;color:var(--text);font-size:13px;font-weight:700;transition:border-color .2s,background .2s;}
+.lean-res a:hover{border-color:var(--navy);background:var(--navy-pale);}
+.lean-res a span{display:block;font-size:11px;color:var(--mid);font-weight:500;margin-top:2px;}
+
+/* THE MISSION (do section) */
+.do-section{background:var(--dark);padding:72px 32px;}
+.do-inner{max-width:720px;margin:0 auto;}
+.do-section .section-tag{background:rgba(30,58,95,.2);color:#A8BFDB;border-color:rgba(30,58,95,.4);}
+.do-section .section-h{color:var(--white);}
+.do-section .section-lead{color:rgba(255,255,255,.6);}
+
+.step-block{margin-bottom:40px;}
+.step-block:last-of-type{margin-bottom:0;}
+.step-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.step-circle{width:40px;height:40px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--white);flex-shrink:0;}
+.step-label{font-size:16px;font-weight:800;color:var(--white);line-height:1.25;}
+.step-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px;max-width:580px;}
+.prompt-card{background:rgba(30,58,95,.18);border:1.5px solid rgba(30,58,95,.4);border-radius:var(--r);padding:22px 24px 18px;margin-bottom:14px;}
+.prompt-eyebrow{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A8BFDB;display:block;margin-bottom:10px;}
+.prompt-text{font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.8;font-style:italic;margin-bottom:14px;}
+.prompt-text strong{font-style:normal;color:#A8BFDB;font-weight:700;}
+.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.copy-btn{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-family:var(--font);font-size:12px;font-weight:800;padding:11px 20px;border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;}
+.copy-btn:hover{background:var(--navy-deep);}
+.copy-btn.copied{background:var(--green-dk);}
+.open-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#A8BFDB;font-family:var(--font);font-size:12px;font-weight:700;padding:11px 20px;border-radius:var(--r-sm);border:1.5px solid #5A7BAB;text-decoration:none;transition:background .2s,color .2s;}
+.open-btn:hover{background:var(--navy);color:var(--white);}
+
+/* COMPLETE */
+.complete-section{background:var(--navy);padding:64px 32px;text-align:center;}
+.complete-inner{max-width:540px;margin:0 auto;}
+.complete-section h2{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;color:var(--white);margin-bottom:10px;line-height:1.1;}
+.complete-section p{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:24px;line-height:1.7;}
+.complete-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:340px;margin:0 auto 20px;background:var(--dark);color:#A8BFDB;font-family:var(--font);font-size:14px;font-weight:800;padding:17px 32px;border-radius:var(--r);border:none;cursor:pointer;transition:background .2s,transform .15s;}
+.complete-btn:hover{background:var(--dark-mid);transform:translateY(-2px);}
+.complete-btn.done{background:var(--green-dk);color:var(--white);pointer-events:none;}
+
+/* SHARE CARD */
+.share-section{background:var(--dark);padding:56px 24px 64px;display:none;}
+.share-section.show{display:block;}
+.share-inner{max-width:390px;margin:0 auto;}
+.share-card{background:var(--dark);border:1.5px solid rgba(30,58,95,.5);border-radius:24px;padding:36px 28px 28px;position:relative;overflow:hidden;text-align:center;}
+.share-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--navy-glow) 0%,transparent 65%);pointer-events:none;}
+.share-card-content{position:relative;z-index:1;}
+.share-eyebrow{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#A8BFDB;display:block;margin-bottom:18px;}
+.share-icon{font-size:3rem;display:block;margin:0 auto 14px;}
+.share-headline{font-size:1.5rem;font-weight:900;color:var(--white);line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;}
+.share-headline .accent{color:#A8BFDB;}
+.share-quote{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;font-style:italic;margin-bottom:20px;max-width:280px;margin-left:auto;margin-right:auto;}
+.share-stat{display:inline-block;background:rgba(30,58,95,.22);border:1px solid rgba(30,58,95,.4);border-radius:var(--r-pill);padding:6px 14px;font-size:11px;font-weight:700;color:#A8BFDB;margin-bottom:18px;}
+.share-brand{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);}
+.share-brand span{color:#A8BFDB;}
+.share-hint{text-align:center;margin-top:18px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;}
+.share-hint strong{color:rgba(255,255,255,.7);}
+
+/* BADGE MODAL */
+.badge-overlay{position:fixed;inset:0;background:rgba(11,18,21,.88);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
+.badge-overlay.show{opacity:1;pointer-events:all;}
+.badge-modal{background:var(--dark-mid);border:2px solid rgba(30,58,95,.55);border-radius:24px;padding:44px 32px;text-align:center;max-width:320px;width:100%;transform:scale(.85);transition:transform .4s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;}
+.badge-overlay.show .badge-modal{transform:scale(1);}
+.badge-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(30,58,95,.3) 0%,transparent 65%);pointer-events:none;}
+.badge-icon{font-size:4rem;display:block;margin:0 auto 18px;animation:bpop .65s cubic-bezier(.34,1.56,.64,1) .1s both;}
+@keyframes bpop{from{transform:scale(0) rotate(-15deg);opacity:0;}to{transform:scale(1) rotate(0deg);opacity:1;}}
+.badge-ey{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#A8BFDB;display:block;margin-bottom:7px;}
+.badge-name{font-size:1.6rem;font-weight:900;color:var(--white);margin-bottom:10px;line-height:1.15;}
+.badge-desc{font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:24px;}
+.badge-dismiss{font-size:11px;color:rgba(255,255,255,.28);background:none;border:none;cursor:pointer;font-family:var(--font);transition:color .2s;margin-top:10px;}
+.badge-dismiss:hover{color:rgba(255,255,255,.55);}
+
+@media(max-width:760px){
+  .asset-grid,.build-grid{grid-template-columns:1fr;}
+  .staff-row{grid-template-columns:1fr;}
+  .staff-cell.label{border-right:none;border-bottom:1px solid var(--warm);}
+}
+@media(max-width:640px){
+  .mission-hero,.feel-section,.asset-section,.build-section,.staff-section,.lean-section,.do-section,.complete-section,.share-section{padding-left:20px;padding-right:20px;}
+  .prompt-actions{flex-direction:column;align-items:stretch;}
+  .prompt-actions .copy-btn,.prompt-actions .open-btn{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-mark">AI</div>
+    <div>
+      <div class="nav-name">AI Family Room</div>
+      <span class="nav-sub">by EdJustice Collective</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="start.html">Start Here</a></li>
+    <li><a href="tools.html">The Tools</a></li>
+    <li><a href="missions.html" class="active">Missions</a></li>
+    <li><a href="milspouse.html">Mil-Spouse</a></li>
+    <li><a href="safety.html">Stay Safe</a></li>
+    <li><a href="progress.html" class="nav-xp" id="nav-xp" style="display:none;">&#9889; 0 &middot; Just Arrived</a></li>
+  </ul>
+  <a href="join.html" class="nav-cta">Join &rarr;</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-drawer" id="drawer">
+  <a href="start.html">Start Here</a>
+  <a href="tools.html">The Tools</a>
+  <a href="missions.html">Missions</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
+  <a href="safety.html">Stay Safe</a>
+  <a href="progress.html">My Progress</a>
+  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+</div>
+
+<!-- HERO -->
+<section class="mission-hero" role="banner">
+  <div class="mission-hero-inner">
+    <div class="meta-row">
+      <span class="track-pill next">&#11088; The Next Mission Track</span>
+      <span class="num-pill">Mission V-1</span>
+    </div>
+    <h1 class="mission-title">
+      Twenty-plus years. A team. A title.<br>
+      And now &mdash; <span class="accent">you.</span>
+    </h1>
+    <p class="mission-sub">
+      Welcome to the next mission. Built for the senior leaders who built systems,
+      ran rooms, made calls. <strong>Transition is its own operation. We help you run it.</strong>
+    </p>
+    <div class="rewards">
+      <span class="rpill rxp">&#9889; +50 XP</span>
+      <span class="rpill rbadge">&#11088; Self-Command Badge</span>
+      <span class="rpill rtool">&#128295; Claude</span>
+    </div>
+  </div>
+</section>
+
+<!-- NAME THE FEEL -->
+<section class="feel-section" aria-labelledby="feel-h">
+  <div class="feel-inner">
+    <span class="section-tag">First &middot; Name the feel</span>
+    <h2 class="section-h" id="feel-h">Some of this is going to feel <span class="accent">strange.</span></h2>
+    <p class="section-lead">
+      We are going to name the things nobody warned you about. Not to soften the transition &mdash;
+      but to make sure you know it is normal, and you are not alone in it.
+    </p>
+
+    <div class="feel-block">
+      <p>You haven't booked your own dentist appointment in fifteen years. <strong>That isn't a personal failing</strong> &mdash; it's because you had a job to do. The job changes. Booking the appointment doesn't have to be the thing that breaks you.</p>
+    </div>
+
+    <div class="feel-block">
+      <p>The civilian email tone is going to feel weird. Less directive, more collaborative. More "maybe could we" than "execute by 1400." <strong>That's not a flaw to fix.</strong> It's a new dialect.</p>
+    </div>
+
+    <div class="feel-block">
+      <p>Some days you'll miss the team. Most days you'll miss the certainty. <strong>Both are real.</strong> Neither is a sign you made the wrong call.</p>
+    </div>
+
+    <div class="feel-block">
+      <p>You may walk into civilian rooms and feel like an outsider in your own profession. Your career is everywhere in the work, but it's invisible on the page. <strong>That's translation work, not identity work.</strong> The skill is intact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU BRING (asset block, dark) -->
+<section class="asset-section" aria-labelledby="asset-h">
+  <div class="asset-inner">
+    <span class="section-tag">Second &middot; What you bring</span>
+    <h2 class="section-h" id="asset-h">The invisible asset.</h2>
+    <p class="section-lead">
+      The civilian world doesn't always see this on a resume. You are walking in with skills
+      that take decades to build, and most of them have nothing to do with weapons systems
+      or chain of command. <strong>These transfer everywhere.</strong>
+    </p>
+
+    <div class="asset-grid">
+      <div class="asset-card">
+        <span class="asset-icon">&#127919;</span>
+        <div class="asset-name">Cross-functional leadership at scale</div>
+        <p class="asset-desc">200 people, six functions, one mission. You ran the meeting that ran the operation.</p>
+      </div>
+      <div class="asset-card">
+        <span class="asset-icon">&#9889;</span>
+        <div class="asset-name">Crisis decision-making</div>
+        <p class="asset-desc">Incomplete info. Pressure. You called it. You owned the call.</p>
+      </div>
+      <div class="asset-card">
+        <span class="asset-icon">&#128221;</span>
+        <div class="asset-name">Logistics of complex systems</div>
+        <p class="asset-desc">Movement of people, gear, time, attention &mdash; on schedule, under budget, across continents.</p>
+      </div>
+      <div class="asset-card">
+        <span class="asset-icon">&#129309;</span>
+        <div class="asset-name">Multi-stakeholder coordination</div>
+        <p class="asset-desc">Higher headquarters. Adjacent units. Host nation. Spouses. Reporters. You held the seams.</p>
+      </div>
+      <div class="asset-card">
+        <span class="asset-icon">&#9878;&#65039;</span>
+        <div class="asset-name">Ethical decision frameworks</div>
+        <p class="asset-desc">Mission, men, self &mdash; in that order, under stress. Civilian leaders are still trying to articulate this.</p>
+      </div>
+      <div class="asset-card">
+        <span class="asset-icon">&#127937;</span>
+        <div class="asset-name">Mission discipline</div>
+        <p class="asset-desc">Show up. Execute. Adjust. Sustain. The thing they call "executive function" &mdash; you've had it for twenty years.</p>
+      </div>
+    </div>
+
+    <p class="asset-close">
+      You didn't <strong>"just"</strong> lead people. You led the mission with the people.
+      That distinction matters in every civilian room you're about to walk into.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL BUILD NOW -->
+<section class="build-section" aria-labelledby="build-h">
+  <div class="build-inner">
+    <span class="section-tag">Third &middot; What you'll build now</span>
+    <h2 class="section-h" id="build-h">A few new <span class="accent">muscles.</span></h2>
+    <p class="section-lead">
+      Naming what's new without shame. These are the skill areas your staff used to carry &mdash;
+      now they live with you. AI can do most of this work alongside you. The reframe coming up
+      makes it concrete.
+    </p>
+
+    <div class="build-grid">
+      <div class="build-card">
+        <div class="build-card-h">Day-to-day executive function</div>
+        <p class="build-card-p">Calendar. Inbox. Follow-ups. Scheduling. Your S1 used to handle this. Now Claude can.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-card-h">Civilian communication tone</div>
+        <p class="build-card-p">Less command voice. More partnership. We translate your bearing into civilian dialect.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-card-h">Resume translation</div>
+        <p class="build-card-p">The JTAC role isn't on LinkedIn. Your billet language needs a civilian build-out.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-card-h">Personal branding</div>
+        <p class="build-card-p">The title isn't carrying you anymore. Your story is. We help you tell it.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-card-h">Networking outside the chain</div>
+        <p class="build-card-p">Different system, different rules. Coffee meetings, LinkedIn DMs, alumni networks.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-card-h">Healthcare and benefits</div>
+        <p class="build-card-p">The VA isn't your S1. You navigate this now. We give you the map.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR NEW STAFF -->
+<section class="staff-section" aria-labelledby="staff-h">
+  <div class="staff-inner">
+    <span class="section-tag">Fourth &middot; Your new staff</span>
+    <h2 class="section-h" id="staff-h">You had a staff. Now you have <span class="accent">AI.</span></h2>
+    <p class="section-lead">
+      Twenty years of executive function lived with the people around you. Here is the staff
+      you have now. Familiar framing, new tools.
+    </p>
+
+    <div class="staff-table">
+      <div class="staff-row">
+        <div class="staff-cell header">Old staff role</div>
+        <div class="staff-cell header value">New AI staff</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Scheduler</div>
+        <div class="staff-cell value">Claude + your calendar. Drafts the meeting requests. Holds your prep time.</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Comms / PAO drafts</div>
+        <div class="staff-cell value"><a href="mission-1.html">Mission 1 &mdash; Turn a Thought into a Message</a>. The civilian email move.</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Briefing prep</div>
+        <div class="staff-cell value">Claude as your research assistant. Source-checked summaries. Stakeholder maps.</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Family logistics for moves</div>
+        <div class="staff-cell value"><a href="milspouse.html#pcs">PCS Survival Kit</a> applies. Final PCS or first civilian move &mdash; same playbook.</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Translating your work for stakeholders</div>
+        <div class="staff-cell value"><a href="mission-3.html">Mission 3 &mdash; Teach Claude Who You Are</a>. Build your civilian operator profile once. Use it forever.</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-cell label">Day planner / battle rhythm</div>
+        <div class="staff-cell value">AI-built transition project plan. 90-day, 180-day, year out.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE AI IS NOT YOUR ANSWER -->
+<section class="lean-section" aria-labelledby="lean-h">
+  <div class="lean-inner">
+    <span class="section-tag">Fifth &middot; Where to lean in</span>
+    <h2 class="section-h" id="lean-h">Where AI is <span class="accent">not</span> your answer.</h2>
+    <p class="section-lead">
+      Some things require a human in the room. Not as a fallback &mdash; as the right tool.
+      The leaders who reach for these stay sharp. The ones who don't burn out the family.
+    </p>
+
+    <div class="lean-intro">
+      <p>"There is no shame in reaching for help. The shame is in pretending you don't need it. You taught your team that. Now you live it."</p>
+    </div>
+
+    <div class="lean-cat">
+      <div class="lean-cat-h"><span class="ico">&#129505;</span> Mental health &amp; resilience</div>
+      <p class="lean-cat-p">If you have ever held people through hard things, you know what's coming. Get a clinician in your corner before you need one.</p>
+      <div class="lean-res">
+        <a href="https://www.mentalhealth.va.gov/" target="_blank" rel="noopener">VA Mental Health Services<span>Connected care across the system &mdash; start here</span></a>
+        <a href="https://www.cohenveteransnetwork.org/" target="_blank" rel="noopener">Cohen Veterans Network<span>Free care for post-9/11 vets and families, in-network and virtual</span></a>
+        <a href="https://giveanhour.org/" target="_blank" rel="noopener">Give an Hour<span>Free counseling from licensed providers</span></a>
+        <a href="https://www.woundedwarriorproject.org/programs/mental-wellness" target="_blank" rel="noopener">Wounded Warrior Project Mental Wellness<span>Programs across the spectrum &mdash; from peer support to clinical</span></a>
+      </div>
+    </div>
+
+    <div class="lean-cat">
+      <div class="lean-cat-h"><span class="ico">&#128188;</span> Career coaching</div>
+      <p class="lean-cat-p">A coach who has placed senior vets is worth a hundred LinkedIn searches. Use these before you cold-apply anywhere.</p>
+      <div class="lean-res">
+        <a href="https://www.hiringourheroes.org/" target="_blank" rel="noopener">Hiring Our Heroes (US Chamber)<span>Fellowships, transition summits, employer partnerships</span></a>
+        <a href="https://www.acp-usa.org/" target="_blank" rel="noopener">American Corporate Partners (ACP)<span>One-on-one mentorship with senior corporate leaders &mdash; free for vets</span></a>
+        <a href="https://www.veterati.com/" target="_blank" rel="noopener">Veterati<span>Mentor calls on demand with industry pros</span></a>
+        <a href="https://www.moaa.org/content/topic-and-landing-pages/career-services/" target="_blank" rel="noopener">MOAA Career Services<span>Officers &amp; spouses &mdash; resume review, networking, salary intel</span></a>
+      </div>
+    </div>
+
+    <div class="lean-cat">
+      <div class="lean-cat-h"><span class="ico">&#128176;</span> Financial planning</div>
+      <p class="lean-cat-p">Your pay structure just changed. Your tax situation just changed. Your healthcare costs just changed. Get a vet-literate advisor before the first transition month closes.</p>
+      <div class="lean-res">
+        <a href="https://www.napfa.org/find-an-advisor" target="_blank" rel="noopener">NAPFA fee-only advisors<span>Filter for "military" specialty &mdash; no commissions, fiduciary standard</span></a>
+        <a href="https://www.usaa.com/inet/wc/advice_planning_main" target="_blank" rel="noopener">USAA Financial Planning<span>If you bank with them &mdash; vet-literate advisors</span></a>
+        <a href="https://www.vfw.org/assistance/financial-grants" target="_blank" rel="noopener">VFW Unmet Needs / Financial Grants<span>For transition-period gaps &mdash; not a long-term plan, but real help</span></a>
+        <a href="https://www.moaa.org/" target="_blank" rel="noopener">MOAA financial benefit reviews<span>Member benefit, calls with credentialed planners</span></a>
+      </div>
+    </div>
+
+    <div class="lean-cat">
+      <div class="lean-cat-h"><span class="ico">&#9878;&#65039;</span> Legal</div>
+      <p class="lean-cat-p">Disability rating appeals, contract reviews, post-separation legal questions &mdash; vet-specific legal aid exists. Use it.</p>
+      <div class="lean-res">
+        <a href="https://www.vetlegal.com/" target="_blank" rel="noopener">Veterans Legal Institute<span>Free legal services for low-income vets in California &mdash; national directory of similar orgs</span></a>
+        <a href="https://www.americanbar.org/groups/legal_services/milvets/" target="_blank" rel="noopener">ABA Military &amp; Veterans Legal Services<span>State-by-state directory of pro bono attorneys</span></a>
+        <a href="https://www.statesidelegal.org/" target="_blank" rel="noopener">Stateside Legal<span>Plain-language guides + state legal aid finder</span></a>
+      </div>
+    </div>
+
+    <div class="lean-cat">
+      <div class="lean-cat-h"><span class="ico">&#129303;</span> Connection &amp; community</div>
+      <p class="lean-cat-p">You're going to miss the team. Build the new one before you need it.</p>
+      <div class="lean-res">
+        <a href="https://www.teamrwb.org/" target="_blank" rel="noopener">Team Red White &amp; Blue<span>Local chapters, athletic + community events nationwide</span></a>
+        <a href="https://missioncontinues.org/" target="_blank" rel="noopener">The Mission Continues<span>Service projects that keep you in the leadership seat after uniform</span></a>
+        <a href="https://www.vfw.org/" target="_blank" rel="noopener">VFW &middot; <a href="https://www.legion.org/" target="_blank" rel="noopener">American Legion</a><span>Local posts &mdash; the original network</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MISSION -->
+<section class="do-section" aria-labelledby="do-h">
+  <div class="do-inner">
+    <span class="section-tag">Sixth &middot; The mission</span>
+    <h2 class="section-h" id="do-h">Build your <span class="accent">transition brief.</span></h2>
+    <p class="section-lead">
+      Three steps. You set yourself up to run the operation. By the end you have a working
+      civilian profile, a translated assignment, and one real task in motion.
+    </p>
+
+    <!-- STEP 1 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">1</div>
+        <div class="step-label">Translate your last assignment into civilian leadership language.</div>
+      </div>
+      <p class="step-sub">
+        Pick the most recent role you held. Tell Claude exactly what you did &mdash;
+        the budget, the team size, the operational tempo, the wins. Three paragraphs of
+        civilian English that a Fortune 500 hiring manager understands.
+      </p>
+
+      <div class="prompt-card">
+        <span class="prompt-eyebrow">&#9997;&#65039; PASTE THIS INTO CLAUDE &mdash; FILL IN YOUR DETAILS</span>
+        <p class="prompt-text">
+          <strong>"I'm transitioning from active duty. My last role was [billet/title]. I led [team size] across [function/AOR] with a [budget if relevant] budget. The work was [describe in plain words]. My biggest wins were [name 2-3 specifics &mdash; what happened, what changed].
+          Translate this into 3 paragraphs of civilian executive leadership language. Use the language a Fortune 500 hiring manager or a non-profit board would use. Drop the acronyms. Keep the scale. Make me sound like the operator I am, not the rank I held."</strong>
+        </p>
+        <div class="prompt-actions">
+          <button class="copy-btn" data-copy="I'm transitioning from active duty. My last role was [billet/title]. I led [team size] across [function/AOR] with a [budget if relevant] budget. The work was [describe in plain words]. My biggest wins were [name 2-3 specifics — what happened, what changed]. Translate this into 3 paragraphs of civilian executive leadership language. Use the language a Fortune 500 hiring manager or a non-profit board would use. Drop the acronyms. Keep the scale. Make me sound like the operator I am, not the rank I held.">
+            &#128203; Copy This &rarr;
+          </button>
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="open-btn">
+            Open Claude &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">2</div>
+        <div class="step-label">Build your civilian operator profile. Use it in every Claude conversation.</div>
+      </div>
+      <p class="step-sub">
+        This is your About Me &mdash; the paragraph you paste at the top of every Claude conversation
+        from here forward. It teaches Claude who you are, how you operate, and how you want
+        to be talked to. Twenty years of context, captured in one block.
+      </p>
+
+      <div class="prompt-card">
+        <span class="prompt-eyebrow">&#9997;&#65039; PASTE THIS INTO CLAUDE</span>
+        <p class="prompt-text">
+          <strong>"Help me write a 5-sentence operator profile I'll paste at the top of every conversation with you from now on.
+          It should cover:
+          (1) my background and current transition status,
+          (2) how I think (decisive, mission-oriented, etc.),
+          (3) what I want from you (drafts, options, push-back when I'm off),
+          (4) what tone I want you to use (direct but warm),
+          (5) what I'm working on right now.
+          Keep it tight. I'll reuse it forever."</strong>
+        </p>
+        <div class="prompt-actions">
+          <button class="copy-btn" data-copy="Help me write a 5-sentence operator profile I'll paste at the top of every conversation with you from now on. It should cover: (1) my background and current transition status, (2) how I think (decisive, mission-oriented, etc.), (3) what I want from you (drafts, options, push-back when I'm off), (4) what tone I want you to use (direct but warm), (5) what I'm working on right now. Keep it tight. I'll reuse it forever.">
+            &#128203; Copy This &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">3</div>
+        <div class="step-label">Run one real task. Today.</div>
+      </div>
+      <p class="step-sub">
+        Independent operations start with a single move. Pick one of these and finish it
+        before you close this tab. <strong>This is how the new system gets real.</strong>
+      </p>
+
+      <div class="prompt-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);">
+        <span class="prompt-eyebrow" style="color:rgba(255,255,255,.55);">PICK ONE &mdash; FINISH IT TODAY</span>
+        <p class="prompt-text" style="color:rgba(255,255,255,.78);font-style:normal;">
+          &bull; <strong>Coffee email.</strong> Reach out to one person from your old network. Use Claude to draft a 4-sentence "want to catch up" message in civilian tone.<br><br>
+          &bull; <strong>LinkedIn headline rewrite.</strong> Paste your current headline into Claude. Ask for 3 alternatives that lead with the civilian skill, not the rank.<br><br>
+          &bull; <strong>Calendar a benefits call.</strong> One VA or DoD transition appointment on the books before the day ends.<br><br>
+          &bull; <strong>The 90-day map.</strong> Ask Claude to build you a week-by-week transition project plan from your current date out to 90 days post-separation.
+        </p>
+      </div>
+
+      <div class="insight-block" style="background:var(--dark-mid);border-radius:var(--r);padding:24px 26px;margin-top:16px;">
+        <span class="insight-ey" style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A8BFDB;display:block;margin-bottom:8px;">WHAT JUST HAPPENED</span>
+        <p class="insight-p" style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;">
+          You translated your service into civilian language. You taught your new staff who you are.
+          You ran one real task without a team behind you. <strong>That is the first muster of your civilian operation.</strong>
+          Independent operations are now in progress. The hard part was starting. You started.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPLETE -->
+<section class="complete-section" aria-labelledby="complete-h">
+  <div class="complete-inner">
+    <h2 id="complete-h">First muster complete.</h2>
+    <p>
+      You stood up your civilian operation. The system is yours.
+      Save the operator profile. Reuse it. Teach it to a battle buddy.
+    </p>
+
+    <button class="complete-btn" id="complete-btn">
+      &#11088; Mark Mission V-1 Complete &rarr;
+    </button>
+
+    <a href="missions.html" class="next-card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.12);border-radius:var(--r);padding:16px 20px;margin-top:16px;text-decoration:none;transition:background .2s;flex-wrap:wrap;">
+      <div>
+        <span style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);display:block;margin-bottom:3px;">EXPLORE</span>
+        <div style="font-size:13px;font-weight:800;color:var(--white);">All tracks &amp; missions &rarr;</div>
+      </div>
+      <span style="font-size:1.4rem;color:var(--white);">&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<!-- SHARE CARD -->
+<section class="share-section" id="share-section">
+  <div class="share-inner">
+    <div class="share-card">
+      <div class="share-card-content">
+        <span class="share-eyebrow">MISSION V-1 &middot; AI FAMILY ROOM</span>
+        <span class="share-icon">&#11088;</span>
+        <div class="share-headline">
+          First muster of my <span class="accent">civilian operation.</span>
+        </div>
+        <p class="share-quote">
+          Translated my service. Taught my new staff who I am.
+          Ran one real task. Self-Command earned.
+        </p>
+        <div class="share-stat">&#9889; +150 XP &middot; &#11088; Self-Command</div>
+        <div class="share-brand">
+          AI Family Room <span>&middot;</span> EdJustice Collective
+        </div>
+      </div>
+    </div>
+    <p class="share-hint">
+      <strong>Screenshot this</strong> to share &mdash; send it to <strong>chief@tieredjusticenow.com</strong> if you want us to see
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">AI Family Room</span>
+      <span class="footer-tag">by EdJustice Collective</span>
+      <p class="footer-about">A free, self-guided AI literacy environment for families, communities, military spouses, and transitioning service members.</p>
+    </div>
+    <div>
+      <span class="footer-col-title">Learn</span>
+      <ul class="footer-links">
+        <li><a href="start.html">Start Here</a></li>
+        <li><a href="tools.html">The Tools</a></li>
+        <li><a href="missions.html">All Missions</a></li>
+        <li><a href="safety.html">Help &amp; Safety</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Connect</span>
+      <ul class="footer-links">
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="progress.html">My Progress</a></li>
+        <li><a href="join.html">Join the Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data.
+      Email <a href="mailto:chief@tieredjusticenow.com">chief@tieredjusticenow.com</a> to delete your info at any time.</p>
+  </div>
+</footer>
+
+<!-- BADGE MODAL -->
+<div class="badge-overlay" id="badge-overlay" role="dialog" aria-label="Badge earned">
+  <div class="badge-modal">
+    <div class="badge-glow"></div>
+    <span class="badge-icon">&#11088;</span>
+    <span class="badge-ey">Badge Unlocked</span>
+    <div class="badge-name">Self-Command</div>
+    <p class="badge-desc">
+      You stood up your civilian operation.
+      The system is yours now. You stayed in the room.
+    </p>
+    <a href="progress.html" class="btn btn-primary" style="font-size:13px;">
+      See My Progress &rarr;
+    </a>
+    <br>
+    <button class="badge-dismiss" id="badge-dismiss">Keep going</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="progress.js"></script>
+<script>
+const completeBtn  = document.getElementById('complete-btn');
+const shareSection = document.getElementById('share-section');
+const overlay      = document.getElementById('badge-overlay');
+const dismiss      = document.getElementById('badge-dismiss');
+const MISSION_ID   = 'v1';
+const BADGE_SLUG   = 'self-command';
+
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var txt = this.getAttribute('data-copy');
+    if(navigator.clipboard) navigator.clipboard.writeText(txt);
+    var orig = this.innerHTML;
+    this.innerHTML = '&#10003; Copied'; this.classList.add('copied');
+    var self = this;
+    setTimeout(function(){ self.innerHTML = orig; self.classList.remove('copied'); }, 1800);
+  });
+});
+
+(function(){
+  try{
+    var s=JSON.parse(localStorage.getItem('afr_v1')||'{}');
+    if((s.missionsCompleted||[]).includes(MISSION_ID)){
+      completeBtn.innerHTML='&#9989; Mission Complete';
+      completeBtn.classList.add('done');
+      shareSection.classList.add('show');
+    }
+  }catch(e){}
+})();
+
+completeBtn.addEventListener('click', function(){
+  if(this.classList.contains('done')) return;
+  try{
+    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
+    s.missionsCompleted = s.missionsCompleted||[];
+    s.badges = s.badges||[];
+    s.tracks = s.tracks||[];
+    s.xp = (s.xp||0) + 50;
+    if(!s.missionsCompleted.includes(MISSION_ID)) s.missionsCompleted.push(MISSION_ID);
+
+    var badgeEarned = false;
+    if(!s.badges.includes(BADGE_SLUG)){
+      s.badges.push(BADGE_SLUG);
+      s.xp += 100;
+      badgeEarned = true;
+    }
+
+    // Next Mission track has only one mission for now — completing it completes the track
+    if(s.missionsCompleted.includes(MISSION_ID)){
+      if(!s.tracks.includes('next-mission')){ s.tracks.push('next-mission'); s.xp += 150; }
+    }
+
+    s.lastActive = new Date().toISOString();
+    if(!s.joinedAt) s.joinedAt = new Date().toISOString();
+    localStorage.setItem('afr_v1', JSON.stringify(s));
+
+    if(window.AFR && window.AFR.updateNavXP) window.AFR.updateNavXP();
+    if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
+      type:'mission_complete', missionId:MISSION_ID,
+      missionTitle:'Build Your Transition Brief',
+      badgeEarned: badgeEarned ? 'Self-Command' : '',
+      xpTotal:s.xp, name:s.name||'', email:s.email||'', installation:s.installation||''
+    });
+
+    this.innerHTML = '&#9989; Mission Complete';
+    this.classList.add('done');
+    shareSection.classList.add('show');
+    if(badgeEarned){ setTimeout(function(){ overlay.classList.add('show'); }, 500); }
+    setTimeout(function(){
+      shareSection.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 800);
+  }catch(e){ console.warn(e); }
+});
+
+dismiss.addEventListener('click',function(){ overlay.classList.remove('show'); });
+overlay.addEventListener('click',function(e){ if(e.target===overlay) overlay.classList.remove('show'); });
+setTimeout(function(){ overlay.classList.remove('show'); }, 10000);
+
+var burger = document.getElementById('burger');
+var drawer = document.getElementById('drawer');
+if(burger && drawer){
+  burger.addEventListener('click', function(){ drawer.classList.toggle('open'); });
+  document.addEventListener('click', function(e){
+    if(!burger.contains(e.target) && !drawer.contains(e.target))
+      drawer.classList.remove('open');
+  });
+}
+</script>
+</body>
+</html>

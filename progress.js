@@ -543,10 +543,86 @@
 
   // ---- INIT ----------------------------------------------------
 
+  function initNavDropdown() {
+    const trigger = document.querySelector('.nav-dropdown-trigger');
+    if (!trigger) return;
+    const menu = trigger.nextElementSibling;
+    if (!menu) return;
+
+    function close() {
+      menu.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      const open = menu.classList.contains('open');
+      if (open) close();
+      else {
+        menu.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+    document.addEventListener('click', function(e) {
+      if (!trigger.contains(e.target) && !menu.contains(e.target)) close();
+    });
+  }
+
+  function initLastEarnedStrip() {
+    // Only show on mission pages, not on progress.html itself
+    if (window.location.pathname.indexOf('progress.html') > -1) return;
+    if (window.location.pathname === '/' || window.location.pathname.indexOf('index.html') > -1) return;
+
+    // Read state from afr_v1 key (mission pages use this)
+    let s = {};
+    try { s = JSON.parse(localStorage.getItem('afr_v1') || '{}'); } catch(e){}
+    const badges = s.badges || s.badgesEarned || [];
+    if (!badges.length) return;
+
+    // Most-recent badge is last in the array
+    const lastSlug = badges[badges.length - 1];
+
+    // Match to known badge metadata
+    const badgeMeta = {
+      'first-spark':     { icon:'🌱', name:'First Spark' },
+      'voice-activated': { icon:'💬', name:'Voice Activated' },
+      'prompt-builder':  { icon:'✏️', name:'Prompt Builder' },
+      'page-turner':     { icon:'📄', name:'Page Turner' },
+      'story-keeper':    { icon:'🎤', name:'Story Keeper' },
+      'follow-up-queen': { icon:'🔁', name:'Follow-Up Queen' },
+      'pcs-ready':       { icon:'📦', name:'PCS Ready' },
+      'career-unlocked': { icon:'💼', name:'Career Unlocked' },
+      'base-explorer':   { icon:'🏕️', name:'Base Explorer' },
+      'self-command':    { icon:'⭐', name:'Self-Command' }
+    };
+    const meta = badgeMeta[lastSlug];
+    if (!meta) return;
+
+    // Don't show if user dismissed it for this badge in this session
+    const dismissKey = 'afr_dismissed_' + lastSlug;
+    if (sessionStorage.getItem(dismissKey)) return;
+
+    const strip = document.createElement('div');
+    strip.className = 'last-earned-strip';
+    strip.innerHTML =
+      '<span class="badge-icon-mini">' + meta.icon + '</span>' +
+      '<div><span class="label">LAST EARNED</span><span>' + meta.name + '</span></div>' +
+      '<button class="dismiss" aria-label="Dismiss">×</button>';
+    document.body.appendChild(strip);
+    setTimeout(function(){ strip.classList.add('show'); }, 600);
+
+    strip.querySelector('.dismiss').addEventListener('click', function(){
+      strip.classList.remove('show');
+      sessionStorage.setItem(dismissKey, '1');
+      setTimeout(function(){ strip.remove(); }, 400);
+    });
+  }
+
   function init() {
     updateNavXP();
     initCopyButtons();
     initMobileNav();
+    initNavDropdown();
+    initLastEarnedStrip();
 
     // Render XP bar if present
     const xpBarEl = document.getElementById('xp-bar');
@@ -556,8 +632,43 @@
     const cabinetEl = document.getElementById('badge-cabinet');
     if (cabinetEl) renderBadgeCabinet(cabinetEl);
 
+    // Render prominent top cabinet if present
+    const topCabinetEl = document.getElementById('top-cabinet');
+    if (topCabinetEl) renderTopCabinet(topCabinetEl);
+
     // Init progress recovery if present
     initProgressRecovery();
+  }
+
+  function renderTopCabinet(containerEl) {
+    if (!containerEl) return;
+    const state = getState();
+    const earned = state.badgesEarned || state.badges || [];
+
+    // Render all 10 badges with earned/locked state
+    const badgeList = [
+      {slug:'first-spark', icon:'🌱', name:'First Spark', hint:'Mission 7'},
+      {slug:'voice-activated', icon:'💬', name:'Voice Activated', hint:'Mission 1'},
+      {slug:'prompt-builder', icon:'✏️', name:'Prompt Builder', hint:'Mission 3'},
+      {slug:'page-turner', icon:'📄', name:'Page Turner', hint:'Mission 5'},
+      {slug:'story-keeper', icon:'🎤', name:'Story Keeper', hint:'Mission 6'},
+      {slug:'follow-up-queen', icon:'🔁', name:'Follow-Up Queen', hint:'Mission 8'},
+      {slug:'pcs-ready', icon:'📦', name:'PCS Ready', hint:'Mil-Spouse MS-1'},
+      {slug:'career-unlocked', icon:'💼', name:'Career Unlocked', hint:'Mil-Spouse MS-2'},
+      {slug:'base-explorer', icon:'🏕️', name:'Base Explorer', hint:'Mil-Spouse MS-3'},
+      {slug:'self-command', icon:'⭐', name:'Self-Command', hint:'Mission V-1'}
+    ];
+
+    let html = '';
+    badgeList.forEach(function(b){
+      const isEarned = earned.indexOf(b.slug) > -1;
+      html += '<div class="badge-slot ' + (isEarned ? 'earned' : 'locked') + '" title="' + b.hint + '">';
+      html += '<span class="b-icon-lg">' + b.icon + '</span>';
+      html += '<div class="b-name">' + b.name + '</div>';
+      html += '<span class="b-hint-text">' + (isEarned ? '✓ Earned' : b.hint) + '</span>';
+      html += '</div>';
+    });
+    containerEl.innerHTML = html;
   }
 
   // Run on DOM ready

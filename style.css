@@ -1999,3 +1999,152 @@ p.white,
   .nav-burger { display: flex; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
+
+
+/* ============================================================
+   NAV DROPDOWN (For You menu)
+   ============================================================ */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger { cursor: pointer; }
+.nav-dropdown-trigger .caret { display: inline-block; margin-left: 4px; font-size: 0.8em; transition: transform .2s; }
+.nav-dropdown-trigger[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: var(--dark, #0B1215);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 220px;
+  list-style: none;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+.nav-dropdown-menu.open { display: block; }
+.nav-dropdown-menu li { padding: 0; }
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  color: rgba(255,255,255,.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background .15s, color .15s;
+}
+.nav-dropdown-menu a:hover {
+  background: rgba(26,188,176,.12);
+  color: var(--teal, #1ABCB0) !important;
+}
+.nav-dropdown-menu li:last-child a {
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin-top: 4px;
+  padding-top: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.55) !important;
+}
+
+/* Drawer label for "For You" section */
+.drawer-label {
+  display: block;
+  padding: 14px 24px 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+
+/* ============================================================
+   LAST EARNED STRIP (injected on mission pages by progress.js)
+   ============================================================ */
+.last-earned-strip {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--dark, #0B1215);
+  border: 1.5px solid rgba(26,188,176,.4);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity .35s, transform .35s;
+  max-width: 280px;
+}
+.last-earned-strip.show { opacity: 1; transform: translateY(0); }
+.last-earned-strip .badge-icon-mini { font-size: 1.2rem; }
+.last-earned-strip .label { font-size: 10px; color: rgba(26,188,176,1); display: block; margin-bottom: 1px; }
+.last-earned-strip .dismiss {
+  background: none; border: none; color: rgba(255,255,255,.4);
+  font-size: 16px; cursor: pointer; padding: 0 0 0 8px;
+  line-height: 1;
+}
+.last-earned-strip .dismiss:hover { color: var(--white, #fff); }
+
+/* ============================================================
+   PROMINENT BADGE CABINET (top of progress.html)
+   ============================================================ */
+.cabinet-top {
+  background: var(--dark);
+  padding: 40px 32px 56px;
+}
+.cabinet-top-inner { max-width: 760px; margin: 0 auto; }
+.cabinet-top h2 {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 900;
+  color: var(--white);
+  margin: 0 0 6px;
+  letter-spacing: -.02em;
+}
+.cabinet-top .cabinet-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  margin: 0 0 24px;
+}
+.cabinet-grid-prominent {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+.cabinet-grid-prominent .badge-slot {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  padding: 22px 14px 18px;
+  text-align: center;
+  transition: all .2s;
+}
+.cabinet-grid-prominent .badge-slot.earned {
+  background: rgba(26,188,176,.08);
+  border-color: rgba(26,188,176,.3);
+}
+.cabinet-grid-prominent .badge-slot.earned:hover {
+  background: rgba(26,188,176,.14);
+  border-color: rgba(26,188,176,.55);
+  transform: translateY(-2px);
+}
+.cabinet-grid-prominent .b-icon-lg { font-size: 2.4rem; margin: 0 auto 8px; display: block; }
+.cabinet-grid-prominent .badge-slot.locked .b-icon-lg { filter: grayscale(1); opacity: .22; }
+.cabinet-grid-prominent .b-name {
+  font-size: 12px; font-weight: 800; color: var(--white);
+  margin: 0 0 2px; line-height: 1.2;
+}
+.cabinet-grid-prominent .badge-slot.locked .b-name { color: rgba(255,255,255,.22); }
+.cabinet-grid-prominent .b-hint-text {
+  font-size: 10px; color: rgba(255,255,255,.22); line-height: 1.4;
+}
+.cabinet-grid-prominent .badge-slot.earned .b-hint-text {
+  color: rgba(26,188,176,.7);
+}

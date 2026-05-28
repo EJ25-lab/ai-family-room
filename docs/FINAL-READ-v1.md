@@ -64,7 +64,7 @@ Three additions the reframe required:
 
 1. **Remove the testing artifacts.** Floating last-earned badge toast on cold pages. "0 · Just Arrived" XP badge in public nav. A gift should feel finished.
 2. **Build the parent a room.** Parents were named in the homepage subtitle but had no track of their own.
-3. **Make the builder visible.** Tyra Harrison's name and the "why" of EJC were in 8pt footer text. The builder IS the differentiator — surface her.
+3. **Make the builder visible.** The Chief Possibility Pilot's name and the "why" of EJC were in 8pt footer text. The builder IS the differentiator — surface her.
 
 ---
 
@@ -73,7 +73,7 @@ Three additions the reframe required:
 Push A (May 2026) closed the ship-blockers and the reframe additions:
 
 ### New pages
-- `/about.html` — *Why this room exists.* Three paragraphs in Tyra's voice. Leads with "AI Family Room is a free access point."
+- `/about.html` — *Why this room exists.* Three paragraphs in the Chief's voice. Leads with "AI Family Room is a free access point."
 - `/parents.html` — Parent Intel track landing page. Rose color `#D4736A`. Tagline: "You are not behind. The system is opaque. Here are the words and the doors."
 - `/parent-1.html` — Mission P-1 The Accommodation Translator. Badge: Translator (📝).
 - `/parent-2.html` — Mission P-2 The Hard Conversation Prep. Badge: In the Room (💬).
@@ -116,14 +116,14 @@ Push A (May 2026) closed the ship-blockers and the reframe additions:
 
 ## Open items — deferred to Push B
 
-- **Homepage redesign with 2×2 audience tile grid + dropdowns.** Tyra greenlit hybrid Option C (color-block tiles) + 2 illustrations (hero anchor + community block). Reduces homepage scroll by ~40% with collapsible How-it-works and FAQ. Awaiting preview before push.
+- **Homepage redesign with 2×2 audience tile grid + dropdowns.** the Chief greenlit hybrid Option C (color-block tiles) + 2 illustrations (hero anchor + community block). Reduces homepage scroll by ~40% with collapsible How-it-works and FAQ. Awaiting preview before push.
 - **Real completion celebration animations** on all 11 (now 13) mission pages. Tier 1 item — currently completion is a text state, not a celebratory moment. Per-mission edit; deferred to a dedicated polish push.
 
 ---
 
 ## Reference — what Steve would say
 
-Walking it cold, in the voice of the launch reviewer Tyra invoked:
+Walking it cold, in the voice of the launch reviewer the Chief invoked:
 
 > *"This is closer than most things I see."*
 > *"The hero page knows what it's selling. That's rarer than you think. The line about amplifying voice — that's not marketing. That's a point of view. Keep it."*

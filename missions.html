@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mission Map — AI Family Room</title>
-<meta name="description" content="Ten missions. Three tracks. Each mission produces something real — an email, a doc, a plan. Pick a track and go.">
+<meta name="description" content="Twelve missions. Five tracks. Each mission produces something real — an email, a doc, a plan. Pick a track and go.">
 <meta name="theme-color" content="#0B1215">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,6 +86,7 @@
 .track-eyebrow.g{color:var(--orange,#E76F51);}
 .track-eyebrow.m{color:var(--purple,#7B5BA6);}
 .track-eyebrow.n{color:#1E3A5F;}
+.track-eyebrow.p{color:#A85146;}
 
 .track-h-title{
   font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;color:var(--text);
@@ -196,6 +197,8 @@
 .badge-track-title.f{color:var(--teal);}
 .badge-track-title.g{color:var(--orange,#E76F51);}
 .badge-track-title.m{color:var(--purple,#7B5BA6);}
+.badge-track-title.p{color:#D4736A;}
+.badge-track-title.n{color:#7090C0;}
 
 .badge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .badge-slot{
@@ -269,6 +272,7 @@
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
       <ul class="nav-dropdown-menu" role="menu">
+        <li><a href="parents.html">&#129505; Parent Intel</a></li>
         <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
         <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
         <li><a href="missions.html">See all tracks &rarr;</a></li>
@@ -287,6 +291,7 @@
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
+  <a href="parents.html">&#129505; Parent Intel</a>
   <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
   <a href="next-mission.html">&#11088; The Next Mission</a>
   <a href="safety.html">Stay Safe</a>
@@ -299,8 +304,8 @@
   <div class="map-hero-inner">
     <span class="eyebrow fade-up d1">&#128205; MISSION MAP</span>
     <h1 class="map-title fade-up d2">
-      Ten missions.<br>
-      Three tracks. <span class="accent">One you.</span>
+      Twelve missions.<br>
+      Five tracks. <span class="accent">Built to meet you where you are.</span>
     </h1>
     <p class="map-sub fade-up d3">
       Every mission produces something real &mdash; an email, a doc, a plan.
@@ -363,6 +368,28 @@
   </div>
 </section>
 
+<!-- PARENT INTEL TRACK -->
+<section class="track-section light" aria-labelledby="track-p">
+  <div class="track-inner">
+    <div class="track-header">
+      <div class="track-h-left">
+        <span class="track-eyebrow p">&#129505; Parent Intel Track</span>
+        <h2 class="track-h-title" id="track-p">For parents navigating the system.</h2>
+        <p class="track-h-sub">
+          Two missions plus a resources block.
+          For the school emails, the accommodation plans, and the hard conversations.
+          <strong>Open to everyone &mdash; start anytime.</strong>
+        </p>
+      </div>
+      <span class="track-status available">Available</span>
+    </div>
+
+    <div class="mission-grid" id="grid-parents">
+      <!-- Cards rendered by JS -->
+    </div>
+  </div>
+</section>
+
 <!-- THE NEXT MISSION TRACK -->
 <section class="track-section tinted" aria-labelledby="track-n">
   <div class="track-inner">
@@ -412,7 +439,7 @@
     <span class="section-label">BADGE CABINET</span>
     <h2 class="h2 white-text" id="badges-h"
         style="text-align:left;margin-left:0;margin-bottom:8px;">
-      <span id="badge-count">0</span> of 10 badges earned.
+      <span id="badge-count">0</span> of 12 badges earned.
     </h2>
     <p style="font-size:13px;color:rgba(255,255,255,.38);
               margin-bottom:36px;max-width:480px;line-height:1.7;">
@@ -433,6 +460,11 @@
     <div class="badge-track-block">
       <span class="badge-track-title m">&#127894; Mil-Spouse Intel Track</span>
       <div class="badge-row" id="badges-milspouse"></div>
+    </div>
+
+    <div class="badge-track-block">
+      <span class="badge-track-title p">&#129505; Parent Intel Track</span>
+      <div class="badge-row" id="badges-parents"></div>
     </div>
 
     <div class="badge-track-block">
@@ -477,14 +509,17 @@
         <li><a href="tools.html">The Tools</a></li>
         <li><a href="missions.html">All Missions</a></li>
         <li><a href="safety.html">Help &amp; Safety</a></li>
+        <li><a href="about.html">Why This Exists</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-title">Connect</span>
       <ul class="footer-links">
+        <li><a href="parents.html">Parent Intel</a></li>
         <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
         <li><a href="progress.html">My Progress</a></li>
         <li><a href="join.html">Join the Community</a></li>
+        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
         <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
       </ul>
     </div>
@@ -525,7 +560,10 @@ var MISSIONS = [
   {id:'ms2', num:'MS-2', title:'Career Gap Translator',          track:'milspouse',   xp:50, badge:'career-unlocked', badgeName:'Career Unlocked', badgeIcon:'&#128188;', url:'milspouse.html#career', live:true},
   {id:'ms3', num:'MS-3', title:'The Free Access File',           track:'milspouse',   xp:50, badge:'base-explorer',   badgeName:'Base Explorer',   badgeIcon:'&#127957;', url:'milspouse.html#parks',  live:true},
   // The Next Mission (transitioning service members)
-  {id:'v1',  num:'V-1',  title:'Build Your Transition Brief',    track:'next-mission', xp:50, badge:'self-command',   badgeName:'Self-Command',    badgeIcon:'&#11088;',  url:'next-mission.html',     live:true},
+  {id:'v1',  num:'V-1',  title:'Build Your Transition Brief',    track:'next-mission', xp:50, badge:'self-command',   badgeName:'Independent Operations', badgeIcon:'&#11088;',  url:'next-mission.html',     live:true},
+  // Parent Intel
+  {id:'p1',  num:'P-1',  title:'The Accommodation Translator',   track:'parents',      xp:50, badge:'translator',     badgeName:'Translator',         badgeIcon:'&#128221;', url:'parent-1.html',         live:true},
+  {id:'p2',  num:'P-2',  title:'The Hard Conversation Prep',     track:'parents',      xp:50, badge:'in-the-room',    badgeName:'In the Room',        badgeIcon:'&#128172;', url:'parent-2.html',         live:true},
 ];
 
 var BADGES = {
@@ -538,7 +576,9 @@ var BADGES = {
   'pcs-ready':       {name:'PCS Ready',       icon:'&#128230;', track:'m', desc:'Complete PCS Survival Kit'},
   'career-unlocked': {name:'Career Unlocked', icon:'&#128188;', track:'m', desc:'Complete Career Gap Translator'},
   'base-explorer':   {name:'Base Explorer',   icon:'&#127957;', track:'m', desc:'Complete Free Access File'},
-  'self-command':    {name:'Self-Command',    icon:'&#11088;',  track:'n', desc:'Complete Build Your Transition Brief'},
+  'self-command':    {name:'Independent Operations',    icon:'&#11088;',  track:'n', desc:'Complete Build Your Transition Brief'},
+  'translator':      {name:'Translator',         icon:'&#128221;', track:'p', desc:'Complete The Accommodation Translator'},
+  'in-the-room':     {name:'In the Room',        icon:'&#128172;', track:'p', desc:'Complete The Hard Conversation Prep'},
 };
 
 function getState(){
@@ -598,6 +638,7 @@ function renderMissions(state){
     glow:          document.getElementById('grid-glow'),
     milspouse:     document.getElementById('grid-milspouse'),
     'next-mission':document.getElementById('grid-next-mission'),
+    parents:       document.getElementById('grid-parents'),
   };
 
   Object.keys(grids).forEach(function(track){ grids[track].innerHTML = ''; });
@@ -647,6 +688,7 @@ function renderBadges(state){
     g: document.getElementById('badges-glow'),
     m: document.getElementById('badges-milspouse'),
     n: document.getElementById('badges-next-mission'),
+    p: document.getElementById('badges-parents'),
   };
 
   Object.keys(tracks).forEach(function(track){

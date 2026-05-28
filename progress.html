@@ -225,6 +225,7 @@
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
       <ul class="nav-dropdown-menu" role="menu">
+        <li><a href="parents.html">&#129505; Parent Intel</a></li>
         <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
         <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
         <li><a href="missions.html">See all tracks &rarr;</a></li>
@@ -243,6 +244,7 @@
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
+  <a href="parents.html">&#129505; Parent Intel</a>
   <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
   <a href="next-mission.html">&#11088; The Next Mission</a>
   <a href="safety.html">Stay Safe</a>
@@ -360,6 +362,12 @@
       <div class="badge-row" id="badges-milspouse"><!-- JS --></div>
     </div>
 
+        <!-- Parent Intel -->
+    <div class="badge-track-block">
+      <span class="badge-track-title p" style="color:#D4736A;">&#129505; Parent Intel Track</span>
+      <div class="badge-row" id="badges-parents"><!-- JS --></div>
+    </div>
+
     <!-- The Next Mission -->
     <div class="badge-track-block">
       <span class="badge-track-title n" style="color:#5A7BAB;">&#11088; The Next Mission Track</span>
@@ -442,14 +450,17 @@
         <li><a href="tools.html">The Tools</a></li>
         <li><a href="missions.html">All Missions</a></li>
         <li><a href="safety.html">Help &amp; Safety</a></li>
+        <li><a href="about.html">Why This Exists</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-title">Connect</span>
       <ul class="footer-links">
+        <li><a href="parents.html">Parent Intel</a></li>
         <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
         <li><a href="progress.html">My Progress</a></li>
         <li><a href="join.html">Join the Community</a></li>
+        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
         <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
       </ul>
     </div>
@@ -589,6 +600,7 @@ function renderBadges(state){
     g: document.getElementById('badges-glow'),
     m: document.getElementById('badges-milspouse'),
     n: document.getElementById('badges-next-mission'),
+    p: document.getElementById('badges-parents'),
   };
 
   Object.keys(tracks).forEach(function(track){
@@ -618,8 +630,8 @@ document.getElementById('share-btn').addEventListener('click', function(){
   var text =
     'AI Family Room — My Progress\n\n' +
     'Level: ' + lv.name + ' (' + xp + ' XP)\n' +
-    'Missions complete: ' + missions.length + ' of 11\n' +
-    'Badges earned: ' + badges.length + ' of 10\n\n' +
+    'Missions complete: ' + missions.length + ' of 12\n' +
+    'Badges earned: ' + badges.length + ' of 12\n\n' +
     'Built with EdJustice Collective\n' +
     'https://aifamilyroom.com/';
 

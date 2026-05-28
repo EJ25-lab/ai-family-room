@@ -2148,3 +2148,104 @@ p.white,
 .cabinet-grid-prominent .badge-slot.earned .b-hint-text {
   color: rgba(26,188,176,.7);
 }
+
+/* ============================================================
+   PUSH A — Community offering reframe
+   ============================================================ */
+
+/* Under-hero band: "A free community resource..." */
+.offering-band {
+  background: linear-gradient(180deg, var(--dark) 0%, #131e25 100%);
+  padding: 28px 32px 36px;
+  text-align: center;
+  border-top: 1px solid rgba(26,188,176,.18);
+}
+.offering-inner { max-width: 720px; margin: 0 auto; }
+.offering-line {
+  font-size: 16px; font-weight: 700; color: var(--white);
+  line-height: 1.6; margin: 0 0 8px;
+}
+.offering-line strong { color: var(--teal); font-weight: 800; }
+.offering-sub { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.7; margin: 0; }
+.offering-sub a { color: var(--teal); text-decoration: none; font-weight: 700; }
+.offering-sub a:hover { text-decoration: underline; }
+
+/* New track-card variants (rose for parents, navy for next-mission) */
+.track-card.t-rose { background: rgba(212,115,106,.08); border-color: rgba(212,115,106,.3); }
+.track-card.t-rose:hover { background: rgba(212,115,106,.16); border-color: rgba(212,115,106,.55); }
+.track-card.t-rose .track-icon { color:#D4736A; }
+.track-card.t-navy { background: rgba(30,58,95,.18); border-color: rgba(30,58,95,.4); }
+.track-card.t-navy:hover { background: rgba(30,58,95,.28); border-color: rgba(30,58,95,.6); }
+.track-card.t-navy .track-icon { color:#7090C0; }
+
+/* "You can offer this" community-leader band */
+.offer-band {
+  background: var(--off);
+  padding: 64px 32px;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.offer-inner { max-width: 640px; margin: 0 auto; }
+.offer-eyebrow {
+  font-size: 11px; font-weight: 800; letter-spacing: .25em;
+  color: var(--teal); text-transform: uppercase; display: block; margin-bottom: 14px;
+}
+.offer-band h2 {
+  font-size: clamp(1.4rem,3.2vw,2rem); font-weight: 900;
+  color: var(--text); line-height: 1.2; margin-bottom: 14px; letter-spacing: -.02em;
+}
+.offer-band p { font-size: 15px; color: var(--mid); line-height: 1.7; margin-bottom: 28px; }
+.offer-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.offer-actions .btn { min-height: 50px; display: inline-flex; align-items: center; }
+
+/* Pass-it-along screenshot moment */
+.pass-along {
+  background: var(--dark);
+  padding: 64px 32px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.pass-inner { max-width: 460px; margin: 0 auto; }
+.pass-card {
+  background: var(--white); border-radius: 18px;
+  padding: 38px 32px; border: 3px solid var(--teal);
+  box-shadow: 0 16px 38px rgba(0,0,0,.4); margin-bottom: 24px;
+}
+.pass-ey {
+  font-size: 10px; font-weight: 800; letter-spacing: .25em;
+  color: var(--teal); text-transform: uppercase;
+}
+.pass-headline {
+  font-size: 2.2rem; font-weight: 900; color: var(--text);
+  margin: 14px 0 6px; line-height: 1.1;
+}
+.pass-url {
+  font-size: 1.25rem; font-weight: 800; color: var(--teal);
+  margin-bottom: 18px; letter-spacing: -.01em;
+}
+.pass-tag {
+  font-size: 13px; color: var(--mid); font-style: italic;
+  line-height: 1.65; margin-bottom: 14px;
+}
+.pass-handle {
+  font-size: 12px; font-weight: 700; color: var(--mid); letter-spacing: .05em;
+}
+.pass-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom: 16px; }
+.pass-actions .btn { min-height: 50px; display: inline-flex; align-items: center; }
+.pass-hint { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.pass-hint strong { color: var(--white); font-weight: 700; }
+
+/* Path-grid 4-column on wide, 2x2 on tablet, stack on mobile */
+@media (min-width: 900px) {
+  .path-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+/* Mobile button sizing - thumb-friendly for various ages */
+@media (max-width: 640px) {
+  .btn, .nav-cta, .copy-btn, .complete-btn, .pa-mc-cta {
+    min-height: 50px; padding: 14px 24px; font-size: 15px;
+  }
+  .nav-dropdown-trigger, .nav-links a, .nav-drawer a {
+    min-height: 44px; display: flex; align-items: center;
+  }
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Next Mission — AI Family Room</title>
-<meta name="description" content="Built for senior service members in transition. Honor the rank. Name the reality. Build the next operation. Earn the Self-Command badge.">
+<meta name="description" content="Built for senior service members in transition. Honor the rank. Name the reality. Build the next operation. Earn the Independent Operations badge.">
 <meta name="theme-color" content="#0B1215">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,6 +190,7 @@
     <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
       <ul class="nav-dropdown-menu" role="menu">
+        <li><a href="parents.html">&#129505; Parent Intel</a></li>
         <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
         <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
         <li><a href="missions.html">See all tracks &rarr;</a></li>
@@ -208,6 +209,7 @@
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
+  <a href="parents.html">&#129505; Parent Intel</a>
   <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
   <a href="next-mission.html">&#11088; The Next Mission</a>
   <a href="safety.html">Stay Safe</a>
@@ -232,7 +234,7 @@
     </p>
     <div class="rewards">
       <span class="rpill rxp">&#9889; +50 XP</span>
-      <span class="rpill rbadge">&#11088; Self-Command Badge</span>
+      <span class="rpill rbadge">&#11088; Independent Operations Badge</span>
       <span class="rpill rtool">&#128295; Claude</span>
     </div>
   </div>
@@ -609,9 +611,9 @@
         </div>
         <p class="share-quote">
           Translated my service. Taught my new staff who I am.
-          Ran one real task. Self-Command earned.
+          Ran one real task. Independent Operations earned.
         </p>
-        <div class="share-stat">&#9889; +150 XP &middot; &#11088; Self-Command</div>
+        <div class="share-stat">&#9889; +150 XP &middot; &#11088; Independent Operations</div>
         <div class="share-brand">
           AI Family Room <span>&middot;</span> EdJustice Collective
         </div>
@@ -638,15 +640,18 @@
         <li><a href="tools.html">The Tools</a></li>
         <li><a href="missions.html">All Missions</a></li>
         <li><a href="safety.html">Help &amp; Safety</a></li>
+        <li><a href="about.html">Why This Exists</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-title">Connect</span>
       <ul class="footer-links">
+        <li><a href="parents.html">Parent Intel</a></li>
         <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
         <li><a href="next-mission.html">The Next Mission</a></li>
         <li><a href="progress.html">My Progress</a></li>
         <li><a href="join.html">Join the Community</a></li>
+        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
       </ul>
     </div>
   </div>
@@ -663,7 +668,7 @@
     <div class="badge-glow"></div>
     <span class="badge-icon">&#11088;</span>
     <span class="badge-ey">Badge Unlocked</span>
-    <div class="badge-name">Self-Command</div>
+    <div class="badge-name">Independent Operations</div>
     <p class="badge-desc">
       You stood up your civilian operation.
       The system is yours now. You stayed in the room.
@@ -738,7 +743,7 @@ completeBtn.addEventListener('click', function(){
     if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
       type:'mission_complete', missionId:MISSION_ID,
       missionTitle:'Build Your Transition Brief',
-      badgeEarned: badgeEarned ? 'Self-Command' : '',
+      badgeEarned: badgeEarned ? 'Independent Operations' : '',
       xpTotal:s.xp, name:s.name||'', email:s.email||'', installation:s.installation||''
     });
 

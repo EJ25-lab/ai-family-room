@@ -24,6 +24,8 @@
     ms2:{ title: 'Career Gap Translator',             track: 'milspouse',   xp: 50, badge: 'career-unlocked',  tool: 'Claude'       },
     ms3:{ title: 'Free Access File',                  track: 'milspouse',   xp: 50, badge: 'base-explorer',    tool: 'Claude'       },
     v1: { title: 'Build Your Transition Brief',       track: 'next-mission',xp: 50, badge: 'self-command',     tool: 'Claude'       },
+    p1: { title: 'The Accommodation Translator',      track: 'parents',     xp: 50, badge: 'translator',       tool: 'Claude'       },
+    p2: { title: 'The Hard Conversation Prep',        track: 'parents',     xp: 50, badge: 'in-the-room',      tool: 'Claude'       },
   };
 
   const BADGES = {
@@ -36,14 +38,17 @@
     'pcs-ready':       { name: 'PCS Ready',          icon: '📦', track: 'milspouse',   mission: 'ms1', desc: 'Orders came. You had a plan. That\'s not luck — that\'s a system.' },
     'career-unlocked': { name: 'Career Unlocked',   icon: '💼', track: 'milspouse',   mission: 'ms2', desc: 'Every move was a skill. AI just helped you prove it.' },
     'base-explorer':   { name: 'Base Explorer',      icon: '🏕️', track: 'milspouse',   mission: 'ms3', desc: 'You found the free stuff. Now go use it with your family.' },
-    'self-command':    { name: 'Self-Command',       icon: '⭐', track: 'next-mission', mission: 'v1', desc: 'You stood up your civilian operation. Independent operations in progress.' },
+    'self-command':    { name: 'Independent Operations', icon: '⭐', track: 'next-mission', mission: 'v1', desc: 'You stood up your civilian operation. Twenty-plus years of command — now running solo.' },
+    'translator':      { name: 'Translator',         icon: '📝', track: 'parents',     mission: 'p1', desc: 'You turned legal language into a Tuesday you can ask for. That is advocacy work.' },
+    'in-the-room':     { name: 'In the Room',        icon: '💬', track: 'parents',     mission: 'p2', desc: 'You didn\'t freeze. You came in prepared. That\'s the work that changes outcomes.' },
   };
 
   const TRACKS = {
-    foundations: { name: 'Foundations',      missions: ['m7','m1','m3'],     bonusXp: 150 },
-    glow:        { name: 'Build Your Superpower',           missions: ['m2','m5','m6','m8'], bonusXp: 150 },
-    milspouse:   { name: 'Mil-Spouse Intel',  missions: ['ms1','ms2','ms3'],   bonusXp: 150 },
-    'next-mission':{ name: 'The Next Mission', missions: ['v1'],                bonusXp: 150 },
+    foundations: { name: 'Foundations',         missions: ['m7','m1','m3'],     bonusXp: 150 },
+    glow:        { name: 'Build Your Superpower', missions: ['m2','m5','m6','m8'], bonusXp: 150 },
+    milspouse:   { name: 'Mil-Spouse Intel',    missions: ['ms1','ms2','ms3'],   bonusXp: 150 },
+    'next-mission':{ name: 'The Next Mission',  missions: ['v1'],                bonusXp: 150 },
+    parents:     { name: 'Parent Intel',         missions: ['p1','p2'],           bonusXp: 150 },
   };
 
   const LEVELS = [
@@ -568,9 +573,10 @@
   }
 
   function initLastEarnedStrip() {
-    // Only show on mission pages, not on progress.html itself
-    if (window.location.pathname.indexOf('progress.html') > -1) return;
-    if (window.location.pathname === '/' || window.location.pathname.indexOf('index.html') > -1) return;
+    // Only show on mission pages — gated on the presence of a completion button.
+    // Cold pages (homepage, tools, safety, about, share-kit, start) don't have one,
+    // so this won't fire there. The Final Read flagged showing it cold as a testing artifact.
+    if (!document.getElementById('complete-btn')) return;
 
     // Read state from afr_v1 key (mission pages use this)
     let s = {};
@@ -589,10 +595,12 @@
       'page-turner':     { icon:'📄', name:'Page Turner' },
       'story-keeper':    { icon:'🎤', name:'Story Keeper' },
       'follow-up-queen': { icon:'🔁', name:'Follow-Up Queen' },
+      'translator':      { icon:'📝', name:'Translator' },
+      'in-the-room':     { icon:'💬', name:'In the Room' },
       'pcs-ready':       { icon:'📦', name:'PCS Ready' },
       'career-unlocked': { icon:'💼', name:'Career Unlocked' },
       'base-explorer':   { icon:'🏕️', name:'Base Explorer' },
-      'self-command':    { icon:'⭐', name:'Self-Command' }
+      'self-command':    { icon:'⭐', name:'Independent Operations' }
     };
     const meta = badgeMeta[lastSlug];
     if (!meta) return;
@@ -645,7 +653,7 @@
     const state = getState();
     const earned = state.badgesEarned || state.badges || [];
 
-    // Render all 10 badges with earned/locked state
+    // Render all 12 badges with earned/locked state
     const badgeList = [
       {slug:'first-spark', icon:'🌱', name:'First Spark', hint:'Mission 7'},
       {slug:'voice-activated', icon:'💬', name:'Voice Activated', hint:'Mission 1'},
@@ -653,10 +661,12 @@
       {slug:'page-turner', icon:'📄', name:'Page Turner', hint:'Mission 5'},
       {slug:'story-keeper', icon:'🎤', name:'Story Keeper', hint:'Mission 6'},
       {slug:'follow-up-queen', icon:'🔁', name:'Follow-Up Queen', hint:'Mission 8'},
+      {slug:'translator', icon:'📝', name:'Translator', hint:'Parent P-1'},
+      {slug:'in-the-room', icon:'💬', name:'In the Room', hint:'Parent P-2'},
       {slug:'pcs-ready', icon:'📦', name:'PCS Ready', hint:'Mil-Spouse MS-1'},
       {slug:'career-unlocked', icon:'💼', name:'Career Unlocked', hint:'Mil-Spouse MS-2'},
       {slug:'base-explorer', icon:'🏕️', name:'Base Explorer', hint:'Mil-Spouse MS-3'},
-      {slug:'self-command', icon:'⭐', name:'Self-Command', hint:'Mission V-1'}
+      {slug:'self-command', icon:'⭐', name:'Independent Operations', hint:'Mission V-1'}
     ];
 
     let html = '';

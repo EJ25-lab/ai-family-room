@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission P-2: The Hard Conversation Prep — AI Family Room</title>
+<meta name="description" content="Walk into the pediatrician, counselor, or principal's office knowing what to say. AI organizes what you're noticing into a one-page conversation map. Earn the In the Room badge.">
+<meta name="theme-color" content="#0B1215">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{ --rose:#D4736A; --rose-deep:#A85146; }
+
+.mission-hero{background:var(--dark);padding:64px 32px 56px;position:relative;overflow:hidden;}
+.mission-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,115,106,.10) 0%,transparent 65%);pointer-events:none;}
+.mission-hero-inner{max-width:720px;margin:0 auto;position:relative;}
+.meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.track-pill{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-pill);background:rgba(212,115,106,.14);color:var(--rose);border:1px solid rgba(212,115,106,.32);}
+.num-pill{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:5px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.1);}
+.mission-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;}
+.mission-title .accent{color:var(--rose);}
+.mission-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:24px;max-width:560px;}
+.mission-sub strong{color:var(--white);}
+.rewards{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.rpill{font-size:11px;font-weight:700;padding:5px 13px;border-radius:var(--r-pill);}
+.rxp{background:rgba(245,200,66,.14);color:#8A6B0F;border:1px solid rgba(245,200,66,.3);}
+.rbadge{background:rgba(212,115,106,.14);color:var(--rose);border:1px solid rgba(212,115,106,.32);}
+.rtool{background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
+
+.do-section{background:var(--white);padding:72px 32px;}
+.do-inner{max-width:720px;margin:0 auto;}
+.step-block{margin-bottom:48px;}
+.step-block:last-of-type{margin-bottom:0;}
+.step-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.step-circle{width:40px;height:40px;border-radius:50%;background:var(--rose);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:var(--white);flex-shrink:0;}
+.step-label{font-size:1.05rem;font-weight:800;color:var(--text);line-height:1.25;}
+.step-sub{font-size:14px;color:var(--mid);line-height:1.75;margin-bottom:16px;max-width:600px;}
+
+.prompt-card{background:rgba(212,115,106,.05);border:2px solid rgba(212,115,106,.3);border-radius:var(--r);padding:22px 24px 16px;margin-bottom:12px;}
+.prompt-ey{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep);display:block;margin-bottom:10px;}
+.prompt-text{font-size:14px;color:var(--text);line-height:1.85;font-style:italic;margin-bottom:14px;}
+.prompt-text strong{font-style:normal;color:var(--rose-deep);font-weight:700;}
+.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.copy-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:var(--white);font-family:var(--font);font-size:13px;font-weight:800;padding:12px 22px;border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;min-height:44px;}
+.copy-btn:hover{background:var(--rose-deep);}
+.copy-btn.copied{background:#1a8b56;color:var(--white);}
+.tool-link{display:inline-flex;align-items:center;gap:6px;color:var(--mid);font-size:12px;font-weight:600;text-decoration:none;padding:10px 16px;border:1px solid rgba(0,0,0,.12);border-radius:var(--r-sm);transition:border-color .2s;min-height:44px;}
+.tool-link:hover{border-color:var(--rose);color:var(--rose-deep);}
+
+.complete-section{background:var(--off);padding:64px 32px;text-align:center;}
+.complete-inner{max-width:580px;margin:0 auto;}
+.complete-section h3{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;color:var(--text);margin-bottom:14px;line-height:1.2;}
+.complete-section p{font-size:15px;color:var(--mid);margin-bottom:28px;line-height:1.7;}
+.complete-btn{background:var(--rose);color:var(--white);font-family:var(--font);font-size:16px;font-weight:800;padding:18px 44px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:background .2s,transform .15s;min-height:56px;}
+.complete-btn:hover{background:var(--rose-deep);transform:translateY(-1px);}
+.complete-btn.done{background:#1a8b56;cursor:default;}
+.tally-wrap{display:none;margin-top:24px;}
+.tally-wrap.show{display:block;}
+
+.share-section{display:none;background:var(--dark);padding:64px 32px;}
+.share-section.show{display:block;}
+.share-inner{max-width:520px;margin:0 auto;text-align:center;}
+.share-card{background:var(--white);border-radius:var(--r-lg);padding:42px 32px;border:3px solid var(--rose);box-shadow:0 18px 42px rgba(0,0,0,.4);}
+.share-eyebrow{font-size:10px;font-weight:800;letter-spacing:.25em;color:var(--rose-deep);}
+.share-icon{font-size:54px;display:block;margin:18px 0;}
+.share-headline{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.18;margin-bottom:14px;}
+.share-headline .accent{color:var(--rose-deep);}
+.share-quote{font-size:14px;color:var(--mid);font-style:italic;line-height:1.65;margin-bottom:20px;}
+.share-stat{font-size:13px;font-weight:800;color:var(--rose-deep);margin-bottom:14px;}
+.share-brand{font-size:11px;color:var(--mid);font-weight:700;letter-spacing:.1em;}
+.share-brand span{margin:0 6px;}
+.share-hint{margin-top:20px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+.share-hint strong{color:var(--white);}
+
+.badge-overlay{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:999;padding:24px;}
+.badge-overlay.show{display:flex;}
+.badge-modal{background:var(--white);border-radius:var(--r-lg);padding:48px 36px;text-align:center;max-width:380px;width:100%;position:relative;}
+.badge-glow{position:absolute;inset:-12px;border-radius:var(--r-lg);background:radial-gradient(circle,rgba(212,115,106,.4) 0%,transparent 60%);z-index:-1;}
+.badge-icon{font-size:80px;display:block;margin-bottom:12px;}
+.badge-ey{font-size:11px;font-weight:800;letter-spacing:.25em;color:var(--rose-deep);}
+.badge-name{font-size:2rem;font-weight:900;color:var(--text);margin:6px 0 14px;}
+.badge-desc{font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:24px;}
+.badge-dismiss{background:none;border:none;color:var(--mid);font-family:var(--font);font-size:13px;cursor:pointer;text-decoration:underline;margin-top:12px;}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-mark">AI</div>
+    <div>
+      <div class="nav-name">AI Family Room</div>
+      <span class="nav-sub">by EdJustice Collective</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="start.html">Start Here</a></li>
+    <li><a href="tools.html">The Tools</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
+      <ul class="nav-dropdown-menu" role="menu">
+        <li><a href="parents.html">&#129505; Parent Intel</a></li>
+        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      </ul>
+    </li>
+    <li><a href="safety.html">Stay Safe</a></li>
+  </ul>
+  <a href="join.html" class="nav-cta">Join the Community →</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="drawer">
+  <a href="start.html">Start Here</a>
+  <a href="tools.html">The Tools</a>
+  <a href="missions.html">Missions</a>
+  <span class="drawer-label">For You</span>
+  <a href="parents.html">&#129505; Parent Intel</a>
+  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
+  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="safety.html">Stay Safe</a>
+  <a href="progress.html">My Progress</a>
+  <a href="join.html" class="nav-cta">Join the Community →</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="mission-hero" role="banner">
+  <div class="mission-hero-inner">
+    <div class="meta-row">
+      <span class="track-pill">PARENT INTEL TRACK · MISSION P-2</span>
+      <span class="num-pill">~10 min</span>
+    </div>
+    <h1 class="mission-title">The <span class="accent">Hard Conversation Prep.</span></h1>
+    <p class="mission-sub">For the meeting you&rsquo;ve been dreading. The pediatrician. The counselor. The principal. AI helps you organize what you&rsquo;ve been noticing into a clean one-pager you bring with you. <strong>You don&rsquo;t walk in cold. You walk in prepared.</strong></p>
+    <div class="rewards">
+      <span class="rpill rxp">&#9889; +50 XP</span>
+      <span class="rpill rbadge">&#128172; In the Room Badge</span>
+      <span class="rpill rtool">&#128295; Claude</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── DO SECTION ── -->
+<section class="do-section">
+  <div class="do-inner">
+
+    <!-- STEP 1 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">1</div>
+        <div class="step-label">Open Claude. Tell it what you&rsquo;ve been noticing.</div>
+      </div>
+      <p class="step-sub">No structure required. Brain dump. The thing keeping you up. The pattern you keep seeing. The moments that made you say &ldquo;that&rsquo;s not okay.&rdquo; Voice-to-text works.</p>
+      <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-link">&#129502; Open Claude.ai &rarr;</a>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">2</div>
+        <div class="step-label">Ask Claude to organize it into a one-page conversation map.</div>
+      </div>
+      <p class="step-sub">Paste this prompt before your brain dump. Replace the bracketed parts with your details.</p>
+      <div class="prompt-card">
+        <span class="prompt-ey">Copy &amp; paste · then drop your brain dump underneath</span>
+        <p class="prompt-text" id="prompt1">
+          I am a parent preparing for a meeting with <strong>[pediatrician / counselor / principal / teacher]</strong> about my <strong>[child&rsquo;s age]</strong>-year-old <strong>[child&rsquo;s name]</strong>.<br><br>
+          The meeting is <strong>[when / where]</strong>. I have <strong>[how many]</strong> minutes.<br><br>
+          Please take everything I share below and organize it into a one-page conversation map with three sections:<br>
+          <strong>1. What I&rsquo;ve noticed</strong> &mdash; the patterns and moments, in plain language.<br>
+          <strong>2. What concerns me</strong> &mdash; why this matters, what I&rsquo;m worried about long-term.<br>
+          <strong>3. What I&rsquo;m asking for</strong> &mdash; one or two specific asks (an evaluation, a meeting, a referral, a trial of something).<br><br>
+          Keep it warm and partnership-oriented. I am not here to fight. I am here to be heard, and to make sure my child is.<br><br>
+          Here is everything I&rsquo;ve been noticing: <strong>[paste your brain dump here]</strong>
+        </p>
+        <div class="prompt-actions">
+          <button class="copy-btn" id="copy1">&#128203; Copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-block">
+      <div class="step-header">
+        <div class="step-circle">3</div>
+        <div class="step-label">Save it. Print it. Bring it with you.</div>
+      </div>
+      <p class="step-sub">This is your one-pager. Fold it in your bag. Glance at it when you sit down. You don&rsquo;t have to remember &mdash; you have it written down. That is preparation, not nerves.</p>
+      <div class="prompt-card">
+        <span class="prompt-ey">Optional follow-up · only if you want to rehearse</span>
+        <p class="prompt-text" id="prompt2">
+          Now please write a 2-minute version of this I can practice saying out loud. Same three sections, same warmth, but shortened to what I&rsquo;d say if they only had two minutes for me.<br><br>
+          End with one specific question I should ask before I leave.
+        </p>
+        <div class="prompt-actions">
+          <button class="copy-btn" id="copy2">&#128203; Copy prompt</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── COMPLETE ── -->
+<section class="complete-section">
+  <div class="complete-inner">
+    <h3>You walked in prepared.</h3>
+    <p>One brain dump turned into a one-pager you can hold. Tap below to log the mission and unlock the In the Room badge.</p>
+    <button class="complete-btn" id="complete-btn">&#10003; Mark Mission P-2 Complete</button>
+    <div class="tally-wrap" id="tally-wrap">
+      <p style="font-size:13px;color:var(--mid);margin-top:24px;">Saved across devices? <a href="progress.html" style="color:var(--rose-deep);font-weight:700;">Go to My Progress &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SHARE CARD ── -->
+<section class="share-section" id="share-section">
+  <div class="share-inner">
+    <div class="share-card">
+      <div class="share-card-content">
+        <span class="share-eyebrow">MISSION P-2 &middot; AI FAMILY ROOM</span>
+        <span class="share-icon">&#128172;</span>
+        <div class="share-headline">I didn&rsquo;t freeze. <span class="accent">I was in the room.</span></div>
+        <p class="share-quote">The meeting I&rsquo;d been dreading had a plan. One page. Three sections. I came as a partner.</p>
+        <div class="share-stat">&#9889; +150 XP &middot; &#128172; In the Room</div>
+        <div class="share-brand">AI Family Room <span>&middot;</span> EdJustice Collective</div>
+      </div>
+    </div>
+    <p class="share-hint"><strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG &mdash; or email <strong>chief@tieredjusticenow.com</strong></p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">AI Family Room</span>
+      <span class="footer-tag">by EdJustice Collective</span>
+      <p class="footer-about">A free, self-guided AI literacy environment for families, communities, and military spouses.</p>
+    </div>
+    <div>
+      <span class="footer-col-title">Learn</span>
+      <ul class="footer-links">
+        <li><a href="start.html">Start Here</a></li>
+        <li><a href="tools.html">The Tools</a></li>
+        <li><a href="missions.html">All Missions</a></li>
+        <li><a href="safety.html">Help &amp; Safety</a></li>
+        <li><a href="about.html">Why This Exists</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Connect</span>
+      <ul class="footer-links">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="progress.html">My Progress</a></li>
+        <li><a href="join.html">Join the Community</a></li>
+        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
+        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@tieredjusticenow.com">chief@tieredjusticenow.com</a> to delete your info at any time.</p>
+  </div>
+</footer>
+
+<!-- ── BADGE MODAL ── -->
+<div class="badge-overlay" id="badge-overlay" role="dialog" aria-label="Badge earned">
+  <div class="badge-modal">
+    <div class="badge-glow"></div>
+    <span class="badge-icon">&#128172;</span>
+    <span class="badge-ey">Badge Unlocked</span>
+    <div class="badge-name">In the Room</div>
+    <p class="badge-desc">You didn&rsquo;t freeze. You came in prepared. That&rsquo;s the work that changes outcomes.</p>
+    <a href="progress.html" class="btn btn-primary" style="font-size:13px;">See My Progress &rarr;</a>
+    <br>
+    <button class="badge-dismiss" id="badge-dismiss">Keep going</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="progress.js"></script>
+<script>
+const MISSION_ID = 'p2';
+const BADGE_SLUG = 'in-the-room';
+
+const completeBtn = document.getElementById('complete-btn');
+const tallyWrap   = document.getElementById('tally-wrap');
+const overlay     = document.getElementById('badge-overlay');
+const dismiss     = document.getElementById('badge-dismiss');
+const shareSection= document.getElementById('share-section');
+
+['copy1','copy2'].forEach(function(id){
+  var btn = document.getElementById(id);
+  var pid = id.replace('copy','prompt');
+  btn.addEventListener('click', function(){
+    var txt = document.getElementById(pid).innerText;
+    navigator.clipboard.writeText(txt).then(function(){
+      btn.innerHTML = '&#10003; Copied!';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.innerHTML = '&#128203; Copy prompt'; btn.classList.remove('copied'); }, 2400);
+    });
+  });
+});
+
+(function(){
+  try{
+    var s=JSON.parse(localStorage.getItem('afr_v1')||'{}');
+    if((s.missionsCompleted||[]).includes(MISSION_ID)){
+      completeBtn.innerHTML='&#9989; Mission Complete';
+      completeBtn.classList.add('done');
+      shareSection.classList.add('show');
+    }
+  }catch(e){}
+})();
+
+completeBtn.addEventListener('click', function(){
+  if(this.classList.contains('done')) return;
+  try{
+    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
+    s.missionsCompleted = s.missionsCompleted||[];
+    s.badges = s.badges||[];
+    s.tracks = s.tracks||[];
+    s.xp = (s.xp||0) + 50;
+
+    if(!s.missionsCompleted.includes(MISSION_ID)) s.missionsCompleted.push(MISSION_ID);
+
+    var badgeEarned = false;
+    if(!s.badges.includes(BADGE_SLUG)){
+      s.badges.push(BADGE_SLUG);
+      s.xp += 100;
+      badgeEarned = true;
+    }
+
+    if(['p1','p2'].every(function(id){return s.missionsCompleted.includes(id);})){
+      if(!s.tracks.includes('parents')){
+        s.tracks.push('parents');
+        s.xp += 150;
+      }
+    }
+
+    s.lastActive = new Date().toISOString();
+    if(!s.joinedAt) s.joinedAt = new Date().toISOString();
+    localStorage.setItem('afr_v1', JSON.stringify(s));
+
+    if(window.AFR && window.AFR.updateNavXP) window.AFR.updateNavXP();
+    if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
+      type:'mission_complete', missionId:MISSION_ID,
+      missionTitle:'The Hard Conversation Prep',
+      badgeEarned: badgeEarned ? 'In the Room' : '',
+      xpTotal: s.xp, name:s.name||'', email:s.email||'', installation:s.installation||''
+    });
+
+    this.innerHTML = '&#9989; Mission Complete';
+    this.classList.add('done');
+    tallyWrap.classList.add('show');
+    shareSection.classList.add('show');
+    setTimeout(function(){ shareSection.scrollIntoView({behavior:'smooth', block:'start'}); }, 900);
+    if(badgeEarned){ setTimeout(function(){ overlay.classList.add('show'); }, 500); }
+  }catch(e){ console.warn(e); }
+});
+
+dismiss.addEventListener('click',function(){ overlay.classList.remove('show'); });
+overlay.addEventListener('click',function(e){ if(e.target===overlay) overlay.classList.remove('show'); });
+setTimeout(function(){ overlay.classList.remove('show'); }, 12000);
+
+document.getElementById('burger').addEventListener('click', function(){
+  document.getElementById('drawer').classList.toggle('open');
+  this.classList.toggle('open');
+});
+</script>
+</body>
+</html>

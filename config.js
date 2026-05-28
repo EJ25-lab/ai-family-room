@@ -13,8 +13,8 @@
 window.AFR_CONFIG = {
 
   // Google Apps Script web app URL
-  // Deployed: AFR Sheet Logger v1
-  scriptUrl: 'https://script.google.com/macros/s/AKfycbyQcxqn_l4YNx5UQBrJkj2AOoTpe79G8d7FjgXAZSSdyTJ8GbVFK5XgZVATN-LJqv1ybQ/exec',
+  // Deployed: AFR v3 — recovery + welcome emails
+  scriptUrl: 'https://script.google.com/macros/s/AKfycbwrSIWcwwL4AiYyOWlUduchszym-hiXTqcePogiQx7d4oqjym66_9voDQBXG6ZCDgkuug/exec',
 
   // Shared secret — must match the token in doPost() exactly
   token: 'afr-2026-ejc',

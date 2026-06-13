@@ -156,13 +156,19 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
 <section class="do-section">
   <div class="do-inner">
 
+    <!-- PRIVACY PAUSE -->
+    <div style="background:#F7F4ED;border-left:4px solid #1ABCB0;border-radius:8px;padding:22px 24px;margin:0 0 32px 0;color:#2A2520">
+      <div style="font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#1ABCB0;font-weight:700;margin-bottom:8px">A note before you start</div>
+      <p style="font-size:14.5px;line-height:1.65;margin:0">Your child&rsquo;s IEP or 504 is a <strong>FERPA-protected record</strong>. It belongs to your family. The good news: the mission below works from <em>your understanding</em> of the document, not the document itself. The protected plan stays where it belongs &mdash; with you. Claude only needs the words you want translated and a sentence in your own language.</p>
+    </div>
+
     <!-- STEP 1 -->
     <div class="step-block">
       <div class="step-header">
         <div class="step-circle">1</div>
-        <div class="step-label">Open Claude and paste the section you don&rsquo;t fully understand.</div>
+        <div class="step-label">Sit with the section. Find the words you want translated.</div>
       </div>
-      <p class="step-sub">Find one paragraph in your kid&rsquo;s IEP, 504, evaluation report, or any school document that uses words you have to look up. Even one sentence is enough to start.</p>
+      <p class="step-sub">Open the document on your end &mdash; just you and the paper. Find the <strong>3 hardest words or phrases</strong> in it. Those are what we&rsquo;re translating. Your document stays with you.</p>
       <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-link">&#129502; Open Claude.ai &rarr;</a>
     </div>
 
@@ -177,11 +183,11 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
         <span class="prompt-ey">Copy &amp; paste · then drop your section underneath</span>
         <p class="prompt-text" id="prompt1">
           I am a parent. I want to understand my kid&rsquo;s school plan in plain language so I can advocate for what they actually need.<br><br>
-          Please translate the section below into:<br>
+          Please translate the terms and phrases below into:<br>
           (1) What this means in plain English &mdash; like you&rsquo;re explaining it to a friend.<br>
           (2) What it should look like on a regular Tuesday at school.<br>
           (3) What I should ask the school to confirm.<br><br>
-          Here is the section: <strong>[paste the language from the IEP/504/report here]</strong>
+          The terms I&rsquo;m trying to understand are: <strong>[type the specific words or phrases]</strong>. Here&rsquo;s the situation in my own words, no names: <strong>[type 2&ndash;3 sentences about what you&rsquo;ve noticed for your kid]</strong>.
         </p>
         <div class="prompt-actions">
           <button class="copy-btn" id="copy1">&#128203; Copy prompt</button>
@@ -199,10 +205,10 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
       <div class="prompt-card">
         <span class="prompt-ey">Copy &amp; paste · uses your translation from step 2</span>
         <p class="prompt-text" id="prompt2">
-          Based on the translation we just made, please write a short partnership email I can send to <strong>[the teacher or case manager&rsquo;s name]</strong>.<br><br>
+          Based on the translation we just made, please write a short partnership email I can send to the case manager.<br><br>
           Tone: warm, specific, partnership-oriented. I know they are juggling a lot.<br>
           Goal: name what I noticed, name what the plan says, ask one specific thing &mdash; what I&rsquo;m hoping for on a regular school day.<br><br>
-          Keep it under 150 words. Sign it from <strong>[my name]</strong>, parent of <strong>[child&rsquo;s name]</strong>.
+          Keep it under 150 words. Sign-off line as &ldquo;a parent.&rdquo; I&rsquo;ll add the real names myself when I&rsquo;m ready to send.
         </p>
         <div class="prompt-actions">
           <button class="copy-btn" id="copy2">&#128203; Copy prompt</button>

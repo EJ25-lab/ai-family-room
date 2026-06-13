@@ -81,9 +81,125 @@
       </div>
     </div>
     <div class="hero-v2-art fade-up d3">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DfU6Obs5tRrkrLHU3X9lXd8dHC/hf_20260528_200735_869d560c-8320-445b-9b86-cdcafe3bc4be.png"
-           alt="A parent and child looking at a tablet together at a kitchen counter"
-           class="hero-v2-img" loading="eager">
+      <div class="hero-visual-block" aria-hidden="true">
+        <div class="hv-glow"></div>
+        <div class="hv-dots"></div>
+        <div class="hv-stack">
+
+          <div class="hv-card hv-c1">
+            <span class="hv-emoji">🌿</span>
+            <span class="hv-track">Track 01</span>
+            <div class="hv-name">Foundations</div>
+            <div class="hv-meta">3 missions · 3 badges</div>
+          </div>
+
+          <div class="hv-card hv-c2">
+            <span class="hv-emoji">✨</span>
+            <span class="hv-track">Track 02</span>
+            <div class="hv-name">Build Your Superpower</div>
+            <div class="hv-meta">4 missions · 4 badges</div>
+          </div>
+
+          <div class="hv-card hv-c3">
+            <span class="hv-emoji">🦎</span>
+            <span class="hv-track">Track 03</span>
+            <div class="hv-name">Parent Intel</div>
+            <div class="hv-meta">2 missions · + resources</div>
+          </div>
+
+          <div class="hv-card hv-c4">
+            <span class="hv-emoji">🎖</span>
+            <span class="hv-track">Track 04</span>
+            <div class="hv-name">Mil-Spouse Intel</div>
+            <div class="hv-meta">3 missions · 3 badges</div>
+          </div>
+
+          <div class="hv-card hv-c5">
+            <span class="hv-emoji">⭐</span>
+            <span class="hv-track">Track 05</span>
+            <div class="hv-name">The Next Mission</div>
+            <div class="hv-meta">1 mission · for senior vets</div>
+          </div>
+
+        </div>
+        <div class="hv-footer">Five tracks · Twelve missions · aifamilyroom.com</div>
+      </div>
+      <style>
+        /* ── HERO VISUAL BLOCK ─────────────────────────────────────── */
+        .hero-visual-block {
+          position: relative;
+          width: 100%;
+          max-width: 460px;
+          min-height: 460px;
+          background: #0F1A1E;
+          border: 1px solid rgba(26,188,176,.15);
+          border-radius: 20px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin: 0 auto;
+        }
+        .hv-glow {
+          position: absolute;
+          width: 340px; height: 340px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(26,188,176,.1) 0%, transparent 65%);
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+        .hv-dots {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+          background-size: 24px 24px;
+          pointer-events: none;
+        }
+        .hv-stack {
+          position: relative;
+          width: 300px;
+          height: 370px;
+        }
+        .hv-card {
+          position: absolute;
+          width: 270px;
+          border-radius: 14px;
+          padding: 16px 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          box-shadow: 0 8px 28px rgba(0,0,0,.55);
+          transition: transform .3s ease;
+        }
+        .hv-emoji  { font-size: 1.4rem; line-height: 1; display: block; margin-bottom: 4px; }
+        .hv-track  { font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .55; }
+        .hv-name   { font-size: 14px; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; margin-top: 2px; }
+        .hv-meta   { font-size: 11px; opacity: .45; margin-top: 1px; }
+        .hv-c1 { background:#0D2B28; border:1px solid rgba(26,188,176,.28); color:#A8F0EC; top:14px; left:14px; transform:rotate(-6deg); z-index:1; }
+        .hv-c1 .hv-name { color:#1ABCB0; }
+        .hv-c2 { background:#1E1608; border:1px solid rgba(242,140,56,.28); color:#F0D5A8; top:52px; left:18px; transform:rotate(-3deg); z-index:2; }
+        .hv-c2 .hv-name { color:#F28C38; }
+        .hv-c3 { background:#1E0D0D; border:1px solid rgba(224,120,100,.28); color:#F0C4B8; top:90px; left:22px; transform:rotate(-1deg); z-index:3; }
+        .hv-c3 .hv-name { color:#E07864; }
+        .hv-c4 { background:#120D1E; border:1px solid rgba(155,138,250,.28); color:#D0C8F4; top:128px; left:26px; transform:rotate(1.5deg); z-index:4; }
+        .hv-c4 .hv-name { color:#9B8AFA; }
+        .hv-c5 { background:#0A1520; border:1px solid rgba(90,140,200,.32); color:#B8D0F0; top:166px; left:30px; transform:rotate(3.5deg); z-index:5; }
+        .hv-c5 .hv-name { color:#5A8CC8; }
+        .hv-footer {
+          position: absolute;
+          bottom: 16px; left: 0; right: 0;
+          text-align: center;
+          font-size: 9px; font-weight: 600;
+          color: rgba(255,255,255,.15);
+          letter-spacing: .14em; text-transform: uppercase;
+        }
+        @media (max-width: 768px) {
+          .hero-visual-block { min-height: 320px; border-radius: 16px; }
+          .hv-stack { width: 240px; height: 300px; transform: scale(.88); }
+        }
+      </style>
     </div>
   </div>
 </section>
@@ -101,7 +217,6 @@
   <div class="who-inner">
     <span class="who-eyebrow">WHO THIS ROOM IS FOR</span>
     <h2 class="who-h2" id="who-h">Pick the room that fits.</h2>
-    <p class="who-sub">No wrong answer. Each one walks you through real problems, in your language.</p>
 
     <div class="who-grid">
 
@@ -205,43 +320,12 @@
   </div>
 </section>
 
-<!-- ── HOW IT WORKS (accordion, collapsed by default) ── -->
-<section class="how-acc-section">
-  <div class="how-acc-inner">
-    <details class="how-acc">
-      <summary class="how-acc-trigger">
-        <span class="how-acc-eyebrow">HOW IT WORKS</span>
-        <span class="how-acc-headline">Pick a mission. Do the thing. Keep what you made. <span class="how-caret">+</span></span>
-      </summary>
-      <div class="how-acc-body">
-        <div class="how-steps">
-          <div class="how-step">
-            <div class="how-num">1</div>
-            <div class="how-step-title">Pick your starting point.</div>
-            <p class="how-step-text">Brand new? Start with Foundations. Real problem to solve? Pick the track that names it.</p>
-          </div>
-          <div class="how-step">
-            <div class="how-num">2</div>
-            <div class="how-step-title">Do the thing.</div>
-            <p class="how-step-text">Each mission is ~5&ndash;10 minutes. Real prompt. Real tool. Real output you copy and keep.</p>
-          </div>
-          <div class="how-step">
-            <div class="how-num">3</div>
-            <div class="how-step-title">Earn badges. Stack tracks.</div>
-            <p class="how-step-text">XP and badges save automatically. Recover across devices with the email you used.</p>
-          </div>
-        </div>
-      </div>
-    </details>
-  </div>
-</section>
-
 <!-- ── THE TOOLS (compact) ── -->
 <section class="tools-section-v2" aria-labelledby="tools-h">
   <div class="tools-v2-inner">
     <span class="who-eyebrow">YOUR TOOLKIT</span>
     <h2 class="who-h2" id="tools-h">Three tools. Zero overwhelm.</h2>
-    <p class="who-sub">Free to start. No downloads. Sign in with Google and you're halfway there.</p>
+    <p class="who-sub">Free to start. No downloads.</p>
 
     <div class="tools-v2-grid">
       <a class="tool-mini" href="tools.html#neuralwriter">
@@ -266,11 +350,6 @@
 <!-- ── YOU CAN OFFER THIS (with community illustration) ── -->
 <section class="offer-v2" aria-labelledby="offer-h">
   <div class="offer-v2-grid">
-    <div class="offer-v2-art">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DfU6Obs5tRrkrLHU3X9lXd8dHC/hf_20260528_200736_acab412f-351c-42f5-9624-6432f2a06953.png"
-           alt="Diverse hands meeting around a table, sharing papers and a phone"
-           class="offer-v2-img" loading="lazy">
-    </div>
     <div class="offer-v2-text">
       <span class="offer-eyebrow">FOR COMMUNITY LEADERS</span>
       <h2 id="offer-h">Are you a teacher, counselor, family liaison, or community leader?</h2>
@@ -326,7 +405,6 @@
       <button class="btn btn-primary" id="pass-copy">&#128203; Copy a share message</button>
       <a href="share-kit.html" class="btn btn-ghost">Get the share kit &rarr;</a>
     </div>
-    <p class="pass-hint">Screenshot the card &middot; tag <strong>@edjusticecollective</strong></p>
   </div>
 </section>
 

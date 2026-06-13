@@ -9,7 +9,12 @@
 
   // ---- CONSTANTS -----------------------------------------------
 
-  const STORAGE_KEY = 'afr_progress_v1';
+  // Storage key — unified with mission pages.
+  // Historical note: this file shipped with 'afr_progress_v1' but every mission
+  // page writes to 'afr_v1'. That mismatch made the /progress badge cabinet
+  // always render locked even when missions.html showed badges as earned.
+  // Switching to 'afr_v1' makes /progress read the same source as missions.html.
+  const STORAGE_KEY = 'afr_v1';
 
   const MISSIONS = {
     m1: { title: 'Turn a Thought into a Message',     track: 'foundations', xp: 50, badge: 'voice-activated',  tool: 'NeuralWriter' },
@@ -78,10 +83,64 @@
 
   // ---- STORAGE -------------------------------------------------
 
+  // One-time migration from the legacy 'afr_progress_v1' key.
+  // Merges any progress saved under the old key into the unified 'afr_v1' key.
+  // Runs at most once; sets a flag so subsequent loads skip it.
+  function migrateLegacyKey() {
+    try {
+      if (localStorage.getItem('afr_migrated_v1') === '1') return;
+      const legacyRaw = localStorage.getItem('afr_progress_v1');
+      if (!legacyRaw) {
+        localStorage.setItem('afr_migrated_v1', '1');
+        return;
+      }
+      const legacy = JSON.parse(legacyRaw) || {};
+      const currentRaw = localStorage.getItem(STORAGE_KEY);
+      const current = currentRaw ? (JSON.parse(currentRaw) || {}) : {};
+      function union(a, b) {
+        const out = (a || []).slice();
+        (b || []).forEach(function (v) { if (out.indexOf(v) === -1) out.push(v); });
+        return out;
+      }
+      const merged = {
+        name: current.name || legacy.name || '',
+        email: current.email || legacy.email || '',
+        installation: current.installation || legacy.installation || '',
+        xp: Math.max(current.xp || 0, legacy.xp || 0),
+        missionsCompleted: union(current.missionsCompleted, legacy.missionsCompleted),
+        badgesEarned: union(current.badgesEarned || current.badges, legacy.badgesEarned || legacy.badges),
+        tracksCompleted: union(current.tracksCompleted || current.tracks, legacy.tracksCompleted || legacy.tracks),
+        joinedAt: current.joinedAt || legacy.joinedAt || null,
+        lastActive: new Date().toISOString(),
+      };
+      // Mirror legacy field names for mission-page reads
+      merged.badges = merged.badgesEarned.slice();
+      merged.tracks = merged.tracksCompleted.slice();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      localStorage.setItem('afr_migrated_v1', '1');
+    } catch (e) {
+      // Silent — never block app on migration failure
+      if (window.console && console.warn) console.warn('AFR: migration skipped', e);
+    }
+  }
+  migrateLegacyKey();
+
   function getState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? Object.assign(defaultState(), JSON.parse(raw)) : defaultState();
+      const parsed = raw ? JSON.parse(raw) : {};
+      const merged = Object.assign(defaultState(), parsed);
+      // Field-name normalization between mission pages and central state.
+      // Mission pages write s.badges / s.tracks. The central renderers expect
+      // s.badgesEarned / s.tracksCompleted. Hydrate the canonical fields from
+      // the legacy ones if the canonical ones are empty.
+      if (parsed.badges && (!merged.badgesEarned || !merged.badgesEarned.length)) {
+        merged.badgesEarned = parsed.badges.slice();
+      }
+      if (parsed.tracks && (!merged.tracksCompleted || !merged.tracksCompleted.length)) {
+        merged.tracksCompleted = parsed.tracks.slice();
+      }
+      return merged;
     } catch (e) {
       return defaultState();
     }
@@ -90,6 +149,11 @@
   function setState(state) {
     try {
       state.lastActive = new Date().toISOString();
+      // Mirror canonical fields to the legacy field names mission pages read.
+      // Keeps both representations in sync so /missions.html and /progress.html
+      // always agree on what is earned.
+      state.badges = (state.badgesEarned || []).slice();
+      state.tracks = (state.tracksCompleted || []).slice();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
       console.warn('AFR: localStorage write failed', e);

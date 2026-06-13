@@ -145,7 +145,23 @@
 
 <!-- MISSION HEADER -->
 <section class="mission-hero" role="banner">
+  <style>
+    .mission-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
+    .mission-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
+    .mission-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
+    .mission-hero > *{position:relative;z-index:1}
+    .mission-hero .mission-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
+    .mission-hero .mission-title .accent{color:#1ABCB0 !important;font-style:italic !important}
+    .mission-hero p, .mission-hero .mission-sub{color:#2A2520 !important;opacity:.82}
+    .mission-hero p strong, .mission-hero .mission-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
+    .mission-hero .track-pill, .mission-hero .num-pill{color:#1ABCB0 !important;background:rgba(26,188,176,.08) !important;border:1px solid rgba(26,188,176,.25) !important}
+  </style>
   <div class="mission-hero-inner">
+    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
+      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
+      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
+      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+    </div>
     <div class="meta-row">
       <span class="track-pill glow">&#10024; Build Your Superpower Track</span>
       <span class="num-pill">Mission 02</span>

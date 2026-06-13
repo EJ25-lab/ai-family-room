@@ -11,14 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.safe-hero{background:var(--dark);padding:84px 32px 56px;position:relative;overflow:hidden;}
-.safe-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,.06) 0%,transparent 65%);pointer-events:none;}
-.safe-hero-inner{max-width:680px;margin:0 auto;position:relative;text-align:center;}
-.safe-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#F5C842;display:block;margin-bottom:18px;}
-.safe-hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:900;color:var(--white);line-height:1.0;letter-spacing:-.035em;margin-bottom:18px;}
-.safe-hero h1 .accent{color:#F5C842;}
-.safe-hero p{font-size:16px;color:rgba(255,255,255,.6);line-height:1.75;max-width:520px;margin:0 auto;}
-.safe-hero p strong{color:var(--white);}
+.safe-hero{background:#F7F4ED;padding:84px 32px 64px;position:relative;overflow:hidden;}
+.safe-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%);pointer-events:none;}
+.safe-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none;}
+.safe-hero-inner{max-width:680px;margin:0 auto;position:relative;text-align:center;z-index:1;}
+.safe-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#1ABCB0;display:block;margin-bottom:18px;}
+.safe-hero h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5.5vw,58px);font-weight:800;color:#2A2520;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.safe-hero h1 .accent{color:#1ABCB0;font-style:italic;}
+.safe-hero p{font-size:17px;color:#2A2520;opacity:.82;line-height:1.7;max-width:560px;margin:0 auto;}
+.safe-hero p strong{color:#2A2520;opacity:1;font-weight:700;}
 
 /* Section pattern */
 .safe-section{padding:72px 32px;}

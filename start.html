@@ -1251,15 +1251,17 @@ async function buildPrompt() {
   startLoadingCycle();
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+    // The browser cannot call api.anthropic.com directly:
+    // - no way to send a private API key from public client JS without exposing it
+    // - Anthropic does not accept browser-origin (CORS) requests
+    // So we proxy through the existing Apps Script web app. The script holds
+    // ANTHROPIC_API_KEY as a Script Property and forwards the request
+    // server-side. See config.js for the script URL + token, and the README
+    // section "Apps Script — Claude proxy route" for the doPost snippet.
+    const cfg = window.AFR_CONFIG || {};
+    if (!cfg.scriptUrl) throw new Error('Proxy not configured');
 
-        // System prompt that defines The Art of the Ask behavior
-        system: `You are "The Art of the Ask" — a prompt coaching tool built by EdJustice Collective for families and military spouses learning to use AI effectively.
+    const systemPrompt = `You are "The Art of the Ask" — a prompt coaching tool built by EdJustice Collective for families and military spouses learning to use AI effectively.
 
 Your job: take a rough, vague thought and transform it into a precise, powerful AI prompt using three keys: Specific task, Context, and Tone.
 
@@ -1282,8 +1284,20 @@ Rules:
 - Never use [brackets] or placeholders — make reasonable assumptions
 - Keep prompts under 80 words and naturally warm
 - If input mentions military life, PCS, TRICARE, FRG, or deployment — lean into that context
-- Key explanations should be short and conversational, not technical`,
+- Key explanations should be short and conversational, not technical`;
 
+    const response = await fetch(cfg.scriptUrl, {
+      method: 'POST',
+      // text/plain avoids the CORS preflight that application/json triggers —
+      // Apps Script still parses e.postData.contents as JSON inside doPost.
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        type: 'claude_proxy',
+        token: cfg.token || '',
+        honeypot: '',
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
         messages: [{
           role: 'user',
           content: `Rough thought: "${rough}"\n\nBuild a polished prompt and explain the three keys. JSON only.`
@@ -1291,9 +1305,13 @@ Rules:
       })
     });
 
-    if (!response.ok) throw new Error(`API ${response.status}`);
+    if (!response.ok) throw new Error(`Proxy ${response.status}`);
 
-    const data   = await response.json();
+    const envelope = await response.json();
+    if (!envelope.ok) throw new Error(envelope.err || `Anthropic ${envelope.status || 'error'}`);
+
+    // envelope.body is the raw Anthropic response, still as a JSON string
+    const data   = JSON.parse(envelope.body);
     const raw    = data.content?.[0]?.text || '';
     const clean  = raw.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);

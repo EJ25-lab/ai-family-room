@@ -256,7 +256,23 @@
 
 <!-- HERO -->
 <section class="progress-hero" role="banner">
+  <style>
+    .progress-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
+    .progress-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
+    .progress-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
+    .progress-hero > *{position:relative;z-index:1}
+    .progress-hero .eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important}
+    .progress-hero .progress-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
+    .progress-hero .progress-title .accent{color:#1ABCB0 !important;font-style:italic !important}
+    .progress-hero p, .progress-hero .progress-sub{color:#2A2520 !important;opacity:.82}
+    .progress-hero p strong, .progress-hero .progress-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
+  </style>
   <div class="progress-hero-inner">
+    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
+      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
+      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
+      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+    </div>
     <span class="eyebrow fade-up d1">MY PROGRESS</span>
     <h1 class="progress-title fade-up d2">
       Everything you have<br>

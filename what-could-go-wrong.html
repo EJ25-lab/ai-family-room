@@ -136,7 +136,23 @@
 
 <!-- ── HERO ── -->
 <section class="wcgw-hero" role="banner">
+  <style>
+    .wcgw-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
+    .wcgw-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
+    .wcgw-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
+    .wcgw-hero > *{position:relative;z-index:1}
+    .wcgw-hero .wcgw-eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important;font-size:11.5px !important}
+    .wcgw-hero h1{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
+    .wcgw-hero h1 .accent{color:#1ABCB0 !important;font-style:italic !important}
+    .wcgw-hero p{color:#2A2520 !important;opacity:.82}
+    .wcgw-hero p strong{color:#2A2520 !important;opacity:1;font-weight:700}
+  </style>
   <div class="wcgw-hero-inner">
+    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
+      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
+      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
+      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+    </div>
     <span class="wcgw-eyebrow">USE IT WELL</span>
     <h1>What could<br><span class="accent">go wrong.</span></h1>
     <p>Four real 2026 AI failures. Four plain rules. A clear answer on <strong>which tool to use when.</strong> So you can use AI &mdash; and not end up in a story like one of these.</p>

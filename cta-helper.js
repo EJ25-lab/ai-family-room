@@ -10,7 +10,7 @@
 
   var MICROCOPY = {
     'claude.ai/new': "Claude opens in a new tab. If you're not signed in yet, tap “Continue with Google.” Paste the prompt and hit Enter. Stay in this same Claude chat for any follow-up prompts on this page.",
-    'gamma.app/create': "Gamma opens in a new tab. Choose “Paste in text,” paste everything Claude gave you, pick a theme, then hit Generate. You'll be asked to sign in if you haven't yet — the free plan is enough to finish this mission."
+    'gamma.app/create': "Gamma opens in a new tab. Choose “Paste in text,” paste what Claude gave you, pick a theme, hit Generate. You'll be asked to sign in if you haven't yet. The free plan gives you 400 credits to start — enough for this mission and a few more decks; after that Gamma will offer a paid plan, which you can ignore until you want it."
   };
 
   var CLOSER_HTML =

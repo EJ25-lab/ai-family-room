@@ -706,10 +706,126 @@
 
     // Render prominent top cabinet if present
     const topCabinetEl = document.getElementById('top-cabinet');
-    if (topCabinetEl) renderTopCabinet(topCabinetEl);
+    if (topCabinetEl) {
+      renderTopCabinet(topCabinetEl);
+      // After the cabinet paints, light up any newly-earned badges.
+      // Runs only on the first visit per badge — the seen-set is cleared
+      // for the slug once celebrated.
+      requestAnimationFrame(function () { initBadgeReveal(); });
+    }
 
     // Init progress recovery if present
     initProgressRecovery();
+  }
+
+  // ---- BADGE REVEAL ON PROGRESS PAGE ---------------------------
+  // Diffs the earned set against the "already-seen" set in localStorage.
+  // For each new badge, adds a teal pulse + tiny confetti burst on its slot
+  // and a brief "NEW" ribbon. After the celebration, marks the badge as
+  // seen so refreshing /progress later doesn't replay the animation.
+
+  function ensureRevealStyles() {
+    if (document.getElementById('afr-reveal-styles')) return;
+    var css = ''
+      + '.badge-slot.just-earned{position:relative;animation:afrBadgePulse 1.6s ease-out 0s 2;}'
+      + '.badge-slot.just-earned .b-icon-lg{animation:afrBadgePop .9s cubic-bezier(.34,1.56,.64,1) both;}'
+      + '.badge-slot .new-ribbon{position:absolute;top:-10px;right:-6px;background:#1ABCB0;color:#fff;font-size:9.5px;letter-spacing:.16em;font-weight:800;padding:3px 8px;border-radius:999px;text-transform:uppercase;box-shadow:0 4px 12px rgba(26,188,176,.45);font-family:Poppins,sans-serif;animation:afrRibbonIn .5s ease-out both;}'
+      + '.afr-confetti{position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;pointer-events:none;will-change:transform,opacity;}'
+      + '@keyframes afrBadgePulse{0%{box-shadow:0 0 0 0 rgba(26,188,176,.55);}70%{box-shadow:0 0 0 18px rgba(26,188,176,0);}100%{box-shadow:0 0 0 0 rgba(26,188,176,0);}}'
+      + '@keyframes afrBadgePop{0%{transform:scale(.6);opacity:.4;}55%{transform:scale(1.25);opacity:1;}100%{transform:scale(1);opacity:1;}}'
+      + '@keyframes afrRibbonIn{0%{transform:translateY(-8px) scale(.6);opacity:0;}60%{transform:translateY(0) scale(1.08);opacity:1;}100%{transform:translateY(0) scale(1);opacity:1;}}'
+      + '@media (prefers-reduced-motion: reduce){.badge-slot.just-earned,.badge-slot.just-earned .b-icon-lg,.badge-slot .new-ribbon{animation:none !important;}.afr-confetti{display:none !important;}}';
+    var style = document.createElement('style');
+    style.id = 'afr-reveal-styles';
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  function fireConfetti(slotEl) {
+    if (!slotEl) return;
+    // Respect reduced motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var colors = ['#1ABCB0', '#D9B98A', '#A8B89C', '#E07A5F', '#F7F4ED'];
+    // Ensure the slot is a positioning context for absolute children
+    var prevPos = slotEl.style.position;
+    if (!prevPos || prevPos === 'static') slotEl.style.position = 'relative';
+    for (var i = 0; i < 12; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'afr-confetti';
+      dot.style.background = colors[i % colors.length];
+      var angle = (Math.PI * 2 * i) / 12 + (Math.random() * 0.4 - 0.2);
+      var distance = 36 + Math.random() * 22;
+      var dx = Math.cos(angle) * distance;
+      var dy = Math.sin(angle) * distance;
+      var duration = 700 + Math.random() * 350;
+      dot.style.transition = 'transform ' + duration + 'ms cubic-bezier(.16,.84,.44,1), opacity ' + duration + 'ms ease-out';
+      slotEl.appendChild(dot);
+      // Kick off the animation on next frame
+      (function (d, x, y) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            d.style.transform = 'translate(-50%, -50%) translate(' + x + 'px, ' + y + 'px) scale(.4)';
+            d.style.opacity = '0';
+          });
+        });
+        setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, duration + 60);
+      })(dot, dx, dy);
+    }
+  }
+
+  function getSeenBadges() {
+    try {
+      var raw = localStorage.getItem('afr_seen_badges_v1');
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+
+  function setSeenBadges(slugs) {
+    try {
+      localStorage.setItem('afr_seen_badges_v1', JSON.stringify(slugs));
+    } catch (e) { /* silent */ }
+  }
+
+  function initBadgeReveal() {
+    try {
+      var state = getState();
+      var earned = state.badgesEarned || state.badges || [];
+      if (!earned.length) return;
+      var seen = getSeenBadges();
+      var newOnes = earned.filter(function (s) { return seen.indexOf(s) === -1; });
+      if (!newOnes.length) return;
+
+      ensureRevealStyles();
+
+      newOnes.forEach(function (slug, idx) {
+        var slot = document.querySelector('.badge-slot[data-slug="' + slug + '"]');
+        if (!slot) return;
+        // Stagger if multiple — only relevant when several missions completed
+        // before first /progress visit, which is rare but possible.
+        setTimeout(function () {
+          slot.classList.add('just-earned');
+          // Add the NEW ribbon
+          if (!slot.querySelector('.new-ribbon')) {
+            var ribbon = document.createElement('span');
+            ribbon.className = 'new-ribbon';
+            ribbon.textContent = 'New';
+            slot.appendChild(ribbon);
+          }
+          fireConfetti(slot);
+          // Remove the ribbon after the moment lands
+          setTimeout(function () {
+            var rb = slot.querySelector('.new-ribbon');
+            if (rb && rb.parentNode) rb.parentNode.removeChild(rb);
+            slot.classList.remove('just-earned');
+          }, 4200);
+        }, idx * 350);
+      });
+
+      // Mark all currently-earned badges as seen so this only fires once
+      setSeenBadges(earned.slice());
+    } catch (e) {
+      if (window.console && console.warn) console.warn('AFR: reveal skipped', e);
+    }
   }
 
   function renderTopCabinet(containerEl) {
@@ -736,7 +852,7 @@
     let html = '';
     badgeList.forEach(function(b){
       const isEarned = earned.indexOf(b.slug) > -1;
-      html += '<div class="badge-slot ' + (isEarned ? 'earned' : 'locked') + '" title="' + b.hint + '">';
+      html += '<div class="badge-slot ' + (isEarned ? 'earned' : 'locked') + '" data-slug="' + b.slug + '" title="' + b.hint + '">';
       html += '<span class="b-icon-lg">' + b.icon + '</span>';
       html += '<div class="b-name">' + b.name + '</div>';
       html += '<span class="b-hint-text">' + (isEarned ? '✓ Earned' : b.hint) + '</span>';

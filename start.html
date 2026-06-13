@@ -1234,6 +1234,67 @@ document.querySelectorAll('.chip').forEach(chip => {
   });
 });
 
+// ── RULE-BASED PROMPT POLISHER ───────────────────────────────
+// Turns a rough thought into a precise AI prompt by adding the three keys:
+// Specific (named task), Context (who you are, what matters), Tone (how it
+// should land). Deterministic by domain — military, school, work, health,
+// finance, or default. Demonstrates the skill the room is here to teach.
+function rulePolishPrompt(rough) {
+  var isMilitary = /\b(pcs|tricare|deployment|fort\s|base\b|spouse|deploy|jblm|military|active\s+duty|frg|ets|veteran|tdy|orders)\b/i.test(rough);
+  var isSchool   = /\b(teacher|principal|iep|504|school|classroom|kid|child|son|daughter|grade\b|homework|tutor)\b/i.test(rough);
+  var isWork     = /\b(boss|manager|coworker|colleague|interview|resume|cover\s+letter|promotion|raise|meeting)\b/i.test(rough);
+  var isHealth   = /\b(doctor|nurse|appointment|insurance|symptom|prescription|specialist|referral|diagnos)\b/i.test(rough);
+  var isFinance  = /\b(landlord|rent|bill|loan|credit|bank|payment|negotiate|budget|invoice|refund)\b/i.test(rough);
+
+  // Strip common opening fluff to get the verb-led core action.
+  var core = rough
+    .replace(/^(i\s+)?(need\s+to|want\s+to|would\s+like\s+to|have\s+to|am\s+trying\s+to)\s+/i, '')
+    .replace(/^(can\s+you|could\s+you|please|help\s+me)\s+/i, '')
+    .replace(/^(i\s+need|i\s+want|i\s+have\s+a)\s+/i, '');
+  core = core.charAt(0).toLowerCase() + core.slice(1);
+
+  var context, tone, specificWhy, contextWhy, toneWhy;
+  specificWhy = 'Named the actual task in plain language — no vague verbs like "help with."';
+  contextWhy  = 'Added who you are and what matters, so Claude has something real to work with.';
+  toneWhy     = 'Asked for a specific feel — warm, practical, your voice — so the output doesn\'t come back generic.';
+
+  if (isMilitary) {
+    context = ' I\'m a military spouse and the timing is tight — every move has a checklist.';
+    tone    = ' Keep it warm and practical, the way you\'d brief a friend.';
+    contextWhy = 'Added the military context — Claude now knows the timing pressure and the stakes.';
+  } else if (isSchool) {
+    context = ' I\'m a parent partnering with my child\'s school — I want to be heard without being labeled a problem.';
+    tone    = ' Keep it warm, specific, and partnership-oriented. Avoid jargon.';
+    contextWhy = 'Named you as a parent in partnership mode — Claude won\'t default to combative or pleading.';
+  } else if (isWork) {
+    context = ' I want to come across as clear and grounded, not pushy or apologetic.';
+    tone    = ' Keep it brief, kind, and confident. Under 80 words.';
+    contextWhy = 'Said how you want to come across — Claude needs that to pick the right register.';
+  } else if (isHealth) {
+    context = ' I want to advocate for myself / my family without sounding combative.';
+    tone    = ' Keep it clear, calm, and specific about what I need.';
+    contextWhy = 'Added the advocacy framing — Claude will write firm but not aggressive.';
+  } else if (isFinance) {
+    context = ' I want to ask for what I need without burning the relationship.';
+    tone    = ' Keep it warm, factual, and grounded. Numbers should be specific.';
+    contextWhy = 'Added the relationship-aware framing — Claude won\'t over-soften or over-escalate.';
+  } else {
+    context = ' Here\'s what matters: this should feel like me, not a robot.';
+    tone    = ' Keep it warm, under 80 words, and ready to send.';
+  }
+
+  var polished = 'Help me ' + core + '.' + context + tone;
+
+  return {
+    polished_prompt: polished,
+    keys: {
+      specific: specificWhy,
+      context:  contextWhy,
+      tone:     toneWhy
+    }
+  };
+}
+
 // ── BUILD BUTTON ─────────────────────────────────────────────
 buildBtn.addEventListener('click', buildPrompt);
 
@@ -1251,73 +1312,20 @@ async function buildPrompt() {
   startLoadingCycle();
 
   try {
-    // The browser cannot call api.anthropic.com directly:
-    // - no way to send a private API key from public client JS without exposing it
-    // - Anthropic does not accept browser-origin (CORS) requests
-    // So we proxy through the existing Apps Script web app. The script holds
-    // ANTHROPIC_API_KEY as a Script Property and forwards the request
-    // server-side. See config.js for the script URL + token, and the README
-    // section "Apps Script — Claude proxy route" for the doPost snippet.
-    const cfg = window.AFR_CONFIG || {};
-    if (!cfg.scriptUrl) throw new Error('Proxy not configured');
+    // The Art of the Ask used to call Anthropic through an Apps Script proxy,
+    // but that required ongoing OAuth maintenance and an API key. We replaced
+    // it with a deterministic rule-based polisher that demonstrates the same
+    // three keys (Specific / Context / Tone) without any server dependency.
+    // The user still sees the before/after transformation and takes the
+    // polished prompt to Claude themselves via the existing "Take to Claude"
+    // button. This is what NeuralWriter offers too — the skill is the point.
 
-    const systemPrompt = `You are "The Art of the Ask" — a prompt coaching tool built by EdJustice Collective for families and military spouses learning to use AI effectively.
+    // Brief artificial delay so the loading state feels intentional rather
+    // than instant. Keeps the "watch your thought become a real prompt"
+    // moment intact.
+    await new Promise(function (resolve) { setTimeout(resolve, 900); });
 
-Your job: take a rough, vague thought and transform it into a precise, powerful AI prompt using three keys: Specific task, Context, and Tone.
-
-The audience is real families — military spouses, parents, community members — dealing with school transitions, PCS moves, career gaps, TRICARE, and daily life. Your prompts should feel warm, real, and immediately usable.
-
-Respond with valid JSON only. No markdown fences, no preamble, nothing outside the JSON object.
-
-JSON structure:
-{
-  "polished_prompt": "The complete, ready-to-use prompt (2-4 sentences, specific and warm, under 80 words)",
-  "keys": {
-    "specific": "One short sentence (under 20 words) explaining what specific task was added or clarified",
-    "context": "One short sentence (under 20 words) explaining what context was added to personalize it",
-    "tone": "One short sentence (under 20 words) explaining what tone or register was set"
-  }
-}
-
-Rules:
-- polished_prompt must be something a real person would actually send to Claude
-- Never use [brackets] or placeholders — make reasonable assumptions
-- Keep prompts under 80 words and naturally warm
-- If input mentions military life, PCS, TRICARE, FRG, or deployment — lean into that context
-- Key explanations should be short and conversational, not technical`;
-
-    const response = await fetch(cfg.scriptUrl, {
-      method: 'POST',
-      // text/plain avoids the CORS preflight that application/json triggers —
-      // Apps Script still parses e.postData.contents as JSON inside doPost.
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        type: 'claude_proxy',
-        token: cfg.token || '',
-        honeypot: '',
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{
-          role: 'user',
-          content: `Rough thought: "${rough}"\n\nBuild a polished prompt and explain the three keys. JSON only.`
-        }]
-      })
-    });
-
-    if (!response.ok) throw new Error(`Proxy ${response.status}`);
-
-    const envelope = await response.json();
-    if (!envelope.ok) throw new Error(envelope.err || `Anthropic ${envelope.status || 'error'}`);
-
-    // envelope.body is the raw Anthropic response, still as a JSON string
-    const data   = JSON.parse(envelope.body);
-    const raw    = data.content?.[0]?.text || '';
-    const clean  = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
-
-    if (!parsed.polished_prompt || !parsed.keys) throw new Error('Unexpected response shape');
-
+    var parsed = rulePolishPrompt(rough);
     currentPrompt = parsed.polished_prompt;
     renderResult(rough, parsed);
 

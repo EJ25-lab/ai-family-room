@@ -2508,3 +2508,32 @@ details[open] .how-caret { transform: rotate(45deg); }
   padding: 0 22px 20px; font-size: 14.5px; color: var(--mid); line-height: 1.7;
 }
 .faq-body a { color: var(--teal); font-weight: 700; }
+
+/* ============================================================
+   LANGUAGE PASS OVERRIDES (Wave 3) — surgical softening
+   Drops text-transform: uppercase ONLY on the eyebrow / section
+   classes flagged by the language audit. Brand wordmark (canon
+   mark, EdJustice Collective tag), button labels, and other
+   uppercase elements stay untouched.
+   ============================================================ */
+.who-eyebrow,
+.offer-eyebrow,
+.safe-eyebrow,
+.wcgw-eyebrow,
+.wcgw-section-tag,
+.section-label,
+.who-tile-sub {
+  text-transform: none !important;
+  letter-spacing: .08em !important;
+}
+/* Eyebrows still need to feel like eyebrows — let them keep the small,
+   bold, teal feel with slightly relaxed letter-spacing once they are
+   in sentence case. */
+.who-eyebrow,
+.offer-eyebrow,
+.safe-eyebrow,
+.wcgw-eyebrow {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+}
+

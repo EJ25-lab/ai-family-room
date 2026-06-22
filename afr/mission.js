@@ -102,16 +102,9 @@
     } catch (e) { console.warn(e); }
   });
 
-  // generic copy buttons (static .copy-btn[data-copy] on mission pages)
-  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var txt = this.getAttribute('data-copy');
-      if (!txt) return;
-      var self = this, orig = this.innerHTML;
-      function done() { self.innerHTML = '✓ Copied'; self.classList.add('copied'); setTimeout(function () { self.innerHTML = orig; self.classList.remove('copied'); }, 1800); }
-      if (navigator.clipboard) { navigator.clipboard.writeText(txt).then(done).catch(done); } else { done(); }
-    });
-  });
+  // copy buttons (.copy-btn[data-copy]) are handled globally by progress.js initCopyButtons().
+  // Duplicate binding removed here so a single, clean clipboard write happens per click
+  // (double-binding caused two writeText calls per click).
 
   if (dismiss && overlay) dismiss.addEventListener('click', function () { overlay.classList.remove('show'); });
   if (overlay) {

@@ -5,1276 +5,393 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Tools — AI Family Room</title>
 <meta name="description" content="Three tools. Zero overwhelm. NeuralWriter, Claude, and Gamma — free to start, no downloads, and each one does something different for your family.">
-<meta name="theme-color" content="#0B1215">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#1ABCB0">
+<link rel="stylesheet" href="afr/site.css">
 <style>
-/* ── TOOLS PAGE — Page-Specific Styles ── */
-
-/* Full-width tool section — each tool gets its own band */
-.tool-band {
-  padding: 80px 32px;
-  border-bottom: 1px solid var(--warm);
-}
-
-.tool-band:nth-child(even) {
-  background: var(--off);
-}
-
-.tool-band:nth-child(odd) {
-  background: var(--white);
-}
-
-.tool-band-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-/* Left col — the tool identity */
-.tool-identity {}
-
-.tool-number {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--light);
-  display: block;
-  margin-bottom: 10px;
-}
-
-.tool-name-large {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
-  color: var(--text);
-  line-height: 1.0;
-  letter-spacing: -.035em;
-  margin-bottom: 6px;
-}
-
-.tool-tagline {
-  font-size: 14px;
-  font-weight: 600;
-  font-style: italic;
-  color: var(--teal-deep);
-  margin-bottom: 20px;
-  display: block;
-}
-
-.tool-description {
-  font-size: 14px;
-  color: var(--mid);
-  line-height: 1.85;
-  margin-bottom: 24px;
-}
-
-/* Privacy note */
-.privacy-strip {
-  background: var(--off);
-  border: 1px solid var(--warm);
-  border-radius: var(--r-sm);
-  padding: 10px 14px;
-  font-size: 11px;
-  color: var(--light);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.privacy-strip .lock { flex-shrink: 0; }
-
-/* Cost row */
-.cost-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-
-.cost-pill {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: var(--r-pill);
-}
-
-.cost-free { background: var(--teal-pale); color: var(--teal-deep); }
-.cost-paid { background: var(--warm); color: var(--mid); }
-
-/* CTA button for each tool */
-.tool-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--teal);
-  color: var(--dark);
-  font-family: var(--font);
-  font-size: 13px;
-  font-weight: 800;
-  padding: 13px 26px;
-  border-radius: var(--r);
-  text-decoration: none;
-  transition: background .2s, transform .15s;
-}
-
-.tool-cta:hover {
-  background: var(--teal-dark);
-  transform: translateY(-2px);
-}
-
-.tool-cta.ghost {
-  background: transparent;
-  color: var(--teal);
-  border: 2px solid var(--teal);
-}
-
-.tool-cta.ghost:hover {
-  background: var(--teal);
-  color: var(--dark);
-}
-
-/* Right col — use cases / what you'll do */
-.tool-usecases {}
-
-.usecases-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 16px;
-}
-
-.usecase-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--warm);
-}
-
-.usecase-item:last-of-type { border-bottom: none; }
-
-.usecase-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.usecase-text {}
-
-.usecase-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-
-.usecase-sub {
-  font-size: 11.5px;
-  color: var(--mid);
-  line-height: 1.6;
-}
-
-/* Mission badge — which mission uses this tool */
-.mission-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--teal-pale);
-  border: 1px solid var(--teal);
-  border-radius: var(--r-pill);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--teal-deep);
-  padding: 5px 14px;
-  margin-top: 20px;
-}
-
-/* Featured tool (Claude) gets a teal left border accent */
-.tool-band.featured {
-  background: var(--teal-pale);
-  border-bottom: 1px solid rgba(26,188,176,.2);
-}
-
-.tool-band.featured .tool-name-large { color: var(--teal-deep); }
-
-/* Pro tip box — shared across all three tools */
-.protip-box {
-  background: var(--dark);
-  border-radius: var(--r);
-  padding: 22px 26px;
-  margin-top: 28px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.protip-icon { font-size: 1.3rem; flex-shrink: 0; }
-
-.protip-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.protip-text {
-  font-size: 12.5px;
-  color: rgba(255,255,255,.65);
-  line-height: 1.75;
-}
-
-.protip-text strong { color: var(--white); }
-
-/* Comparison strip at bottom */
-.compare-section {
-  background: var(--dark);
-  padding: 80px 32px;
-  text-align: center;
-}
-
-.compare-table {
-  max-width: 780px;
-  margin: 40px auto 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.07);
-}
-
-.compare-row {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
-.compare-row:last-child { border-bottom: none; }
-
-.compare-row.header {
-  background: rgba(26,188,176,.08);
-}
-
-.compare-cell {
-  padding: 14px 16px;
-  font-size: 12px;
-  color: rgba(255,255,255,.55);
-  border-right: 1px solid rgba(255,255,255,.06);
-  text-align: left;
-  line-height: 1.5;
-}
-
-.compare-cell:last-child { border-right: none; }
-
-.compare-row.header .compare-cell {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--teal);
-}
-
-.compare-cell.feature {
-  color: rgba(255,255,255,.75);
-  font-weight: 600;
-}
-
-.check { color: var(--teal); font-weight: 700; }
-.dash  { color: rgba(255,255,255,.2); }
-
-/* Responsive */
-@media (max-width: 760px) {
-  .tool-band-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .compare-row {
-    grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  }
-
-  .compare-cell { padding: 10px 10px; font-size: 11px; }
-}
-
-@media (max-width: 560px) {
-  .tool-band { padding: 60px 20px; }
-  .compare-section { padding: 60px 20px; }
-
-  /* Stack the comparison table on tiny screens */
-  .compare-table { display: none; }
-}
-
-/* ============================================================
-   CLAUDE IN ACTION — Capability showcase + price reality check
-   ============================================================ */
-.claude-action {
-  background: var(--dark);
-  padding: 96px 32px;
-  position: relative;
-  overflow: hidden;
-}
-
-.claude-action::before {
-  content: '';
-  position: absolute;
-  top: -200px; left: 50%;
-  transform: translateX(-50%);
-  width: 1000px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,188,176,.08) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.claude-action-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.claude-action-header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-
-.claude-action-header .section-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 18px;
-}
-
-.claude-action-header h2 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.15;
-  letter-spacing: -.025em;
-  margin-bottom: 20px;
-}
-
-.claude-action-header h2 .accent { color: var(--teal); }
-
-.claude-action-header p {
-  font-size: 15px;
-  color: rgba(255,255,255,.55);
-  max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* 6-tile grid */
-.action-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 64px;
-}
-
-.action-tile {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 18px;
-  padding: 28px 26px 24px;
-  display: flex;
-  flex-direction: column;
-  transition: border-color .2s, background .2s, transform .15s;
-}
-
-.action-tile:hover {
-  border-color: rgba(26,188,176,.35);
-  background: rgba(26,188,176,.04);
-  transform: translateY(-3px);
-}
-
-.tile-num {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 14px;
-}
-
-.action-tile h3 {
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.3;
-  letter-spacing: -.015em;
-  margin: 0 0 10px;
-}
-
-.tile-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,.55);
-  line-height: 1.65;
-  margin-bottom: 18px;
-  flex-grow: 1;
-}
-
-.tile-demo {
-  border-top: 1px solid rgba(255,255,255,.06);
-  padding-top: 14px;
-}
-
-.tile-demo a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--teal);
-  text-decoration: none;
-  transition: color .15s;
-}
-
-.tile-demo a:hover {
-  color: var(--white);
-}
-
-/* Price reality check band */
-.price-reality {
-  background: rgba(26,188,176,.06);
-  border: 1px solid rgba(26,188,176,.22);
-  border-radius: 20px;
-  padding: 44px 40px;
-  text-align: center;
-}
-
-.price-label {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .22em;
-  color: var(--teal);
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 24px;
-}
-
-.price-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.price-list li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  font-size: 14px;
-  padding: 8px 4px;
-  border-bottom: 1px dashed rgba(255,255,255,.08);
-}
-
-.price-list li:last-child { border-bottom: none; }
-
-.price-role { color: rgba(255,255,255,.7); font-weight: 600; }
-.price-rate { color: rgba(255,255,255,.4); font-weight: 700; font-size: 13px; }
-
-.price-total {
-  margin: 28px auto 24px;
-  max-width: 560px;
-  font-size: 14px;
-  color: rgba(255,255,255,.65);
-  line-height: 1.6;
-}
-
-.price-total strong {
-  display: block;
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -.02em;
-  margin-bottom: 6px;
-}
-
-.price-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--teal);
-  color: var(--dark);
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 800;
-  padding: 16px 36px;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: background .2s, transform .15s;
-}
-
-.price-cta:hover {
-  background: var(--teal-dark);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 900px) {
-  .action-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 580px) {
-  .claude-action { padding: 64px 20px; }
-  .action-grid { grid-template-columns: 1fr; }
-  .price-reality { padding: 32px 22px; }
-  .price-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
-}
+  .tool-band { padding: 80px 0; border-bottom: 1px solid var(--ejc-warm); }
+  .tool-band.off { background: var(--ejc-off); }
+  .tool-band.featured { background: var(--ejc-teal-pale); border-bottom-color: var(--ejc-teal-edge); }
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .tool-number { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--ejc-light); margin-bottom: 10px; }
+  .tool-name-lg { font-size: calc(clamp(2rem, 5vw, 2.8rem) * var(--afr-scale)); font-weight: 900; color: var(--ejc-text); line-height: 1; letter-spacing: -.035em; margin: 0 0 6px; }
+  .tool-band.featured .tool-name-lg { color: var(--ejc-teal-deep); }
+  .tool-tagline { display: block; font-size: 14px; font-weight: 600; font-style: italic; color: var(--ejc-teal-deep); margin-bottom: 18px; }
+  .tool-desc { font-size: 14.5px; color: var(--ejc-mid); line-height: 1.85; margin: 0 0 24px; }
+  .seeit-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ejc-teal-deep); margin-bottom: 10px; }
+  .video-wrap { position: relative; width: 100%; max-width: 560px; aspect-ratio: 16/9; border-radius: var(--radius-md); overflow: hidden; background: #000; box-shadow: var(--shadow-card); }
+  .video-wrap.vert { max-width: 300px; aspect-ratio: 9/16; }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-cap { display: block; margin-top: 8px; font-size: 11px; color: var(--ejc-mid); font-style: italic; }
+  .seeit { margin: 24px 0 26px; }
+  .privacy-strip { background: var(--ejc-off); border: 1px solid var(--ejc-warm); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 11.5px; color: var(--ejc-mid); line-height: 1.6; margin-bottom: 18px; display: flex; align-items: flex-start; gap: 8px; }
+  .tool-band.featured .privacy-strip { background: #fff; border-color: var(--ejc-teal-edge); }
+  .cost-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
+  .cost-pill { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: var(--radius-pill); }
+  .cost-free { background: var(--ejc-teal-pale); color: var(--ejc-teal-deep); }
+  .tool-band.featured .cost-free { background: #fff; }
+  .cost-paid { background: var(--ejc-warm); color: var(--ejc-mid); }
+  .protip { background: #fff; border: 1px solid var(--ejc-teal-edge); border-left: 4px solid var(--ejc-teal); border-radius: var(--radius-md); padding: 18px 22px; margin-top: 26px; display: flex; align-items: flex-start; gap: 14px; }
+  .protip-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .protip-label { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ejc-teal-deep); margin-bottom: 6px; }
+  .protip-text { font-size: 13px; color: var(--ejc-mid); line-height: 1.7; margin: 0; }
+  .protip-text strong { color: var(--ejc-text); font-weight: 700; }
+  .usecases-label { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ejc-teal); margin-bottom: 14px; }
+  .usecase-item { display: flex; align-items: flex-start; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--ejc-warm); }
+  .usecase-item:last-of-type { border-bottom: none; }
+  .usecase-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .usecase-title { font-size: 13.5px; font-weight: 700; color: var(--ejc-text); margin-bottom: 3px; }
+  .usecase-sub { font-size: 12px; color: var(--ejc-mid); line-height: 1.6; margin: 0; }
+  .try-now { margin-top: 22px; background: var(--ejc-teal-pale); border: 1.5px solid var(--ejc-teal); border-radius: var(--radius-md); padding: 20px 20px 16px; }
+  .try-now-label { display: block; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ejc-teal-deep); margin-bottom: 10px; }
+  .try-now p { font-size: 13px; color: var(--ejc-text); line-height: 1.7; font-style: italic; margin: 0 0 14px; }
+  .try-now-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .try-copy { background: var(--ejc-teal); color: #fff; font-family: var(--font-sans); font-size: 11.5px; font-weight: 800; padding: 9px 16px; border-radius: var(--radius-pill); border: none; cursor: pointer; }
+  .try-open { display: inline-flex; align-items: center; font-size: 11.5px; font-weight: 700; color: var(--ejc-teal-deep); border: 1.5px solid var(--ejc-teal); padding: 9px 16px; border-radius: var(--radius-pill); text-decoration: none; }
+  .mission-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--ejc-teal-pale); border: 1px solid var(--ejc-teal); border-radius: var(--radius-pill); font-size: 10.5px; font-weight: 700; color: var(--ejc-teal-deep); padding: 6px 14px; margin-top: 18px; text-decoration: none; }
+
+  .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  .action-tile { background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-lg); padding: 26px 24px; display: flex; flex-direction: column; box-shadow: var(--shadow-card); transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease), border-color var(--dur-base); }
+  .action-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-raised); border-color: var(--ejc-teal-edge); }
+  .tile-num { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .14em; color: var(--ejc-teal); margin-bottom: 12px; }
+  .action-tile h3 { font-size: 16px; font-weight: 800; color: var(--ejc-text); line-height: 1.3; margin: 0 0 10px; }
+  .tile-sub { font-size: 13px; color: var(--ejc-mid); line-height: 1.65; margin: 0 0 16px; flex-grow: 1; }
+  .tile-demo { border-top: 1px solid var(--ejc-warm); padding-top: 14px; }
+  .tile-demo a { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--ejc-teal-deep); text-decoration: none; }
+  .price-reality { background: var(--ejc-teal-pale); border: 1px solid var(--ejc-teal-edge); border-radius: var(--radius-lg); padding: 40px; text-align: center; margin-top: 56px; }
+  .price-label { display: block; font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--ejc-teal-deep); text-transform: uppercase; margin-bottom: 24px; }
+  .price-list { list-style: none; padding: 0; margin: 0 auto 24px; max-width: 520px; display: flex; flex-direction: column; gap: 4px; }
+  .price-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-size: 14px; padding: 9px 4px; border-bottom: 1px dashed var(--ejc-teal-edge); }
+  .price-list li:last-child { border-bottom: none; }
+  .price-role { color: var(--ejc-text); font-weight: 600; }
+  .price-rate { color: var(--ejc-mid); font-weight: 700; font-size: 13px; }
+  .price-total { margin: 24px auto; max-width: 560px; font-size: 14px; color: var(--ejc-mid); line-height: 1.6; }
+  .price-total strong { display: block; font-size: 22px; font-weight: 900; color: var(--ejc-text); letter-spacing: -.02em; margin-bottom: 6px; }
+
+  .compare-table { max-width: 800px; margin: 40px auto 0; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ejc-warm); background: #fff; }
+  .compare-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; border-bottom: 1px solid var(--ejc-warm); }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row.header { background: var(--ejc-teal-pale); }
+  .compare-cell { padding: 13px 16px; font-size: 12.5px; color: var(--ejc-mid); border-right: 1px solid var(--ejc-warm); text-align: left; line-height: 1.5; }
+  .compare-cell:last-child { border-right: none; }
+  .compare-row.header .compare-cell { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ejc-teal-deep); }
+  .compare-cell.feature { color: var(--ejc-text); font-weight: 600; }
+  .check { color: var(--ejc-teal-deep); font-weight: 700; }
+  .dash { color: var(--ejc-light); }
+
+  @media (max-width: 860px) { .tool-grid { grid-template-columns: 1fr; gap: 36px; } .action-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { .tool-band { padding: 56px 0; } .action-grid { grid-template-columns: 1fr; } .price-reality { padding: 28px 22px; } .price-list li { flex-direction: column; align-items: flex-start; gap: 2px; } .compare-table { display: none; } }
 </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
-    <li><a href="tools.html" class="active">The Tools</a></li>
+    <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
-    <li><a href="progress.html" class="nav-xp" id="nav-xp" style="display:none;">&#9889; 0 &middot; Just Arrived</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
 <!-- ── HERO ── -->
-<section class="hero" role="banner">
-  <style>
-    .hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .hero > *{position:relative;z-index:1}
-    .hero .eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important}
-    .hero h1{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .hero h1 .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .hero p, .hero .hero-sub{color:#2A2520 !important;opacity:.82}
-    .hero p strong, .hero .hero-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
-  </style>
-  <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-    <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-    <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-    <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<header class="sect" style="padding:72px 0 56px">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
+    </div>
+    <p class="eyebrow">The tools</p>
+    <h1 class="h1">Three tools. <span class="accent">Zero overwhelm.</span></h1>
+    <p class="lead">Free to start. No downloads. Sign in with Google and you're halfway there. Each tool does one job really well — and together they cover almost everything your family needs.</p>
+    <div class="btn-row" style="margin-top:28px">
+      <a href="#claude" class="btn-primary">See Claude in action ↓</a>
+      <a href="missions.html" class="btn-ghost">Go to the missions →</a>
+    </div>
   </div>
-  <span class="eyebrow fade-up d1">The tools</span>
-  <h1 class="fade-up d2">
-    Three tools.<br>
-    <span class="accent">Zero overwhelm.</span>
-  </h1>
-  <p class="hero-sub fade-up d3">
-    Free to start. No downloads. Sign in with Google and you are halfway there.
-    Each tool does one job really well &mdash; and together they cover
-    almost everything your family needs.
-  </p>
-  <div class="hero-btns fade-up d4">
-    <a href="#claude" class="btn btn-primary">See Claude in action &darr;</a>
-    <a href="missions.html" class="btn btn-ghost">Go to the Missions &rarr;</a>
-  </div>
-</section>
+</header>
 
-<!-- ══════════════════════════════════════════════════════════
-     TOOL 1 — CLAUDE (the main event)
-     ══════════════════════════════════════════════════════════ -->
+<!-- ══ TOOL 1 — CLAUDE ══ -->
 <section class="tool-band featured" id="claude" aria-labelledby="claude-heading">
-  <div class="tool-band-inner">
-
-    <div class="tool-identity">
-      <span class="tool-number">TOOL 01 OF 03 &middot; THE MAIN EVENT</span>
-      <div class="tool-name-large" id="claude-heading">Claude</div>
+  <div class="afr-wrap tool-grid">
+    <div>
+      <span class="tool-number">Tool 01 of 03 · the main event</span>
+      <div class="tool-name-lg" id="claude-heading">Claude</div>
       <span class="tool-tagline">"The AI that thinks out loud with you"</span>
-
-      <p class="tool-description">
-        Claude is the centerpiece of everything we do in the AI Family Room.
-        What makes it different from other AI tools is that it shows its reasoning &mdash;
-        it explains what it is doing and why, which means you stay in the driver's seat.
-        It is conversational, patient, and genuinely good at the kind of real-life communication
-        that families need: school emails, advocacy letters, career narratives, community messages.
-        It does not just give you an answer; it thinks through the problem with you.
-      </p>
-
-      <!-- ── SEE IT IN ACTION ── -->
-      <div style="margin:24px 0 28px;">
-        <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deep,#0E7D74);margin-bottom:10px;">&#9654; See it in action</span>
-        <div style="position:relative;width:100%;max-width:560px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 4px 12px rgba(0,0,0,.12);">
-          <iframe src="https://www.youtube.com/embed/3ysZujOI-NE"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            title="Canva to Claude workflow"></iframe>
-        </div>
-        <span style="display:block;margin-top:8px;font-size:11px;color:var(--mid);font-style:italic;">Canva to Claude workflow &mdash; what one solid prompt can do</span>
+      <p class="tool-desc">Claude is the centerpiece of everything we do in the AI Family Room. What makes it different is that it shows its reasoning — it explains what it's doing and why, so you stay in the driver's seat. It's conversational, patient, and genuinely good at the real-life communication families need: school emails, advocacy letters, career narratives, community messages. It doesn't just give you an answer; it thinks through the problem with you.</p>
+      <div class="seeit">
+        <span class="seeit-label">▶ See it in action</span>
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/3ysZujOI-NE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Canva to Claude workflow"></iframe></div>
+        <span class="video-cap">Canva to Claude workflow — what one solid prompt can do</span>
       </div>
-
-      <div class="privacy-strip">
-        <span class="lock">&#128274;</span>
-        <span>Free conversations on claude.ai are not used to train the model by default.
-        You are not handing over your data just by using it.</span>
+      <div class="privacy-strip"><span>🔒</span><span>Free conversations on claude.ai are not used to train the model by default. You're not handing over your data just by using it.</span></div>
+      <div class="cost-row"><span class="cost-pill cost-free">Free</span><span class="cost-pill cost-paid">Pro from $20/mo</span></div>
+      <div class="btn-row">
+        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="btn-primary btn-sm">Open Claude →</a>
+        <a href="start.html#the-ask" class="btn-ghost btn-sm">Try the Art of the Ask first</a>
       </div>
-
-      <div class="cost-row">
-        <span class="cost-pill cost-free">Free</span>
-        <span class="cost-pill cost-paid">Pro from $20/mo</span>
-      </div>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="tool-cta">
-          Open Claude &rarr;
-        </a>
-        <a href="start.html#the-ask" class="tool-cta ghost">
-          Try the Art of the Ask first
-        </a>
-      </div>
-
-      <div class="protip-box">
-        <span class="protip-icon">&#128640;</span>
+      <div class="protip">
+        <span class="protip-icon">🚀</span>
         <div>
           <span class="protip-label">The easy button</span>
-          <p class="protip-text">
-            Use <strong>"Continue with Google"</strong> to sign in.
-            If you have a Gmail account you are already halfway there &mdash;
-            no new password, no new account to manage.
-          </p>
+          <p class="protip-text">Use <strong>"Continue with Google"</strong> to sign in. If you have a Gmail account you're already halfway there — no new password, no new account to manage.</p>
         </div>
       </div>
     </div>
-
-    <div class="tool-usecases">
-      <span class="usecases-label">WHAT YOU CAN DO WITH IT</span>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128140;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Write emails that actually get responses</div>
-          <p class="usecase-sub">From the new teacher introduction to the landlord SCRA letter &mdash; Claude drafts it and you edit until it sounds like you.</p>
+    <div>
+      <span class="usecases-label">What you can do with it</span>
+      <div class="usecase-item"><span class="usecase-icon">💌</span><div><div class="usecase-title">Write emails that actually get responses</div><p class="usecase-sub">From the new-teacher introduction to the landlord SCRA letter — Claude drafts it and you edit until it sounds like you.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">💼</span><div><div class="usecase-title">Explain a career gap without apologizing</div><p class="usecase-sub">Every caregiving chapter was leadership. Claude helps turn the moves, the pauses, the years of holding it together into the professional story they are.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🏠</span><div><div class="usecase-title">Translate insurance, lease, and legal paperwork into plain language</div><p class="usecase-sub">Paste any document and ask Claude to explain it in plain English. Then ask it to help you draft a response or an appeal.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🤝</span><div><div class="usecase-title">Practice hard conversations before you have them</div><p class="usecase-sub">Ask Claude to roleplay the other side — the principal, the landlord, the HR manager. Walk in prepared instead of nervous.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">💡</span><div><div class="usecase-title">Get a second opinion without judgment</div><p class="usecase-sub">Claude doesn't get tired, doesn't make you feel silly for asking, and doesn't charge by the hour. Ask it anything.</p></div></div>
+      <div class="try-now">
+        <span class="try-now-label">✨ Try it now</span>
+        <p>"We just moved across states for work. Help me list the 10 most important things to do in the first two weeks in a new city — schools, doctors, paperwork, neighborhood. Keep it practical and specific."</p>
+        <div class="try-now-actions">
+          <button class="try-copy" data-copy="We just moved across states for work. Help me list the 10 most important things to do in the first two weeks in a new city — schools, doctors, paperwork, neighborhood. Keep it practical and specific.">Copy →</button>
+          <a class="try-open" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude →</a>
         </div>
       </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128188;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Explain a career gap without apologizing</div>
-          <p class="usecase-sub">Every caregiving chapter was leadership. Claude helps you turn the moves, the pauses, the years of holding it all together into the professional story they actually are.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127968;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Translate insurance, lease, and legal paperwork into plain language</div>
-          <p class="usecase-sub">Paste any document and ask Claude to explain it in plain English. Then ask it to help you draft a response or an appeal.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#129309;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Practice hard conversations before you have them</div>
-          <p class="usecase-sub">Ask Claude to roleplay the other side &mdash; the principal, the landlord, the HR manager. Walk in prepared instead of nervous.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128161;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Get a second opinion without judgment</div>
-          <p class="usecase-sub">Claude does not get tired, does not make you feel silly for asking, and does not charge by the hour. Ask it anything.</p>
-        </div>
-      </div>
-
-
-      <!-- Try it now -->
-      <div style="margin-top:24px;background:var(--teal-pale);border:1.5px solid var(--teal);
-                  border-radius:16px;padding:20px 20px 16px;">
-        <span style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-                     color:var(--teal-deep);display:block;margin-bottom:10px;">
-          &#10024; Try it now
-        </span>
-        <p style="font-size:13px;color:var(--text);line-height:1.75;
-                  font-style:italic;margin-bottom:14px;">"We just moved across states for work. Help me list the 10 most important things to do in the first two weeks in a new city — schools, doctors, paperwork, neighborhood. Keep it practical and specific."</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="navigator.clipboard.writeText('We just moved across states for work. Help me list the 10 most important things to do in the first two weeks in a new city — schools, doctors, paperwork, neighborhood. Keep it practical and specific.').then(function(){this.textContent='&#10003; Copied!';var b=this;setTimeout(function(){b.textContent='Copy &rarr;'},2000)}.bind(this))"
-            style="background:var(--teal);color:var(--dark);font-family:var(--font);
-                   font-size:11px;font-weight:800;padding:8px 16px;border-radius:8px;
-                   border:none;cursor:pointer;">Copy &rarr;</button>
-          <a href="https://claude.ai/new" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;
-                    color:var(--teal-deep);border:1.5px solid var(--teal);padding:8px 16px;
-                    border-radius:8px;text-decoration:none;">Open Claude &rarr;</a>
-        </div>
-      </div>
-
-      <a href="missions.html" class="mission-badge" style="margin-top:16px;">
-        &#9996;&#65039; Used in Missions 3, 4, 7, 8 &rarr;
-      </a>
+      <a href="missions.html" class="mission-badge">✌️ Used in Missions 3, 4, 7, 8 →</a>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     CLAUDE IN ACTION — Capability showcase + price reality check
-     ══════════════════════════════════════════════════════════ -->
-<section class="claude-action" aria-labelledby="claude-action-h">
-  <div class="claude-action-inner">
-
-    <div class="claude-action-header">
-      <span class="section-label">CLAUDE IN ACTION</span>
-      <h2 id="claude-action-h">
-        A video editor.<br>
-        A web designer.<br>
-        A teammate that works while you sleep.<br>
-        <span class="accent">For $20 a month.</span>
-      </h2>
-      <p>
-        Real demos. Real outputs. The kind of work that used to cost thousands
-        &mdash; now done by you, with Claude.
-      </p>
+<!-- ══ CLAUDE IN ACTION ══ -->
+<section class="sect off" aria-labelledby="claude-action-h">
+  <div class="afr-wrap">
+    <div class="sect-head" style="max-width:680px">
+      <p class="eyebrow">Claude in action</p>
+      <h2 class="h2" id="claude-action-h">A video editor. A web designer. A teammate that works while you sleep. <span class="accent">For $20 a month.</span></h2>
+      <p class="sub">Real demos. Real outputs. The kind of work that used to cost thousands — now done by you, with Claude.</p>
     </div>
-
     <div class="action-grid">
-
-      <div class="action-tile">
-        <span class="tile-num">01 &middot; VIDEO</span>
-        <h3>Claude builds videos.</h3>
-        <p class="tile-sub">Already-filmed talking head? Claude adds titles, captions, trims the mistakes. Community announcement video done before the kids finish breakfast.</p>
-        <div class="tile-demo">
-          <a href="https://www.tiktok.com/en/trending/detail/anthropic-launches-claude-code-skills-20" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="action-tile">
-        <span class="tile-num">02 &middot; WEB &amp; APPS</span>
-        <h3>Claude builds web pages and apps.</h3>
-        <p class="tile-sub">One sentence in, working interactive page out. Family reunion site. Side hustle landing. Back-to-school checklist app that works on mobile.</p>
-        <div class="tile-demo">
-          <a href="https://claude.com/blog/claude-powered-artifacts" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="action-tile">
-        <span class="tile-num">03 &middot; COWORK</span>
-        <h3>Claude works while you sleep.</h3>
-        <p class="tile-sub">Set Claude to scan your inbox every morning at 6am and brief you on what matters before the coffee. Daily briefings. Auto-reports. Anything recurring.</p>
-        <div class="tile-demo">
-          <a href="https://www.tiktok.com/en/trending/detail/anthropic-launches-claude-cowork-2026" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="action-tile">
-        <span class="tile-num">04 &middot; COMPUTER USE</span>
-        <h3>Claude drives your computer.</h3>
-        <p class="tile-sub">Book three dental appointments across three school schedules while you handle the call from the school nurse. Claude moves the mouse. You handle the people.</p>
-        <div class="tile-demo">
-          <a href="https://www.anthropic.com/news/3-5-models-and-computer-use" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="action-tile">
-        <span class="tile-num">05 &middot; BROWSER</span>
-        <h3>Claude rides shotgun in Chrome.</h3>
-        <p class="tile-sub">School enrollment form on screen. Claude fills it from your kid's records. You hit submit. Same for insurance portals, leasing apps, license renewals.</p>
-        <div class="tile-demo">
-          <a href="https://claude.com/claude-for-chrome" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="action-tile">
-        <span class="tile-num">06 &middot; CONNECTORS</span>
-        <h3>Claude talks to your apps.</h3>
-        <p class="tile-sub">Connect Gmail, Drive, Calendar. "Find every school email from this year and summarize what's coming up." Done. No more inbox archaeology.</p>
-        <div class="tile-demo">
-          <a href="https://claude.com/connectors/google-drive" target="_blank" rel="noopener">
-            &#127909; See the official demo &rarr;
-          </a>
-        </div>
-      </div>
-
+      <div class="action-tile"><span class="tile-num">01 · Video</span><h3>Claude builds videos.</h3><p class="tile-sub">Already-filmed talking head? Claude adds titles, captions, trims the mistakes. Community announcement video done before the kids finish breakfast.</p><div class="tile-demo"><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
+      <div class="action-tile"><span class="tile-num">02 · Web &amp; apps</span><h3>Claude builds web pages and apps.</h3><p class="tile-sub">One sentence in, working interactive page out. Family reunion site. Side-hustle landing. Back-to-school checklist app that works on mobile.</p><div class="tile-demo"><a href="https://claude.com/blog/claude-powered-artifacts" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
+      <div class="action-tile"><span class="tile-num">03 · Cowork</span><h3>Claude works while you sleep.</h3><p class="tile-sub">Set Claude to scan your inbox every morning and brief you on what matters before the coffee. Daily briefings. Auto-reports. Anything recurring.</p><div class="tile-demo"><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
+      <div class="action-tile"><span class="tile-num">04 · Computer use</span><h3>Claude drives your computer.</h3><p class="tile-sub">Book three dental appointments across three school schedules while you handle the call from the school nurse. Claude moves the mouse. You handle the people.</p><div class="tile-demo"><a href="https://www.anthropic.com/news/3-5-models-and-computer-use" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
+      <div class="action-tile"><span class="tile-num">05 · Browser</span><h3>Claude rides shotgun in Chrome.</h3><p class="tile-sub">School enrollment form on screen. Claude fills it from your kid's records. You hit submit. Same for insurance portals, leasing apps, license renewals.</p><div class="tile-demo"><a href="https://claude.com/claude-for-chrome" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
+      <div class="action-tile"><span class="tile-num">06 · Connectors</span><h3>Claude talks to your apps.</h3><p class="tile-sub">Connect Gmail, Drive, Calendar. "Find every school email from this year and summarize what's coming up." Done. No more inbox archaeology.</p><div class="tile-demo"><a href="https://claude.com/connectors/google-drive" target="_blank" rel="noopener">🎬 See the official demo →</a></div></div>
     </div>
-
     <div class="price-reality">
       <span class="price-label">What $20/month replaces</span>
       <ul class="price-list">
-        <li><span class="price-role">A video editor</span><span class="price-rate">$80&ndash;200/hr</span></li>
-        <li><span class="price-role">A web designer</span><span class="price-rate">$50&ndash;150/hr</span></li>
-        <li><span class="price-role">A virtual assistant</span><span class="price-rate">$25&ndash;50/hr</span></li>
-        <li><span class="price-role">A research assistant</span><span class="price-rate">$25&ndash;40/hr</span></li>
-        <li><span class="price-role">A presentation designer</span><span class="price-rate">$40&ndash;100/hr</span></li>
+        <li><span class="price-role">A video editor</span><span class="price-rate">$80–200/hr</span></li>
+        <li><span class="price-role">A web designer</span><span class="price-rate">$50–150/hr</span></li>
+        <li><span class="price-role">A virtual assistant</span><span class="price-rate">$25–50/hr</span></li>
+        <li><span class="price-role">A research assistant</span><span class="price-rate">$25–40/hr</span></li>
+        <li><span class="price-role">A presentation designer</span><span class="price-rate">$40–100/hr</span></li>
       </ul>
-      <div class="price-total">
-        <strong>Claude Pro: $20/month.</strong>
-        All of it. The free tier covers most of it.
-        Pro unlocks the heavier features (Computer Use, faster speeds, more usage).
-      </div>
-      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="price-cta">
-        Open Claude &rarr;
-      </a>
+      <div class="price-total"><strong>Claude Pro: $20/month.</strong>All of it. The free tier covers most of it. Pro unlocks the heavier features (Computer Use, faster speeds, more usage).</div>
+      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="btn-primary">Open Claude →</a>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     TOOL 2 — NEURALWRITER (the warm-up)
-     ══════════════════════════════════════════════════════════ -->
+<!-- ══ TOOL 2 — NEURALWRITER ══ -->
 <section class="tool-band" id="neuralwriter" aria-labelledby="nw-heading">
-  <div class="tool-band-inner">
-
-    <div class="tool-identity">
-      <span class="tool-number">TOOL 02 OF 03</span>
-      <div class="tool-name-large" id="nw-heading">NeuralWriter</div>
+  <div class="afr-wrap tool-grid">
+    <div>
+      <span class="tool-number">Tool 02 of 03</span>
+      <div class="tool-name-lg" id="nw-heading">NeuralWriter</div>
       <span class="tool-tagline">"Your writing warm-up"</span>
-
-      <p class="tool-description">
-        NeuralWriter is where you start when you are not sure what to say.
-        Its Prompt Generator takes a rough thought &mdash; even just a few words &mdash;
-        and shapes it into a clear, specific request before you take it anywhere else.
-        Think of it as the warm-up stretch before the workout. No account needed
-        for basic tools, which makes it the lowest-friction first step in the room.
-      </p>
-
-      <!-- ── SEE IT IN ACTION ── -->
-      <div style="margin:24px 0 28px;">
-        <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deep,#0E7D74);margin-bottom:10px;">&#9654; See it in action</span>
-        <div style="position:relative;width:100%;max-width:300px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 4px 12px rgba(0,0,0,.12);">
-          <iframe src="https://www.youtube.com/embed/yElqc7WA8MQ"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            title="Prompting for NeuralWriter — initial prompt example"></iframe>
-        </div>
-        <span style="display:block;margin-top:8px;font-size:11px;color:var(--mid);font-style:italic;">Prompting NeuralWriter &mdash; how a vague thought becomes a structured request</span>
+      <p class="tool-desc">NeuralWriter is where you start when you're not sure what to say. Its Prompt Generator takes a rough thought — even just a few words — and shapes it into a clear, specific request before you take it anywhere else. Think of it as the warm-up stretch before the workout. No account needed for basic tools, which makes it the lowest-friction first step in the room.</p>
+      <div class="seeit">
+        <span class="seeit-label">▶ See it in action</span>
+        <div class="video-wrap vert"><iframe src="https://www.youtube.com/embed/yElqc7WA8MQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Prompting NeuralWriter"></iframe></div>
+        <span class="video-cap">Prompting NeuralWriter — how a vague thought becomes a structured request</span>
       </div>
-
-      <div class="privacy-strip">
-        <span class="lock">&#128274;</span>
-        <span>No account needed for basic tools. 10,000 character limit on the free tier.
-        You are not creating a login or sharing personal information to get started.</span>
-      </div>
-
-      <div class="cost-row">
-        <span class="cost-pill cost-free">Free to start</span>
-        <span class="cost-pill cost-paid">Advanced features from $19/mo</span>
-      </div>
-
-      <a href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener" class="tool-cta">
-        Try NeuralWriter &rarr;
-      </a>
-
-      <div class="protip-box">
-        <span class="protip-icon">&#128161;</span>
+      <div class="privacy-strip"><span>🔒</span><span>No account needed for basic tools. 10,000-character limit on the free tier. You're not creating a login or sharing personal information to get started.</span></div>
+      <div class="cost-row"><span class="cost-pill cost-free">Free to start</span><span class="cost-pill cost-paid">Advanced from $19/mo</span></div>
+      <div class="btn-row"><a href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener" class="btn-primary btn-sm">Try NeuralWriter →</a></div>
+      <div class="protip">
+        <span class="protip-icon">💡</span>
         <div>
           <span class="protip-label">How we use it</span>
-          <p class="protip-text">
-            Use NeuralWriter's Prompt Generator to turn a vague idea into a
-            structured request. Then copy that polished prompt and bring it
-            to Claude. <strong>NeuralWriter does the shaping.
-            Claude does the thinking.</strong>
-          </p>
+          <p class="protip-text">Use NeuralWriter's Prompt Generator to turn a vague idea into a structured request. Then copy that polished prompt and bring it to Claude. <strong>NeuralWriter does the shaping. Claude does the thinking.</strong></p>
         </div>
       </div>
     </div>
-
-    <div class="tool-usecases">
-      <span class="usecases-label">WHAT YOU CAN DO WITH IT</span>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128394;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Turn a vague idea into a real ask</div>
-          <p class="usecase-sub">Type "help with email" and watch it become a specific, contextualized request Claude can actually work with.</p>
+    <div>
+      <span class="usecases-label">What you can do with it</span>
+      <div class="usecase-item"><span class="usecase-icon">🖊️</span><div><div class="usecase-title">Turn a vague idea into a real ask</div><p class="usecase-sub">Type "help with email" and watch it become a specific, contextualized request Claude can actually work with.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🌟</span><div><div class="usecase-title">Practice the 3 Keys before you need them</div><p class="usecase-sub">Specific, context, tone — NeuralWriter applies all three automatically so you can see what a strong prompt looks like.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">⚡</span><div><div class="usecase-title">Get unstuck in under a minute</div><p class="usecase-sub">When you sit down and your mind goes blank, NeuralWriter gives you a starting point without requiring you to already know what to ask.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🎓</span><div><div class="usecase-title">Build the skill, not just the output</div><p class="usecase-sub">Every time you use it you're learning what good prompts look like. After a few sessions you won't need it anymore — and that's the point.</p></div></div>
+      <div class="try-now">
+        <span class="try-now-label">✨ Try it now</span>
+        <p>"Help me write an email to my child's new school after we moved."</p>
+        <div class="try-now-actions">
+          <button class="try-copy" data-copy="Help me write an email to my child's new school after we moved.">Copy →</button>
+          <a class="try-open" href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener">Open NeuralWriter →</a>
         </div>
       </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127775;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Practice the 3 Keys before you need them</div>
-          <p class="usecase-sub">Specific, context, tone &mdash; NeuralWriter applies all three automatically so you can see what a strong prompt looks like.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#9889;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Get unstuck in under a minute</div>
-          <p class="usecase-sub">When you sit down and your mind goes blank, NeuralWriter gives you a starting point without requiring you to already know what to ask.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127891;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Build the skill, not just the output</div>
-          <p class="usecase-sub">Every time you use it you are learning what good prompts look like. After a few sessions you will not need it anymore &mdash; and that is the point.</p>
-        </div>
-      </div>
-
-
-      <!-- Try it now -->
-      <div style="margin-top:24px;background:var(--teal-pale);border:1.5px solid var(--teal);
-                  border-radius:16px;padding:20px 20px 16px;">
-        <span style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-                     color:var(--teal-deep);display:block;margin-bottom:10px;">
-          ✨ Try it now
-        </span>
-        <p style="font-size:13px;color:var(--text);line-height:1.75;
-                  font-style:italic;margin-bottom:14px;">"Help me write an email to my child's new school after we moved."</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="navigator.clipboard.writeText('Help me write an email to my child\'s new school after we moved.').then(function(){this.textContent='✓ Copied!';var b=this;setTimeout(function(){b.textContent='Copy →'},2000)}.bind(this))"
-            style="background:var(--teal);color:var(--dark);font-family:var(--font);
-                   font-size:11px;font-weight:800;padding:8px 16px;border-radius:8px;
-                   border:none;cursor:pointer;">Copy →</button>
-          <a href="https://neuralwriter.com/prompt-tool" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;
-                    color:var(--teal-deep);border:1.5px solid var(--teal);padding:8px 16px;
-                    border-radius:8px;text-decoration:none;">Open NeuralWriter →</a>
-        </div>
-      </div>
-
-      <a href="missions.html" class="mission-badge" style="margin-top:16px;">
-        &#127775; Used in Mission 1 &rarr;
-      </a>
+      <a href="missions.html" class="mission-badge">🌟 Used in Mission 1 →</a>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     TOOL 3 — GAMMA
-     ══════════════════════════════════════════════════════════ -->
-<section class="tool-band" id="gamma" aria-labelledby="gamma-heading">
-  <div class="tool-band-inner">
-
-    <div class="tool-identity">
-      <span class="tool-number">TOOL 03 OF 03</span>
-      <div class="tool-name-large" id="gamma-heading">Gamma</div>
+<!-- ══ TOOL 3 — GAMMA ══ -->
+<section class="tool-band off" id="gamma" aria-labelledby="gamma-heading">
+  <div class="afr-wrap tool-grid">
+    <div>
+      <span class="tool-number">Tool 03 of 03</span>
+      <div class="tool-name-lg" id="gamma-heading">Gamma</div>
       <span class="tool-tagline">"Instant docs, decks, and pages"</span>
-
-      <p class="tool-description">
-        Gamma takes one solid sentence and turns it into a beautiful, structured visual
-        document in seconds. It handles the design so you do not have to &mdash;
-        which means no more staring at a blank PowerPoint slide wondering what font to use.
-        You bring the idea. Gamma brings the presentation. Whether it is a family reunion
-        plan, a side hustle pitch, or an FRG briefing, it looks professional immediately.
-      </p>
-
-      <!-- ── SEE IT IN ACTION ── -->
-      <div style="margin:24px 0 28px;">
-        <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deep,#0E7D74);margin-bottom:10px;">&#9654; See it in action</span>
-        <div style="position:relative;width:100%;max-width:300px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 4px 12px rgba(0,0,0,.12);">
-          <iframe src="https://www.youtube.com/embed/EJN5upLXcCI"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            title="Gamma demo"></iframe>
-        </div>
-        <span style="display:block;margin-top:8px;font-size:11px;color:var(--mid);font-style:italic;">One sentence in. Real deck out. That is the punch.</span>
+      <p class="tool-desc">Gamma takes one solid sentence and turns it into a beautiful, structured visual document in seconds. It handles the design so you don't have to — no more staring at a blank slide wondering what font to use. You bring the idea. Gamma brings the presentation. Whether it's a family reunion plan, a side-hustle pitch, or an FRG briefing, it looks professional immediately.</p>
+      <div class="seeit">
+        <span class="seeit-label">▶ See it in action</span>
+        <div class="video-wrap vert"><iframe src="https://www.youtube.com/embed/EJN5upLXcCI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Gamma demo"></iframe></div>
+        <span class="video-cap">One sentence in. Real deck out. That's the punch.</span>
       </div>
-
-      <div class="privacy-strip">
-        <span class="lock">&#128274;</span>
-        <span>400 free credits to explore and create. Sign in with Google is recommended
-        for the smoothest experience. No "Made with Gamma" badge on the Plus plan.</span>
-      </div>
-
-      <div class="cost-row">
-        <span class="cost-pill cost-free">Free (400 credits)</span>
-        <span class="cost-pill cost-paid">Plus $8&ndash;$10/mo</span>
-      </div>
-
-      <a href="https://gamma.app/create" target="_blank" rel="noopener" class="tool-cta">
-        Try Gamma &rarr;
-      </a>
-
-      <div class="protip-box">
-        <span class="protip-icon">&#127775;</span>
+      <div class="privacy-strip"><span>🔒</span><span>400 free credits to explore and create. Sign in with Google is recommended for the smoothest experience. No "Made with Gamma" badge on the Plus plan.</span></div>
+      <div class="cost-row"><span class="cost-pill cost-free">Free (400 credits)</span><span class="cost-pill cost-paid">Plus $8–$10/mo</span></div>
+      <div class="btn-row"><a href="https://gamma.app/create" target="_blank" rel="noopener" class="btn-primary btn-sm">Try Gamma →</a></div>
+      <div class="protip">
+        <span class="protip-icon">🌟</span>
         <div>
           <span class="protip-label">The workflow</span>
-          <p class="protip-text">
-            Build your idea in Claude first. Get the content right.
-            Then bring that polished content to Gamma to make it beautiful.
-            <strong>Claude does the thinking. Gamma does the design.</strong>
-          </p>
+          <p class="protip-text">Build your idea in Claude first. Get the content right. Then bring that polished content to Gamma to make it beautiful. <strong>Claude does the thinking. Gamma does the design.</strong></p>
         </div>
       </div>
     </div>
-
-    <div class="tool-usecases">
-      <span class="usecases-label">WHAT YOU CAN DO WITH IT</span>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127775;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Build a slide deck from one sentence</div>
-          <p class="usecase-sub">Type your topic. Choose a style. Watch Gamma generate a complete, structured presentation in under 30 seconds.</p>
+    <div>
+      <span class="usecases-label">What you can do with it</span>
+      <div class="usecase-item"><span class="usecase-icon">🌟</span><div><div class="usecase-title">Build a slide deck from one sentence</div><p class="usecase-sub">Type your topic. Choose a style. Watch Gamma generate a complete, structured presentation in under 30 seconds.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">📄</span><div><div class="usecase-title">Turn a brain dump into a one-pager</div><p class="usecase-sub">Paste your messy notes. Gamma organizes them into a clean, shareable document that looks like you spent an hour on it.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🏠</span><div><div class="usecase-title">Plan a family event with a real document</div><p class="usecase-sub">Family reunion, vacation itinerary, household budget overview — anything that benefits from structure and looks good shared.</p></div></div>
+      <div class="usecase-item"><span class="usecase-icon">🚀</span><div><div class="usecase-title">Pitch a side hustle or community idea</div><p class="usecase-sub">You have the idea. Gamma gives it a professional package. Show up to any meeting looking prepared without spending hours preparing.</p></div></div>
+      <div class="try-now">
+        <span class="try-now-label">✨ Try it now</span>
+        <p>"Create a one-page family move checklist — school enrollment, housing, neighborhood orientation, community connection. Clean and easy to print."</p>
+        <div class="try-now-actions">
+          <button class="try-copy" data-copy="Create a one-page family move checklist with sections for school enrollment, housing, neighborhood orientation, and community connection. Make it clean and easy to print.">Copy →</button>
+          <a class="try-open" href="https://gamma.app/create" target="_blank" rel="noopener">Open Gamma →</a>
         </div>
       </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128196;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Turn a brain dump into a one-pager</div>
-          <p class="usecase-sub">Paste your messy notes. Gamma organizes them into a clean, shareable document that looks like you spent an hour on it.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#127968;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Plan a family event with a real document</div>
-          <p class="usecase-sub">Family reunion, vacation itinerary, household budget overview &mdash; anything that benefits from structure and looks good shared.</p>
-        </div>
-      </div>
-
-      <div class="usecase-item">
-        <span class="usecase-icon">&#128640;</span>
-        <div class="usecase-text">
-          <div class="usecase-title">Pitch a side hustle or community idea</div>
-          <p class="usecase-sub">You have the idea. Gamma gives it a professional package. Show up to any meeting looking prepared without spending hours preparing.</p>
-        </div>
-      </div>
-
-
-      <!-- Try it now -->
-      <div style="margin-top:24px;background:var(--teal-pale);border:1.5px solid var(--teal);
-                  border-radius:16px;padding:20px 20px 16px;">
-        <span style="font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-                     color:var(--teal-deep);display:block;margin-bottom:10px;">
-          ✨ Try it now
-        </span>
-        <p style="font-size:13px;color:var(--text);line-height:1.75;
-                  font-style:italic;margin-bottom:14px;">"Create a one-page family move checklist — school enrollment, housing, neighborhood orientation, community connection. Clean and easy to print."</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="navigator.clipboard.writeText('Create a one-page family move checklist with sections for school enrollment, housing, neighborhood orientation, and community connection. Make it clean and easy to print.').then(function(){this.textContent='✓ Copied!';var b=this;setTimeout(function(){b.textContent='Copy →'},2000)}.bind(this))"
-            style="background:var(--teal);color:var(--dark);font-family:var(--font);
-                   font-size:11px;font-weight:800;padding:8px 16px;border-radius:8px;
-                   border:none;cursor:pointer;">Copy →</button>
-          <a href="https://gamma.app/create" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;font-size:11px;font-weight:700;
-                    color:var(--teal-deep);border:1.5px solid var(--teal);padding:8px 16px;
-                    border-radius:8px;text-decoration:none;">Open Gamma →</a>
-        </div>
-      </div>
-
-      <a href="missions.html" class="mission-badge" style="margin-top:16px;">
-        &#128196; Used in Missions 5 &amp; 6 &rarr;
-      </a>
+      <a href="missions.html" class="mission-badge">📄 Used in Missions 5 &amp; 6 →</a>
     </div>
-
   </div>
 </section>
 
-<!-- ── COMPARISON STRIP ── -->
-<section class="compare-section" aria-labelledby="compare-heading">
-  <div class="container text-center">
-    <span class="section-label">QUICK REFERENCE</span>
-    <h2 class="h2 white-text" id="compare-heading">
-      Which tool for <span class="accent">which job?</span>
-    </h2>
-    <p class="body-text white">
-      They work best together, but here is how to think about which one to reach for first.
-    </p>
-
+<!-- ══ COMPARISON ══ -->
+<section class="sect" aria-labelledby="compare-heading">
+  <div class="afr-wrap">
+    <div class="sect-head" style="max-width:680px">
+      <p class="eyebrow">Quick reference</p>
+      <h2 class="h2" id="compare-heading">Which tool for <span class="accent">which job?</span></h2>
+      <p class="sub">They work best together, but here's how to think about which one to reach for first.</p>
+    </div>
     <div class="compare-table" role="table" aria-label="Tool comparison">
-
-      <div class="compare-row header" role="row">
-        <div class="compare-cell" role="columnheader">I need to&hellip;</div>
-        <div class="compare-cell" role="columnheader">NeuralWriter</div>
-        <div class="compare-cell" role="columnheader">Claude</div>
-        <div class="compare-cell" role="columnheader">Gamma</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Figure out what to ask</div>
-        <div class="compare-cell check" role="cell">&#10003; Start here</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Write or edit text</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Best choice</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Understand a document</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Best choice</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Build a presentation or deck</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Start here</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Get a second opinion</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Best choice</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Make something look professional</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Best choice</div>
-      </div>
-
-      <div class="compare-row" role="row">
-        <div class="compare-cell feature" role="cell">Practice a conversation</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-        <div class="compare-cell check" role="cell">&#10003; Best choice</div>
-        <div class="compare-cell dash" role="cell">&mdash;</div>
-      </div>
-
+      <div class="compare-row header"><div class="compare-cell">I need to…</div><div class="compare-cell">NeuralWriter</div><div class="compare-cell">Claude</div><div class="compare-cell">Gamma</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Figure out what to ask</div><div class="compare-cell check">✓ Start here</div><div class="compare-cell dash">—</div><div class="compare-cell dash">—</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Write or edit text</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Best choice</div><div class="compare-cell dash">—</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Understand a document</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Best choice</div><div class="compare-cell dash">—</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Build a presentation or deck</div><div class="compare-cell dash">—</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Start here</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Get a second opinion</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Best choice</div><div class="compare-cell dash">—</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Make something look professional</div><div class="compare-cell dash">—</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Best choice</div></div>
+      <div class="compare-row"><div class="compare-cell feature">Practice a conversation</div><div class="compare-cell dash">—</div><div class="compare-cell check">✓ Best choice</div><div class="compare-cell dash">—</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLOSING CTA ── -->
-<section class="cta-section" aria-labelledby="tools-cta-h">
-  <div class="container text-center">
-    <h2 id="tools-cta-h">
-      Ready to put them to work?<br>
-      <span class="accent">The missions show you how.</span>
-    </h2>
-    <p>
-      Every mission in the AI Family Room uses at least one of these tools
-      to produce something real &mdash; an email, a document, a deck, a plan.
-      Pick the first one that fits your life right now.
-    </p>
-    <div class="cta-stack">
-      <a href="missions.html" class="btn btn-primary">See All 10 Missions &rarr;</a>
-      <a href="milspouse.html" class="btn btn-ghost" style="font-size:13px;padding:13px 28px;">Mil-Spouse Intel &rarr;</a>
-      <span class="cta-note">All three tools are free to start &middot; No downloads &middot; No setup</span>
+<!-- ══ CLOSING CTA ══ -->
+<section class="sect tight pale">
+  <div class="afr-wrap">
+    <p class="eyebrow" style="color:var(--ejc-teal-deep)">Ready to put them to work?</p>
+    <h2 class="h2">The missions show you how.</h2>
+    <p class="sub">Every mission uses at least one of these tools to produce something real — an email, a document, a deck, a plan. Pick the first one that fits your life right now.</p>
+    <div class="btn-row" style="margin-top:26px">
+      <a href="missions.html" class="btn-primary">See all the missions →</a>
+      <a href="milspouse.html" class="btn-ghost">Mil-Spouse Intel →</a>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">
-        A free, self-guided AI literacy environment for families and communities.
-        Built on the belief that technology should amplify
-        every voice &mdash; not just the ones with resources.
-      </p>
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
-    <p class="footer-privacy">
-      We collect only what you choose to share. We never sell your data.
-      Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a>
-      to delete your info at any time.
-    </p>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
 <script src="config.js"></script>
 <script src="progress.js"></script>
-<script>
-/* tools.html — page JS */
-/* progress.js handles nav XP display and mobile nav automatically */
-
-/* Smooth scroll for the hero anchor */
-document.querySelector('a[href="#neuralwriter"]').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('neuralwriter').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-</script>
 <script src="cta-helper.js" defer></script>
+<script>
+  // "Try it now" copy buttons (data-copy)
+  document.querySelectorAll('.try-copy[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = this.getAttribute('data-copy');
+      var b = this;
+      navigator.clipboard.writeText(text).then(function () {
+        b.textContent = '✓ Copied!';
+        setTimeout(function () { b.textContent = 'Copy →'; }, 2000);
+      });
+    });
+  });
+</script>
 </body>
 </html>

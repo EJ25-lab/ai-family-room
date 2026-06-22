@@ -4,316 +4,197 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What Could Go Wrong — AI Family Room</title>
-<meta name="description" content="Real 2026 AI failures, plain-language rules, and a clear answer on which tool to use when. A free guide to using AI well — built for families, communities, and anyone who refuses to be in a story like these.">
-<meta name="theme-color" content="#0B1215">
+<meta name="description" content="Real 2026 AI failures, plain-language rules, and a clear answer on which tool to use when. A free guide to using AI well — built for families and communities.">
+<meta name="theme-color" content="#1ABCB0">
 <meta property="og:title" content="What Could Go Wrong — AI Family Room">
 <meta property="og:description" content="Real 2026 AI failures. Four rules. Plain talk about which tool to use when.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="afr/site.css">
 <style>
-.wcgw-hero{background:var(--dark);padding:72px 32px 48px;position:relative;overflow:hidden;}
-.wcgw-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(231,111,81,.12) 0%,transparent 65%);pointer-events:none;}
-.wcgw-hero-inner{max-width:760px;margin:0 auto;position:relative;}
-.wcgw-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#E76F51;display:block;margin-bottom:16px;}
-.wcgw-hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:900;color:var(--white);line-height:1.0;letter-spacing:-.035em;margin-bottom:18px;}
-.wcgw-hero h1 .accent{color:#E76F51;}
-.wcgw-hero p{font-size:17px;color:rgba(255,255,255,.78);line-height:1.7;max-width:600px;margin-bottom:0;}
-.wcgw-hero p strong{color:var(--white);}
-
-.wcgw-intro{background:#F9F4F1;padding:28px 32px;border-bottom:1px solid #EAD8D2;}
-.wcgw-intro-inner{max-width:720px;margin:0 auto;font-size:15px;color:#3F2A22;line-height:1.7;}
-.wcgw-intro-inner strong{color:#0B1215;font-weight:700;}
-
-.wcgw-section{padding:64px 32px;}
-.wcgw-section.light{background:var(--white);}
-.wcgw-section.tinted{background:var(--off);}
-.wcgw-section.dark{background:var(--dark);}
-.wcgw-section-inner{max-width:820px;margin:0 auto;}
-
-.wcgw-section-tag{display:inline-block;background:rgba(26,188,176,.14);color:var(--teal);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r-pill);margin-bottom:14px;border:1px solid rgba(26,188,176,.3);}
-.wcgw-section.dark .wcgw-section-tag{background:rgba(231,111,81,.18);color:#E76F51;border-color:rgba(231,111,81,.32);}
-.wcgw-h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;color:var(--text);line-height:1.15;letter-spacing:-.025em;margin-bottom:14px;}
-.wcgw-section.dark .wcgw-h2{color:var(--white);}
-.wcgw-h2 .accent{color:#E76F51;}
-.wcgw-lead{font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:28px;max-width:640px;}
-.wcgw-section.dark .wcgw-lead{color:rgba(255,255,255,.65);}
-
-/* CASE CARDS */
-.case-card{background:var(--white);border-radius:var(--r-lg);padding:28px 28px 26px;margin-bottom:22px;border:1.5px solid rgba(0,0,0,.07);box-shadow:0 4px 14px rgba(0,0,0,.04);}
-.wcgw-section.tinted .case-card{background:var(--white);}
-.case-rule-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
-.case-rule-num{background:#E76F51;color:var(--white);font-weight:900;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.case-rule-text{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8401E;}
-.case-headline{font-size:1.35rem;font-weight:900;color:var(--text);line-height:1.2;margin-bottom:14px;letter-spacing:-.015em;}
-.case-headline .accent{color:#E76F51;}
-.case-tag-pill{display:inline-block;background:#FFE6DE;color:#A8401E;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-pill);margin-bottom:14px;}
-.case-body{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
-.case-body strong{color:var(--text);font-weight:700;}
-.case-takeaway{background:rgba(26,188,176,.06);border-left:3px solid var(--teal);padding:14px 18px;border-radius:6px;margin-bottom:14px;}
-.case-takeaway-ey{font-size:10px;font-weight:800;letter-spacing:.2em;color:var(--teal-deep);display:block;margin-bottom:6px;}
-.case-takeaway p{font-size:14.5px;color:var(--text);line-height:1.6;margin:0;}
-.case-source{font-size:12px;color:var(--mid);line-height:1.6;}
-.case-source a{color:var(--teal-deep);text-decoration:none;}
-.case-source a:hover{text-decoration:underline;}
-
-/* TOOL COMPARISON */
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px;}
-.tool-row-card{background:var(--white);border:1.5px solid rgba(0,0,0,.08);border-radius:var(--r);padding:22px;}
-.tool-row-card.featured{border-color:var(--teal);border-width:2px;}
-.tool-row-icon{font-size:24px;margin-bottom:8px;display:block;}
-.tool-row-name{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;}
-.tool-row-name span{font-size:11px;font-weight:600;color:var(--mid);}
-.tool-row-best{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:10px;}
-.tool-row-best strong{color:var(--teal-deep);font-weight:700;}
-.tool-row-not{font-size:12.5px;color:var(--mid);line-height:1.55;margin-bottom:12px;font-style:italic;}
-.tool-row-price{font-size:11px;color:var(--light);border-top:1px solid rgba(0,0,0,.06);padding-top:10px;}
-
-/* WALLS TABLE */
-.walls-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r);overflow:hidden;border:1px solid rgba(0,0,0,.08);margin-bottom:18px;}
-.walls-table th,.walls-table td{padding:14px 16px;text-align:left;font-size:14px;border-bottom:1px solid rgba(0,0,0,.06);}
-.walls-table th{background:var(--off);font-weight:800;color:var(--text);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
-.walls-table td.tool-name{font-weight:700;color:var(--text);}
-.walls-honest{font-size:14px;color:var(--mid);line-height:1.7;font-style:italic;padding:14px 0 0;border-top:1px dashed rgba(0,0,0,.1);margin-top:6px;}
-
-/* CTA */
-.wcgw-cta{background:var(--dark);padding:64px 32px;text-align:center;}
-.wcgw-cta-inner{max-width:560px;margin:0 auto;}
-.wcgw-cta h3{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;color:var(--white);margin-bottom:14px;line-height:1.2;}
-.wcgw-cta p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:28px;line-height:1.7;}
-.wcgw-cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.wcgw-cta-actions .btn{min-height:52px;display:inline-flex;align-items:center;}
+  :root { --caution: #C2521E; --caution-pale: #FBEEE6; }
+  .wcgw-narrow { max-width: 820px; }
+  .case-card { background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-card); }
+  .case-rule-row { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+  .case-rule-num { background: var(--ejc-orange); color: #fff; font-weight: 900; font-size: 13px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .case-rule-text { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--caution); }
+  .case-tag-pill { display: inline-block; background: var(--caution-pale); color: var(--caution); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+  .case-headline { font-size: 1.4rem; font-weight: 900; color: var(--ejc-text); line-height: 1.2; margin: 0 0 14px; letter-spacing: -.015em; }
+  .case-headline .accent { color: var(--caution); }
+  .case-body { font-size: 15px; color: var(--ejc-text); line-height: 1.75; margin: 0 0 16px; }
+  .case-body strong { color: var(--ejc-text); font-weight: 700; }
+  .case-takeaway { background: var(--ejc-teal-pale); border-left: 4px solid var(--ejc-teal); padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 14px; }
+  .case-takeaway-ey { display: block; font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--ejc-teal-deep); margin-bottom: 6px; }
+  .case-takeaway p { font-size: 14.5px; color: var(--ejc-text); line-height: 1.6; margin: 0; }
+  .case-source { font-size: 12px; color: var(--ejc-light); line-height: 1.7; margin: 0; }
+  .case-source a { color: var(--ejc-teal-deep); text-decoration: none; }
+  .case-source a:hover { text-decoration: underline; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .tool-row-card { background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-card); }
+  .tool-row-card.featured { border-color: var(--ejc-teal); border-width: 2px; }
+  .tool-row-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+  .tool-row-name { font-size: 16px; font-weight: 800; color: var(--ejc-text); margin-bottom: 6px; }
+  .tool-row-name span { font-size: 11px; font-weight: 600; color: var(--ejc-light); }
+  .tool-row-best { font-size: 13px; color: var(--ejc-text); line-height: 1.55; margin: 0 0 10px; }
+  .tool-row-best strong { color: var(--ejc-teal-deep); }
+  .tool-row-not { font-size: 12.5px; color: var(--ejc-mid); line-height: 1.55; margin: 0 0 12px; font-style: italic; }
+  .tool-row-price { font-size: 11px; color: var(--ejc-light); border-top: 1px solid var(--ejc-warm); padding-top: 10px; }
+  .walls-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--ejc-warm); margin-bottom: 16px; }
+  .walls-table th, .walls-table td { padding: 14px 16px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--ejc-warm); }
+  .walls-table th { background: var(--ejc-off); font-weight: 800; color: var(--ejc-text); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+  .walls-table td.tool-name { font-weight: 700; color: var(--ejc-text); }
+  .allin { list-style: none; padding: 0; margin: 0 0 20px; }
+  .allin li { padding: 14px 0; border-bottom: 1px solid var(--ejc-warm); font-size: 15px; line-height: 1.7; color: var(--ejc-mid); }
+  .allin li:last-child { border-bottom: none; }
+  .allin li strong { color: var(--ejc-text); }
+  .wcgw-cta { background: var(--ejc-dark); padding: 64px 0; text-align: center; }
+  .wcgw-cta h3 { font-size: calc(2rem * var(--afr-scale)); font-weight: 800; color: #fff; margin: 0 0 12px; }
+  .wcgw-cta p { font-size: 15px; color: rgba(255,255,255,.7); margin: 0 auto 26px; max-width: 540px; }
+  .wcgw-cta .btn-ghost { color: var(--ejc-teal); border-color: rgba(255,255,255,.3); }
+  .wcgw-cta .btn-ghost:hover { background: rgba(255,255,255,.06); }
+  @media (max-width: 640px) { .walls-table { font-size: 12px; } }
 </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
 <!-- ── HERO ── -->
-<section class="wcgw-hero" role="banner">
-  <style>
-    .wcgw-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .wcgw-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .wcgw-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .wcgw-hero > *{position:relative;z-index:1}
-    .wcgw-hero .wcgw-eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important;font-size:11.5px !important}
-    .wcgw-hero h1{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .wcgw-hero h1 .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .wcgw-hero p{color:#2A2520 !important;opacity:.82}
-    .wcgw-hero p strong{color:#2A2520 !important;opacity:1;font-weight:700}
-  </style>
-  <div class="wcgw-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<header class="sect" style="padding:72px 0 52px">
+  <div class="afr-wrap wcgw-narrow">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
-    <span class="wcgw-eyebrow">Use it well</span>
-    <h1>What could<br><span class="accent">go wrong.</span></h1>
-    <p>Four real 2026 AI failures. Four plain rules. A clear answer on <strong>which tool to use when.</strong> So you can use AI &mdash; and not end up in a story like one of these.</p>
+    <p class="eyebrow" style="color:var(--caution)">Use it well</p>
+    <h1 class="h1">What could <span style="color:var(--caution)">go wrong.</span></h1>
+    <p class="lead">Four real 2026 AI failures. Four plain rules. A clear answer on <strong>which tool to use when.</strong> So you can use AI — and not end up in a story like one of these.</p>
+  </div>
+</header>
+
+<!-- ── INTRO STRIP ── -->
+<section style="background:var(--caution-pale);border-block:1px solid #f0ddd0;padding:26px 0">
+  <div class="afr-wrap wcgw-narrow">
+    <p style="font-size:15px;color:var(--ejc-text);line-height:1.7;margin:0;max-width:720px">AI is a tool. Tools have rules. These four stories happened in <strong>2026</strong>, mostly in the last six months. They are not edge cases — they are the pattern of what happens when the rules get skipped. Each one points to one thing you can do differently.</p>
   </div>
 </section>
 
-<!-- ── INTRO STRIP ── -->
-<section class="wcgw-intro">
-  <p class="wcgw-intro-inner">
-    AI is a tool. Tools have rules. These four stories happened in <strong>2026</strong>, mostly in the last six months. They are not edge cases &mdash; they are the pattern of what happens when the rules get skipped. Each one points to one thing you can do differently.
-  </p>
-</section>
-
 <!-- ── CASES ── -->
-<section class="wcgw-section tinted" aria-labelledby="cases-h">
-  <div class="wcgw-section-inner">
-    <span class="wcgw-section-tag">Four cases &middot; four rules</span>
-    <h2 class="wcgw-h2" id="cases-h">What's actually happening.</h2>
-    <p class="wcgw-lead">Plain reporting. Real sources. Read once, and you will spot the same pattern when it shows up in your inbox.</p>
+<section class="sect off" aria-labelledby="cases-h">
+  <div class="afr-wrap wcgw-narrow">
+    <div class="sect-head">
+      <p class="eyebrow" style="color:var(--caution)">Four cases · four rules</p>
+      <h2 class="h2" id="cases-h">What's actually happening.</h2>
+      <p class="sub">Plain reporting. Real sources. Read once, and you'll spot the same pattern when it shows up in your inbox.</p>
+    </div>
 
-    <!-- CASE 1 -->
     <div class="case-card">
-      <div class="case-rule-row">
-        <div class="case-rule-num">1</div>
-        <span class="case-rule-text">Verify anything that matters</span>
-      </div>
-      <div class="case-tag-pill">Q1 2026 &middot; U.S. federal courts</div>
+      <div class="case-rule-row"><div class="case-rule-num">1</div><span class="case-rule-text">Verify anything that matters</span></div>
+      <div class="case-tag-pill">Q1 2026 · U.S. federal courts</div>
       <h3 class="case-headline">$145,000+ in sanctions for <span class="accent">AI-fabricated case law.</span></h3>
-      <p class="case-body">
-        In the first quarter of 2026 alone, U.S. judges imposed over <strong>$145,000 in sanctions</strong> on lawyers who submitted briefs full of citations that AI invented. A top-ranked attorney at <strong>Sullivan &amp; Cromwell</strong> filed a motion with more than <strong>40 hallucinated errors</strong>. U.S. District Judge Kai N. Scott sanctioned one attorney $5,000 &mdash; after sanctioning the same attorney $2,500 earlier for the same problem. A public database now tracks <strong>over 1,353 documented cases globally</strong>, and the pace is accelerating.
-      </p>
-      <div class="case-takeaway">
-        <span class="case-takeaway-ey">The takeaway</span>
-        <p>Experts &mdash; people who spent decades learning a field &mdash; are still being fooled by AI that confidently invents facts. If you're using AI to write a complaint, an advocacy letter, or anything you'll cite: <strong>verify every claim before you send.</strong></p>
-      </div>
-      <p class="case-source">Sources: <a href="https://www.cnn.com/2026/04/23/business/ai-hallucination-sullivan-cromwell-nightcap" target="_blank" rel="noopener">CNN Business</a> &middot; <a href="https://compliancehub.wiki/legal-ai-hallucination-reckoning-2026/" target="_blank" rel="noopener">ComplianceHub</a> &middot; <a href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener">Charlotin Database</a></p>
+      <p class="case-body">In the first quarter of 2026 alone, U.S. judges imposed over <strong>$145,000 in sanctions</strong> on lawyers who submitted briefs full of citations that AI invented. A top-ranked attorney at <strong>Sullivan &amp; Cromwell</strong> filed a motion with more than <strong>40 hallucinated errors</strong>. One judge sanctioned an attorney $5,000 — after sanctioning the same attorney $2,500 earlier for the same problem. A public database now tracks <strong>over 1,353 documented cases globally</strong>, and the pace is accelerating.</p>
+      <div class="case-takeaway"><span class="case-takeaway-ey">The takeaway</span><p>Experts — people who spent decades learning a field — are still being fooled by AI that confidently invents facts. If you're using AI to write a complaint, an advocacy letter, or anything you'll cite: <strong>verify every claim before you send.</strong></p></div>
+      <p class="case-source">Sources: <a href="https://www.cnn.com/2026/04/23/business/ai-hallucination-sullivan-cromwell-nightcap" target="_blank" rel="noopener">CNN Business</a> · <a href="https://compliancehub.wiki/legal-ai-hallucination-reckoning-2026/" target="_blank" rel="noopener">ComplianceHub</a> · <a href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener">Charlotin Database</a></p>
     </div>
 
-    <!-- CASE 2 -->
     <div class="case-card">
-      <div class="case-rule-row">
-        <div class="case-rule-num">2</div>
-        <span class="case-rule-text">Protect what you can't take back</span>
-      </div>
-      <div class="case-tag-pill">2026 &middot; FBI &middot; AARP</div>
-      <h3 class="case-headline">$2.3B lost to <span class="accent">AI voice clones</span> &mdash; from three seconds of audio.</h3>
-      <p class="case-body">
-        In 2026, <strong>1 in 4 Americans</strong> received a deepfake voice call in the past 12 months. AI voice-cloning scams have cost elderly Americans <strong>over $2.3 billion this year alone</strong>. Scammers need only <strong>three seconds of audio</strong> &mdash; from a TikTok, an Instagram Reel, a Facebook video &mdash; to clone the voice of your kid, your grandmother, your spouse. <strong>77% of people who engage with the call end up losing money</strong>, typically between $500 and $15,000. The recommended defense: <strong>a family safe word</strong> that only your household knows.
-      </p>
-      <div class="case-takeaway">
-        <span class="case-takeaway-ey">The takeaway</span>
-        <p>Never paste private info into AI tools you wouldn't put in an email. Don't post family voice clips publicly if you can avoid it. <strong>Set a family safe word today.</strong> Use it on any urgent call before you act.</p>
-      </div>
-      <p class="case-source">Sources: <a href="https://www.savingadvice.com/articles/2026/05/18/10735968_ai-voice-scams-explode-one-in-four-adults-encountered-a-cloned-voice-and-77-lost-500-15000.html" target="_blank" rel="noopener">SavingAdvice / Hiya State of the Call 2026</a> &middot; <a href="https://www.wistv.com/2026/04/03/bbb-warns-scammers-using-ai-voice-cloning-impersonate-family-members/" target="_blank" rel="noopener">BBB / WIS-TV</a> &middot; <a href="https://www.kctv5.com/2026/02/03/scammers-use-ai-clone-childrens-voices-new-kidnapping-scam/" target="_blank" rel="noopener">KCTV5</a></p>
+      <div class="case-rule-row"><div class="case-rule-num">2</div><span class="case-rule-text">Protect what you can't take back</span></div>
+      <div class="case-tag-pill">2026 · FBI · AARP</div>
+      <h3 class="case-headline">$2.3B lost to <span class="accent">AI voice clones</span> — from three seconds of audio.</h3>
+      <p class="case-body">In 2026, <strong>1 in 4 Americans</strong> received a deepfake voice call in the past 12 months. AI voice-cloning scams have cost elderly Americans <strong>over $2.3 billion this year alone</strong>. Scammers need only <strong>three seconds of audio</strong> — from a TikTok, an Instagram Reel, a Facebook video — to clone the voice of your kid, your grandmother, your spouse. <strong>77% of people who engage with the call end up losing money</strong>, typically between $500 and $15,000. The recommended defense: <strong>a family safe word</strong> that only your household knows.</p>
+      <div class="case-takeaway"><span class="case-takeaway-ey">The takeaway</span><p>Never paste private info into AI tools you wouldn't put in an email. Don't post family voice clips publicly if you can avoid it. <strong>Set a family safe word today.</strong> Use it on any urgent call before you act.</p></div>
+      <p class="case-source">Sources: <a href="https://www.savingadvice.com/articles/2026/05/18/10735968_ai-voice-scams-explode-one-in-four-adults-encountered-a-cloned-voice-and-77-lost-500-15000.html" target="_blank" rel="noopener">SavingAdvice / Hiya 2026</a> · <a href="https://www.wistv.com/2026/04/03/bbb-warns-scammers-using-ai-voice-cloning-impersonate-family-members/" target="_blank" rel="noopener">BBB / WIS-TV</a> · <a href="https://www.kctv5.com/2026/02/03/scammers-use-ai-clone-childrens-voices-new-kidnapping-scam/" target="_blank" rel="noopener">KCTV5</a></p>
     </div>
 
-    <!-- CASE 3 -->
     <div class="case-card">
-      <div class="case-rule-row">
-        <div class="case-rule-num">3</div>
-        <span class="case-rule-text">Draft, not verdict</span>
-      </div>
-      <div class="case-tag-pill">2025&ndash;2026 &middot; UnitedHealth &middot; multi-state</div>
-      <h3 class="case-headline">An AI that <span class="accent">cut off care</span> &mdash; with a 90% error rate.</h3>
-      <p class="case-body">
-        Multiple 2026 lawsuits allege UnitedHealth's <strong>nH Predict</strong> AI system &mdash; used to decide when to stop covering patients in rehabilitation centers &mdash; has a <strong>90% error rate</strong> when patients appeal. Medicare Advantage denials are overturned on appeal <strong>82% of the time</strong>. By spring 2026, Arizona, Maryland, Nebraska, and Texas had banned AI as the sole decisionmaker in insurance denials. North Carolina HB 565 followed.
-      </p>
-      <div class="case-takeaway">
-        <span class="case-takeaway-ey">The takeaway</span>
-        <p>A multibillion-dollar company treated AI output as a verdict. The cost landed on patients in real beds. <strong>Treat AI as a draft &mdash; always.</strong> If an institution uses AI to deny you something, appeal. The reversal rate says you're probably right.</p>
-      </div>
-      <p class="case-source">Sources: <a href="https://news.stanford.edu/stories/2026/01/ai-algorithms-health-insurance-care-risks-research" target="_blank" rel="noopener">Stanford Report</a> &middot; <a href="https://stateline.org/2025/11/20/patients-deploy-bots-to-battle-health-insurers-that-deny-care/" target="_blank" rel="noopener">Stateline</a> &middot; <a href="https://www.wral.com/news/nccapitol/north-carolina-want-regulations-artificial-intelligence-health-insurance-may-2026/" target="_blank" rel="noopener">WRAL</a></p>
+      <div class="case-rule-row"><div class="case-rule-num">3</div><span class="case-rule-text">Draft, not verdict</span></div>
+      <div class="case-tag-pill">2025–2026 · UnitedHealth · multi-state</div>
+      <h3 class="case-headline">An AI that <span class="accent">cut off care</span> — with a 90% error rate.</h3>
+      <p class="case-body">Multiple 2026 lawsuits allege UnitedHealth's <strong>nH Predict</strong> AI system — used to decide when to stop covering patients in rehabilitation centers — has a <strong>90% error rate</strong> when patients appeal. Medicare Advantage denials are overturned on appeal <strong>82% of the time</strong>. By spring 2026, Arizona, Maryland, Nebraska, and Texas had banned AI as the sole decisionmaker in insurance denials. North Carolina HB 565 followed.</p>
+      <div class="case-takeaway"><span class="case-takeaway-ey">The takeaway</span><p>A multibillion-dollar company treated AI output as a verdict. The cost landed on patients in real beds. <strong>Treat AI as a draft — always.</strong> If an institution uses AI to deny you something, appeal. The reversal rate says you're probably right.</p></div>
+      <p class="case-source">Sources: <a href="https://news.stanford.edu/stories/2026/01/ai-algorithms-health-insurance-care-risks-research" target="_blank" rel="noopener">Stanford Report</a> · <a href="https://stateline.org/2025/11/20/patients-deploy-bots-to-battle-health-insurers-that-deny-care/" target="_blank" rel="noopener">Stateline</a> · <a href="https://www.wral.com/news/nccapitol/north-carolina-want-regulations-artificial-intelligence-health-insurance-may-2026/" target="_blank" rel="noopener">WRAL</a></p>
     </div>
 
-    <!-- CASE 4 -->
     <div class="case-card">
-      <div class="case-rule-row">
-        <div class="case-rule-num">4</div>
-        <span class="case-rule-text">Teach the kids &mdash; don't hide it</span>
-      </div>
-      <div class="case-tag-pill">2026 &middot; 90+ U.S. schools</div>
-      <h3 class="case-headline">Deepfake nude images of classmates in <span class="accent">90+ schools.</span></h3>
-      <p class="case-body">
-        By spring 2026, Wired had documented AI-generated deepfake nude images of students in <strong>at least 90 U.S. schools</strong>. Documented incidents include <strong>Radnor High (PA)</strong>, <strong>Council Rock School District (PA)</strong>, <strong>Lancaster Country Day School (PA)</strong> &mdash; where two 14-year-old boys admitted creating <strong>59 child sexual abuse images</strong> of their classmates &mdash; and <strong>Hingham Middle School (MA)</strong>. A new federal law passed in May 2026. Schools are now removing student photos from public websites. It is typically teenage boys creating the images of female classmates.
-      </p>
-      <div class="case-takeaway">
-        <span class="case-takeaway-ey">The takeaway</span>
-        <p>Kids will find AI. They will use it. The choice is whether they learn responsibly in front of an adult &mdash; or alone, in secret. <strong>Talk to them this week.</strong> About what AI can do. About what they should never do with it. About what to do if it's done to them. The conversation costs nothing. The silence costs a lot.</p>
-      </div>
-      <p class="case-source">Sources: <a href="https://www.404media.co/radnor-high-school-pennsylvania-ai-deepfakes-child-sexual-abuse-material/" target="_blank" rel="noopener">404 Media</a> &middot; <a href="https://www.bostonglobe.com/2026/04/09/metro/ai-generated-naked-deepfakes-in-schools/" target="_blank" rel="noopener">Boston Globe</a> &middot; <a href="https://www.kold.com/2026/05/14/new-federal-law-targets-ai-deepfake-porn-schools-grapple-with-growing-problem/" target="_blank" rel="noopener">KOLD News</a> &middot; <a href="https://www.malwarebytes.com/blog/family-and-parenting/2026/05/deepfake-sextortion-forces-schools-to-remove-student-photos-from-websites" target="_blank" rel="noopener">Malwarebytes</a></p>
+      <div class="case-rule-row"><div class="case-rule-num">4</div><span class="case-rule-text">Teach the kids — don't hide it</span></div>
+      <div class="case-tag-pill">2026 · 90+ U.S. schools</div>
+      <h3 class="case-headline">Deepfake images of classmates in <span class="accent">90+ schools.</span></h3>
+      <p class="case-body">By spring 2026, reporting had documented AI-generated deepfake nude images of students in <strong>at least 90 U.S. schools</strong> — including incidents in Pennsylvania and Massachusetts districts. A new federal law passed in May 2026, and schools are now removing student photos from public websites. It is typically teenage boys creating the images of female classmates.</p>
+      <div class="case-takeaway"><span class="case-takeaway-ey">The takeaway</span><p>Kids will find AI. They will use it. The choice is whether they learn responsibly in front of an adult — or alone, in secret. <strong>Talk to them this week.</strong> About what AI can do. About what they should never do with it. About what to do if it's done to them. The conversation costs nothing. The silence costs a lot.</p></div>
+      <p class="case-source">Sources: <a href="https://www.404media.co/radnor-high-school-pennsylvania-ai-deepfakes-child-sexual-abuse-material/" target="_blank" rel="noopener">404 Media</a> · <a href="https://www.bostonglobe.com/2026/04/09/metro/ai-generated-naked-deepfakes-in-schools/" target="_blank" rel="noopener">Boston Globe</a> · <a href="https://www.kold.com/2026/05/14/new-federal-law-targets-ai-deepfake-porn-schools-grapple-with-growing-problem/" target="_blank" rel="noopener">KOLD News</a></p>
     </div>
-
   </div>
 </section>
 
 <!-- ── WHY PROMPTING MATTERS ── -->
-<section class="wcgw-section light">
-  <div class="wcgw-section-inner">
-    <span class="wcgw-section-tag">🌱 The first principle</span>
-    <h2 class="wcgw-h2">Bad prompts give bad output. <span class="accent">Good prompts respect what the AI can do.</span></h2>
-    <p class="wcgw-lead">Most of the cases above share one root cause: the human treated AI like a colleague who already knew everything. AI is not that. AI is a brilliant intern who has read millions of books, will confidently answer anything you ask, and has no idea what it doesn't know. Your job is to ask carefully &mdash; and to verify.</p>
-    <p class="wcgw-lead">That skill is called <strong>prompting</strong>. It's not magic. It's communication. The room teaches it in five minutes.</p>
-    <a href="mission-7.html" class="btn btn-primary">Practice on Mission 7 &rarr;</a>
+<section class="sect">
+  <div class="afr-wrap wcgw-narrow">
+    <p class="eyebrow">🌱 The first principle</p>
+    <h2 class="h2">Bad prompts give bad output. <span class="accent">Good prompts respect what the AI can do.</span></h2>
+    <p class="sub">Most of the cases above share one root cause: the human treated AI like a colleague who already knew everything. AI is not that. AI is a brilliant intern who has read millions of books, will confidently answer anything you ask, and has no idea what it doesn't know. Your job is to ask carefully — and to verify.</p>
+    <p class="sub">That skill is called <strong style="color:var(--ejc-text)">prompting</strong>. It's not magic. It's communication. The room teaches it in five minutes.</p>
+    <div class="btn-row" style="margin-top:24px"><a href="mission-7.html" class="btn-primary">Practice on Mission 7 →</a></div>
   </div>
 </section>
 
 <!-- ── PICK THE RIGHT TOOL ── -->
-<section class="wcgw-section tinted">
-  <div class="wcgw-section-inner">
-    <span class="wcgw-section-tag">🛠 The toolbox</span>
-    <h2 class="wcgw-h2">Pick the right tool.</h2>
-    <p class="wcgw-lead">Most people use one tool for everything and get frustrated. Different tools are good at different jobs. Here is the short answer:</p>
-
+<section class="sect off">
+  <div class="afr-wrap wcgw-narrow">
+    <div class="sect-head"><p class="eyebrow">🛠 The toolbox</p><h2 class="h2">Pick the right tool.</h2><p class="sub">Most people use one tool for everything and get frustrated. Different tools are good at different jobs. Here's the short answer:</p></div>
     <div class="tools-grid">
-      <div class="tool-row-card featured">
-        <span class="tool-row-icon">🧠</span>
-        <div class="tool-row-name">Claude <span>· Anthropic</span></div>
-        <p class="tool-row-best"><strong>Best for:</strong> Conversations, advocacy emails, hard-conversation prep, long writing, working through a problem.</p>
-        <p class="tool-row-not"><em>Skip when:</em> you need live web search or today's news.</p>
-        <p class="tool-row-price">Free tier · Pro $20/mo</p>
-      </div>
-      <div class="tool-row-card">
-        <span class="tool-row-icon">🔍</span>
-        <div class="tool-row-name">Perplexity <span>· Perplexity AI</span></div>
-        <p class="tool-row-best"><strong>Best for:</strong> Research with citations, current information, sourcing facts.</p>
-        <p class="tool-row-not"><em>Skip when:</em> you're writing something personal &mdash; Claude is warmer.</p>
-        <p class="tool-row-price">Free · Pro $20/mo</p>
-      </div>
-      <div class="tool-row-card">
-        <span class="tool-row-icon">🎨</span>
-        <div class="tool-row-name">Gamma <span>· Gamma</span></div>
-        <p class="tool-row-best"><strong>Best for:</strong> Slide decks, one-pagers, visual documents from one sentence.</p>
-        <p class="tool-row-not"><em>Skip when:</em> a plain email or memo would do the job.</p>
-        <p class="tool-row-price">400 credits free · Plus $8&ndash;$10/mo</p>
-      </div>
-      <div class="tool-row-card">
-        <span class="tool-row-icon">✏️</span>
-        <div class="tool-row-name">NeuralWriter <span>· warm-up</span></div>
-        <p class="tool-row-best"><strong>Best for:</strong> Turning a rough thought into a clear prompt before Claude.</p>
-        <p class="tool-row-not"><em>Skip when:</em> you've gotten comfortable writing prompts yourself.</p>
-        <p class="tool-row-price">10K chars free · From $19/mo</p>
-      </div>
+      <div class="tool-row-card featured"><span class="tool-row-icon">🧠</span><div class="tool-row-name">Claude <span>· Anthropic</span></div><p class="tool-row-best"><strong>Best for:</strong> Conversations, advocacy emails, hard-conversation prep, long writing, working through a problem.</p><p class="tool-row-not">Skip when: you need live web search or today's news.</p><p class="tool-row-price">Free tier · Pro $20/mo</p></div>
+      <div class="tool-row-card"><span class="tool-row-icon">🔍</span><div class="tool-row-name">Perplexity <span>· Perplexity AI</span></div><p class="tool-row-best"><strong>Best for:</strong> Research with citations, current information, sourcing facts.</p><p class="tool-row-not">Skip when: you're writing something personal — Claude is warmer.</p><p class="tool-row-price">Free · Pro $20/mo</p></div>
+      <div class="tool-row-card"><span class="tool-row-icon">🎨</span><div class="tool-row-name">Gamma <span>· Gamma</span></div><p class="tool-row-best"><strong>Best for:</strong> Slide decks, one-pagers, visual documents from one sentence.</p><p class="tool-row-not">Skip when: a plain email or memo would do the job.</p><p class="tool-row-price">400 credits free · Plus $8–$10/mo</p></div>
+      <div class="tool-row-card"><span class="tool-row-icon">✏️</span><div class="tool-row-name">NeuralWriter <span>· warm-up</span></div><p class="tool-row-best"><strong>Best for:</strong> Turning a rough thought into a clear prompt before Claude.</p><p class="tool-row-not">Skip when: you've gotten comfortable writing prompts yourself.</p><p class="tool-row-price">10K chars free · From $19/mo</p></div>
     </div>
-
-    <p class="wcgw-lead" style="margin-top:18px;">
-      <em>New tools come out constantly. We update this page as the landscape shifts. The monthly Field Notes from EdJustice Collective will tell you when something better shows up.</em>
-    </p>
+    <p class="sub" style="margin-top:18px"><em>New tools come out constantly. We update this page as the landscape shifts.</em></p>
   </div>
 </section>
 
 <!-- ── KNOW THE WALLS ── -->
-<section class="wcgw-section light">
-  <div class="wcgw-section-inner">
-    <span class="wcgw-section-tag">💰 Know the walls</span>
-    <h2 class="wcgw-h2">What's free. What's paid. <span class="accent">When to upgrade.</span></h2>
-    <p class="wcgw-lead">Most people in this room never need to pay. The free tiers cover real life. Pay when you have a clear need &mdash; never because someone made you feel behind.</p>
-
+<section class="sect">
+  <div class="afr-wrap wcgw-narrow">
+    <div class="sect-head"><p class="eyebrow">💰 Know the walls</p><h2 class="h2">What's free. What's paid. <span class="accent">When to upgrade.</span></h2><p class="sub">Most people in this room never need to pay. The free tiers cover real life. Pay when you have a clear need — never because someone made you feel behind.</p></div>
     <table class="walls-table">
-      <thead>
-        <tr><th>Tool</th><th>Free reality</th><th>Upgrade when&hellip;</th></tr>
-      </thead>
+      <thead><tr><th>Tool</th><th>Free reality</th><th>Upgrade when…</th></tr></thead>
       <tbody>
         <tr><td class="tool-name">Claude</td><td>Generous daily limit on Sonnet</td><td>You use it daily for work</td></tr>
         <tr><td class="tool-name">Perplexity</td><td>5 Pro searches/day</td><td>You research professionally</td></tr>
@@ -321,81 +202,72 @@
         <tr><td class="tool-name">NeuralWriter</td><td>10K characters/month</td><td>You outgrew the warm-up</td></tr>
       </tbody>
     </table>
-
-    <p class="walls-honest">The honest take: subscribing to AI tools should be a calm decision after using the free tier for a month. Not a panic move because everyone's talking about it.</p>
+    <p class="sub" style="font-style:italic">The honest take: subscribing to AI tools should be a calm decision after using the free tier for a month. Not a panic move because everyone's talking about it.</p>
   </div>
 </section>
 
 <!-- ── ALL-IN-ONE ── -->
-<section class="wcgw-section tinted">
-  <div class="wcgw-section-inner">
-    <span class="wcgw-section-tag">📦 One tool, many jobs</span>
-    <h2 class="wcgw-h2">When one tool can cover most of it.</h2>
-    <p class="wcgw-lead">If you want to learn one tool and stop:</p>
-    <ul style="list-style:none;padding:0;margin:0 0 20px;">
-      <li style="padding:14px 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:15px;line-height:1.7;"><strong>🧠 Claude (Anthropic)</strong> &mdash; strongest single tool for most family and personal use. Conversations + writing + light research + analysis. This is the one the room is built around.</li>
-      <li style="padding:14px 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:15px;line-height:1.7;"><strong>💬 ChatGPT (OpenAI)</strong> &mdash; strong alternative. Image generation built in. Widely known. Free tier exists.</li>
-      <li style="padding:14px 0;font-size:15px;line-height:1.7;"><strong>📊 Copilot (Microsoft 365)</strong> &mdash; bundled with Microsoft 365 if you already pay for Office. Useful for Word/Excel/Outlook work.</li>
+<section class="sect off">
+  <div class="afr-wrap wcgw-narrow">
+    <div class="sect-head"><p class="eyebrow">📦 One tool, many jobs</p><h2 class="h2">When one tool can cover most of it.</h2><p class="sub">If you want to learn one tool and stop:</p></div>
+    <ul class="allin">
+      <li><strong>🧠 Claude (Anthropic)</strong> — strongest single tool for most family and personal use. Conversations + writing + light research + analysis. This is the one the room is built around.</li>
+      <li><strong>💬 ChatGPT (OpenAI)</strong> — strong alternative. Image generation built in. Widely known. Free tier exists.</li>
+      <li><strong>📊 Copilot (Microsoft 365)</strong> — bundled with Microsoft 365 if you already pay for Office. Useful for Word/Excel/Outlook work.</li>
     </ul>
-    <p class="wcgw-lead"><strong>If you only learn one, learn Claude.</strong> It's the one this room is built around. When you outgrow it &mdash; you'll know.</p>
+    <p class="sub"><strong style="color:var(--ejc-text)">If you only learn one, learn Claude.</strong> It's the one this room is built around. When you outgrow it — you'll know.</p>
   </div>
 </section>
 
 <!-- ── CTA ── -->
 <section class="wcgw-cta">
-  <div class="wcgw-cta-inner">
+  <div class="afr-wrap">
     <h3>Now use it well.</h3>
     <p>You have the rules. You have the toolbox. You know which stories not to be in.</p>
-    <div class="wcgw-cta-actions">
-      <a href="mission-7.html" class="btn btn-primary">Practice the skill &rarr;</a>
-      <a href="share-kit.html" class="btn btn-ghost">Bring this to your community &rarr;</a>
+    <div class="btn-row" style="justify-content:center">
+      <a href="mission-7.html" class="btn-primary">Practice the skill →</a>
+      <a href="share-kit.html" class="btn-ghost">Bring this to your community →</a>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities. Built on the belief that technology should amplify every voice &mdash; not just the ones with resources.</p>
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
     <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
-<script>
-document.getElementById('burger').addEventListener('click', function(){
-  document.getElementById('drawer').classList.toggle('open');
-  this.classList.toggle('open');
-});
-</script>
 <script src="config.js"></script>
 <script src="progress.js"></script>
 </body>

@@ -1,0 +1,42 @@
+/* EJC Color System
+   Teal carries the brand. Dark is an accent (footer only), never a field.
+   Orange = caution, Green = proof — used sparingly. */
+:root {
+  /* ---- Base palette ---- */
+  --ejc-teal: #1ABCB0;        /* brand accent */
+  --ejc-teal-dark: #148F86;   /* hover / pressed teal */
+  --ejc-teal-deep: #0D6B64;   /* insight lines, section headings on light */
+  --ejc-teal-pale: #E0F7F5;   /* callout panel fields */
+
+  --ejc-text: #1A2A30;        /* primary text */
+  --ejc-mid: #4A5C64;         /* secondary / body prose */
+  --ejc-light: #8A9BA3;       /* tertiary, meta, hex labels */
+  --ejc-warm: #E8EAEA;        /* hairlines, card borders */
+  --ejc-off: #F9FAFB;         /* off-white surface */
+  --ejc-white: #FFFFFF;
+  --ejc-dark: #0B1215;        /* footer bar ONLY */
+
+  --ejc-orange: #F28C38;      /* caution accent */
+  --ejc-green: #34C78A;       /* proof / success accent */
+
+  /* ---- Semantic aliases ---- */
+  --text-primary: var(--ejc-text);
+  --text-secondary: var(--ejc-mid);
+  --text-tertiary: var(--ejc-light);
+  --text-accent: var(--ejc-teal);
+  --text-insight: var(--ejc-teal-deep);
+  --text-on-dark: var(--ejc-teal);
+
+  --surface-page: var(--ejc-white);
+  --surface-app: var(--ejc-off);
+  --surface-callout: var(--ejc-teal-pale);
+  --surface-footer: var(--ejc-dark);
+
+  --border-hairline: var(--ejc-warm);
+  --border-rule: var(--ejc-teal);
+  --border-accent: var(--ejc-teal);
+
+  --accent-brand: var(--ejc-teal);
+  --accent-caution: var(--ejc-orange);
+  --accent-proof: var(--ejc-green);
+}

@@ -5,443 +5,214 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mission 2: Write a Love Note from Memory — AI Family Room</title>
 <meta name="description" content="Pick a person. Pick a memory. Claude turns it into something they'll keep. 3 minutes. No badge — just heart.">
-<meta name="theme-color" content="#0B1215">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-/* Build Your Superpower orange track pill */
-.track-pill.glow{background:rgba(231,111,81,.14);color:#E76F51;border:1px solid rgba(231,111,81,.3);}
-
-/* Generic mission layout — shared across Phase 4 */
-.mission-hero{background:var(--dark);padding:64px 32px 56px;position:relative;overflow:hidden;}
-.mission-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(231,111,81,.08) 0%,transparent 65%);pointer-events:none;}
-.mission-hero-inner{max-width:720px;margin:0 auto;position:relative;}
-.meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
-.track-pill{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-pill);}
-.num-pill{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:5px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.1);}
-.mission-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;}
-.mission-title .accent{color:#E76F51;}
-.mission-sub{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:24px;max-width:540px;}
-.mission-sub strong{color:var(--white);}
-.rewards{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.rpill{font-size:11px;font-weight:700;padding:5px 13px;border-radius:var(--r-pill);}
-.rxp{background:rgba(245,200,66,.12);color:var(--xp-gold);border:1px solid rgba(245,200,66,.22);}
-.rheart{background:rgba(231,111,81,.12);color:#E76F51;border:1px solid rgba(231,111,81,.22);}
-.rtool{background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
-
-.do-section{background:var(--white);padding:72px 32px;}
-.do-inner{max-width:720px;margin:0 auto;}
-.step-block{margin-bottom:48px;}
-.step-block:last-of-type{margin-bottom:0;}
-.step-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
-.step-circle{width:40px;height:40px;border-radius:50%;background:#E76F51;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--white);flex-shrink:0;}
-.step-label{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;}
-.step-sub{font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:16px;max-width:580px;}
-.prompt-card{background:rgba(231,111,81,.07);border:2px solid rgba(231,111,81,.4);border-radius:var(--r);padding:24px 24px 18px;margin-bottom:14px;}
-.prompt-eyebrow{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C44D2E;display:block;margin-bottom:10px;}
-.prompt-text{font-size:14px;color:var(--text);line-height:1.85;font-style:italic;margin-bottom:16px;}
-.prompt-text strong{font-style:normal;color:#C44D2E;font-weight:700;}
-.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-.copy-btn{display:inline-flex;align-items:center;gap:6px;background:#E76F51;color:var(--white);font-family:var(--font);font-size:12px;font-weight:800;padding:10px 20px;border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;}
-.copy-btn:hover{background:#C44D2E;}
-.copy-btn.copied{background:var(--green-dk);color:var(--white);}
-.open-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#C44D2E;font-family:var(--font);font-size:12px;font-weight:700;padding:10px 20px;border-radius:var(--r-sm);border:1.5px solid #E76F51;text-decoration:none;transition:background .2s,color .2s;}
-.open-btn:hover{background:#E76F51;color:var(--white);}
-.scratch{width:100%;background:var(--off);border:1.5px solid var(--warm);border-radius:var(--r-sm);padding:14px 16px;font-family:var(--font);font-size:13px;color:var(--text);line-height:1.65;resize:vertical;outline:none;min-height:90px;transition:border-color .2s;}
-.scratch:focus{border-color:#E76F51;}
-.scratch::placeholder{color:var(--light);}
-.step-divider{border:none;border-top:1.5px dashed var(--warm);margin:40px 0;}
-.insight-block{background:var(--dark-mid);border-radius:var(--r);padding:24px 26px;margin-top:16px;}
-.insight-ey{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#E76F51;display:block;margin-bottom:8px;}
-.insight-p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;}
-.insight-p strong{color:var(--white);}
-
-.complete-section{background:#E76F51;padding:64px 32px;text-align:center;}
-.complete-inner{max-width:540px;margin:0 auto;}
-.complete-section h2{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;color:var(--white);margin-bottom:10px;line-height:1.1;}
-.complete-section p{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:24px;line-height:1.7;}
-.complete-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:340px;margin:0 auto 20px;background:var(--dark);color:#FFC4B0;font-family:var(--font);font-size:14px;font-weight:800;padding:17px 32px;border-radius:var(--r);border:none;cursor:pointer;transition:background .2s,transform .15s;}
-.complete-btn:hover{background:var(--dark-mid);transform:translateY(-2px);}
-.complete-btn.done{background:var(--green-dk);color:var(--white);pointer-events:none;}
-
-.next-card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(11,18,21,.18);border-radius:var(--r);padding:16px 20px;margin-top:16px;text-decoration:none;transition:background .2s;flex-wrap:wrap;}
-.next-card:hover{background:rgba(11,18,21,.3);}
-.next-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);display:block;margin-bottom:3px;}
-.next-title{font-size:13px;font-weight:800;color:var(--white);}
-
-/* ── SHARE CARD (screenshot moment) ── */
-.share-section{background:var(--dark);padding:56px 24px 64px;display:none;}
-.share-section.show{display:block;}
-.share-inner{max-width:390px;margin:0 auto;}
-.share-card{background:var(--dark);border:1.5px solid rgba(231,111,81,.4);border-radius:24px;padding:36px 28px 28px;position:relative;overflow:hidden;text-align:center;}
-.share-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(231,111,81,.18) 0%,transparent 65%);pointer-events:none;}
-.share-card-content{position:relative;z-index:1;}
-.share-eyebrow{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#E76F51;display:block;margin-bottom:18px;}
-.share-icon{font-size:3rem;display:block;margin:0 auto 14px;}
-.share-headline{font-size:1.5rem;font-weight:900;color:var(--white);line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;}
-.share-headline .accent{color:#E76F51;}
-.share-quote{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;font-style:italic;margin-bottom:20px;max-width:280px;margin-left:auto;margin-right:auto;}
-.share-stat{display:inline-block;background:rgba(231,111,81,.12);border:1px solid rgba(231,111,81,.3);border-radius:var(--r-pill);padding:6px 14px;font-size:11px;font-weight:700;color:#FFC4B0;margin-bottom:18px;}
-.share-brand{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);}
-.share-brand span{color:#E76F51;}
-.share-hint{text-align:center;margin-top:18px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;}
-.share-hint strong{color:rgba(255,255,255,.7);}
-
-@media(max-width:640px){
-  .mission-hero,.do-section,.complete-section,.share-section{padding-left:20px;padding-right:20px;}
-  .prompt-actions{flex-direction:column;align-items:stretch;}
-  .prompt-actions .copy-btn,.prompt-actions .open-btn{justify-content:center;}
-}
-</style>
+<meta name="theme-color" content="#F28C38">
+<link rel="stylesheet" href="afr/site.css">
+<link rel="stylesheet" href="afr/mission.css">
 </head>
-<body>
+<body class="track-build">
 
-<!-- NAV -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!-- ── NAV ── -->
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html" class="active">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
-    <li><a href="progress.html" class="nav-xp" id="nav-xp" style="display:none;">&#9889; 0 &middot; Just Arrived</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join &rarr;</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
-<!-- MISSION HEADER -->
-<section class="mission-hero" role="banner">
-  <style>
-    .mission-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .mission-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .mission-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .mission-hero > *{position:relative;z-index:1}
-    .mission-hero .mission-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .mission-hero .mission-title .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .mission-hero p, .mission-hero .mission-sub{color:#2A2520 !important;opacity:.82}
-    .mission-hero p strong, .mission-hero .mission-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
-    .mission-hero .track-pill, .mission-hero .num-pill{color:#1ABCB0 !important;background:rgba(26,188,176,.08) !important;border:1px solid rgba(26,188,176,.25) !important}
-  </style>
-  <div class="mission-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<!-- ── MISSION HERO ── -->
+<section class="mission-hero">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
     <div class="meta-row">
-      <span class="track-pill glow">&#10024; Build Your Superpower Track</span>
+      <span class="track-pill">✨ Build Your Superpower Track</span>
       <span class="num-pill">Mission 02</span>
     </div>
-    <h1 class="mission-title">
-      Write a love note <span class="accent">from memory.</span>
-    </h1>
-    <p class="mission-sub">
-      Pick a person. Pick a moment. Give Claude two sentences.
-      <strong>You will have something they keep forever in three minutes.</strong>
-    </p>
+    <h1 class="mission-title">Write a love note <span class="accent">from memory.</span></h1>
+    <p class="mission-sub">Pick a person. Pick a moment. Give Claude two sentences. <strong>You'll have something they keep forever in three minutes.</strong></p>
     <div class="rewards">
-      <span class="rpill rxp">&#9889; +50 XP</span>
-      <span class="rpill rheart">&#10084;&#65039; No badge &mdash; just heart</span>
-      <span class="rpill rtool">&#128295; Claude</span>
+      <span class="rpill rxp">⚡ +50 XP</span>
+      <span class="rpill rheart">❤️ No badge — just heart</span>
+      <span class="rpill rtool">🔧 Claude</span>
     </div>
   </div>
 </section>
 
-<!-- THE MISSION — 3 steps -->
+<!-- ── THE MISSION ── -->
 <section class="do-section" aria-labelledby="do-heading">
-  <div class="do-inner">
+  <div class="afr-wrap">
+    <h2 class="do-heading" id="do-heading">Three steps. You're done in <span class="accent">three minutes.</span></h2>
 
-    <h2 class="h2 dark-text" id="do-heading" style="text-align:left;margin-left:0;margin-bottom:36px;">
-      Three steps. You are done in <span style="color:#E76F51;">three minutes.</span>
-    </h2>
-
-    <!-- STEP 1 — Pick the moment -->
+    <!-- STEP 1 -->
     <div class="step-block">
       <div class="step-header">
         <div class="step-circle">1</div>
         <div class="step-label">Pick one moment. Tell Claude in two sentences.</div>
       </div>
-      <p class="step-sub">
-        Not a love story. Not a poem. One memory.
-        The way she stirred the pot. The way he laughed at his own jokes.
-        How she sang you the same song every birthday. Two sentences. Move on.
-      </p>
-
+      <p class="step-sub">Not a love story. Not a poem. One memory. The way she stirred the pot. The way he laughed at his own jokes. How she sang you the same song every birthday. Two sentences. Move on.</p>
       <div class="prompt-card">
-        <span class="prompt-eyebrow">&#9997;&#65039; TRY THIS — COPY AND PASTE IT INTO CLAUDE</span>
-        <p class="prompt-text">
-          <strong>"I want to write a love note to my grandmother for her birthday.
-          The memory I keep coming back to is how she made cornbread every Sunday
-          and let me pour the buttermilk. That smell is still home to me. Help me
-          turn that into something I can give her."</strong>
-        </p>
+        <span class="prompt-eyebrow">✍️ Try this — copy and paste it into Claude</span>
+        <p class="prompt-text"><strong>"I want to write a love note to my grandmother for her birthday. The memory I keep coming back to is how she made cornbread every Sunday and let me pour the buttermilk. That smell is still home to me. Help me turn that into something I can give her."</strong></p>
         <div class="prompt-actions">
-          <button class="copy-btn" data-copy="I want to write a love note to my grandmother for her birthday. The memory I keep coming back to is how she made cornbread every Sunday and let me pour the buttermilk. That smell is still home to me. Help me turn that into something I can give her.">
-            &#128203; Copy This &rarr;
-          </button>
-          <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="open-btn">
-            Open Claude &rarr;
-          </a>
+          <button class="copy-btn" data-copy="I want to write a love note to my grandmother for her birthday. The memory I keep coming back to is how she made cornbread every Sunday and let me pour the buttermilk. That smell is still home to me. Help me turn that into something I can give her.">📋 Copy this →</button>
+          <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="open-btn">Open Claude →</a>
         </div>
       </div>
     </div>
 
     <hr class="step-divider">
 
-    <!-- STEP 2 — Tell it the tone -->
+    <!-- STEP 2 -->
     <div class="step-block">
       <div class="step-header">
         <div class="step-circle">2</div>
-        <div class="step-label">Tell Claude who it is to and how it should feel.</div>
+        <div class="step-label">Tell Claude who it's to and how it should feel.</div>
       </div>
-      <p class="step-sub">
-        Warm? Formal? Funny? Tender? Short enough for a card or long enough for a letter?
-        Claude does not know your family. You do. Tell it.
-      </p>
-
+      <p class="step-sub">Warm? Formal? Funny? Tender? Short enough for a card or long enough for a letter? Claude doesn't know your family. You do. Tell it.</p>
       <div class="prompt-card">
-        <span class="prompt-eyebrow">&#10024; FOLLOW UP IN THE SAME CLAUDE CHAT</span>
-        <p class="prompt-text">
-          <strong>"Make it warm but not flowery. Short enough to fit on a card.
-          Sound like a granddaughter who is grown now but still misses being small in her kitchen."</strong>
-        </p>
+        <span class="prompt-eyebrow">✨ Follow up in the same Claude chat</span>
+        <p class="prompt-text"><strong>"Make it warm but not flowery. Short enough to fit on a card. Sound like a granddaughter who is grown now but still misses being small in her kitchen."</strong></p>
         <div class="prompt-actions">
-          <button class="copy-btn" data-copy="Make it warm but not flowery. Short enough to fit on a card. Sound like a granddaughter who is grown now but still misses being small in her kitchen.">
-            &#128203; Copy This &rarr;
-          </button>
+          <button class="copy-btn" data-copy="Make it warm but not flowery. Short enough to fit on a card. Sound like a granddaughter who is grown now but still misses being small in her kitchen.">📋 Copy this →</button>
         </div>
       </div>
     </div>
 
     <hr class="step-divider">
 
-    <!-- STEP 3 — Ask for 3 versions -->
+    <!-- STEP 3 -->
     <div class="step-block">
       <div class="step-header">
         <div class="step-circle">3</div>
         <div class="step-label">Ask for three versions. Keep the one that hits.</div>
       </div>
-      <p class="step-sub">
-        The first one Claude writes will be good. The second will be different.
-        The third will surprise you. <strong>Pick the one that makes you pause.</strong>
-        Edit it. Send it. Frame it. Put it in a card.
-      </p>
-
-      <div class="prompt-card" style="background:var(--white);border-color:var(--warm);">
-        <span class="prompt-eyebrow" style="color:var(--mid);">FINAL PROMPT TO CLAUDE</span>
-        <p class="prompt-text" style="color:var(--mid);font-size:13px;">
-          <strong>"Give me three short versions &mdash; each with a different tone.
-          One warm, one playful, one quiet."</strong>
-        </p>
-        <textarea class="scratch" id="my-note" placeholder="Paste the version you picked here &mdash; you can come back and re-read it any time."></textarea>
+      <p class="step-sub">The first one Claude writes will be good. The second will be different. The third will surprise you. <strong>Pick the one that makes you pause.</strong> Edit it. Send it. Frame it. Put it in a card.</p>
+      <div class="prompt-card plain">
+        <span class="prompt-eyebrow muted">Final prompt to Claude</span>
+        <p class="prompt-text" style="color:var(--ejc-mid);font-size:13px;"><strong>"Give me three short versions — each with a different tone. One warm, one playful, one quiet."</strong></p>
+        <textarea class="scratch" id="my-note" placeholder="Paste the version you picked here — you can come back and re-read it any time."></textarea>
       </div>
-
       <div class="insight-block">
-        <span class="insight-ey">WHAT JUST HAPPENED</span>
-        <p class="insight-p">
-          You did not ask Claude to write a love note. You gave it
-          <strong>one specific memory</strong> and asked it to translate.
-          That is the real skill &mdash;
-          knowing that the value lives in the detail you already carry,
-          not in the AI. <strong>You already had the love. Claude just helped you find the words.</strong>
-        </p>
+        <span class="insight-ey">What just happened</span>
+        <p class="insight-p">You didn't ask Claude to write a love note. You gave it <strong>one specific memory</strong> and asked it to translate. That's the real skill — knowing the value lives in the detail you already carry, not in the AI. <strong>You already had the love. Claude just helped you find the words.</strong></p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- COMPLETE -->
+<!-- ── COMPLETE ── -->
 <section class="complete-section" aria-labelledby="complete-h">
-  <div class="complete-inner">
+  <div class="afr-wrap">
     <h2 id="complete-h">You wrote it. Now send it.</h2>
-    <p>
-      No badge for this one on purpose. Some things you do for the person, not the points.
-      <strong>You still get +50 XP.</strong>
-    </p>
-
-    <button class="complete-btn" id="complete-btn">
-      &#10084;&#65039; I sent it &mdash; mark complete &rarr;
-    </button>
-
+    <p>No badge for this one on purpose. Some things you do for the person, not the points. <strong>You still get +50 XP.</strong></p>
+    <button class="complete-btn" id="complete-btn">❤️ I sent it — mark complete →</button>
     <a href="mission-5.html" class="next-card">
       <div>
-        <span class="next-label">UP NEXT &mdash; MISSION 05</span>
-        <div class="next-title">Brain Dump to Doc in 60 Seconds &rarr;</div>
+        <span class="next-label">Up next — Mission 05</span>
+        <div class="next-title">Brain Dump to Doc in 60 Seconds →</div>
       </div>
-      <span style="font-size:1.4rem;color:var(--white);">&#8594;</span>
+      <span style="font-size:1.4rem;color:var(--track-ink);">→</span>
     </a>
   </div>
 </section>
 
-<!-- SHARE CARD (appears after complete) -->
+<!-- ── SHARE CARD ── -->
 <section class="share-section" id="share-section">
-  <div class="share-inner">
-    <div class="share-card" id="share-card">
-      <div class="share-card-content">
-        <span class="share-eyebrow">MISSION 02 &middot; AI FAMILY ROOM</span>
-        <span class="share-icon">&#10084;&#65039;</span>
-        <div class="share-headline">
-          I wrote a love note <span class="accent">in 3 minutes.</span>
-        </div>
-        <p class="share-quote">
-          One memory. Two sentences. Claude turned it into something
-          my person will keep forever.
-        </p>
-        <div class="share-stat">&#9889; +50 XP &middot; No badge &mdash; just heart</div>
-        <div class="share-brand">
-          AI Family Room <span>&middot;</span> EdJustice Collective
-        </div>
-      </div>
+  <div class="afr-wrap">
+    <div class="share-card">
+      <span class="share-eyebrow">Mission 02 · AI Family Room</span>
+      <span class="share-icon">❤️</span>
+      <div class="share-headline">I wrote a love note <span class="accent">in 3 minutes.</span></div>
+      <p class="share-quote">One memory. Two sentences. Claude turned it into something my person will keep forever.</p>
+      <div class="share-stat">⚡ +50 XP · No badge — just heart</div>
+      <div class="share-brand">AI Family Room <span>·</span> EdJustice Collective</div>
     </div>
-    <p class="share-hint">
-      <strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG &mdash; or email <strong>chief@theedjusticecollective.com</strong>
-    </p>
+    <p class="share-hint"><strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG — or email <strong>chief@theedjusticecollective.com</strong></p>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities.</p>
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
-    <p class="footer-privacy">We collect only what you choose to share. We never sell your data.
-      Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
+<script>
+  window.AFR_MISSION = {
+    id: 'm2', title: 'Write a Love Note from Memory',
+    badge: null, badgeName: '', xp: 50, badgeXp: 0,
+    trackBonus: { track: 'glow', missions: ['m2', 'm5', 'm6', 'm8'], xp: 150 }
+  };
+</script>
 <script src="config.js"></script>
 <script src="progress.js"></script>
-<script>
-const completeBtn  = document.getElementById('complete-btn');
-const shareSection = document.getElementById('share-section');
-
-// Copy buttons
-document.querySelectorAll('.copy-btn').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var txt = this.getAttribute('data-copy');
-    if(navigator.clipboard) navigator.clipboard.writeText(txt);
-    var orig = this.innerHTML;
-    this.innerHTML = '&#10003; Copied';
-    this.classList.add('copied');
-    var self = this;
-    setTimeout(function(){ self.innerHTML = orig; self.classList.remove('copied'); }, 1800);
-  });
-});
-
-// Check already done
-(function(){
-  try{
-    var s=JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    if((s.missionsCompleted||[]).includes('m2')){
-      completeBtn.innerHTML='&#9989; Mission Complete';
-      completeBtn.classList.add('done');
-      shareSection.classList.add('show');
-    }
-  }catch(e){}
-})();
-
-completeBtn.addEventListener('click', function(){
-  if(this.classList.contains('done')) return;
-  try{
-    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    s.missionsCompleted = s.missionsCompleted||[];
-    s.xp = (s.xp||0) + 50;
-    if(!s.missionsCompleted.includes('m2')) s.missionsCompleted.push('m2');
-    s.lastActive = new Date().toISOString();
-    if(!s.joinedAt) s.joinedAt = new Date().toISOString();
-    localStorage.setItem('afr_v1', JSON.stringify(s));
-
-    if(window.AFR && window.AFR.updateNavXP) window.AFR.updateNavXP();
-    if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
-      type:'mission_complete', missionId:'m2',
-      missionTitle:'Write a Love Note from Memory',
-      badgeEarned:'', xpTotal:s.xp,
-      name:s.name||'', email:s.email||'', installation:s.installation||''
-    });
-
-    this.innerHTML = '&#9989; Mission Complete';
-    this.classList.add('done');
-    shareSection.classList.add('show');
-    setTimeout(function(){
-      shareSection.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 400);
-  }catch(e){ console.warn(e); }
-});
-
-// Mobile nav
-var burger = document.getElementById('burger');
-var drawer = document.getElementById('drawer');
-if(burger && drawer){
-  burger.addEventListener('click', function(){ drawer.classList.toggle('open'); });
-  document.addEventListener('click', function(e){
-    if(!burger.contains(e.target) && !drawer.contains(e.target))
-      drawer.classList.remove('open');
-  });
-}
-</script>
+<script src="afr/mission.js"></script>
 <script src="cta-helper.js" defer></script>
 </body>
 </html>

@@ -5,177 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mission P-1: The Accommodation Translator — AI Family Room</title>
 <meta name="description" content="Take the IEP or 504 jargon. Get plain language. Draft the partnership email that asks for what your kid actually needs. Earn the Translator badge.">
-<meta name="theme-color" content="#0B1215">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-:root{ --rose:#D4736A; --rose-deep:#A85146; }
-
-.mission-hero{background:var(--dark);padding:64px 32px 56px;position:relative;overflow:hidden;}
-.mission-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,115,106,.10) 0%,transparent 65%);pointer-events:none;}
-.mission-hero-inner{max-width:720px;margin:0 auto;position:relative;}
-.meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
-.track-pill{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-pill);background:rgba(212,115,106,.14);color:var(--rose);border:1px solid rgba(212,115,106,.32);}
-.num-pill{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:5px 14px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.1);}
-.mission-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;}
-.mission-title .accent{color:var(--rose);}
-.mission-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:24px;max-width:560px;}
-.mission-sub strong{color:var(--white);}
-.rewards{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.rpill{font-size:11px;font-weight:700;padding:5px 13px;border-radius:var(--r-pill);}
-.rxp{background:rgba(245,200,66,.14);color:#8A6B0F;border:1px solid rgba(245,200,66,.3);}
-.rbadge{background:rgba(212,115,106,.14);color:var(--rose);border:1px solid rgba(212,115,106,.32);}
-.rtool{background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
-
-.do-section{background:var(--white);padding:72px 32px;}
-.do-inner{max-width:720px;margin:0 auto;}
-.step-block{margin-bottom:48px;}
-.step-block:last-of-type{margin-bottom:0;}
-.step-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
-.step-circle{width:40px;height:40px;border-radius:50%;background:var(--rose);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:var(--white);flex-shrink:0;}
-.step-label{font-size:1.05rem;font-weight:800;color:var(--text);line-height:1.25;}
-.step-sub{font-size:14px;color:var(--mid);line-height:1.75;margin-bottom:16px;max-width:600px;}
-
-.prompt-card{background:rgba(212,115,106,.05);border:2px solid rgba(212,115,106,.3);border-radius:var(--r);padding:22px 24px 16px;margin-bottom:12px;}
-.prompt-ey{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep);display:block;margin-bottom:10px;}
-.prompt-text{font-size:14px;color:var(--text);line-height:1.85;font-style:italic;margin-bottom:14px;}
-.prompt-text strong{font-style:normal;color:var(--rose-deep);font-weight:700;}
-.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-.copy-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:var(--white);font-family:var(--font);font-size:13px;font-weight:800;padding:12px 22px;border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;min-height:44px;}
-.copy-btn:hover{background:var(--rose-deep);}
-.copy-btn.copied{background:#1a8b56;color:var(--white);}
-.tool-link{display:inline-flex;align-items:center;gap:6px;color:var(--mid);font-size:12px;font-weight:600;text-decoration:none;padding:10px 16px;border:1px solid rgba(0,0,0,.12);border-radius:var(--r-sm);transition:border-color .2s;min-height:44px;}
-.tool-link:hover{border-color:var(--rose);color:var(--rose-deep);}
-
-.complete-section{background:var(--off);padding:64px 32px;text-align:center;}
-.complete-inner{max-width:580px;margin:0 auto;}
-.complete-section h3{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;color:var(--text);margin-bottom:14px;line-height:1.2;}
-.complete-section p{font-size:15px;color:var(--mid);margin-bottom:28px;line-height:1.7;}
-.complete-btn{background:var(--rose);color:var(--white);font-family:var(--font);font-size:16px;font-weight:800;padding:18px 44px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:background .2s,transform .15s;min-height:56px;}
-.complete-btn:hover{background:var(--rose-deep);transform:translateY(-1px);}
-.complete-btn.done{background:#1a8b56;cursor:default;}
-.tally-wrap{display:none;margin-top:24px;}
-.tally-wrap.show{display:block;}
-
-.share-section{display:none;background:var(--dark);padding:64px 32px;}
-.share-section.show{display:block;}
-.share-inner{max-width:520px;margin:0 auto;text-align:center;}
-.share-card{background:var(--white);border-radius:var(--r-lg);padding:42px 32px;border:3px solid var(--rose);box-shadow:0 18px 42px rgba(0,0,0,.4);}
-.share-eyebrow{font-size:10px;font-weight:800;letter-spacing:.25em;color:var(--rose-deep);}
-.share-icon{font-size:54px;display:block;margin:18px 0;}
-.share-headline{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.18;margin-bottom:14px;}
-.share-headline .accent{color:var(--rose-deep);}
-.share-quote{font-size:14px;color:var(--mid);font-style:italic;line-height:1.65;margin-bottom:20px;}
-.share-stat{font-size:13px;font-weight:800;color:var(--rose-deep);margin-bottom:14px;}
-.share-brand{font-size:11px;color:var(--mid);font-weight:700;letter-spacing:.1em;}
-.share-brand span{margin:0 6px;}
-.share-hint{margin-top:20px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
-.share-hint strong{color:var(--white);}
-
-.badge-overlay{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:999;padding:24px;}
-.badge-overlay.show{display:flex;}
-.badge-modal{background:var(--white);border-radius:var(--r-lg);padding:48px 36px;text-align:center;max-width:380px;width:100%;position:relative;}
-.badge-glow{position:absolute;inset:-12px;border-radius:var(--r-lg);background:radial-gradient(circle,rgba(212,115,106,.4) 0%,transparent 60%);z-index:-1;}
-.badge-icon{font-size:80px;display:block;margin-bottom:12px;}
-.badge-ey{font-size:11px;font-weight:800;letter-spacing:.25em;color:var(--rose-deep);}
-.badge-name{font-size:2rem;font-weight:900;color:var(--text);margin:6px 0 14px;}
-.badge-desc{font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:24px;}
-.badge-dismiss{background:none;border:none;color:var(--mid);font-family:var(--font);font-size:13px;cursor:pointer;text-decoration:underline;margin-top:12px;}
-
-textarea.field{width:100%;background:rgba(212,115,106,.04);border:1px solid rgba(212,115,106,.25);border-radius:var(--r-sm);padding:14px 16px;font-family:var(--font);font-size:14px;color:var(--text);min-height:120px;line-height:1.7;margin-bottom:12px;resize:vertical;}
-textarea.field:focus{outline:none;border-color:var(--rose);}
-</style>
+<meta name="theme-color" content="#D4736A">
+<link rel="stylesheet" href="afr/site.css">
+<link rel="stylesheet" href="afr/mission.css">
 </head>
-<body>
+<body class="track-parent">
 
 <!-- ── NAV ── -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html" class="active">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join the Community →</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community →</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
-<!-- ── HERO ── -->
-<section class="mission-hero" role="banner">
-  <style>
-    .mission-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .mission-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .mission-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .mission-hero > *{position:relative;z-index:1}
-    .mission-hero .mission-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .mission-hero .mission-title .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .mission-hero p, .mission-hero .mission-sub{color:#2A2520 !important;opacity:.82}
-    .mission-hero p strong, .mission-hero .mission-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
-    .mission-hero .track-eyebrow, .mission-hero .mission-eyebrow, .mission-hero .num-pill{color:#1ABCB0 !important;background:rgba(26,188,176,.08) !important;border-color:rgba(26,188,176,.25) !important}
-  </style>
-  <div class="mission-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<!-- ── MISSION HERO ── -->
+<section class="mission-hero">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
     <div class="meta-row">
-      <span class="track-pill">PARENT INTEL TRACK · MISSION P-1</span>
+      <span class="track-pill">🧰 Parent Intel Track · Mission P-1</span>
       <span class="num-pill">~8 min</span>
     </div>
     <h1 class="mission-title">The <span class="accent">Accommodation Translator.</span></h1>
-    <p class="mission-sub">You shouldn&rsquo;t need a law degree to understand your kid&rsquo;s plan. AI translates the dense paragraphs into <strong>"what this means for my Tuesday."</strong> Then helps you write the warm, specific partnership email that gets a response.</p>
+    <p class="mission-sub">You shouldn't need a law degree to understand your kid's plan. AI translates the dense paragraphs into <strong>"what this means for my Tuesday."</strong> Then helps you write the warm, specific partnership email that gets a response.</p>
     <div class="rewards">
-      <span class="rpill rxp">&#9889; +50 XP</span>
-      <span class="rpill rbadge">&#128221; Translator Badge</span>
-      <span class="rpill rtool">&#128295; Claude</span>
+      <span class="rpill rxp">⚡ +50 XP</span>
+      <span class="rpill rbadge">📝 Translator Badge</span>
+      <span class="rpill rtool">🔧 Claude</span>
     </div>
   </div>
 </section>
 
-<!-- ── DO SECTION ── -->
+<!-- ── THE MISSION ── -->
 <section class="do-section">
-  <div class="do-inner">
+  <div class="afr-wrap">
 
-    <!-- PRIVACY PAUSE -->
-    <div style="background:#F7F4ED;border-left:4px solid #1ABCB0;border-radius:8px;padding:22px 24px;margin:0 0 32px 0;color:#2A2520">
-      <div style="font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#1ABCB0;font-weight:700;margin-bottom:8px">A note before you start</div>
-      <p style="font-size:14.5px;line-height:1.65;margin:0">Your child&rsquo;s IEP or 504 is a <strong>FERPA-protected record</strong>. It belongs to your family. The good news: the mission below works from <em>your understanding</em> of the document, not the document itself. The protected plan stays where it belongs &mdash; with you. Claude only needs the words you want translated and a sentence in your own language.</p>
+    <div class="privacy-note">
+      <span class="pn-label">A note before you start</span>
+      <p>Your child's IEP or 504 is a <strong>FERPA-protected record</strong>. It belongs to your family. The good news: the mission below works from <em>your understanding</em> of the document, not the document itself. The protected plan stays where it belongs — with you. Claude only needs the words you want translated and a sentence in your own language.</p>
     </div>
 
     <!-- STEP 1 -->
@@ -184,9 +88,13 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
         <div class="step-circle">1</div>
         <div class="step-label">Sit with the section. Find the words you want translated.</div>
       </div>
-      <p class="step-sub">Open the document on your end &mdash; just you and the paper. Find the <strong>3 hardest words or phrases</strong> in it. Those are what we&rsquo;re translating. Your document stays with you.</p>
-      <a href="https://claude.ai/new" target="_blank" rel="noopener" class="tool-link">&#129502; Open Claude.ai &rarr;</a>
+      <p class="step-sub">Open the document on your end — just you and the paper. Find the <strong>3 hardest words or phrases</strong> in it. Those are what we're translating. Your document stays with you.</p>
+      <div class="prompt-actions">
+        <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="open-btn">🧠 Open Claude.ai →</a>
+      </div>
     </div>
+
+    <hr class="step-divider">
 
     <!-- STEP 2 -->
     <div class="step-block">
@@ -196,20 +104,15 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
       </div>
       <p class="step-sub">Paste this prompt before your section. Replace the part in brackets with the language from your document.</p>
       <div class="prompt-card">
-        <span class="prompt-ey">Copy &amp; paste · then drop your section underneath</span>
-        <p class="prompt-text" id="prompt1">
-          I am a parent. I want to understand my kid&rsquo;s school plan in plain language so I can advocate for what they actually need.<br><br>
-          Please translate the terms and phrases below into:<br>
-          (1) What this means in plain English &mdash; like you&rsquo;re explaining it to a friend.<br>
-          (2) What it should look like on a regular Tuesday at school.<br>
-          (3) What I should ask the school to confirm.<br><br>
-          The terms I&rsquo;m trying to understand are: <strong>[type the specific words or phrases]</strong>. Here&rsquo;s the situation in my own words, no names: <strong>[type 2&ndash;3 sentences about what you&rsquo;ve noticed for your kid]</strong>.
-        </p>
+        <span class="prompt-eyebrow">Copy &amp; paste · then drop your section underneath</span>
+        <p class="prompt-text" id="prompt1">I am a parent. I want to understand my kid's school plan in plain language so I can advocate for what they actually need.<br><br>Please translate the terms and phrases below into:<br>(1) What this means in plain English — like you're explaining it to a friend.<br>(2) What it should look like on a regular Tuesday at school.<br>(3) What I should ask the school to confirm.<br><br>The terms I'm trying to understand are: <strong>[type the specific words or phrases]</strong>. Here's the situation in my own words, no names: <strong>[type 2–3 sentences about what you've noticed for your kid]</strong>.</p>
         <div class="prompt-actions">
-          <button class="copy-btn" id="copy1">&#128203; Copy prompt</button>
+          <button class="copy-btn" id="copy1" data-prompt="prompt1">📋 Copy prompt</button>
         </div>
       </div>
     </div>
+
+    <hr class="step-divider">
 
     <!-- STEP 3 -->
     <div class="step-block">
@@ -219,15 +122,10 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
       </div>
       <p class="step-sub">Now turn the translation into the email. Warm, specific, and partnership-oriented. The teacher or case manager is your partner, not your opponent.</p>
       <div class="prompt-card">
-        <span class="prompt-ey">Copy &amp; paste · uses your translation from step 2</span>
-        <p class="prompt-text" id="prompt2">
-          Based on the translation we just made, please write a short partnership email I can send to the case manager.<br><br>
-          Tone: warm, specific, partnership-oriented. I know they are juggling a lot.<br>
-          Goal: name what I noticed, name what the plan says, ask one specific thing &mdash; what I&rsquo;m hoping for on a regular school day.<br><br>
-          Keep it under 150 words. Sign-off line as &ldquo;a parent.&rdquo; I&rsquo;ll add the real names myself when I&rsquo;m ready to send.
-        </p>
+        <span class="prompt-eyebrow">Copy &amp; paste · uses your translation from step 2</span>
+        <p class="prompt-text" id="prompt2">Based on the translation we just made, please write a short partnership email I can send to the case manager.<br><br>Tone: warm, specific, partnership-oriented. I know they are juggling a lot.<br>Goal: name what I noticed, name what the plan says, ask one specific thing — what I'm hoping for on a regular school day.<br><br>Keep it under 150 words. Sign-off line as "a parent." I'll add the real names myself when I'm ready to send.</p>
         <div class="prompt-actions">
-          <button class="copy-btn" id="copy2">&#128203; Copy prompt</button>
+          <button class="copy-btn" id="copy2" data-prompt="prompt2">📋 Copy prompt</button>
         </div>
       </div>
     </div>
@@ -236,179 +134,105 @@ textarea.field:focus{outline:none;border-color:var(--rose);}
 </section>
 
 <!-- ── COMPLETE ── -->
-<section class="complete-section">
-  <div class="complete-inner">
-    <h3>You translated it. You wrote the email.</h3>
+<section class="complete-section" aria-labelledby="complete-h">
+  <div class="afr-wrap">
+    <h2 id="complete-h">You translated it. You wrote the email.</h2>
     <p>One paragraph of legal language is now something you can act on. Tap below to log the mission and unlock the Translator badge.</p>
-    <button class="complete-btn" id="complete-btn">&#10003; Mark Mission P-1 Complete</button>
+    <button class="complete-btn" id="complete-btn">✓ Mark Mission P-1 Complete</button>
     <div class="tally-wrap" id="tally-wrap">
-      <p style="font-size:13px;color:var(--mid);margin-top:24px;">Saved across devices? <a href="progress.html" style="color:var(--rose-deep);font-weight:700;">Go to My Progress &rarr;</a></p>
+      <p style="margin:0;font-size:13px;color:var(--track-ink);">Saved across devices? <a href="progress.html" style="color:var(--track-ink);font-weight:800;text-decoration:underline;">Go to My Progress →</a></p>
     </div>
   </div>
 </section>
 
 <!-- ── SHARE CARD ── -->
 <section class="share-section" id="share-section">
-  <div class="share-inner">
+  <div class="afr-wrap">
     <div class="share-card">
-      <div class="share-card-content">
-        <span class="share-eyebrow">MISSION P-1 &middot; AI FAMILY ROOM</span>
-        <span class="share-icon">&#128221;</span>
-        <div class="share-headline">I translated the jargon. <span class="accent">I sent the email.</span></div>
-        <p class="share-quote">My kid&rsquo;s plan is no longer a paragraph I have to look up. It&rsquo;s a Tuesday I can ask for.</p>
-        <div class="share-stat">&#9889; +150 XP &middot; &#128221; Translator</div>
-        <div class="share-brand">AI Family Room <span>&middot;</span> EdJustice Collective</div>
-      </div>
+      <span class="share-eyebrow">Mission P-1 · AI Family Room</span>
+      <span class="share-icon">📝</span>
+      <div class="share-headline">I translated the jargon. <span class="accent">I sent the email.</span></div>
+      <p class="share-quote">My kid's plan is no longer a paragraph I have to look up. It's a Tuesday I can ask for.</p>
+      <div class="share-stat">⚡ +150 XP · 📝 Translator</div>
+      <div class="share-brand">AI Family Room <span>·</span> EdJustice Collective</div>
     </div>
-    <p class="share-hint"><strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG &mdash; or email <strong>chief@theedjusticecollective.com</strong></p>
+    <p class="share-hint"><strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG — or email <strong>chief@theedjusticecollective.com</strong></p>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities.</p>
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
     <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
 <!-- ── BADGE MODAL ── -->
 <div class="badge-overlay" id="badge-overlay" role="dialog" aria-label="Badge earned">
   <div class="badge-modal">
     <div class="badge-glow"></div>
-    <span class="badge-icon">&#128221;</span>
-    <span class="badge-ey">Badge Unlocked</span>
+    <span class="badge-icon">📝</span>
+    <span class="badge-ey">Badge unlocked</span>
     <div class="badge-name">Translator</div>
-    <p class="badge-desc">You turned legal language into a Tuesday you can ask for. That is advocacy work.</p>
-    <a href="progress.html" class="btn btn-primary" style="font-size:13px;">See My Progress &rarr;</a>
-    <br>
+    <p class="badge-desc">You turned legal language into a Tuesday you can ask for. That's advocacy work.</p>
+    <a href="progress.html" class="btn-see">See my progress →</a>
     <button class="badge-dismiss" id="badge-dismiss">Keep going</button>
   </div>
 </div>
 
-<script src="config.js"></script>
-<script src="progress.js"></script>
 <script>
-const MISSION_ID = 'p1';
-const BADGE_SLUG = 'translator';
-
-const completeBtn = document.getElementById('complete-btn');
-const tallyWrap   = document.getElementById('tally-wrap');
-const overlay     = document.getElementById('badge-overlay');
-const dismiss     = document.getElementById('badge-dismiss');
-const shareSection= document.getElementById('share-section');
-
-// Copy buttons
-['copy1','copy2'].forEach(function(id){
-  var btn = document.getElementById(id);
-  var pid = id.replace('copy','prompt');
-  btn.addEventListener('click', function(){
-    var txt = document.getElementById(pid).innerText;
-    navigator.clipboard.writeText(txt).then(function(){
-      btn.innerHTML = '&#10003; Copied!';
-      btn.classList.add('copied');
-      setTimeout(function(){ btn.innerHTML = '&#128203; Copy prompt'; btn.classList.remove('copied'); }, 2400);
+  window.AFR_MISSION = {
+    id: 'p1', title: 'The Accommodation Translator',
+    badge: 'translator', badgeName: 'Translator',
+    xp: 50, badgeXp: 100,
+    trackBonus: { track: 'parents', missions: ['p1', 'p2'], xp: 150 }
+  };
+  // Parent prompt-copy buttons copy the prompt element's text (with line breaks).
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.copy-btn[data-prompt]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(this.getAttribute('data-prompt'));
+        if (!el) return;
+        var self = this, orig = this.innerHTML;
+        function done() { self.innerHTML = '✓ Copied!'; self.classList.add('copied'); setTimeout(function () { self.innerHTML = orig; self.classList.remove('copied'); }, 2400); }
+        if (navigator.clipboard) { navigator.clipboard.writeText(el.innerText).then(done).catch(done); } else { done(); }
+      });
     });
   });
-});
-
-// Already done check
-(function(){
-  try{
-    var s=JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    if((s.missionsCompleted||[]).includes(MISSION_ID)){
-      completeBtn.innerHTML='&#9989; Mission Complete';
-      completeBtn.classList.add('done');
-      shareSection.classList.add('show');
-    }
-  }catch(e){}
-})();
-
-completeBtn.addEventListener('click', function(){
-  if(this.classList.contains('done')) return;
-  try{
-    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    s.missionsCompleted = s.missionsCompleted||[];
-    s.badges = s.badges||[];
-    s.tracks = s.tracks||[];
-    s.xp = (s.xp||0) + 50;
-
-    if(!s.missionsCompleted.includes(MISSION_ID)) s.missionsCompleted.push(MISSION_ID);
-
-    var badgeEarned = false;
-    if(!s.badges.includes(BADGE_SLUG)){
-      s.badges.push(BADGE_SLUG);
-      s.xp += 100;
-      badgeEarned = true;
-    }
-
-    // Parent track completion check (P-1 + P-2)
-    if(['p1','p2'].every(function(id){return s.missionsCompleted.includes(id);})){
-      if(!s.tracks.includes('parents')){
-        s.tracks.push('parents');
-        s.xp += 150;
-      }
-    }
-
-    s.lastActive = new Date().toISOString();
-    if(!s.joinedAt) s.joinedAt = new Date().toISOString();
-    localStorage.setItem('afr_v1', JSON.stringify(s));
-
-    if(window.AFR && window.AFR.updateNavXP) window.AFR.updateNavXP();
-    if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
-      type:'mission_complete', missionId:MISSION_ID,
-      missionTitle:'The Accommodation Translator',
-      badgeEarned: badgeEarned ? 'Translator' : '',
-      xpTotal: s.xp, name:s.name||'', email:s.email||'', installation:s.installation||''
-    });
-
-    this.innerHTML = '&#9989; Mission Complete';
-    this.classList.add('done');
-    tallyWrap.classList.add('show');
-    shareSection.classList.add('show');
-    setTimeout(function(){ shareSection.scrollIntoView({behavior:'smooth', block:'start'}); }, 900);
-    if(badgeEarned){ setTimeout(function(){ overlay.classList.add('show'); }, 500); }
-  }catch(e){ console.warn(e); }
-});
-
-dismiss.addEventListener('click',function(){ overlay.classList.remove('show'); });
-overlay.addEventListener('click',function(e){ if(e.target===overlay) overlay.classList.remove('show'); });
-setTimeout(function(){ overlay.classList.remove('show'); }, 12000);
-
-document.getElementById('burger').addEventListener('click', function(){
-  document.getElementById('drawer').classList.toggle('open');
-  this.classList.toggle('open');
-});
 </script>
+<script src="config.js"></script>
+<script src="progress.js"></script>
+<script src="afr/mission.js"></script>
 <script src="cta-helper.js" defer></script>
 </body>
 </html>

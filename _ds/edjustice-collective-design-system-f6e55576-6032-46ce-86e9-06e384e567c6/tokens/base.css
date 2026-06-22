@@ -1,0 +1,109 @@
+/* EJC Base — element defaults + reusable document classes.
+   These mirror the canonical EJC brief/packet patterns so a plain
+   HTML document picks up the house style with no extra CSS. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-primary);
+  background: var(--surface-app);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Left-align is the law — justification is banned. */
+p, li, h1, h2, h3 { text-align: left; text-wrap: pretty; }
+
+/* ---- Eyebrow ---- */
+.ejc-eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-accent);
+  line-height: var(--lh-snug);
+}
+
+/* ---- Document header: light, teal rule, logo top-right ---- */
+.ejc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: var(--rule-header) solid var(--border-rule);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Section heading + teal marker square ---- */
+.ejc-section-h {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-bottom: var(--rule-section) solid var(--border-rule);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.ejc-section-h .ejc-marker {
+  width: 18px; height: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-brand);
+  flex-shrink: 0;
+}
+.ejc-section-h h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-heading);
+  text-transform: uppercase;
+  color: var(--text-insight);
+}
+
+/* ---- Body type ---- */
+.ejc-lead { font-size: var(--fs-lead); line-height: var(--lh-relaxed); color: var(--text-primary); margin-bottom: var(--space-4); }
+.ejc-body { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--text-secondary); margin-bottom: var(--space-3); }
+.ejc-body strong { font-weight: var(--fw-bold); color: var(--text-primary); }
+
+/* ---- Teal-pale callout panel ---- */
+.ejc-panel {
+  background: var(--surface-callout);
+  border-left: 4px solid var(--border-accent);
+  padding: var(--pad-panel);
+  margin: 6px 0 22px;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text-insight);
+  line-height: 1.65;
+}
+
+/* ---- Teal-dot bullets ---- */
+.ejc-bullets { list-style: none; margin: var(--space-1) 0 var(--space-3); padding: 0; }
+.ejc-bullets li {
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--gap-bullet);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-primary);
+}
+.ejc-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 9px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-brand);
+}
+.ejc-bullets li strong { font-weight: var(--fw-bold); }
+
+/* ---- Footer bar (the only dark field) ---- */
+.ejc-foot {
+  background: var(--surface-footer);
+  color: var(--text-on-dark);
+  font-size: 9.5px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-label);
+  text-align: center;
+  padding: 9px;
+}

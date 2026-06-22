@@ -5,784 +5,292 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Progress — AI Family Room</title>
 <meta name="description" content="Your badges, your XP, your level. See everything you have earned in the AI Family Room.">
-<meta name="theme-color" content="#0B1215">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#1ABCB0">
+<link rel="stylesheet" href="afr/site.css">
 <style>
-/* ── PROGRESS PAGE ── */
-.progress-hero {
-  background:var(--dark);padding:64px 32px 56px;
-  position:relative;overflow:hidden;
-}
-.progress-hero::before {
-  content:'';position:absolute;top:-80px;left:50%;
-  transform:translateX(-50%);width:700px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,188,176,.07) 0%,transparent 65%);
-  pointer-events:none;
-}
-.progress-hero-inner{max-width:760px;margin:0 auto;position:relative;}
-.progress-title{font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--white);
-  line-height:1.05;letter-spacing:-.03em;margin-bottom:12px;}
-.progress-title .accent{color:var(--teal);}
-.progress-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75;
-  max-width:480px;margin-bottom:0;}
+  /* prominent cabinet */
+  .cabinet-grid-prominent { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+  .badge-slot.prominent { padding: 24px 16px; }
+  .badge-slot.prominent .b-icon-lg { font-size: 2.6rem; }
 
-/* ── XP CARD ── */
-.xp-section{background:var(--off);padding:56px 32px;}
-.xp-inner{max-width:760px;margin:0 auto;}
+  /* XP card */
+  .xp-card { background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-lg); padding: 30px 30px 26px; box-shadow: var(--shadow-card); }
+  .xp-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .xp-level-name { font-size: 1.6rem; font-weight: 800; color: var(--ejc-text); letter-spacing: -.02em; display: block; margin-bottom: 4px; }
+  .xp-level-sub { font-size: 12px; color: var(--ejc-light); font-weight: 500; }
+  .xp-number { font-size: 2.8rem; font-weight: 900; color: var(--ejc-teal-deep); letter-spacing: -.03em; line-height: 1; text-align: right; }
+  .xp-number span { font-size: 12px; font-weight: 600; color: var(--ejc-light); display: block; text-align: right; margin-top: 4px; letter-spacing: .04em; }
+  .xp-bar-track { background: var(--ejc-warm); border-radius: var(--radius-pill); height: 10px; overflow: hidden; margin-bottom: 10px; }
+  .xp-bar-fill { background: var(--ejc-teal); height: 100%; border-radius: var(--radius-pill); transition: width .9s var(--ease); }
+  .xp-bar-meta { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--ejc-light); font-weight: 600; }
 
-.xp-card{
-  background:var(--dark-mid);border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--r);padding:32px 32px 28px;margin-bottom:32px;
-}
-.xp-top{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;flex-wrap:wrap;margin-bottom:20px;
-}
-.xp-level-display{}
-.xp-level-name{
-  font-size:1.6rem;font-weight:900;color:var(--white);
-  letter-spacing:-.02em;display:block;margin-bottom:4px;
-}
-.xp-level-sub{font-size:12px;color:rgba(255,255,255,.35);font-weight:500;}
-.xp-number{
-  font-size:2.8rem;font-weight:900;color:var(--xp-gold);
-  letter-spacing:-.03em;line-height:1;
-  text-align:right;
-}
-.xp-number span{font-size:13px;font-weight:600;color:rgba(255,255,255,.3);
-  display:block;text-align:right;margin-top:2px;}
+  .level-ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
+  .level-rung { background: var(--ejc-off); border: 1px solid var(--ejc-warm); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .level-rung.current { border-color: var(--ejc-teal); background: var(--ejc-teal-pale); }
+  .level-rung.done { border-color: var(--ejc-teal-edge); }
+  .level-rung-name { font-size: 11px; font-weight: 700; color: var(--ejc-mid); display: block; margin-bottom: 3px; }
+  .level-rung.current .level-rung-name { color: var(--ejc-teal-deep); }
+  .level-rung-xp { font-size: 10px; color: var(--ejc-light); }
 
-.xp-bar-track{
-  background:rgba(255,255,255,.06);border-radius:var(--r-pill);
-  height:10px;overflow:hidden;margin-bottom:10px;
-}
-.xp-bar-fill{
-  background:linear-gradient(90deg,var(--teal),var(--xp-gold));
-  height:100%;border-radius:var(--r-pill);
-  transition:width .9s cubic-bezier(.34,1.56,.64,1);
-}
-.xp-bar-meta{
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:11px;color:rgba(255,255,255,.25);
-}
+  /* mission log */
+  .mission-complete-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .mc-row { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-sm); padding: 14px 18px; }
+  .mc-row.done { border-color: var(--ejc-teal-edge); background: var(--ejc-teal-pale); }
+  .mc-row.pending { opacity: .6; }
+  .mc-check { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+  .mc-row.done .mc-check { background: var(--ejc-teal); color: #fff; }
+  .mc-row.pending .mc-check { background: var(--ejc-warm); color: var(--ejc-light); }
+  .mc-info { flex: 1; }
+  .mc-title { font-size: 13.5px; font-weight: 700; color: var(--ejc-text); margin-bottom: 2px; }
+  .mc-row.pending .mc-title { color: var(--ejc-mid); }
+  .mc-track { font-size: 10px; color: var(--ejc-light); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .mc-xp-tag { font-size: 10px; font-weight: 700; color: var(--ejc-teal-deep); background: var(--ejc-off); border-radius: var(--radius-pill); padding: 3px 10px; flex-shrink: 0; }
+  .mc-start { font-size: 11px; font-weight: 700; color: var(--ejc-teal-deep); text-decoration: none; flex-shrink: 0; }
 
-/* Level ladder */
-.level-ladder{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;
-}
-.level-rung{
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
-  border-radius:var(--r-sm);padding:12px 14px;
-  transition:border-color .2s,background .2s;
-}
-.level-rung.current{
-  border-color:rgba(26,188,176,.4);background:rgba(26,188,176,.07);
-}
-.level-rung.done{
-  border-color:rgba(26,188,176,.2);
-}
-.level-rung-name{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);
-  display:block;margin-bottom:3px;}
-.level-rung.current .level-rung-name{color:var(--teal);}
-.level-rung.done .level-rung-name{color:rgba(26,188,176,.6);}
-.level-rung-xp{font-size:10px;color:rgba(255,255,255,.22);}
+  /* badge cabinet rows */
+  .badge-track-block { margin-bottom: 30px; }
+  .badge-track-block:last-child { margin-bottom: 0; }
+  .badge-track-title { display: block; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ejc-teal-deep); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--ejc-warm); }
+  .badge-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-/* ── MISSIONS COMPLETE ── */
-.missions-section{background:var(--white);padding:56px 32px;}
-.missions-inner{max-width:760px;margin:0 auto;}
+  /* utility cards */
+  .utility-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  .util-card { background: #fff; border: 1px solid var(--ejc-warm); border-radius: var(--radius-md); padding: 26px 24px; box-shadow: var(--shadow-card); }
+  .util-title { font-size: 15px; font-weight: 800; color: var(--ejc-text); margin-bottom: 8px; }
+  .util-desc { font-size: 13px; color: var(--ejc-mid); line-height: 1.65; margin-bottom: 16px; }
+  .util-input { width: 100%; background: var(--ejc-off); border: 1px solid var(--ejc-warm); border-radius: var(--radius-sm); padding: 11px 14px; font-family: var(--font-sans); font-size: 14px; color: var(--ejc-text); outline: none; transition: border-color var(--dur-base) var(--ease); margin-bottom: 12px; }
+  .util-input:focus { border-color: var(--ejc-teal); }
+  .util-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--ejc-teal); color: #fff; font-family: var(--font-sans); font-size: 13px; font-weight: 800; padding: 11px 20px; border-radius: var(--radius-pill); border: none; cursor: pointer; transition: background var(--dur-base) var(--ease); }
+  .util-btn:hover { background: var(--ejc-teal-dark); }
+  .util-btn.ghost { background: transparent; color: var(--ejc-teal-deep); border: 1.5px solid var(--ejc-teal); }
+  .util-btn.ghost:hover { background: var(--ejc-teal); color: #fff; }
+  .util-msg { font-size: 12px; color: var(--ejc-mid); margin-top: 10px; display: none; }
+  .util-msg.show { display: block; }
 
-.mission-complete-list{
-  display:flex;flex-direction:column;gap:10px;margin-top:24px;
-}
-.mc-row{
-  display:flex;align-items:center;gap:14px;
-  background:var(--off);border:1.5px solid var(--warm);
-  border-radius:var(--r-sm);padding:14px 18px;
-  transition:border-color .2s;
-}
-.mc-row.done{
-  border-color:var(--teal);background:var(--teal-pale);
-}
-.mc-row.pending{opacity:.45;}
-.mc-check{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;flex-shrink:0;
-}
-.mc-row.done    .mc-check{background:var(--teal);color:var(--dark);}
-.mc-row.pending .mc-check{background:var(--warm);color:var(--light);}
-.mc-info{flex:1;}
-.mc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
-.mc-row.pending .mc-title{color:var(--light);}
-.mc-track{font-size:10px;color:var(--light);font-weight:600;letter-spacing:.08em;}
-.mc-xp-tag{font-size:10px;font-weight:700;color:var(--xp-gold);
-  background:rgba(245,200,66,.1);border-radius:var(--r-pill);
-  padding:3px 10px;flex-shrink:0;}
+  /* next CTA */
+  .next-section { background: var(--ejc-teal); padding: 56px 0; text-align: center; }
+  .next-section h2 { color: #06322e; }
+  .next-section p { color: #0a3d38; max-width: 520px; margin: 12px auto 0; }
+  .next-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .next-btns .btn-dark { display: inline-flex; align-items: center; gap: 8px; background: var(--ejc-dark); color: var(--ejc-teal); font-weight: 800; font-size: 15px; padding: 16px 30px; border-radius: var(--radius-pill); text-decoration: none; transition: transform var(--dur-fast) var(--ease); }
+  .next-btns .btn-dark:hover { transform: translateY(-2px); }
+  .next-btns .btn-soft { display: inline-flex; align-items: center; gap: 6px; background: rgba(11,18,21,.12); color: #06322e; font-weight: 700; font-size: 15px; padding: 16px 26px; border-radius: var(--radius-pill); text-decoration: none; }
 
-/* ── BADGE CABINET ── */
-.badge-section{background:var(--dark);padding:56px 32px;}
-.badge-inner{max-width:760px;margin:0 auto;}
-
-.badge-track-block{margin-bottom:36px;}
-.badge-track-block:last-child{margin-bottom:0;}
-.badge-track-title{
-  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  display:block;margin-bottom:14px;padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.badge-track-title.f{color:var(--teal);}
-.badge-track-title.g{color:var(--orange);}
-.badge-track-title.m{color:var(--purple);}
-
-.badge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-
-.badge-slot{
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
-  border-radius:var(--r);padding:20px 16px;text-align:center;
-  transition:border-color .2s,background .2s;
-}
-.badge-slot.earned{
-  border-color:rgba(26,188,176,.3);background:rgba(26,188,176,.06);
-}
-.badge-slot.earned:hover{border-color:rgba(26,188,176,.55);}
-.b-icon-lg{font-size:2.2rem;display:block;margin:0 auto 10px;}
-.badge-slot.locked .b-icon-lg{filter:grayscale(1);opacity:.3;}
-.b-name{font-size:12px;font-weight:700;color:var(--white);
-  margin-bottom:4px;line-height:1.3;}
-.badge-slot.locked .b-name{color:rgba(255,255,255,.22);}
-.b-hint-text{font-size:10px;color:rgba(255,255,255,.22);line-height:1.5;}
-.badge-slot.earned .b-hint-text{color:rgba(26,188,176,.6);}
-
-/* ── SHARE + RECOVERY ── */
-.utility-section{background:var(--off);padding:56px 32px;}
-.utility-inner{max-width:760px;margin:0 auto;display:grid;
-  grid-template-columns:1fr 1fr;gap:24px;}
-
-.util-card{
-  background:var(--white);border:1.5px solid var(--warm);
-  border-radius:var(--r);padding:24px 22px;
-}
-.util-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px;}
-.util-desc{font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:16px;}
-.util-input{
-  width:100%;background:var(--off);border:1.5px solid var(--warm);
-  border-radius:var(--r-sm);padding:10px 13px;font-family:var(--font);
-  font-size:13px;color:var(--text);outline:none;transition:border-color .2s;
-  margin-bottom:10px;
-}
-.util-input:focus{border-color:var(--teal);}
-.util-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--teal);color:var(--dark);font-family:var(--font);
-  font-size:12px;font-weight:800;padding:9px 18px;
-  border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;
-}
-.util-btn:hover{background:var(--teal-dark);}
-.util-btn.ghost{background:transparent;color:var(--teal);
-  border:1.5px solid var(--teal);}
-.util-btn.ghost:hover{background:var(--teal);color:var(--dark);}
-.util-msg{font-size:11px;color:var(--mid);margin-top:8px;
-  display:none;font-style:italic;}
-.util-msg.show{display:block;}
-
-/* ── NEXT STEPS ── */
-.next-section{background:var(--teal);padding:56px 32px;text-align:center;}
-.next-inner{max-width:580px;margin:0 auto;}
-.next-section h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;
-  color:var(--dark);margin-bottom:10px;line-height:1.1;}
-.next-section p{font-size:14px;color:rgba(11,18,21,.6);margin-bottom:24px;line-height:1.7;}
-.next-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-
-@media(max-width:640px){
-  .level-ladder{grid-template-columns:repeat(2,1fr);}
-  .badge-row{grid-template-columns:repeat(2,1fr);}
-  .utility-inner{grid-template-columns:1fr;}
-  .progress-hero,.xp-section,.missions-section,
-  .badge-section,.utility-section,.next-section{padding-left:20px;padding-right:20px;}
-  .xp-top{flex-direction:column;align-items:flex-start;}
-  .xp-number{text-align:left;}
-}
+  @media (max-width: 720px) {
+    .cabinet-grid-prominent { grid-template-columns: repeat(3, 1fr); }
+    .utility-grid { grid-template-columns: 1fr; }
+    .xp-number { text-align: left; }
+  }
+  @media (max-width: 520px) {
+    .cabinet-grid-prominent { grid-template-columns: repeat(2, 1fr); }
+    .level-ladder { grid-template-columns: repeat(2, 1fr); }
+    .badge-row { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!-- ── NAV ── -->
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
-    <li><a href="progress.html" class="active nav-xp" id="nav-xp" style="display:inline-flex;">&#9889; My Progress</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join &rarr;</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
-<!-- HERO -->
-<section class="progress-hero" role="banner">
-  <style>
-    .progress-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .progress-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .progress-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .progress-hero > *{position:relative;z-index:1}
-    .progress-hero .eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important}
-    .progress-hero .progress-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .progress-hero .progress-title .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .progress-hero p, .progress-hero .progress-sub{color:#2A2520 !important;opacity:.82}
-    .progress-hero p strong, .progress-hero .progress-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
-  </style>
-  <div class="progress-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<!-- ── HERO ── -->
+<header class="sect" style="padding:64px 0 48px">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
-    <span class="eyebrow fade-up d1">MY PROGRESS</span>
-    <h1 class="progress-title fade-up d2">
-      Everything you have<br>
-      <span class="accent">earned so far.</span>
-    </h1>
-    <p class="progress-sub fade-up d3">
-      Your badges, your XP, your level.
-      Every mission you complete lives here.
-    </p>
+    <p class="eyebrow">My progress</p>
+    <h1 class="h1">Everything you've <span class="accent">earned so far.</span></h1>
+    <p class="lead">Your badges, your XP, your level. Every mission you complete lives here.</p>
+  </div>
+</header>
+
+<!-- ── PROMINENT CABINET ── -->
+<section class="sect off" aria-labelledby="cabinet-top-h">
+  <div class="afr-wrap">
+    <p class="eyebrow">Your cabinet</p>
+    <h2 class="h2" id="cabinet-top-h">Your badges.</h2>
+    <p class="sub">Earned badges rise to the top. Locked ones show the next thing to unlock.</p>
+    <div class="cabinet-grid-prominent" id="top-cabinet"></div>
   </div>
 </section>
 
-<!-- TOP BADGE CABINET (prominent — what you have earned) -->
-<section class="cabinet-top" aria-labelledby="cabinet-top-h">
-  <div class="cabinet-top-inner">
-    <h2 id="cabinet-top-h">Your badges.</h2>
-    <p class="cabinet-sub">Hover or tap any badge for its mission. Locked ones show the next unlock.</p>
-    <div class="cabinet-grid-prominent" id="top-cabinet"><!-- JS --></div>
-  </div>
-</section>
-
-<!-- XP + LEVEL -->
-<section class="xp-section" aria-labelledby="xp-h">
-  <div class="xp-inner">
-    <span class="section-label">YOUR LEVEL</span>
-    <h2 class="h2 dark-text" id="xp-h" style="text-align:left;margin-left:0;margin-bottom:24px;">
-      Where you are right now.
-    </h2>
-
-    <div class="xp-card">
+<!-- ── XP + LEVEL ── -->
+<section class="sect" aria-labelledby="xp-h">
+  <div class="afr-wrap">
+    <p class="eyebrow">Your level</p>
+    <h2 class="h2" id="xp-h">Where you are right now.</h2>
+    <div class="xp-card" style="margin-top:24px">
       <div class="xp-top">
-        <div class="xp-level-display">
+        <div>
           <span class="xp-level-name" id="xp-level-name">Just Arrived</span>
           <span class="xp-level-sub" id="xp-level-sub">Complete missions to level up</span>
         </div>
-        <div class="xp-number" id="xp-number">
-          0 <span>XP earned</span>
-        </div>
+        <div class="xp-number" id="xp-number">0 <span>XP earned</span></div>
       </div>
-      <div class="xp-bar-track">
-        <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div>
-      </div>
+      <div class="xp-bar-track"><div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div></div>
       <div class="xp-bar-meta">
         <span id="xp-bar-left">Start a mission to earn XP</span>
         <span id="xp-bar-right"></span>
       </div>
+      <div class="level-ladder" id="level-ladder"></div>
+    </div>
+  </div>
+</section>
 
-      <!-- Level ladder -->
-      <div class="level-ladder" id="level-ladder">
-        <!-- Rendered by JS -->
+<!-- ── MISSION LOG ── -->
+<section class="sect off" aria-labelledby="missions-h">
+  <div class="afr-wrap">
+    <p class="eyebrow">Mission log</p>
+    <h2 class="h2" id="missions-h">What you've built.</h2>
+    <p class="sub">Every mission creates something real — an email, a prompt, a plan. The checkmarks are yours.</p>
+    <div class="mission-complete-list" id="mission-list"></div>
+  </div>
+</section>
+
+<!-- ── BADGE CABINET (by track) ── -->
+<section class="sect" aria-labelledby="badges-h">
+  <div class="afr-wrap">
+    <p class="eyebrow">Badge cabinet</p>
+    <h2 class="h2" id="badges-h"><span id="badge-count">0</span> of 12 badges earned.</h2>
+    <p class="sub" style="margin-bottom:36px">Earn a badge by completing each mission. Complete a full track for a 150 XP bonus.</p>
+
+    <div class="badge-track-block">
+      <span class="badge-track-title">🌱 Foundations Track</span>
+      <div class="badge-row" id="badges-foundations"></div>
+    </div>
+    <div class="badge-track-block">
+      <span class="badge-track-title" style="color:var(--ejc-orange)">✨ Build Your Superpower Track</span>
+      <div class="badge-row" id="badges-glow"></div>
+    </div>
+    <div class="badge-track-block">
+      <span class="badge-track-title" style="color:#5A4080">🎖️ Mil-Spouse Intel Track</span>
+      <div class="badge-row" id="badges-milspouse"></div>
+    </div>
+    <div class="badge-track-block">
+      <span class="badge-track-title" style="color:#A85146">🦋 Parent Intel Track</span>
+      <div class="badge-row" id="badges-parents"></div>
+    </div>
+    <div class="badge-track-block">
+      <span class="badge-track-title" style="color:#1E3A5F">⭐ The Next Mission Track</span>
+      <div class="badge-row" id="badges-next-mission"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SHARE + RECOVERY ── -->
+<section class="sect off" aria-labelledby="util-h">
+  <div class="afr-wrap">
+    <p class="eyebrow">Keep it with you</p>
+    <h2 class="h2" id="util-h">Share it, or move it to another device.</h2>
+    <div class="utility-grid">
+      <div class="util-card">
+        <div class="util-title">🔗 Share your progress</div>
+        <p class="util-desc">Copy a shareable summary of your badges and level to send or post anywhere.</p>
+        <button class="util-btn" id="share-btn">Copy my progress →</button>
+        <p class="util-msg" id="share-msg">✓ Copied to clipboard</p>
+      </div>
+      <div class="util-card">
+        <div class="util-title">📱 Recover on another device</div>
+        <p class="util-desc">Enter the email you used when you completed missions to restore your badges on a new device. Works for anyone who joined the community or completed a mission while signed in.</p>
+        <input type="email" class="util-input" id="recovery-email" placeholder="Your email address…">
+        <button class="util-btn ghost" id="recovery-btn">Look up my progress</button>
+        <p class="util-msg" id="recovery-msg"></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MISSIONS COMPLETED -->
-<section class="missions-section" aria-labelledby="missions-h">
-  <div class="missions-inner">
-    <span class="section-label">MISSION LOG</span>
-    <h2 class="h2 dark-text" id="missions-h"
-        style="text-align:left;margin-left:0;margin-bottom:8px;">
-      What you have built.
-    </h2>
-    <p style="font-size:14px;color:var(--mid);line-height:1.75;
-              margin-bottom:0;max-width:520px;">
-      Every mission creates something real — an email, a prompt, a plan.
-      The checkmarks are yours.
-    </p>
-
-    <div class="mission-complete-list" id="mission-list">
-      <!-- Rendered by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- BADGE CABINET -->
-<section class="badge-section" aria-labelledby="badges-h">
-  <div class="badge-inner">
-    <span class="section-label">BADGE CABINET</span>
-    <h2 class="h2 white-text" id="badges-h"
-        style="text-align:left;margin-left:0;margin-bottom:8px;">
-      <span id="badge-count">0</span> of 9 badges earned.
-    </h2>
-    <p style="font-size:13px;color:rgba(255,255,255,.38);
-              margin-bottom:36px;max-width:480px;line-height:1.7;">
-      Earn a badge by completing each mission.
-      Complete a full track for a 150 XP bonus.
-    </p>
-
-    <!-- Foundations -->
-    <div class="badge-track-block">
-      <span class="badge-track-title f">&#127807; Foundations Track</span>
-      <div class="badge-row" id="badges-foundations"><!-- JS --></div>
-    </div>
-
-    <!-- Build Your Superpower -->
-    <div class="badge-track-block">
-      <span class="badge-track-title g">&#10024; Build Your Superpower Track</span>
-      <div class="badge-row" id="badges-glow"><!-- JS --></div>
-    </div>
-
-    <!-- Mil-Spouse -->
-    <div class="badge-track-block">
-      <span class="badge-track-title m">&#127894; Mil-Spouse Intel Track</span>
-      <div class="badge-row" id="badges-milspouse"><!-- JS --></div>
-    </div>
-
-        <!-- Parent Intel -->
-    <div class="badge-track-block">
-      <span class="badge-track-title p" style="color:#D4736A;">&#129422; Parent Intel Track</span>
-      <div class="badge-row" id="badges-parents"><!-- JS --></div>
-    </div>
-
-    <!-- The Next Mission -->
-    <div class="badge-track-block">
-      <span class="badge-track-title n" style="color:#5A7BAB;">&#11088; The Next Mission Track</span>
-      <div class="badge-row" id="badges-next-mission"><!-- JS --></div>
-    </div>
-  </div>
-</section>
-
-<!-- SHARE + RECOVERY -->
-<section class="utility-section" aria-labelledby="util-h">
-  <div class="utility-inner">
-
-    <!-- Share progress -->
-    <div class="util-card">
-      <div class="util-title">&#128279; Share Your Progress</div>
-      <p class="util-desc">
-        Copy a shareable summary of your badges and level to send or post anywhere.
-      </p>
-      <button class="util-btn" id="share-btn">
-        Copy My Progress &rarr;
-      </button>
-      <p class="util-msg" id="share-msg">&#10003; Copied to clipboard</p>
-    </div>
-
-    <!-- Cross-device recovery -->
-    <div class="util-card">
-      <div class="util-title">&#128241; Recover on Another Device</div>
-      <p class="util-desc">
-        Enter the email you used when you completed missions to restore
-        your badges on a new device. Works for anyone who joined the community
-        or completed a mission while signed in.
-      </p>
-      <input type="email" class="util-input" id="recovery-email"
-        placeholder="Your email address&hellip;" />
-      <button class="util-btn ghost" id="recovery-btn">
-        Look Up My Progress
-      </button>
-      <p class="util-msg" id="recovery-msg"></p>
-    </div>
-
-  </div>
-</section>
-
-<!-- NEXT STEPS -->
-<section class="next-section" aria-labelledby="next-h">
-  <div class="next-inner">
-    <h2 id="next-h">Keep going.</h2>
-    <p>
-      Every mission you complete makes the next one easier.
-      Pick up where you left off or explore a new track.
-    </p>
+<!-- ── NEXT ── -->
+<section class="next-section">
+  <div class="afr-wrap">
+    <h2 class="h2">Keep going.</h2>
+    <p>Every mission you complete makes the next one easier. Pick up where you left off or explore a new track.</p>
     <div class="next-btns">
-      <a href="missions.html" class="btn btn-primary"
-         style="background:var(--dark);color:var(--teal);">
-        Back to Mission Map &rarr;
-      </a>
-      <a href="milspouse.html"
-         style="display:inline-flex;align-items:center;gap:6px;
-                background:rgba(11,18,21,.15);color:var(--dark);font-family:var(--font);
-                font-size:14px;font-weight:700;padding:17px 28px;
-                border-radius:var(--r);text-decoration:none;transition:background .2s;">
-        Mil-Spouse Intel &rarr;
-      </a>
+      <a href="missions.html" class="btn-dark">Back to mission map →</a>
+      <a href="milspouse.html" class="btn-soft">Mil-Spouse Intel →</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities.</p>
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
-    <p class="footer-privacy">We collect only what you choose to share. We never sell your data.
-      Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
 <script src="config.js"></script>
 <script src="progress.js"></script>
-<script>
-/* ── PROGRESS PAGE ── */
-
-var LEVELS = [
-  {min:0,   name:'Just Arrived',         sub:'Complete your first mission to begin'},
-  {min:100,  name:'Getting Settled',      sub:'You are finding your footing'},
-  {min:300,  name:'Finding Your People',  sub:'The skills are starting to stack'},
-  {min:600,  name:'Running Things',       sub:'You know what you are doing'},
-  {min:1000, name:'Community Anchor',     sub:'People come to you for this stuff'},
-  {min:1500, name:'Fully Loaded',         sub:'Maximum level. You built this.'},
-];
-
-var ALL_MISSIONS = [
-  {id:'m7',  title:'Weak vs. Strong Prompts',          track:'Foundations',    xp:50,  badge:'first-spark',     url:'mission-7.html'},
-  {id:'m1',  title:'Turn a Thought into a Message',    track:'Foundations',    xp:50,  badge:'voice-activated', url:'mission-1.html'},
-  {id:'m3',  title:'Teach Claude Who You Are',         track:'Foundations',    xp:50,  badge:'prompt-builder',  url:'mission-3.html'},
-  {id:'m2',  title:'Write a Love Note from Memory',    track:'Build Your Superpower',        xp:50,  badge:null,              url:'mission-2.html'},
-  {id:'m5',  title:'Brain Dump to Doc in 60 Seconds',  track:'Build Your Superpower',        xp:50,  badge:'page-turner',     url:'mission-5.html'},
-  {id:'m6',  title:'Family Stories into a Deck',       track:'Build Your Superpower',        xp:50,  badge:'story-keeper',    url:'mission-6.html'},
-  {id:'m8',  title:'Follow-Up Superpower',             track:'Build Your Superpower',        xp:50,  badge:'follow-up-queen', url:'mission-8.html'},
-  {id:'ms1', title:'The PCS Survival Kit',             track:'Mil-Spouse',     xp:50,  badge:'pcs-ready',       url:'milspouse.html#pcs'},
-  {id:'ms2', title:'Career Gap Translator',            track:'Mil-Spouse',     xp:50,  badge:'career-unlocked', url:'milspouse.html#career'},
-  {id:'ms3', title:'The Free Access File',             track:'Mil-Spouse',     xp:50,  badge:'base-explorer',   url:'milspouse.html#parks'},
-];
-
-var BADGES = {
-  'first-spark':     {name:'First Spark',     icon:'&#127807;', track:'f', desc:'You saw the difference between vague and strong.'},
-  'voice-activated': {name:'Voice Activated', icon:'&#128172;', track:'f', desc:'You turned a thought into a message that actually works.'},
-  'prompt-builder':  {name:'Prompt Builder',  icon:'&#9999;&#65039;', track:'f', desc:'You taught Claude who you are. Now it works for you.'},
-  'page-turner':     {name:'Page Turner',     icon:'&#128196;', track:'g', desc:'Brain dump to finished document. In under 60 seconds.'},
-  'story-keeper':    {name:'Story Keeper',    icon:'&#127908;', track:'g', desc:'You preserved something that matters.'},
-  'follow-up-queen': {name:'Follow-Up Queen', icon:'&#128257;', track:'g', desc:'The second prompt is where the real magic happens.'},
-  'pcs-ready':       {name:'PCS Ready',       icon:'&#128230;', track:'m', desc:'Orders came. You had a plan.'},
-  'career-unlocked': {name:'Career Unlocked', icon:'&#128188;', track:'m', desc:'Every move was a skill. AI helped you prove it.'},
-  'base-explorer':   {name:'Base Explorer',   icon:'&#127957;', track:'m', desc:'You found the good stuff. Now go use it.'},
-};
-
-function getState(){
-  try{ return JSON.parse(localStorage.getItem('afr_v1')||'{}'); }
-  catch(e){ return {}; }
-}
-
-function getLevel(xp){
-  var l=LEVELS[0];
-  for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i].min) l=LEVELS[i]; }
-  return l;
-}
-
-function levelProgress(xp){
-  var lv=getLevel(xp), idx=LEVELS.indexOf(lv);
-  if(idx>=LEVELS.length-1) return 100;
-  var next=LEVELS[idx+1];
-  return Math.min(100,Math.round(((xp-lv.min)/(next.min-lv.min))*100));
-}
-
-function xpToNext(xp){
-  var lv=getLevel(xp), idx=LEVELS.indexOf(lv);
-  if(idx>=LEVELS.length-1) return 0;
-  return LEVELS[idx+1].min - xp;
-}
-
-// ── Render XP card ──────────────────────────────────────────
-function renderXP(state){
-  var xp  = state.xp || 0;
-  var lv  = getLevel(xp);
-  var pct = levelProgress(xp);
-  var nxt = xpToNext(xp);
-
-  document.getElementById('xp-level-name').textContent = lv.name;
-  document.getElementById('xp-level-sub').textContent  = lv.sub;
-  document.getElementById('xp-number').innerHTML       = xp + ' <span>XP earned</span>';
-  document.getElementById('xp-bar-fill').style.width   = pct + '%';
-  document.getElementById('xp-bar-left').textContent   =
-    nxt > 0 ? nxt + ' XP to next level' : 'Maximum level reached!';
-  document.getElementById('xp-bar-right').textContent  = pct + '%';
-
-  // Level ladder
-  var ladder = document.getElementById('level-ladder');
-  var lhtml = '';
-  LEVELS.forEach(function(level){
-    var cls = xp >= level.min
-      ? (getLevel(xp).name === level.name ? 'level-rung current' : 'level-rung done')
-      : 'level-rung';
-    lhtml += '<div class="'+cls+'"><span class="level-rung-name">'+level.name+'</span>';
-    lhtml += '<span class="level-rung-xp">'+level.min+' XP</span></div>';
-  });
-  ladder.innerHTML = lhtml;
-
-  // Nav XP
-  var navEl = document.getElementById('nav-xp');
-  if(navEl){
-    navEl.style.display = 'inline-flex';
-    navEl.innerHTML = '&#9889; ' + xp + ' &middot; ' + lv.name;
-  }
-}
-
-// ── Render mission list ─────────────────────────────────────
-function renderMissions(state){
-  var completed = state.missionsCompleted || [];
-  var list = document.getElementById('mission-list');
-  var html = '';
-  ALL_MISSIONS.forEach(function(m){
-    var done = completed.includes(m.id);
-    html += '<div class="mc-row '+(done?'done':'pending')+'">';
-    html += '<div class="mc-check">'+(done?'&#10003;':'&#8212;')+'</div>';
-    html += '<div class="mc-info">';
-    html += '<div class="mc-title">'+m.title+'</div>';
-    html += '<div class="mc-track">'+m.track+' Track</div>';
-    html += '</div>';
-    if(done) html += '<span class="mc-xp-tag">+'+m.xp+' XP</span>';
-    else html += '<a href="'+m.url+'" style="font-size:11px;font-weight:700;color:var(--teal);text-decoration:none;">Start &rarr;</a>';
-    html += '</div>';
-  });
-  list.innerHTML = html;
-}
-
-// ── Render badge cabinet ────────────────────────────────────
-function renderBadges(state){
-  var earned = state.badges || [];
-  document.getElementById('badge-count').textContent = earned.length;
-
-  var tracks = {
-    f: document.getElementById('badges-foundations'),
-    g: document.getElementById('badges-glow'),
-    m: document.getElementById('badges-milspouse'),
-    n: document.getElementById('badges-next-mission'),
-    p: document.getElementById('badges-parents'),
-  };
-
-  Object.keys(tracks).forEach(function(track){
-    var html = '';
-    Object.keys(BADGES).forEach(function(slug){
-      var b = BADGES[slug];
-      if(b.track !== track) return;
-      var isEarned = earned.includes(slug);
-      html += '<div class="badge-slot '+(isEarned?'earned':'locked')+'">';
-      html += '<span class="b-icon-lg">'+b.icon+'</span>';
-      html += '<div class="b-name">'+b.name+'</div>';
-      html += '<div class="b-hint-text">'+(isEarned ? '&#10003; Earned' : b.desc)+'</div>';
-      html += '</div>';
-    });
-    tracks[track].innerHTML = html;
-  });
-}
-
-// ── Share progress ──────────────────────────────────────────
-document.getElementById('share-btn').addEventListener('click', function(){
-  var state   = getState();
-  var xp      = state.xp || 0;
-  var lv      = getLevel(xp);
-  var badges  = state.badges || [];
-  var missions= state.missionsCompleted || [];
-
-  var text =
-    'AI Family Room — My Progress\n\n' +
-    'Level: ' + lv.name + ' (' + xp + ' XP)\n' +
-    'Missions complete: ' + missions.length + ' of 12\n' +
-    'Badges earned: ' + badges.length + ' of 12\n\n' +
-    'Built with EdJustice Collective\n' +
-    'https://aifamilyroom.com/';
-
-  navigator.clipboard.writeText(text).then(function(){
-    var msg = document.getElementById('share-msg');
-    msg.classList.add('show');
-    setTimeout(function(){ msg.classList.remove('show'); }, 3000);
-  }).catch(function(){});
-});
-
-// ── Cross-device recovery ──────────────────────────────────
-document.getElementById('recovery-btn').addEventListener('click', function(){
-  var emailInput = document.getElementById('recovery-email');
-  var msg = document.getElementById('recovery-msg');
-  var btn = this;
-  var email = (emailInput.value || '').trim().toLowerCase();
-
-  if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)){
-    msg.textContent = 'Please enter a valid email address.';
-    msg.style.color = '#C44D2E';
-    msg.classList.add('show');
-    return;
-  }
-
-  var cfg = window.AFR_CONFIG || {};
-  if(!cfg.scriptUrl){
-    msg.textContent = 'Recovery service is not configured yet. Try again later.';
-    msg.style.color = '#C44D2E';
-    msg.classList.add('show');
-    return;
-  }
-
-  // Loading state
-  btn.disabled = true;
-  var origText = btn.innerHTML;
-  btn.innerHTML = 'Looking up&hellip;';
-  msg.textContent = '';
-  msg.classList.remove('show');
-
-  fetch(cfg.scriptUrl, {
-    method: 'POST',
-    headers: {'Content-Type': 'text/plain;charset=utf-8'},
-    body: JSON.stringify({
-      token: cfg.token || '',
-      type: 'recover',
-      email: email
-    })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    btn.disabled = false;
-    btn.innerHTML = origText;
-
-    if(!data || !data.ok){
-      msg.textContent = 'No saved progress found for that email. Start a mission to begin.';
-      msg.style.color = '#8A6B0F';
-      msg.classList.add('show');
-      return;
-    }
-
-    var missionCount = (data.missions || []).length;
-    var badgeCount   = (data.badges   || []).length;
-
-    if(missionCount === 0 && badgeCount === 0){
-      msg.textContent = 'No saved progress found for that email. Start a mission to begin.';
-      msg.style.color = '#8A6B0F';
-      msg.classList.add('show');
-      return;
-    }
-
-    // Merge into localStorage
-    var s = {};
-    try { s = JSON.parse(localStorage.getItem('afr_v1') || '{}'); } catch(e){}
-    s.email = email;
-    s.name  = data.name || s.name || '';
-    s.xp    = Math.max(s.xp || 0, data.xp || 0);
-    s.missionsCompleted = Array.from(new Set([].concat(s.missionsCompleted || [], data.missions || [])));
-    s.badges = Array.from(new Set([].concat(s.badges || [], data.badges || [])));
-    s.tracks = s.tracks || [];
-
-    // Recalculate track completion based on merged missions
-    if(['m7','m1','m3'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
-      if(s.tracks.indexOf('foundations') === -1) s.tracks.push('foundations');
-    }
-    if(['m2','m5','m6','m8'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
-      if(s.tracks.indexOf('glow') === -1) s.tracks.push('glow');
-    }
-    if(['ms1','ms2','ms3'].every(function(id){ return s.missionsCompleted.indexOf(id) > -1; })){
-      if(s.tracks.indexOf('milspouse') === -1) s.tracks.push('milspouse');
-    }
-
-    s.lastActive = new Date().toISOString();
-    if(!s.joinedAt) s.joinedAt = data.lastActive || new Date().toISOString();
-    localStorage.setItem('afr_v1', JSON.stringify(s));
-
-    msg.innerHTML = '&#10003; Welcome back! Restored <strong>' +
-      missionCount + ' mission' + (missionCount === 1 ? '' : 's') +
-      '</strong> and <strong>' + badgeCount + ' badge' +
-      (badgeCount === 1 ? '' : 's') + '</strong>. Refreshing&hellip;';
-    msg.style.color = 'var(--teal-deep, #0E7D74)';
-    msg.classList.add('show');
-
-    setTimeout(function(){ location.reload(); }, 1800);
-  })
-  .catch(function(err){
-    btn.disabled = false;
-    btn.innerHTML = origText;
-    msg.textContent = 'Something went wrong. Please try again in a moment.';
-    msg.style.color = '#C44D2E';
-    msg.classList.add('show');
-    console.warn('Recovery error:', err);
-  });
-});
-
-// ── Mobile nav ──────────────────────────────────────────────
-var burger = document.getElementById('burger');
-var drawer = document.getElementById('drawer');
-if(burger && drawer){
-  burger.addEventListener('click', function(){ drawer.classList.toggle('open'); });
-  document.addEventListener('click', function(e){
-    if(!burger.contains(e.target) && !drawer.contains(e.target))
-      drawer.classList.remove('open');
-  });
-}
-
-// ── Init ────────────────────────────────────────────────────
-(function(){
-  var state = getState();
-  renderXP(state);
-  renderMissions(state);
-  renderBadges(state);
-})();
-</script>
+<script src="afr/progress-page.js"></script>
 </body>
 </html>

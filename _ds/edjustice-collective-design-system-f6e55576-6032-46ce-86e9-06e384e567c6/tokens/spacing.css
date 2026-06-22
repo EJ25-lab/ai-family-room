@@ -1,0 +1,45 @@
+/* EJC Spacing, Radii & Effects.
+   Generous whitespace: no section with 3+ unbroken prose paragraphs;
+   generous gaps between sections. Soft borders, restrained shadows. */
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Semantic spacing */
+  --gap-section: var(--space-7);     /* between document sections */
+  --gap-bullet: var(--space-3);      /* between bullet items */
+  --pad-card: 22px 24px;             /* finding-card padding */
+  --pad-panel: 20px 24px;            /* callout padding */
+  --pad-page: 48px 58px 64px;        /* document page padding */
+
+  /* ---- Radii ---- */
+  --radius-sm: 5px;       /* section marker square, chips */
+  --radius-md: 10px;      /* cards, swatches */
+  --radius-lg: 14px;      /* large surfaces */
+  --radius-pill: 999px;   /* buttons, tags */
+
+  /* ---- Rules / borders ---- */
+  --rule-header: 2.5px;   /* teal rule under document header */
+  --rule-section: 1.5px;  /* teal rule under section heading */
+  --border-width: 1px;   /* @kind spacing */
+
+  /* ---- Shadows (restrained) ---- */
+  --shadow-page: 0 2px 24px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 1px 3px rgba(11, 18, 21, 0.06);
+  --shadow-raised: 0 6px 20px rgba(11, 18, 21, 0.10);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);  /* @kind other */
+  --dur-fast: 120ms;   /* @kind other */
+  --dur-base: 200ms;   /* @kind other */
+}

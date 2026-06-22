@@ -5,668 +5,289 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mission 1: Turn a Thought into a Message — AI Family Room</title>
 <meta name="description" content="Pick a situation, copy your prompt, open Claude. Walk out with a message you can actually send. Earn your Voice Activated badge.">
-<meta name="theme-color" content="#0B1215">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#1ABCB0">
+<link rel="stylesheet" href="afr/site.css">
+<link rel="stylesheet" href="afr/mission.css">
 <style>
-/* ── MISSION 1 ── */
-.mission-hero {
-  background:var(--dark);padding:64px 32px 56px;
-  position:relative;overflow:hidden;
-}
-.mission-hero::before {
-  content:'';position:absolute;top:-80px;left:50%;
-  transform:translateX(-50%);width:700px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,188,176,.07) 0%,transparent 65%);
-  pointer-events:none;
-}
-.mission-hero-inner{max-width:720px;margin:0 auto;position:relative;}
-
-.meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
-.track-pill{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  padding:5px 14px;border-radius:var(--r-pill);
-  background:rgba(26,188,176,.12);color:var(--teal);border:1px solid rgba(26,188,176,.25);}
-.num-pill{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.3);padding:5px 14px;border-radius:var(--r-pill);
-  border:1px solid rgba(255,255,255,.1);}
-.mission-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--white);
-  line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;}
-.mission-title .accent{color:var(--teal);}
-.mission-sub{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;
-  margin-bottom:24px;max-width:540px;}
-.mission-sub strong{color:var(--white);}
-.rewards{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.rpill{font-size:11px;font-weight:700;padding:5px 13px;border-radius:var(--r-pill);}
-.rxp   {background:rgba(245,200,66,.12);color:var(--xp-gold);border:1px solid rgba(245,200,66,.22);}
-.rbadge{background:rgba(26,188,176,.12);color:var(--teal);border:1px solid rgba(26,188,176,.22);}
-.rtool {background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
-
-/* ── DO SECTION ── */
-.do-section{background:var(--white);padding:72px 32px;}
-.do-inner{max-width:720px;margin:0 auto;}
-
-/* Situation cards */
-.situation-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;margin:28px 0 32px;
-}
-.sit-card{
-  background:var(--off);border:2px solid var(--warm);
-  border-radius:var(--r);padding:18px 16px;cursor:pointer;
-  transition:border-color .2s,background .2s,transform .15s;
-  text-align:left;font-family:var(--font);
-  display:flex;flex-direction:column;gap:5px;
-}
-.sit-card:hover{border-color:var(--teal);background:var(--teal-pale);transform:translateY(-2px);}
-.sit-card.selected{border-color:var(--teal);background:var(--teal-pale);}
-.sit-emoji{font-size:1.5rem;display:block;margin-bottom:4px;}
-.sit-title{font-size:13px;font-weight:800;color:var(--text);}
-.sit-desc{font-size:11px;color:var(--mid);line-height:1.5;}
-
-/* Prompt builder */
-.prompt-builder{
-  background:var(--teal-pale);border:2px solid var(--teal);
-  border-radius:var(--r);padding:26px 26px 20px;
-  margin-bottom:20px;
-  display:none;
-}
-.prompt-builder.show{display:block;}
-
-.prompt-eyebrow{
-  font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--teal-deep);display:block;margin-bottom:10px;
-}
-.prompt-hint{
-  font-size:12px;color:var(--teal-deep);margin-bottom:10px;
-  line-height:1.6;
-}
-.prompt-hint strong{font-weight:700;}
-
-.prompt-editable{
-  width:100%;background:rgba(255,255,255,.7);
-  border:1.5px solid rgba(26,188,176,.3);
-  border-radius:var(--r-sm);padding:14px 16px;
-  font-family:var(--font);font-size:14px;color:var(--text);
-  line-height:1.75;resize:vertical;outline:none;min-height:100px;
-  transition:border-color .2s;font-style:italic;
-}
-.prompt-editable:focus{border-color:var(--teal);background:var(--white);}
-
-.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px;}
-
-.copy-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--teal);color:var(--dark);font-family:var(--font);
-  font-size:13px;font-weight:800;padding:12px 22px;
-  border-radius:var(--r-sm);border:none;cursor:pointer;transition:background .2s;
-}
-.copy-btn:hover{background:var(--teal-dark);}
-.copy-btn.copied{background:var(--green-dk);color:var(--white);}
-
-.open-claude-btn{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--dark);color:var(--teal);font-family:var(--font);
-  font-size:13px;font-weight:800;padding:12px 22px;
-  border-radius:var(--r-sm);text-decoration:none;
-  transition:background .2s,transform .15s;
-}
-.open-claude-btn:hover{background:var(--dark-mid);transform:translateY(-1px);}
-
-/* "That's it" note */
-.thats-it{
-  font-size:12px;color:var(--teal-deep);font-style:italic;
-  margin-top:12px;display:flex;align-items:center;gap:6px;
-}
-
-/* Select hint */
-.select-hint{
-  font-size:13px;color:var(--light);font-style:italic;
-  padding:20px 0;text-align:center;
-}
-
-/* Complete section */
-.complete-section{background:var(--teal);padding:64px 32px;text-align:center;}
-.complete-inner{max-width:540px;margin:0 auto;}
-.complete-section h2{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;
-  color:var(--dark);margin-bottom:10px;line-height:1.1;}
-.complete-section p{font-size:14px;color:rgba(11,18,21,.6);
-  margin-bottom:24px;line-height:1.7;}
-.complete-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;max-width:340px;margin:0 auto 20px;
-  background:var(--dark);color:var(--teal);font-family:var(--font);
-  font-size:14px;font-weight:800;padding:17px 32px;
-  border-radius:var(--r);border:none;cursor:pointer;
-  transition:background .2s,transform .15s;
-}
-.complete-btn:hover{background:var(--dark-mid);transform:translateY(-2px);}
-.complete-btn.done{background:var(--green-dk);color:var(--white);pointer-events:none;}
-
-.tally-wrap{display:none;margin-top:20px;background:rgba(11,18,21,.1);
-  border-radius:var(--r);padding:20px;}
-.tally-wrap.show{display:block;}
-
-.next-card{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:rgba(11,18,21,.1);border-radius:var(--r);
-  padding:16px 20px;margin-top:16px;text-decoration:none;
-  transition:background .2s;flex-wrap:wrap;
-}
-.next-card:hover{background:rgba(11,18,21,.2);}
-.next-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(11,18,21,.45);display:block;margin-bottom:3px;}
-.next-title{font-size:13px;font-weight:800;color:var(--dark);}
-
-/* Badge modal */
-.badge-overlay{position:fixed;inset:0;background:rgba(11,18,21,.88);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;}
-.badge-overlay.show{opacity:1;pointer-events:all;}
-.badge-modal{background:var(--dark-mid);border:2px solid rgba(26,188,176,.4);
-  border-radius:24px;padding:44px 32px;text-align:center;
-  max-width:320px;width:100%;
-  transform:scale(.85);transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-  position:relative;overflow:hidden;}
-.badge-overlay.show .badge-modal{transform:scale(1);}
-.badge-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);
-  width:260px;height:260px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,188,176,.18) 0%,transparent 65%);
-  pointer-events:none;}
-.badge-icon{font-size:4rem;display:block;margin:0 auto 18px;
-  animation:bpop .65s cubic-bezier(.34,1.56,.64,1) .1s both;}
-@keyframes bpop{from{transform:scale(0) rotate(-15deg);opacity:0;}
-  to{transform:scale(1) rotate(0deg);opacity:1;}}
-.badge-ey{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--teal);display:block;margin-bottom:7px;}
-.badge-name{font-size:1.6rem;font-weight:900;color:var(--white);
-  margin-bottom:10px;line-height:1.15;}
-.badge-desc{font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:24px;}
-.badge-dismiss{font-size:11px;color:rgba(255,255,255,.28);background:none;
-  border:none;cursor:pointer;font-family:var(--font);transition:color .2s;margin-top:10px;}
-.badge-dismiss:hover{color:rgba(255,255,255,.55);}
-
-/* ── SHARE CARD (Foundations · teal) ── */
-.share-section{background:var(--dark);padding:56px 24px 64px;display:none;}
-.share-section.show{display:block;}
-.share-inner{max-width:390px;margin:0 auto;}
-.share-card{background:var(--dark);border:1.5px solid rgba(26,188,176,.4);border-radius:24px;padding:36px 28px 28px;position:relative;overflow:hidden;text-align:center;}
-.share-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,188,176,.2) 0%,transparent 65%);pointer-events:none;}
-.share-card-content{position:relative;z-index:1;}
-.share-eyebrow{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:18px;}
-.share-icon{font-size:3rem;display:block;margin:0 auto 14px;}
-.share-headline{font-size:1.5rem;font-weight:900;color:var(--white);line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;}
-.share-headline .accent{color:var(--teal);}
-.share-quote{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;font-style:italic;margin-bottom:20px;max-width:280px;margin-left:auto;margin-right:auto;}
-.share-stat{display:inline-block;background:rgba(26,188,176,.12);border:1px solid rgba(26,188,176,.3);border-radius:var(--r-pill);padding:6px 14px;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:18px;}
-.share-brand{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);}
-.share-brand span{color:var(--teal);}
-.share-hint{text-align:center;margin-top:18px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;}
-.share-hint strong{color:rgba(255,255,255,.7);}
-
-@media(max-width:640px){
-  .situation-grid{grid-template-columns:repeat(2,1fr);}
-  .mission-hero,.do-section,.complete-section,.share-section{padding-left:20px;padding-right:20px;}
-  .prompt-actions{flex-direction:column;align-items:stretch;}
-  .prompt-actions .copy-btn,.prompt-actions .open-claude-btn{justify-content:center;}
-}
-@media(max-width:400px){
-  .situation-grid{grid-template-columns:1fr;}
-}
+  .situation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0 8px; }
+  .sit-card { background: #fff; border: 1.5px solid var(--ejc-warm); border-radius: var(--radius-md); padding: 18px 16px; cursor: pointer; transition: border-color var(--dur-base) var(--ease), background var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease); text-align: left; font-family: var(--font-sans); display: flex; flex-direction: column; gap: 4px; }
+  .sit-card:hover { border-color: var(--ejc-teal); background: var(--ejc-teal-pale); transform: translateY(-2px); }
+  .sit-card.selected { border-color: var(--ejc-teal); background: var(--ejc-teal-pale); box-shadow: var(--shadow-card); }
+  .sit-emoji { font-size: 1.5rem; margin-bottom: 4px; }
+  .sit-title { font-size: 13px; font-weight: 800; color: var(--ejc-text); }
+  .sit-desc { font-size: 11px; color: var(--ejc-mid); line-height: 1.5; }
+  .select-hint { font-size: 13px; color: var(--ejc-light); font-style: italic; padding: 20px 0; text-align: center; }
+  .prompt-builder { display: none; }
+  .prompt-builder.show { display: block; }
+  .prompt-editable { width: 100%; background: #fff; border: 1.5px solid var(--ejc-teal-edge); border-radius: var(--radius-sm); padding: 14px 16px; font-family: var(--font-sans); font-size: 14px; color: var(--ejc-text); line-height: 1.75; resize: vertical; outline: none; min-height: 110px; transition: border-color var(--dur-base) var(--ease); font-style: italic; }
+  .prompt-editable:focus { border-color: var(--ejc-teal); }
+  .prompt-hint { font-size: 12px; color: var(--ejc-teal-deep); margin-bottom: 12px; line-height: 1.6; }
+  .thats-it { font-size: 12px; color: var(--ejc-teal-deep); font-style: italic; margin-top: 12px; display: flex; align-items: center; gap: 6px; }
+  @media (max-width: 640px) { .situation-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 400px) { .situation-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!-- ── NAV ── -->
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html" class="active">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
-    <li><a href="progress.html" class="nav-xp" id="nav-xp" style="display:none;">&#9889; 0 &middot; Just Arrived</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join &rarr;</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community &rarr;</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
-<!-- MISSION HEADER -->
-<section class="mission-hero" role="banner">
-  <style>
-    .mission-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .mission-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .mission-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .mission-hero > *{position:relative;z-index:1}
-    .mission-hero .mission-title{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .mission-hero .mission-title .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .mission-hero p, .mission-hero .mission-sub{color:#2A2520 !important;opacity:.82}
-    .mission-hero p strong, .mission-hero .mission-sub strong{color:#2A2520 !important;opacity:1;font-weight:700}
-    .mission-hero .track-pill, .mission-hero .num-pill{color:#1ABCB0 !important;background:rgba(26,188,176,.08) !important;border:1px solid rgba(26,188,176,.25) !important}
-  </style>
-  <div class="mission-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<!-- ── MISSION HERO ── -->
+<section class="mission-hero">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
     <div class="meta-row">
-      <span class="track-pill">&#127807; Foundations Track</span>
+      <span class="track-pill">🌱 Foundations Track</span>
       <span class="num-pill">Mission 01</span>
     </div>
-    <h1 class="mission-title">
-      Turn a Thought<br>into a <span class="accent">Message.</span>
-    </h1>
-    <p class="mission-sub">
-      Pick your situation. Copy your prompt. Open Claude.
-      <strong>That is the whole mission.</strong>
-    </p>
+    <h1 class="mission-title">Turn a thought into a <span class="accent">message.</span></h1>
+    <p class="mission-sub">Pick your situation. Copy your prompt. Open Claude. <strong>That's the whole mission.</strong></p>
     <div class="rewards">
-      <span class="rpill rxp">&#9889; +50 XP</span>
-      <span class="rpill rbadge">&#128172; Voice Activated Badge</span>
-      <span class="rpill rtool">&#128295; Claude</span>
+      <span class="rpill rxp">⚡ +50 XP</span>
+      <span class="rpill rbadge">💬 Voice Activated Badge</span>
+      <span class="rpill rtool">🔧 Claude</span>
     </div>
   </div>
 </section>
 
-<!-- THE MISSION -->
-<section class="do-section" aria-labelledby="do-h">
-  <div class="do-inner">
-
-    <!-- Step 1 — Pick -->
-    <span class="section-label">STEP 1 OF 2</span>
-    <h2 class="h2 dark-text" id="do-h"
-        style="text-align:left;margin-left:0;margin-bottom:8px;">
-      What do you need to say?
-    </h2>
-    <p style="font-size:14px;color:var(--mid);line-height:1.75;max-width:520px;">
-      Tap the one that fits your life right now.
-    </p>
+<!-- ── THE MISSION ── -->
+<section class="do-section" aria-labelledby="do-heading">
+  <div class="afr-wrap">
+    <div class="step-header" style="margin-bottom:10px">
+      <div class="step-circle">1</div>
+      <div class="step-label" id="do-heading">What do you need to say?</div>
+    </div>
+    <p class="step-sub">Tap the one that fits your life right now.</p>
 
     <div class="situation-grid" id="sit-grid">
-
-      <button class="sit-card" data-id="teacher"
-        data-prompt="Write a warm, 150-word email to my child's new teacher introducing our family. We just moved to a new area and my child is nervous about starting at a new school. I want to build a partnership from day one. Please ask the teacher for any advice on helping with the transition and let her know I am someone she can call on as we go.">
-        <span class="sit-emoji">&#127979;</span>
-        <div class="sit-title">New school partnership</div>
-        <p class="sit-desc">Introduce your family to a new teacher with grace</p>
+      <button class="sit-card" data-id="teacher" data-prompt="Write a warm, 150-word email to my child's new teacher introducing our family. We just moved to a new area and my child is nervous about starting at a new school. I want to build a partnership from day one. Please ask the teacher for any advice on helping with the transition and let her know I am someone she can call on as we go.">
+        <span class="sit-emoji">🏫</span>
+        <span class="sit-title">New school partnership</span>
+        <span class="sit-desc">Introduce your family to a new teacher with grace</span>
       </button>
-
-      <button class="sit-card" data-id="frg"
-        data-prompt="Write a warm, friendly message introducing myself to my unit's FRG group. We just arrived at [base name]. I want to let people know I am new, that I am happy to be here, and that I would love to connect with other families in the area.">
-        <span class="sit-emoji">&#127919;</span>
-        <div class="sit-title">FRG introduction</div>
-        <p class="sit-desc">Introduce yourself to a new unit community</p>
+      <button class="sit-card" data-id="frg" data-prompt="Write a warm, friendly message introducing myself to my unit's FRG group. We just arrived at [base name]. I want to let people know I am new, that I am happy to be here, and that I would love to connect with other families in the area.">
+        <span class="sit-emoji">🎯</span>
+        <span class="sit-title">FRG introduction</span>
+        <span class="sit-desc">Introduce yourself to a new unit community</span>
       </button>
-
-      <button class="sit-card" data-id="landlord"
-        data-prompt="Write a professional but firm email to my landlord requesting that [describe the issue] be addressed within 14 days. Keep the tone respectful but make it clear this needs to be resolved promptly.">
-        <span class="sit-emoji">&#127968;</span>
-        <div class="sit-title">Landlord message</div>
-        <p class="sit-desc">Request a repair or resolve a housing issue</p>
+      <button class="sit-card" data-id="landlord" data-prompt="Write a professional but firm email to my landlord requesting that [describe the issue] be addressed within 14 days. Keep the tone respectful but make it clear this needs to be resolved promptly.">
+        <span class="sit-emoji">🏠</span>
+        <span class="sit-title">Landlord message</span>
+        <span class="sit-desc">Request a repair or resolve a housing issue</span>
       </button>
-
-      <button class="sit-card" data-id="medical"
-        data-prompt="Help me write a message to my child's new doctor. We are a military family who recently moved. My child has [describe condition or concern] and I need to transfer their care. Please include what records should be requested and what our most urgent need is.">
-        <span class="sit-emoji">&#127973;</span>
-        <div class="sit-title">Medical transfer</div>
-        <p class="sit-desc">Communicate your child's needs to a new provider</p>
+      <button class="sit-card" data-id="medical" data-prompt="Help me write a message to my child's new doctor. We are a military family who recently moved. My child has [describe condition or concern] and I need to transfer their care. Please include what records should be requested and what our most urgent need is.">
+        <span class="sit-emoji">🏥</span>
+        <span class="sit-title">Medical transfer</span>
+        <span class="sit-desc">Communicate your child's needs to a new provider</span>
       </button>
-
-      <button class="sit-card" data-id="thankyou"
-        data-prompt="Write a heartfelt thank-you message to [name or role] who helped our family by [describe what they did]. Keep it warm, specific, and genuine — not too formal, not too casual.">
-        <span class="sit-emoji">&#128140;</span>
-        <div class="sit-title">Thank-you note</div>
-        <p class="sit-desc">Thank someone who showed up for your family</p>
+      <button class="sit-card" data-id="thankyou" data-prompt="Write a heartfelt thank-you message to [name or role] who helped our family by [describe what they did]. Keep it warm, specific, and genuine — not too formal, not too casual.">
+        <span class="sit-emoji">💌</span>
+        <span class="sit-title">Thank-you note</span>
+        <span class="sit-desc">Thank someone who showed up for your family</span>
       </button>
-
       <button class="sit-card" data-id="own" data-prompt="">
-        <span class="sit-emoji">&#9997;&#65039;</span>
-        <div class="sit-title">Something else</div>
-        <p class="sit-desc">Type your own situation below</p>
+        <span class="sit-emoji">✍️</span>
+        <span class="sit-title">Something else</span>
+        <span class="sit-desc">Type your own situation below</span>
       </button>
-
     </div>
 
-    <!-- Step 2 — Prompt appears here -->
-    <span class="section-label" id="step2-label" style="display:none;">STEP 2 OF 2</span>
+    <p class="select-hint" id="select-hint">↑ Tap a situation above and your prompt will appear here.</p>
 
-    <p class="select-hint" id="select-hint">
-      &#8593; Tap a situation above and your prompt will appear here.
-    </p>
-
-    <div class="prompt-builder" id="prompt-builder">
-      <span class="prompt-eyebrow">&#10024; YOUR PROMPT &mdash; EDIT ANY [BRACKETS] WITH YOUR REAL DETAILS</span>
-      <p class="prompt-hint">
-        Fill in the <strong>[brackets]</strong>, then copy and open Claude.
-        That is it &mdash; Claude does the rest.
-      </p>
-      <textarea class="prompt-editable" id="prompt-editable" rows="5"></textarea>
-      <div class="prompt-actions">
-        <button class="copy-btn" id="copy-btn">
-          &#128203; Copy Prompt &rarr;
-        </button>
-        <a href="https://claude.ai/new" target="_blank" rel="noopener" class="open-claude-btn">
-          Open Claude &rarr;
-        </a>
+    <div class="prompt-card" id="prompt-builder" style="margin-top:8px">
+      <div class="step-header" style="margin-bottom:12px">
+        <div class="step-circle">2</div>
+        <div class="step-label">Edit any [brackets], then copy &amp; open Claude</div>
       </div>
-      <p class="thats-it">
-        &#128161; That is the whole mission. Open Claude, paste it, read what comes back.
-      </p>
+      <p class="prompt-hint">Fill in the <strong>[brackets]</strong> with your real details. That's it — Claude does the rest.</p>
+      <textarea class="prompt-editable" id="prompt-editable" rows="5"></textarea>
+      <div class="prompt-actions" style="margin-top:14px">
+        <button class="copy-btn" id="copy-btn">📋 Copy prompt →</button>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="open-btn">Open Claude →</a>
+      </div>
+      <p class="thats-it">💡 That's the whole mission. Open Claude, paste it, read what comes back.</p>
     </div>
-
   </div>
 </section>
 
-<!-- COMPLETE -->
+<!-- ── COMPLETE ── -->
 <section class="complete-section" aria-labelledby="complete-h">
-  <div class="complete-inner">
+  <div class="afr-wrap">
     <h2 id="complete-h">Sent it? Mark it done.</h2>
-    <p>
-      You turned a thought into a message you could actually use.
-      That is the Voice Activated badge &mdash; and it is yours.
-    </p>
-    <button class="complete-btn" id="complete-btn">
-      &#128172; Mark Mission 1 Complete &rarr;
-    </button>
+    <p>You turned a thought into a message you could actually use. That's the Voice Activated badge — and it's yours.</p>
+    <button class="complete-btn" id="complete-btn">💬 Mark Mission 1 Complete →</button>
     <div class="tally-wrap" id="tally-wrap">
-      <span style="font-size:12px;font-weight:700;color:var(--dark);display:block;margin-bottom:12px;">
-        Which situation did you tackle?
-      </span>
+      <span class="tally-q">Which situation did you tackle?</span>
       <iframe
-        data-tally-src="https://tally.so/embed/YOUR_TALLY_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        data-tally-src="https://tally.so/embed/YOUR_TALLY_FORM_ID?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
         loading="lazy" width="100%" height="180" frameborder="0"
         marginheight="0" marginwidth="0" title="Mission 1 completion"
-        style="border-radius:8px;">
-      </iframe>
+        style="border-radius:8px;"></iframe>
     </div>
     <a href="mission-3.html" class="next-card">
       <div>
-        <span class="next-label">UP NEXT &mdash; MISSION 03</span>
-        <div class="next-title">Teach Claude Who You Are &rarr;</div>
+        <span class="next-label">Up next — Mission 03</span>
+        <div class="next-title">Teach Claude Who You Are →</div>
       </div>
-      <span style="font-size:1.4rem;color:var(--dark);">&#8594;</span>
+      <span style="font-size:1.4rem;color:#06322e;">→</span>
     </a>
   </div>
 </section>
 
-<!-- SHARE CARD (appears after complete) -->
+<!-- ── SHARE CARD ── -->
 <section class="share-section" id="share-section">
-  <div class="share-inner">
+  <div class="afr-wrap">
     <div class="share-card">
-      <div class="share-card-content">
-        <span class="share-eyebrow">MISSION 01 &middot; AI FAMILY ROOM</span>
-        <span class="share-icon">&#128172;</span>
-        <div class="share-headline">
-          I turned a thought into a <span class="accent">message I sent.</span>
-        </div>
-        <p class="share-quote">
-          Pick a situation. Copy the prompt. Open Claude. That was it.
-          Voice Activated badge earned.
-        </p>
-        <div class="share-stat">&#9889; +150 XP &middot; &#128172; Voice Activated</div>
-        <div class="share-brand">
-          AI Family Room <span>&middot;</span> EdJustice Collective
-        </div>
-      </div>
+      <span class="share-eyebrow">Mission 01 · AI Family Room</span>
+      <span class="share-icon">💬</span>
+      <div class="share-headline">I turned a thought into a <span class="accent">message I sent.</span></div>
+      <p class="share-quote">Pick a situation. Copy the prompt. Open Claude. That was it. Voice Activated badge earned.</p>
+      <div class="share-stat">⚡ +150 XP · 💬 Voice Activated</div>
+      <div class="share-brand">AI Family Room <span>·</span> EdJustice Collective</div>
     </div>
-    <p class="share-hint">
-      <strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG &mdash; or email <strong>chief@theedjusticecollective.com</strong>
-    </p>
+    <p class="share-hint"><strong>Screenshot this</strong> &amp; tag <strong>@edjusticecollective</strong> on FB or IG — or email <strong>chief@theedjusticecollective.com</strong></p>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities.</p>
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective &#8599;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 EdJustice Collective &middot; Build Systems. Promote Justice.</span>
-    <p class="footer-privacy">We collect only what you choose to share. We never sell your data.
-      Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
+    <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
-<!-- BADGE MODAL -->
+<!-- ── BADGE MODAL ── -->
 <div class="badge-overlay" id="badge-overlay" role="dialog" aria-label="Badge earned">
   <div class="badge-modal">
     <div class="badge-glow"></div>
-    <span class="badge-icon">&#128172;</span>
-    <span class="badge-ey">Badge Unlocked</span>
+    <span class="badge-icon">💬</span>
+    <span class="badge-ey">Badge unlocked</span>
     <div class="badge-name">Voice Activated</div>
-    <p class="badge-desc">
-      You turned a thought into a message that actually works.
-      That is your voice &mdash; amplified.
-    </p>
-    <a href="progress.html" class="btn btn-primary" style="font-size:13px;">
-      See My Progress &rarr;
-    </a><br>
+    <p class="badge-desc">You turned a thought into a message that actually works. That's your voice — amplified.</p>
+    <a href="progress.html" class="btn-see">See my progress →</a>
     <button class="badge-dismiss" id="badge-dismiss">Keep going</button>
   </div>
 </div>
 
-<script src="config.js"></script>
-<script src="progress.js"></script>
 <script>
-/* ── MISSION 1 ── */
-var MISSION_ID = 'm1';
-var BADGE_SLUG = 'voice-activated';
+  window.AFR_MISSION = {
+    id: 'm1', title: 'Turn a Thought into a Message',
+    badge: 'voice-activated', badgeName: 'Voice Activated',
+    xp: 50, badgeXp: 100,
+    trackBonus: { track: 'foundations', missions: ['m7', 'm1', 'm3'], xp: 150 }
+  };
+</script>
+<script>
+  /* situation picker (page-specific) */
+  (function () {
+    var cards = document.querySelectorAll('.sit-card');
+    var builder = document.getElementById('prompt-builder');
+    var editable = document.getElementById('prompt-editable');
+    var hint = document.getElementById('select-hint');
+    var copyBtn = document.getElementById('copy-btn');
 
-// Situation picker
-var cards         = document.querySelectorAll('.sit-card');
-var promptBuilder = document.getElementById('prompt-builder');
-var promptEditable= document.getElementById('prompt-editable');
-var selectHint    = document.getElementById('select-hint');
-var step2Label    = document.getElementById('step2-label');
-var copyBtn       = document.getElementById('copy-btn');
-
-cards.forEach(function(card) {
-  card.addEventListener('click', function() {
-    // Deselect all
-    cards.forEach(function(c){ c.classList.remove('selected'); });
-    this.classList.add('selected');
-
-    var isOwn = this.dataset.id === 'own';
-    var prompt = this.dataset.prompt;
-
-    promptEditable.value       = prompt;
-    promptEditable.readOnly    = false;
-    promptEditable.placeholder = isOwn
-      ? 'Type your situation here — who is this for, what do you need to say, and what tone feels right?'
-      : '';
-
-    if(isOwn) promptEditable.value = '';
-
-    // Show prompt builder
-    promptBuilder.classList.add('show');
-    selectHint.style.display = 'none';
-    step2Label.style.display = 'block';
-
-    // Smooth scroll to prompt
-    setTimeout(function(){
-      promptBuilder.scrollIntoView({ behavior:'smooth', block:'nearest' });
-    }, 100);
-
-    // Focus on first bracket if present
-    if(!isOwn) {
-      var idx = promptEditable.value.indexOf('[');
-      if(idx > -1) {
-        promptEditable.focus();
-        promptEditable.setSelectionRange(idx, promptEditable.value.indexOf(']', idx) + 1);
-      }
-    } else {
-      promptEditable.focus();
-    }
-  });
-});
-
-// Copy button
-copyBtn.addEventListener('click', function() {
-  var txt = promptEditable.value.trim();
-  if(!txt) return;
-  var btn = this;
-  navigator.clipboard.writeText(txt).then(function() {
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){
-      btn.innerHTML = '&#128203; Copy Prompt &rarr;';
-      btn.classList.remove('copied');
-    }, 2200);
-  }).catch(function(){
-    // Fallback
-    var ta = document.createElement('textarea');
-    ta.value = txt;
-    ta.style.cssText = 'position:fixed;opacity:0;top:-999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    ta.remove();
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){
-      btn.innerHTML = '&#128203; Copy Prompt &rarr;';
-      btn.classList.remove('copied');
-    }, 2200);
-  });
-});
-
-// Complete button
-var completeBtn  = document.getElementById('complete-btn');
-var tallyWrap    = document.getElementById('tally-wrap');
-var overlay      = document.getElementById('badge-overlay');
-var dismiss      = document.getElementById('badge-dismiss');
-var shareSection = document.getElementById('share-section');
-
-// Check already done on load
-(function(){
-  try{
-    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    if((s.missionsCompleted||[]).includes(MISSION_ID)){
-      completeBtn.innerHTML = '&#9989; Mission Complete';
-      completeBtn.classList.add('done');
-      shareSection.classList.add('show');
-    }
-  }catch(e){}
-})();
-
-completeBtn.addEventListener('click', function(){
-  if(this.classList.contains('done')) return;
-  try{
-    var s = JSON.parse(localStorage.getItem('afr_v1')||'{}');
-    s.missionsCompleted = s.missionsCompleted||[];
-    s.badges = s.badges||[];
-    s.tracks = s.tracks||[];
-    s.xp = (s.xp||0) + 50;
-
-    if(!s.missionsCompleted.includes(MISSION_ID)) s.missionsCompleted.push(MISSION_ID);
-
-    var badgeEarned = false;
-    if(!s.badges.includes(BADGE_SLUG)){
-      s.badges.push(BADGE_SLUG);
-      s.xp += 100;
-      badgeEarned = true;
-    }
-
-    // Foundations track
-    if(['m7','m1','m3'].every(function(id){ return s.missionsCompleted.includes(id); })){
-      if(!s.tracks.includes('foundations')){
-        s.tracks.push('foundations');
-        s.xp += 150;
-      }
-    }
-
-    s.lastActive = new Date().toISOString();
-    if(!s.joinedAt) s.joinedAt = new Date().toISOString();
-    localStorage.setItem('afr_v1', JSON.stringify(s));
-
-    if(window.AFR && window.AFR.updateNavXP) window.AFR.updateNavXP();
-    if(window.AFR && window.AFR.fireSheetPost) window.AFR.fireSheetPost({
-      type:'mission_complete', missionId:MISSION_ID,
-      missionTitle:'Turn a Thought into a Message',
-      badgeEarned: badgeEarned ? 'Voice Activated' : '',
-      xpTotal:s.xp, name:s.name||'', email:s.email||'', installation:s.installation||''
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        cards.forEach(function (c) { c.classList.remove('selected'); });
+        this.classList.add('selected');
+        var isOwn = this.dataset.id === 'own';
+        editable.value = isOwn ? '' : this.dataset.prompt;
+        editable.placeholder = isOwn ? 'Type your situation here — who is this for, what do you need to say, and what tone feels right?' : '';
+        builder.classList.add('show');
+        hint.style.display = 'none';
+        setTimeout(function () { builder.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+        if (!isOwn) {
+          var idx = editable.value.indexOf('[');
+          if (idx > -1) { editable.focus(); editable.setSelectionRange(idx, editable.value.indexOf(']', idx) + 1); }
+        } else { editable.focus(); }
+      });
     });
 
-    this.innerHTML = '&#9989; Mission Complete';
-    this.classList.add('done');
-    tallyWrap.classList.add('show');
-    shareSection.classList.add('show');
-    setTimeout(function(){
-      shareSection.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 900);
-    if(badgeEarned) setTimeout(function(){ overlay.classList.add('show'); }, 500);
-
-    if(!document.querySelector('script[src*="tally.so"]')){
-      var t=document.createElement('script');
-      t.src='https://tally.so/widgets/embed.js';t.async=true;
-      document.head.appendChild(t);
-    }
-  }catch(e){ console.warn(e); }
-});
-
-dismiss.addEventListener('click', function(){ overlay.classList.remove('show'); });
-overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.classList.remove('show'); });
-setTimeout(function(){ overlay.classList.remove('show'); }, 10000);
+    copyBtn.addEventListener('click', function () {
+      var txt = editable.value.trim();
+      if (!txt) return;
+      var btn = this;
+      function done() { btn.textContent = '✓ Copied!'; btn.classList.add('copied'); setTimeout(function () { btn.innerHTML = '📋 Copy prompt →'; btn.classList.remove('copied'); }, 2200); }
+      navigator.clipboard.writeText(txt).then(done).catch(function () {
+        var ta = document.createElement('textarea'); ta.value = txt; ta.style.cssText = 'position:fixed;opacity:0;top:-999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done();
+      });
+    });
+  })();
 </script>
+<script src="config.js"></script>
+<script src="progress.js"></script>
+<script src="afr/mission.js"></script>
 <script src="cta-helper.js" defer></script>
 </body>
 </html>

@@ -3,193 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why This Room Exists — AI Family Room</title>
+<title>Why this room exists — AI Family Room</title>
 <meta name="description" content="AI Family Room is a free access point — built for the people who've been told AI is important but never given a real door in. Built independently by the Chief Possibility Pilot at EdJustice Collective.">
-<meta name="theme-color" content="#0B1215">
-<meta property="og:title" content="Why This Room Exists — AI Family Room">
+<meta name="theme-color" content="#1ABCB0">
+<meta property="og:title" content="Why this room exists — AI Family Room">
 <meta property="og:description" content="A free access point for the people who've been told AI is important but never given a real door in.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="afr/site.css">
 <style>
-.about-hero{background:var(--dark);padding:80px 32px 56px;position:relative;overflow:hidden;}
-.about-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,188,176,.12) 0%,transparent 65%);pointer-events:none;}
-.about-hero-inner{max-width:720px;margin:0 auto;position:relative;}
-.about-eyebrow{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:16px;}
-.about-hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;}
-.about-hero h1 .accent{color:var(--teal);}
-.about-hero .lead{font-size:18px;color:rgba(255,255,255,.78);line-height:1.7;max-width:620px;}
-
-.about-body{background:var(--white);padding:72px 32px;}
-.about-body-inner{max-width:680px;margin:0 auto;}
-.about-body p{font-size:17px;line-height:1.85;color:var(--text);margin-bottom:24px;}
-.about-body p strong{color:var(--dark);font-weight:700;}
-.about-body .first-letter{float:left;font-size:64px;line-height:.85;font-weight:900;color:var(--teal);padding-right:10px;padding-top:4px;}
-
-.about-sign{margin-top:40px;padding-top:32px;border-top:2px solid rgba(0,0,0,.08);}
-.about-sign-name{font-size:18px;font-weight:800;color:var(--text);margin-bottom:4px;}
-.about-sign-title{font-size:13px;color:var(--mid);margin-bottom:10px;}
-.about-sign-contact{font-size:14px;color:var(--teal);}
-.about-sign-contact a{color:var(--teal);text-decoration:none;font-weight:600;}
-.about-sign-contact a:hover{text-decoration:underline;}
-
-.about-cta-band{background:var(--off);padding:56px 32px;text-align:center;}
-.about-cta-inner{max-width:640px;margin:0 auto;}
-.about-cta-band h3{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:900;color:var(--dark);margin-bottom:14px;line-height:1.25;}
-.about-cta-band p{font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:28px;}
-.about-cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.about-cta-actions .btn{min-height:52px;display:inline-flex;align-items:center;}
+  .about-hero { padding: 80px 0 68px; }
+  .about-story { max-width: 680px; }
+  .about-story .dropcap::first-letter { float: left; font-size: 64px; line-height: .82; font-weight: 900; color: var(--ejc-teal); padding: 6px 12px 0 0; }
+  .about-sign { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--ejc-warm); }
+  .about-sign-name { font-size: 16px; font-weight: 700; color: var(--ejc-teal-deep); }
+  .about-sign-role { font-size: 13px; color: var(--ejc-light); margin-top: 3px; }
+  .about-sign-contact { font-size: 14px; margin-top: 12px; }
+  .about-sign-contact a { color: var(--ejc-teal-deep); font-weight: 600; text-decoration: none; }
+  .about-sign-contact a:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .about-cta { text-align: left; }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!-- ── NAV (gamification hooks: #nav-xp-display, #nav-hamburger, #nav-drawer, .nav-dropdown-trigger) ── -->
+<nav class="nav" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">
-    <div class="nav-mark">AI</div>
-    <div>
-      <div class="nav-name">AI Family Room</div>
-      <span class="nav-sub">by EdJustice Collective</span>
-    </div>
+    <span class="nav-mark">AI</span>
+    <span><span class="nav-name">AI Family Room</span><span class="nav-sub">by EdJustice Collective</span></span>
   </a>
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="start.html">Start Here</a></li>
     <li><a href="tools.html">The Tools</a></li>
     <li><a href="missions.html">Missions</a></li>
     <li class="nav-dropdown">
-      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">&#9662;</span></a>
-      <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="parents.html">&#129422; Parent Intel</a></li>
-        <li><a href="milspouse.html">&#127894; Mil-Spouse Intel</a></li>
-        <li><a href="next-mission.html">&#11088; The Next Mission</a></li>
-        <li><a href="missions.html">See all tracks &rarr;</a></li>
+      <a href="missions.html" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">For You <span class="caret">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="parents.html">Parent Intel</a></li>
+        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+        <li><a href="next-mission.html">The Next Mission</a></li>
+        <li><a href="missions.html">See all tracks →</a></li>
       </ul>
     </li>
     <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
     <li><a href="safety.html">Stay Safe</a></li>
   </ul>
-  <a href="join.html" class="nav-cta">Join the Community →</a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <span id="nav-xp-display" class="nav-xp"></span>
+  <a href="join.html" class="nav-cta">Join the community →</a>
+  <button class="nav-burger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
-<div class="nav-drawer" id="drawer">
+<div class="nav-drawer" id="nav-drawer">
   <a href="start.html">Start Here</a>
   <a href="tools.html">The Tools</a>
   <a href="missions.html">Missions</a>
   <span class="drawer-label">For You</span>
-  <a href="parents.html">&#129422; Parent Intel</a>
-  <a href="milspouse.html">&#127894; Mil-Spouse Intel</a>
-  <a href="next-mission.html">&#11088; The Next Mission</a>
+  <a href="parents.html">Parent Intel</a>
+  <a href="milspouse.html">Mil-Spouse Intel</a>
+  <a href="next-mission.html">The Next Mission</a>
   <a href="what-could-go-wrong.html">What Could Go Wrong</a>
   <a href="safety.html">Stay Safe</a>
   <a href="progress.html">My Progress</a>
-  <a href="join.html" class="nav-cta">Join the Community →</a>
+  <a href="join.html" class="nav-cta">Join the community →</a>
 </div>
 
 <!-- ── HERO ── -->
-<section class="about-hero" role="banner">
-  <style>
-    .about-hero{background:#F7F4ED !important;position:relative;overflow:hidden}
-    .about-hero::before{background:radial-gradient(circle,rgba(217,185,138,.22),transparent 70%) !important;top:-200px !important;right:-200px !important;left:auto !important;width:560px !important;height:560px !important;transform:none !important}
-    .about-hero::after{content:'';position:absolute;bottom:-180px;left:-180px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(168,184,156,.22),transparent 70%);pointer-events:none}
-    .about-hero > *{position:relative;z-index:1}
-    .about-hero .about-eyebrow{color:#1ABCB0 !important;font-weight:700 !important;letter-spacing:.24em !important;font-size:11.5px !important;text-transform:uppercase}
-    .about-hero h1{color:#2A2520 !important;font-family:'Poppins',sans-serif !important;font-weight:800 !important}
-    .about-hero h1 .accent{color:#1ABCB0 !important;font-style:italic !important}
-    .about-hero p, .about-hero .lead{color:#2A2520 !important;opacity:.82}
-    .about-hero p strong, .about-hero .lead strong{color:#2A2520 !important;opacity:1;font-weight:700}
-  </style>
-  <div class="about-hero-inner">
-    <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;text-align:left">
-      <img src="img/ejc_logo.png" alt="EdJustice Collective" style="width:56px;height:auto;opacity:.95">
-      <div style="width:1px;height:36px;background:rgba(26,188,176,.35)"></div>
-      <div style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#1ABCB0;font-weight:700;line-height:1.4">EdJustice Collective<br><span style="display:block;font-size:9px;letter-spacing:.18em;color:#2A2520;opacity:.55;font-weight:500;margin-top:2px">Build Systems · Promote Justice</span></div>
+<header class="sect about-hero">
+  <div class="afr-wrap">
+    <div class="brandbar">
+      <img src="assets/logo-color.svg" alt="EdJustice Collective">
+      <span class="rule"></span>
+      <span class="meta">EdJustice Collective<small>Build Systems · Promote Justice</small></span>
     </div>
-    <span class="about-eyebrow">Why this room exists</span>
-    <h1>A free access point<br><span class="accent">for the people who've been told AI is important — but never given a real door in.</span></h1>
+    <p class="eyebrow">Why this room exists</p>
+    <h1 class="h1">A free access point for the people who've been told AI is important — <span class="accent">but never given a real door in.</span></h1>
     <p class="lead">This is a community offering, not a product. Built independently. Built to stay open.</p>
   </div>
-</section>
+</header>
 
-<!-- ── BODY ── -->
-<section class="about-body">
-  <div class="about-body-inner">
-    <p><span class="first-letter">I</span> kept watching folks get talked <em>at</em> about AI — not taught <em>with</em> it. Parents trying to write the email that finally gets answered. Caregivers turning years of holding everything together into résumés that actually hire. Working people figuring out what <em>the next chapter</em> actually looks like when the old one is over. Educators looking for grace, not gimmicks. The tools were there. The on-ramp wasn&rsquo;t.</p>
+<!-- ── STORY ── -->
+<section class="sect" style="padding-top:0">
+  <div class="afr-wrap">
+    <div class="about-story">
+      <p class="body dropcap">I kept watching folks get talked <em>at</em> about AI — not taught <em>with</em> it. Parents trying to write the email that finally opens the door. Caregivers turning years of holding everything together into résumés that actually hire. Working people figuring out what the next chapter looks like when the old one is over. Educators looking for grace, not gimmicks. The tools were there. The on-ramp wasn't.</p>
 
-    <p>So I built the on-ramp. <strong>Independently. No paywall. No login. No data sold.</strong> A place where you can start in your language, with your real problem, and walk away with something you actually use.</p>
+      <p class="body">So I built the on-ramp. <strong>Independently. No paywall. No login. No data sold.</strong> A place where you can start in your own language, with your own real problem, and walk away with something you actually use.</p>
 
-    <p>This is a community offering, not a product. Every mission was built for someone I've sat across from, listened to, and learned from. If you found your way here, it&rsquo;s because someone like you needed it first.</p>
+      <p class="body">This is a community offering, not a product. Every mission was built for someone I've sat across from, listened to, and learned from. If you found your way here, it's because someone like you needed it first.</p>
 
-    <p><strong>You stayed in the room. So did we.</strong></p>
+      <div class="panel">You stayed in the room. So did we.</div>
 
-    <div class="about-sign">
-      <div class="about-sign-name">— The Chief Possibility Pilot</div>
-      <div class="about-sign-title">Chief Possibility Pilot · EdJustice Collective</div>
-      <div class="about-sign-contact"><a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> · <a href="https://www.instagram.com/edjusticecollective" target="_blank" rel="noopener">@edjusticecollective</a></div>
+      <div class="about-sign">
+        <div class="about-sign-name">— The Chief Possibility Pilot</div>
+        <div class="about-sign-role">Chief Possibility Pilot · EdJustice Collective</div>
+        <div class="about-sign-contact"><a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> · <a href="https://www.instagram.com/edjusticecollective" target="_blank" rel="noopener">@edjusticecollective</a></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ── CTA BAND ── -->
-<section class="about-cta-band">
-  <div class="about-cta-inner">
-    <h3>This room is yours.</h3>
-    <p>Pick a track. Or pass it along to someone who needs it.</p>
-    <div class="about-cta-actions">
-      <a href="missions.html" class="btn btn-primary">Explore the missions →</a>
-      <a href="share-kit.html" class="btn btn-ghost">Get the share kit →</a>
+<section class="sect tight pale">
+  <div class="afr-wrap about-cta">
+    <p class="eyebrow" style="color:var(--ejc-teal-deep)">This room is yours</p>
+    <h2 class="h2">Pick a track — or pass it along to someone who needs it.</h2>
+    <div class="btn-row" style="margin-top:26px">
+      <a href="missions.html" class="btn-primary">Explore the missions →</a>
+      <a href="share-kit.html" class="btn-ghost">Get the share kit →</a>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <span class="footer-logo">AI Family Room</span>
-      <span class="footer-tag">by EdJustice Collective</span>
-      <p class="footer-about">A free, self-guided AI literacy environment for families and communities. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+<footer class="footer">
+  <div class="afr-wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">AI Family Room</span>
+        <span class="footer-tag">by EdJustice Collective</span>
+        <p class="footer-about">A free, self-guided AI literacy environment for families and the folks who hold communities together. Built on the belief that technology should amplify every voice — not just the ones with resources.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Learn</span>
+        <ul class="footer-links">
+          <li><a href="start.html">Start Here</a></li>
+          <li><a href="tools.html">The Tools</a></li>
+          <li><a href="missions.html">All Missions</a></li>
+          <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
+          <li><a href="safety.html">Help &amp; safety</a></li>
+          <li><a href="about.html">Why This Exists</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links">
+          <li><a href="parents.html">Parent Intel</a></li>
+          <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
+          <li><a href="progress.html">My Progress</a></li>
+          <li><a href="join.html">Join the Community</a></li>
+          <li><a href="share-kit.html">Share kit (for leaders)</a></li>
+          <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <span class="footer-col-title">Learn</span>
-      <ul class="footer-links">
-        <li><a href="start.html">Start Here</a></li>
-        <li><a href="tools.html">The Tools</a></li>
-        <li><a href="missions.html">All Missions</a></li>
-        <li><a href="what-could-go-wrong.html">What Could Go Wrong</a></li>
-        <li><a href="safety.html">Help &amp; Safety</a></li>
-        <li><a href="about.html">Why This Exists</a></li>
-      </ul>
-    </div>
-    <div>
-      <span class="footer-col-title">Connect</span>
-      <ul class="footer-links">
-        <li><a href="parents.html">Parent Intel</a></li>
-        <li><a href="milspouse.html">Mil-Spouse Intel</a></li>
-        <li><a href="progress.html">My Progress</a></li>
-        <li><a href="join.html">Join the Community</a></li>
-        <li><a href="share-kit.html">Share Kit (for community leaders)</a></li>
-        <li><a href="https://theedjusticecollective.com" target="_blank" rel="noopener">EdJustice Collective ↗</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 EdJustice Collective · Build Systems. Promote Justice.</span>
     <p class="footer-privacy">We collect only what you choose to share. We never sell your data. Email <a href="mailto:chief@theedjusticecollective.com">chief@theedjusticecollective.com</a> to delete your info at any time.</p>
   </div>
 </footer>
+<div class="footer-bar">© 2026 EdJustice Collective &nbsp;·&nbsp; Build Systems. Promote Justice. &nbsp;·&nbsp; aifamilyroom.com</div>
 
-<script>
-// Mobile drawer
-document.getElementById('burger').addEventListener('click', function(){
-  document.getElementById('drawer').classList.toggle('open');
-  this.classList.toggle('open');
-});
-</script>
 <script src="config.js"></script>
 <script src="progress.js"></script>
 </body>

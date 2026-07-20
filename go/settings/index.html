@@ -24,6 +24,10 @@
   h2{font-size:17px;font-weight:700;margin:26px 0 6px}
   .foot{margin-top:40px;border-top:1px solid #E8EAEA;padding-top:16px;font-size:12.5px;color:#8A9BA3}
   .foot a{color:#0D6B64;text-decoration:none;font-weight:600}
+  .ex{border:1px solid #E8EAEA;border-radius:12px;padding:14px 16px;margin-bottom:12px;position:relative}
+  .ex-t{font-size:14px;font-weight:700;color:#0D6B64;margin-bottom:6px}
+  .ex-b{font-size:14.5px;line-height:1.6;color:#4A5C64;margin:0 0 10px}
+  .copy{background:#1ABCB0;color:#0B1215;border:none;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;padding:8px 18px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -36,6 +40,24 @@
   <a class="btn" href="https://claude.ai/settings/profile">Claude settings<small>Instructions for Claude</small></a>
   <a class="btn alt" href="https://chatgpt.com/#settings/Personalization">ChatGPT settings<small>Personalization · About you</small></a>
   <div class="hint"><b>Your three lines:</b><br>1 · Who I am — “I’m a [milspouse · parent · PCSing this fall].”<br>2 · What I care about — “[a job that moves with us · my kid’s reading].”<br>3 · How to talk to me — “Short. Plain. Warm. No jargon.”</div>
+
+  <h2 style="font-size:19px;font-weight:800;margin:30px 0 4px">Pick a starter. Make it yours.</h2>
+  <p style="font-size:14.5px;color:#4A5C64;line-height:1.55;margin:0 0 14px">Tap copy, paste it into the box you just opened, then change the brackets. Done.</p>
+  <div class="ex"><div class="ex-t">🎖 Military spouse</div><p class="ex-b" id="ex1">I'm a military spouse — we PCS often, currently at [base]. I care about keeping my career and my family steady through moves. Keep answers short, plain, and warm. Answer first, explain after. Don't give me generic checklists.</p><button class="copy" data-t="ex1">Copy</button></div>
+  <div class="ex"><div class="ex-t">📋 Parent</div><p class="ex-b" id="ex2">I'm a parent of kids ages [ages]; one has an IEP. I care about being taken seriously in school meetings. Use plain words and respectful-but-firm drafts. If you're not sure what I mean, ask me one question first. Don't sound like a lawyer.</p><button class="copy" data-t="ex2">Copy</button></div>
+  <div class="ex"><div class="ex-t">📍 Job hunter</div><p class="ex-b" id="ex3">I'm re-entering work after [a gap — caregiving, a move, a deployment]. I care about telling that story with confidence. Be direct, no filler. I'm new to AI, so explain things the first time. Never invent facts about me.</p><button class="copy" data-t="ex3">Copy</button></div>
+  <div class="ex"><div class="ex-t">🏛 Caregiver · community leader</div><p class="ex-b" id="ex4">I hold a lot of people together — [family, a classroom, a congregation]. I care about saying hard things kindly. Keep it warm and short, no corporate speak. Answer first. Don't lecture me.</p><button class="copy" data-t="ex4">Copy</button></div>
+  <div class="ex"><div class="ex-t">📅 Just curious</div><p class="ex-b" id="ex5">I'm brand new to this. I care about learning without feeling dumb. Small steps, plain language, one thing at a time. Ask what I want before giving lots of options. No hype.</p><button class="copy" data-t="ex5">Copy</button></div>
+  <p style="font-size:13.5px;color:#4A5C64;line-height:1.55;margin:14px 0 0"><b style="color:#0D6B64">Pro move:</b> after you save it, ask your AI — “How could these instructions be even better?” It will tune itself.</p>
+  <script>
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.dataset.t).innerText;
+      navigator.clipboard.writeText(t).then(function(){ b.textContent='✓ Copied'; setTimeout(function(){b.textContent='Copy';},2000); });
+    });
+  });
+  </script>
+
   <div class="foot">Free · no login · no data sold · <a href="https://aifamilyroom.com">aifamilyroom.com</a></div>
 </div>
 </body>

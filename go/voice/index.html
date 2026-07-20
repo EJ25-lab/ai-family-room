@@ -3,114 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your voice — AI Family Room</title>
+<title>Your eye on this — AI Family Room</title>
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="../../_ds/edjustice-collective-design-system-f6e55576-6032-46ce-86e9-06e384e567c6/styles.css">
 <style>
   body { margin:0; padding:0; background: var(--surface-app); }
   .go-wrap { max-width:620px; margin:0 auto; padding:28px 20px 60px; }
   .go-page { background: var(--surface-page); border:1px solid var(--border-hairline); border-radius:14px; padding:30px 24px 26px; box-shadow:0 2px 24px rgba(0,0,0,.06); }
-  h1 { font-size: clamp(1.6rem, 6vw, var(--fs-h1)); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-tight); line-height: var(--lh-tight); margin: 6px 0 10px; color: var(--text-primary); }
-  .q { margin: 22px 0 0; }
-  .q-t { font-size: var(--fs-body-lg); font-weight: var(--fw-bold); color: var(--text-primary); line-height: var(--lh-snug); margin-bottom: 10px; }
-  .opt { display:block; width:100%; text-align:left; background: var(--surface-page); border:1.5px solid var(--border-hairline); border-radius:10px; font-family: var(--font-sans); font-size: var(--fs-body); color: var(--text-secondary); padding:12px 14px; margin-bottom:8px; cursor:pointer; }
-  .opt.sel { border-color: var(--border-accent); background: var(--surface-callout); color: var(--text-insight); font-weight: var(--fw-semibold); }
-  .scale { display:flex; gap:8px; }
-  .scale .opt { flex:1; text-align:center; }
-  textarea, input[type=email] { width:100%; box-sizing:border-box; background: var(--surface-app); border:1.5px solid var(--border-hairline); border-radius:10px; font-family: var(--font-sans); font-size: var(--fs-body); color: var(--text-primary); padding:12px 14px; outline:none; }
-  textarea:focus, input:focus { border-color: var(--border-accent); background: var(--surface-page); }
-  .send { display:block; width:100%; background: var(--accent-brand); color: var(--ejc-dark); border:none; border-radius:12px; font-family: var(--font-sans); font-weight: var(--fw-extrabold); font-size: var(--fs-lead); padding:16px; margin-top:24px; cursor:pointer; }
-  .send:disabled { opacity:.5; cursor:default; }
-  .done { display:none; margin-top:18px; }
+  h1 { font-size: clamp(1.7rem, 6.4vw, var(--fs-h1)); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-tight); line-height: var(--lh-tight); margin: 6px 0 10px; color: var(--text-primary); }
+  .go-btn { display:block; text-align:center; text-decoration:none; background: var(--accent-brand); color: var(--ejc-dark); font-weight: var(--fw-extrabold); font-size: var(--fs-lead); padding:18px 16px; border-radius:12px; margin-bottom:12px; }
+  .go-btn:hover { background: var(--ejc-teal-dark); }
+  .go-btn.alt { background: var(--surface-page); color: var(--text-insight); border:2px solid var(--border-accent); }
+  .go-btn small { display:block; font-size: var(--fs-meta); font-weight: var(--fw-semibold); opacity:.75; margin-top:2px; }
   .go-foot { margin-top:26px; background: var(--surface-footer); border-radius:8px; padding:10px 16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
   .go-foot span { font-size: var(--fs-meta); color: var(--text-tertiary); }
   .go-foot a { color: var(--text-on-dark); text-decoration:none; font-weight: var(--fw-bold); }
+  .sig { font-size: var(--fs-body); color: var(--text-secondary); margin-top:18px; }
+  .sig strong { color: var(--text-insight); }
 </style>
 </head>
 <body>
 <div class="go-wrap">
   <div class="go-page">
-    <div class="ejc-eyebrow">AI FAMILY ROOM · YOUR VOICE</div>
-    <h1>Help school boards answer to families like yours.</h1>
-    <p class="ejc-lead" style="font-size:16px">Three minutes. Anonymous unless you add your email. Your answers shape how EJC trains school boards to see, know, answer, and steady.</p>
+    <div class="ejc-eyebrow">AI FAMILY ROOM · YOUR EYE ON THIS</div>
+    <h1>I need your eye on this — 60 seconds, honest reaction.</h1>
+    <p class="ejc-lead" style="font-size:16px">A new idea, taking shape before it launches (Winter ’26–’27). The idea is simple: <strong>a public, earned mark for whether a school board actually has the systems to oversee its schools</strong> — the way we license teachers and inspect buildings, but for the people running the whole budget.</p>
 
-    <form id="vf">
-      <div class="q"><div class="q-t">1 · Which is closest to you?</div>
-        <div data-k="role">
-          <button type="button" class="opt">Military spouse</button>
-          <button type="button" class="opt">Parent / caregiver</button>
-          <button type="button" class="opt">Educator</button>
-          <button type="button" class="opt">Community leader</button>
-          <button type="button" class="opt">Just curious</button>
-        </div></div>
+    <a class="go-btn alt" href="https://drive.google.com/file/d/1Yb5xlg93ltBsaL3KsFZKPDjaBVjz3T04/view?usp=sharing" target="_blank" rel="noopener">Read it<small>1 minute · one page</small></a>
+    <a class="go-btn" href="https://forms.gle/ambz6tRfnfB8eUsx9" target="_blank" rel="noopener">React<small>60 seconds · no wrong answers</small></a>
 
-      <div class="q"><div class="q-t">2 · Could your school board answer, with evidence: “Is my child’s path being tracked — attendance, belonging, not just grades?”</div>
-        <div data-k="seen">
-          <button type="button" class="opt">Yes</button>
-          <button type="button" class="opt">Maybe</button>
-          <button type="button" class="opt">No</button>
-          <button type="button" class="opt">I wouldn’t know who to ask</button>
-        </div></div>
+    <div class="ejc-panel">Just tell me what lands and what doesn’t. Then one favor that genuinely matters: <strong>send this page to ONE other person</strong> — a parent, a teacher, a board member, a neighbor with kids in school. That single forward is how we learn what families and communities really need.</div>
 
-      <div class="q"><div class="q-t">3 · Does your school know what your family’s day actually looks like — deployments, moves, shift work, caregiving?</div>
-        <div data-k="known" class="scale">
-          <button type="button" class="opt">1</button><button type="button" class="opt">2</button><button type="button" class="opt">3</button><button type="button" class="opt">4</button><button type="button" class="opt">5</button>
-        </div>
-        <p class="ejc-body" style="font-size:12.5px;margin-top:6px">1 = not at all · 5 = completely</p></div>
-
-      <div class="q"><div class="q-t">4 · When you’ve raised a concern, did you find out who acted on it and what happened?</div>
-        <div data-k="answered">
-          <button type="button" class="opt">Always</button>
-          <button type="button" class="opt">Sometimes</button>
-          <button type="button" class="opt">Never</button>
-          <button type="button" class="opt">I’ve never raised one</button>
-        </div></div>
-
-      <div class="q"><div class="q-t">5 · How much do you trust your district to act on its data — not just publish it?</div>
-        <div data-k="steadied" class="scale">
-          <button type="button" class="opt">1</button><button type="button" class="opt">2</button><button type="button" class="opt">3</button><button type="button" class="opt">4</button><button type="button" class="opt">5</button>
-        </div></div>
-
-      <div class="q"><div class="q-t">6 · What one question do you wish your school board could answer about your child or community?</div>
-        <textarea id="wish" rows="3" placeholder="Say it the way you'd say it out loud."></textarea></div>
-
-      <div class="q"><div class="q-t">Optional — email, if you want the AI Family Room monthly tip.</div>
-        <input type="email" id="vemail" placeholder="you@example.com"></div>
-
-      <button type="button" class="send" id="vsend">Send my answers →</button>
-      <div class="ejc-panel done" id="vdone">Received — thank you. Your voice just became part of how boards get better. Keep practicing anytime at <strong>aifamilyroom.com</strong>.</div>
-    </form>
+    <p class="sig">Thank you — I mean it.<br><strong>— Tyra · Chief Possibility Pilot</strong></p>
 
     <div class="go-foot"><span>Free · no login · no data sold</span><span><a href="https://aifamilyroom.com">aifamilyroom.com</a></span></div>
   </div>
 </div>
-<script>
-(function(){
-  var ans={};
-  document.querySelectorAll('[data-k]').forEach(function(g){
-    g.querySelectorAll('.opt').forEach(function(b){
-      b.addEventListener('click',function(){
-        g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel');});
-        b.classList.add('sel'); ans[g.dataset.k]=b.textContent.trim();
-      });
-    });
-  });
-  document.getElementById('vsend').addEventListener('click',function(){
-    var btn=this;
-    var parts=[]; ['role','seen','known','answered','steadied'].forEach(function(k){ if(ans[k]) parts.push(k+'='+ans[k]); });
-    var wish=document.getElementById('wish').value.trim(); if(wish) parts.push('wish='+wish.replace(/[|;]/g,','));
-    if(parts.length===0){ btn.textContent='Pick at least one answer first'; setTimeout(function(){btn.textContent='Send my answers →';},2200); return; }
-    btn.disabled=true; btn.textContent='Sending…';
-    fetch('https://script.google.com/macros/s/AKfycbwrSIWcwwL4AiYyOWlUduchszym-hiXTqcePogiQx7d4oqjym66_9voDQBXG6ZCDgkuug/exec',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body:JSON.stringify({token:'afr-2026-ejc',honeypot:'',type:'future_interest',
-        email:document.getElementById('vemail').value.trim(),installation:'gov-voice-survey',
-        interest:'GOV-VOICE | '+parts.join(' | '),name:''}),keepalive:true
-    }).catch(function(){}).finally(function(){
-      btn.style.display='none';
-      document.getElementById('vdone').style.display='block';
-    });
-  });
-})();
-</script>
 </body>
 </html>

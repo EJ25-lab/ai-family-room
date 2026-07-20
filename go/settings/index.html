@@ -5,60 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Open your settings — AI Family Room</title>
 <meta name="robots" content="noindex">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../_ds/edjustice-collective-design-system-f6e55576-6032-46ce-86e9-06e384e567c6/styles.css">
 <style>
-  html,body{margin:0;padding:0;background:#FFFFFF;color:#1A2A30;font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:560px;margin:0 auto;padding:40px 22px 80px}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1ABCB0;margin-bottom:10px}
-  h1{font-size:clamp(30px,7vw,40px);font-weight:800;line-height:1.12;letter-spacing:-.02em;margin:0 0 10px}
-  .sub{font-size:16px;line-height:1.6;color:#4A5C64;margin:0 0 26px}
-  .rule{height:2.5px;background:#1ABCB0;border:0;margin:0 0 26px}
-  .btn{display:block;text-align:center;text-decoration:none;background:#1ABCB0;color:#0B1215;font-weight:800;font-size:20px;padding:20px 18px;border-radius:14px;margin-bottom:14px}
-  .btn.alt{background:#FFFFFF;color:#0D6B64;border:2px solid #1ABCB0}
-  .btn small{display:block;font-size:13px;font-weight:600;opacity:.75;margin-top:3px}
-  .hint{background:#E0F7F5;border-radius:12px;padding:16px 18px;color:#0D6B64;font-size:15px;line-height:1.55;margin-top:22px}
-  .hint b{font-weight:700}
-  .steps{margin:18px 0 0;padding:0;list-style:none}
-  .steps li{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:15.5px;line-height:1.5;color:#4A5C64}
-  .n{flex:0 0 26px;height:26px;border-radius:50%;background:#1ABCB0;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
-  h2{font-size:17px;font-weight:700;margin:26px 0 6px}
-  .foot{margin-top:40px;border-top:1px solid #E8EAEA;padding-top:16px;font-size:12.5px;color:#8A9BA3}
-  .foot a{color:#0D6B64;text-decoration:none;font-weight:600}
-  .ex{border:1px solid #E8EAEA;border-radius:12px;padding:14px 16px;margin-bottom:12px;position:relative}
-  .ex-t{font-size:14px;font-weight:700;color:#0D6B64;margin-bottom:6px}
-  .ex-b{font-size:14.5px;line-height:1.6;color:#4A5C64;margin:0 0 10px}
-  .copy{background:#1ABCB0;color:#0B1215;border:none;border-radius:999px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;padding:8px 18px;cursor:pointer}
+  /* page-specific only — tokens from the design system */
+  body { margin:0; padding:0; background: var(--surface-app); }
+  .go-wrap { max-width:620px; margin:0 auto; padding:28px 20px 60px; }
+  .go-page { background: var(--surface-page); border:1px solid var(--border-hairline); border-radius:14px; padding:30px 24px 26px; box-shadow:0 2px 24px rgba(0,0,0,.06); }
+  h1 { font-size: clamp(1.7rem, 6vw, var(--fs-h1)); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-tight); line-height: var(--lh-tight); margin: 6px 0 10px; color: var(--text-primary); }
+  .go-btn { display:block; text-align:center; text-decoration:none; background: var(--accent-brand); color: var(--ejc-dark); font-weight: var(--fw-extrabold); font-size: var(--fs-lead); padding:18px 16px; border-radius:12px; margin-bottom:12px; }
+  .go-btn:hover { background: var(--ejc-teal-dark); }
+  .go-btn.alt { background: var(--surface-page); color: var(--text-insight); border:2px solid var(--border-accent); }
+  .go-btn small { display:block; font-size: var(--fs-meta); font-weight: var(--fw-semibold); opacity:.75; margin-top:2px; }
+  .go-steps { margin:10px 0 0; padding:0; list-style:none; }
+  .go-steps li { display:flex; gap:12px; align-items:flex-start; margin-bottom:11px; font-size: var(--fs-body); line-height: var(--lh-snug); color: var(--text-secondary); }
+  .go-n { flex:0 0 24px; height:24px; border-radius:6px; background: var(--accent-brand); color:#fff; font-weight: var(--fw-extrabold); font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .go-ex { border:1px solid var(--border-hairline); border-radius:10px; padding:14px 16px; margin-bottom:12px; background: var(--surface-page); }
+  .go-ex-t { font-size: var(--fs-meta); font-weight: var(--fw-bold); letter-spacing: var(--ls-label); text-transform:uppercase; color: var(--text-insight); margin-bottom:6px; }
+  .go-ex p { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--text-secondary); margin:0 0 10px; }
+  .go-copy { background: var(--accent-brand); color: var(--ejc-dark); border:none; border-radius:999px; font-family: var(--font-sans); font-weight: var(--fw-bold); font-size:13px; padding:8px 18px; cursor:pointer; }
+  .go-foot { margin-top:26px; background: var(--surface-footer); border-radius:8px; padding:10px 16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .go-foot span { font-size: var(--fs-meta); color: var(--text-tertiary); }
+  .go-foot a { color: var(--text-on-dark); text-decoration:none; font-weight: var(--fw-bold); }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="eyebrow">AI FAMILY ROOM · WIN 1</div>
-  <h1>Teach it who you are.</h1>
-  <p class="sub">Tap your tool. It opens the exact screen. Type your three lines.</p>
-  <hr class="rule">
-  <div class="hint" style="margin:0 0 18px"><b>Asked to log in?</b> That’s step one — log in, then scan this code again and it lands on the right screen.</div>
-  <a class="btn" href="https://claude.ai/settings/profile">Claude settings<small>Instructions for Claude</small></a>
-  <a class="btn alt" href="https://chatgpt.com/#settings/Personalization">ChatGPT settings<small>Personalization · About you</small></a>
-  <div class="hint"><b>Your three lines:</b><br>1 · Who I am — “I’m a [milspouse · parent · PCSing this fall].”<br>2 · What I care about — “[a job that moves with us · my kid’s reading].”<br>3 · How to talk to me — “Short. Plain. Warm. No jargon.”</div>
+<div class="go-wrap">
+  <div class="go-page">
+    <div class="ejc-eyebrow">AI FAMILY ROOM · WIN 1</div>
+    <h1>Teach it who you are.</h1>
+    <p class="ejc-lead" style="font-size:16px">Tap your tool. It opens the exact screen. Type your three lines.</p>
+    <div class="ejc-panel">Asked to log in? That’s step one — log in, then scan this code again and it lands on the right screen.</div>
+    <a class="go-btn" href="https://claude.ai/settings/profile">Claude settings<small>Instructions for Claude</small></a>
+    <a class="go-btn alt" href="https://chatgpt.com/#settings/Personalization">ChatGPT settings<small>Personalization · About you</small></a>
+    <div class="ejc-panel">Your three lines: <strong>1 · Who I am</strong> · <strong>2 · What I care about</strong> · <strong>3 · How to talk to me.</strong></div>
 
-  <h2 style="font-size:19px;font-weight:800;margin:30px 0 4px">Pick a starter. Make it yours.</h2>
-  <p style="font-size:14.5px;color:#4A5C64;line-height:1.55;margin:0 0 14px">Tap copy, paste it into the box you just opened, then change the brackets. Done.</p>
-  <div class="ex"><div class="ex-t">🎖 Military spouse</div><p class="ex-b" id="ex1">I'm a military spouse — we PCS often, currently at [base]. I care about keeping my career and my family steady through moves. Keep answers short, plain, and warm. Answer first, explain after. Don't give me generic checklists.</p><button class="copy" data-t="ex1">Copy</button></div>
-  <div class="ex"><div class="ex-t">📋 Parent</div><p class="ex-b" id="ex2">I'm a parent of kids ages [ages]; one has an IEP. I care about being taken seriously in school meetings. Use plain words and respectful-but-firm drafts. If you're not sure what I mean, ask me one question first. Don't sound like a lawyer.</p><button class="copy" data-t="ex2">Copy</button></div>
-  <div class="ex"><div class="ex-t">📍 Job hunter</div><p class="ex-b" id="ex3">I'm re-entering work after [a gap — caregiving, a move, a deployment]. I care about telling that story with confidence. Be direct, no filler. I'm new to AI, so explain things the first time. Never invent facts about me.</p><button class="copy" data-t="ex3">Copy</button></div>
-  <div class="ex"><div class="ex-t">🏛 Caregiver · community leader</div><p class="ex-b" id="ex4">I hold a lot of people together — [family, a classroom, a congregation]. I care about saying hard things kindly. Keep it warm and short, no corporate speak. Answer first. Don't lecture me.</p><button class="copy" data-t="ex4">Copy</button></div>
-  <div class="ex"><div class="ex-t">📅 Just curious</div><p class="ex-b" id="ex5">I'm brand new to this. I care about learning without feeling dumb. Small steps, plain language, one thing at a time. Ask what I want before giving lots of options. No hype.</p><button class="copy" data-t="ex5">Copy</button></div>
-  <p style="font-size:13.5px;color:#4A5C64;line-height:1.55;margin:14px 0 0"><b style="color:#0D6B64">Pro move:</b> after you save it, ask your AI — “How could these instructions be even better?” It will tune itself.</p>
-  <script>
-  document.querySelectorAll('.copy').forEach(function(b){
+    <div class="ejc-section-h" style="margin-top:26px"><div class="ejc-marker"></div><h2>Pick a starter. Make it yours.</h2></div>
+    <p class="ejc-body">Tap copy, paste it into the box you just opened, then change the brackets. Done.</p>
+
+    <div class="go-ex"><div class="go-ex-t">Military spouse</div><p id="ex1">I'm a military spouse — we PCS often, currently at [base]. I care about keeping my career and my family steady through moves. Keep answers short, plain, and warm. Answer first, explain after. Don't give me generic checklists.</p><button class="go-copy" data-t="ex1">Copy</button></div>
+    <div class="go-ex"><div class="go-ex-t">Parent</div><p id="ex2">I'm a parent of kids ages [ages]; one has an IEP. I care about being taken seriously in school meetings. Use plain words and respectful-but-firm drafts. If you're not sure what I mean, ask me one question first. Don't sound like a lawyer.</p><button class="go-copy" data-t="ex2">Copy</button></div>
+    <div class="go-ex"><div class="go-ex-t">Job hunter</div><p id="ex3">I'm re-entering work after [a gap — caregiving, a move, a deployment]. I care about telling that story with confidence. Be direct, no filler. I'm new to AI, so explain things the first time. Never invent facts about me.</p><button class="go-copy" data-t="ex3">Copy</button></div>
+    <div class="go-ex"><div class="go-ex-t">Caregiver · community leader</div><p id="ex4">I hold a lot of people together — [family, a classroom, a congregation]. I care about saying hard things kindly. Keep it warm and short, no corporate speak. Answer first. Don't lecture me.</p><button class="go-copy" data-t="ex4">Copy</button></div>
+    <div class="go-ex"><div class="go-ex-t">Just curious</div><p id="ex5">I'm brand new to this. I care about learning without feeling dumb. Small steps, plain language, one thing at a time. Ask what I want before giving lots of options. No hype.</p><button class="go-copy" data-t="ex5">Copy</button></div>
+    <p class="ejc-body"><strong style="color:var(--text-insight)">✦ Pro move:</strong> after you save it, ask your AI — “How could these instructions be even better?” It will tune itself.</p>
+    <div class="go-foot"><span>Free · no login · no data sold</span><span><a href="https://aifamilyroom.com">aifamilyroom.com</a></span></div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.go-copy').forEach(function(b){
     b.addEventListener('click',function(){
       var t=document.getElementById(b.dataset.t).innerText;
       navigator.clipboard.writeText(t).then(function(){ b.textContent='✓ Copied'; setTimeout(function(){b.textContent='Copy';},2000); });
     });
   });
   </script>
-
-  <div class="foot">Free · no login · no data sold · <a href="https://aifamilyroom.com">aifamilyroom.com</a></div>
-</div>
 </body>
 </html>
